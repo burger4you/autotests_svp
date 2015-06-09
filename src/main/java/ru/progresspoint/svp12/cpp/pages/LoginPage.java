@@ -8,7 +8,7 @@ import net.thucydides.core.annotations.At;
 /**
  * Страница авторизации оператора
  */
-@At("http://localhost:3000/sign_in")
+@At("#HOST/sign_in")
 public class LoginPage extends PageObject {
 
     @FindBy(id = "session_login")

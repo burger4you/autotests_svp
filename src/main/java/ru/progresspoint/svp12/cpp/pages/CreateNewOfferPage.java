@@ -8,7 +8,7 @@ import net.thucydides.core.annotations.At;
 /**
  * Страница создания нового договора
  */
-@At("http://localhost:3000/clients/.*/draft")
+@At("#HOST/clients/.*/draft")
 public class CreateNewOfferPage extends PageObject {
 
     @FindBy(id = "client_client_type_id")
