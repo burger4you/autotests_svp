@@ -14,6 +14,7 @@ public class SessionSteps {
 
     @When("он вводит логин $login и пароль $password для авторизации")
     public void operatorEntersLoginAndPassword(String login, String password) {
-        operator.logsInSystem(login, password);
+        operator.entersLoginAndPassword(login, password);
+        operator.clickConfirmButton();
     }
 }

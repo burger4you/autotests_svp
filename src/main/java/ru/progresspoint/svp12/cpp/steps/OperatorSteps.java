@@ -11,7 +11,7 @@ public class OperatorSteps extends ScenarioSteps {
     LoginPage loginPage;
     CreateNewOfferPage newOfferPage;
 
-    @Step
+    @Step("Открывает страницу {0}")
     public void opensPage(String page) {
         switch (page) {
             case "Авторизация"             : loginPage.open(); break;
@@ -19,10 +19,22 @@ public class OperatorSteps extends ScenarioSteps {
         }
     }
 
-    @Step
-    public void logsInSystem(String login, String password) {
+    @Step("Находится на странице {0}")
+    public void isOnPage(String page) {
+        switch (page) {
+            case "Авторизация"             : loginPage.shouldBeDisplayed(); break;
+            case "Заключить новый договор" : newOfferPage.shouldBeDisplayed(); break;
+        }
+    }
+
+    @Step("Вводит {0} и {1}")
+    public void entersLoginAndPassword(String login, String password) {
         loginPage.enterLogin(login);
         loginPage.enterPassword(password);
+    }
+
+    @Step("Жмет кнопку Войти")
+    public void clickConfirmButton() {
         loginPage.clickConfirmButton();
     }
 
