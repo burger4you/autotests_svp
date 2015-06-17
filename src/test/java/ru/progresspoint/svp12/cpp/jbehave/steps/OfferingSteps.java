@@ -33,4 +33,35 @@ public class OfferingSteps {
                                                 String passportIssuedWhen) {
         operator.fillsClientPassportData(passportSeriesAndNumber, passportIssuedBy, passportIssuedWhen);
     }
+
+    @When("заполняет адрес регистрации: $addressIndex; $addressCityAndStreet; д. $addressHome; кв. $addressApartment")
+    public void operatorFillsClientAddressData(String addressIndex,
+                                               String addressCityAndStreet,
+                                               String addressHome,
+                                               String addressApartment) {
+        operator.fillsClientAddressData(addressIndex, addressCityAndStreet, addressHome, addressApartment);
+    }
+
+    @When("указывает, что фактический адрес совпадает с адресом регистрации")
+    public void operatorFillsClientAddressData() {
+        operator.setMatchedTheAddresses();
+    }
+
+    @When("заполняет личные данные контактного лица: $contactSurname $contactName $contactPatronymic")
+    public void operatorFillsContactPersonalData(String contactSurname,
+                                                String contactName,
+                                                String contactPatronymic) {
+        operator.fillsContactPersonalData(contactSurname, contactName, contactPatronymic);
+    }
+
+    @When("заполняет основные контакты: телефон $contactMainPhone и email $contactMainEmail")
+    public void operatorFillsContactPersonalData(String contactMainPhone,
+                                                 String contactMainEmail) {
+        operator.fillsContactPhoneAndEmail(contactMainPhone, contactMainEmail);
+    }
+
+    @When("подтверждает регистрацию")
+    public void operatorConfirmRegistration() {
+        operator.clickRegistrationButton();
+    }
 }

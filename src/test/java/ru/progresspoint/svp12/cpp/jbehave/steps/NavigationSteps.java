@@ -14,6 +14,11 @@ public class NavigationSteps {
 
     @Given("оператор находится на странице \"$page\"")
     public void operatorIsOn(String page) {
+        if (!(operator.isOnSystem("АРМ ЦИПП") || page.equals("Авторизация"))) {
+            operator.opensPage("Авторизация");
+            operator.entersLoginAndPassword("admin_cpp@svp12.ru", "test");
+            operator.clickLoginButton();
+        }
         operator.opensPage(page);
     }
 }
