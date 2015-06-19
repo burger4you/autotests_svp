@@ -9,7 +9,7 @@ import net.thucydides.core.annotations.At;
  * Страница Регистрация ВТС
  */
 @At("#HOST/clients/draft")
-public class CreateNewOfferPage extends PageObject {
+public class OwnerRegistrationPage extends PageObject {
 
     static final String DROP_DOWN_XPATH = ".//*[@id='%s']/..//*[@class='item']";
     static final String DROP_DOWN_ITEM_XPATH = ".//*[@class='selectize-dropdown-content']/*[text()='%s']";

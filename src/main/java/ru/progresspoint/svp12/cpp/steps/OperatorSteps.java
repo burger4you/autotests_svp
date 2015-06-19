@@ -3,7 +3,7 @@ package ru.progresspoint.svp12.cpp.steps;
 
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.steps.ScenarioSteps;
-import ru.progresspoint.svp12.cpp.pages.CreateNewOfferPage;
+import ru.progresspoint.svp12.cpp.pages.OwnerRegistrationPage;
 import ru.progresspoint.svp12.cpp.pages.LoginPage;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -11,13 +11,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class OperatorSteps extends ScenarioSteps {
 
     LoginPage loginPage;
-    CreateNewOfferPage newOfferPage;
+    OwnerRegistrationPage ownerRegistrationPage;
 
     @Step("Открывает страницу {0}")
     public void opensPage(String page) {
         switch (page) {
             case "Авторизация"             : loginPage.open(); break;
-            case "Регистрация"             : newOfferPage.open(); break;
+            case "Регистрация"             : ownerRegistrationPage.open(); break;
         }
     }
 
@@ -25,7 +25,7 @@ public class OperatorSteps extends ScenarioSteps {
     public void isOnPage(String page) {
         switch (page) {
             case "Авторизация"             : loginPage.shouldBeDisplayed(); break;
-            case "Регистрация"             : newOfferPage.shouldBeDisplayed(); break;
+            case "Регистрация"             : ownerRegistrationPage.shouldBeDisplayed(); break;
         }
     }
 
@@ -48,31 +48,31 @@ public class OperatorSteps extends ScenarioSteps {
 
     @Step("Выбирает тип клиента {0}")
     public void setsClientType(String clientType) {
-        newOfferPage.selectClientType(clientType);
+        ownerRegistrationPage.selectClientType(clientType);
     }
 
     @Step("Выбирает резидентство {0}")
     public void setsClientResidence(String clientCountry) {
-        newOfferPage.selectClientCountry(clientCountry);
+        ownerRegistrationPage.selectClientCountry(clientCountry);
     }
 
     @Step("Вводит ФИО клиента {0} {1} {2}")
     public void fillsClientPersonalData(String clientSurname,
                                         String clientName,
                                         String clientPatronymic) {
-        newOfferPage.enterOwnerFullName(clientSurname, clientName, clientPatronymic);
+        ownerRegistrationPage.enterOwnerFullName(clientSurname, clientName, clientPatronymic);
     }
 
     @Step("Вводит дату рожденя {0}")
     public void fillsClientBirthday(String clientBirthday) {
-        newOfferPage.enterOwnerBirthday(clientBirthday);
+        ownerRegistrationPage.enterOwnerBirthday(clientBirthday);
     }
 
     @Step("Вводит серию и номер паспорта {0} кем и когда выдан {1} {2}")
     public void fillsClientPassportData(String passportSeriesAndNumber,
                                         String passportIssuedBy,
                                         String passportIssuedWhen) {
-        newOfferPage.enterOwnerPassportData(passportSeriesAndNumber, passportIssuedBy, passportIssuedWhen);
+        ownerRegistrationPage.enterOwnerPassportData(passportSeriesAndNumber, passportIssuedBy, passportIssuedWhen);
     }
 
     @Step("Вводит адрес {0}, {1}, д.{2}, кв.{3}")
@@ -80,39 +80,39 @@ public class OperatorSteps extends ScenarioSteps {
                                        String addressCityAndStreet,
                                        String addressHouse,
                                        String addressApartment) {
-        newOfferPage.enterOwnerIndex(addressIndex);
-        newOfferPage.enterOwnerCityAndStreet(addressCityAndStreet);
-        newOfferPage.enterOwnerHome(addressHouse);
-        newOfferPage.enterOwnerApartment(addressApartment);
+        ownerRegistrationPage.enterOwnerIndex(addressIndex);
+        ownerRegistrationPage.enterOwnerCityAndStreet(addressCityAndStreet);
+        ownerRegistrationPage.enterOwnerHome(addressHouse);
+        ownerRegistrationPage.enterOwnerApartment(addressApartment);
     }
     @Step("Указывает, что фактический и адрес регистрации совпадают")
     public void setMatchedTheAddresses() {
-        newOfferPage.setActualAddressSameAsRegistration();
+        ownerRegistrationPage.setActualAddressSameAsRegistration();
     }
 
     @Step("Вводит ФИО контактного лица {0} {1} {2}")
     public void fillsContactPersonalData(String contactSurname,
                                          String contactName,
                                          String contactPatronymic) {
-        newOfferPage.clickContactInfoMenuItem();
-        newOfferPage.enterContactFullName(contactSurname, contactName, contactPatronymic);
+        ownerRegistrationPage.clickContactInfoMenuItem();
+        ownerRegistrationPage.enterContactFullName(contactSurname, contactName, contactPatronymic);
     }
 
     @Step("Вводит основные телефон {0} и адрес почты {1} контактного лица")
     public void fillsContactPhoneAndEmail(String contactMainPhone,
                                           String contactMainEmail) {
-        newOfferPage.enterContactMainPhone(contactMainPhone);
-        newOfferPage.enterContactMainEmail(contactMainEmail);
+        ownerRegistrationPage.enterContactMainPhone(contactMainPhone);
+        ownerRegistrationPage.enterContactMainEmail(contactMainEmail);
     }
 
     @Step("Жмет кнопку Зарегистрировать")
     public void clickRegistrationButton() {
-        newOfferPage.clickRegistrationButton();
+        ownerRegistrationPage.clickRegistrationButton();
     }
 
     @Step("Дожидается приглашения зарегестрировать ТС")
     public void shouldSeeInviteToRegistrationVehicle() {
-        assertThat(newOfferPage.displayedInviteToRegistrationVehicle())
+        assertThat(ownerRegistrationPage.displayedInviteToRegistrationVehicle())
                 .overridingErrorMessage("Приглашение зарегестрировать ТС не отображается")
                 .isTrue();
     }

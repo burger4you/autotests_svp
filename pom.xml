@@ -12,9 +12,9 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <serenity.version>1.0.47</serenity.version>
         <serenity.jbehave.version>1.0.21</serenity.jbehave.version>
-        <webdriver.driver>firefox</webdriver.driver>
     </properties>
 
     <dependencies>
@@ -70,9 +70,6 @@
                     </includes>
                     <!--<reuseForks>true</reuseForks>-->
                     <argLine>-Xmx1024m -XX:MaxPermSize=256m</argLine>
-                    <systemProperties>
-                        <webdriver.driver>${webdriver.driver}</webdriver.driver>
-                    </systemProperties>
                 </configuration>
                 <executions>
                     <execution>
