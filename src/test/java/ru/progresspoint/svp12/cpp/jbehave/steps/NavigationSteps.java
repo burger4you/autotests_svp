@@ -16,7 +16,7 @@ public class NavigationSteps {
     public void operatorIsOn(String page) {
         if (!operator.isOnSystem("АРМ ЦИПП") && !page.equals("Авторизация")) {
             operator.opensPage("Авторизация");
-            operator.entersLoginAndPassword("admin", "test");
+            operator.entersLoginAndPassword("Operator", "!Test1");
             operator.clickLoginButton();
         }
         operator.opensPage(page);
