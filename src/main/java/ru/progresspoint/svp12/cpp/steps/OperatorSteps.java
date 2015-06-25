@@ -86,7 +86,7 @@ public class OperatorSteps extends ScenarioSteps {
         ownerRegistrationPage.enterOwnerApartment(addressApartment);
     }
     @Step("Указывает, что фактический и адрес регистрации совпадают")
-    public void setMatchedTheAddresses() {
+    public void setsMatchedClientAddresses() {
         ownerRegistrationPage.setActualAddressSameAsRegistration();
     }
 
@@ -115,5 +115,113 @@ public class OperatorSteps extends ScenarioSteps {
         assertThat(ownerRegistrationPage.displayedInviteToRegistrationVehicle())
                 .overridingErrorMessage("Приглашение зарегестрировать ТС не отображается")
                 .isTrue();
+    }
+
+    public void fillsEntityOGRN(String entityOGRN) {
+
+    }
+
+    public void fillsEntityOGRNDate(String entityOGRNDate) {
+
+    }
+
+    public void fillsEntityINN(String entityINN) {
+
+    }
+
+    public void fillsEntityKPP(String entityKPP) {
+
+    }
+
+    public void setsEntityForm(String entityForm) {
+
+    }
+
+    public void setsEntityCategory(String entityCategory) {
+
+    }
+
+    public void fillsEntityFullName(String entityFullName) {
+
+    }
+
+    public void fillsEntityShortName(String entityShortName) {
+
+    }
+
+    public void fillsEntityAddressData(String entityAddressIndex, String entityAddressCityAndStreet, String entityAddressHome, String entityAddressApartment) {
+
+    }
+
+    public void fillsEntityAccountNumber(String accountNumber) {
+
+    }
+
+    public void fillsEntityAccountBank(String accountBank) {
+
+    }
+
+    public void fillsEntityAccountBIK(String accountBIK) {
+
+    }
+
+    public void fillsEntityAccountINN(String accountINN) {
+
+    }
+
+    public void fillsEntityAccountKPP(String accountKPP) {
+
+    }
+
+    public void fillsEntityAccountOKPO(String accountOKPO) {
+
+    }
+
+    public void fillsEntityAccountCorr(String accountCorr) {
+
+    }
+
+    public void fillsEntityAccountRecipient(String accountRecipient) {
+
+    }
+
+    public void fillsDirectorPersonalData(String directorSurname, String directorName, String directorPatronymic) {
+
+    }
+
+    public void fillsDirectorBirthday(String directorBirthday) {
+
+    }
+
+    public void fillsDirectorPassportData(String directorPassportSeriesAndNumber, String directorPassportIssuedBy, String directorPassportIssuedWhen) {
+
+    }
+
+    public void fillsDirectorAddressData(String directorAddressIndex, String directorAddressCityAndStreet, String directorAddressHome, String directorAddressApartment) {
+
+    }
+
+    public void setsMatchedDirectorAddresses() {
+
+    }
+
+    public void fillsAgentPersonalData(String agentSurname, String agentName, String agentPatronymic) {
+
+    }
+
+    public void fillsAgentBirthday(String agentBirthday) {
+
+    }
+
+    public void fillsAgentPassportData(String agentPassportSeriesAndNumber, String agentPassportIssuedBy, String agentPassportIssuedWhen) {
+
+    }
+
+    public void fillsAgentAddressData(String agentAddressIndex, String agentAddressCityAndStreet, String agentAddressHome, String agentAddressApartment) {
+
+    }
+
+    public void setsMatchedAgentAddresses() {
+
     }
 }
