@@ -30,23 +30,15 @@ public class LKNewVehiclesGroupPage extends PageObject {
     @FindBy(name = "commit")
     WebElementFacade confirmButton;
 
-    public void checkForGroupRandomVehicles(int amountVehicles) {
-        for (int i = 0; i < amountVehicles; i++)
-            vehiclesCheckBoxes.get(i+1).click();
+    public void chooseForGroupRandomVehicles(int amountVehicles) {
+        for (int i = 0; i < amountVehicles; i++) {
+            vehiclesCheckBoxes.get(i + 1).click();
+        }
     }
 
     public void clickConfirmButton() {
         confirmButton.click();
     }
-
-
-
-
-
-
-
-
-
 
     public void enterVehiclesGroupName(String vehiclesGroupName) {
         enter(vehiclesGroupName).into(vehiclesGroupNameField);

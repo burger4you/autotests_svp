@@ -25,6 +25,7 @@ public class LKUserSteps extends ScenarioSteps {
     @Step("Жмет кнопку Войти")
     public void clickLoginButton() {
         loginPage.clickConfirmButton();
+        mainPage.loading();
     }
 
     @Step("Выбирает в меню Транспортные средства")
@@ -47,9 +48,9 @@ public class LKUserSteps extends ScenarioSteps {
         newVehiclesGroupPage.enterVehiclesGroupName(groupName);
     }
 
-    @Step("Выбирает {0} машин для новой группы")
+    @Step("Выбирает {0} машин(ы) для новой группы")
     public void chooseVehiclesForGroup(int amountVehicles) {
-        newVehiclesGroupPage.checkForGroupRandomVehicles(amountVehicles);
+        newVehiclesGroupPage.chooseForGroupRandomVehicles(amountVehicles);
     }
 
     @Step("Кликает кнопку подтверждения")

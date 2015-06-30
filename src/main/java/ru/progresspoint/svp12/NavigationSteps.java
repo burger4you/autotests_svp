@@ -6,7 +6,7 @@ import net.thucydides.core.steps.ScenarioSteps;
 import ru.progresspoint.svp12.cpp.pages.CPPLoginPage;
 import ru.progresspoint.svp12.cpp.pages.CPPOwnerRegistrationPage;
 import ru.progresspoint.svp12.lk.pages.LKLoginPage;
-import ru.progresspoint.svp12.lk.pages.LKVehiclesPage;
+import ru.progresspoint.svp12.lk.pages.LKMainPage;
 
 /**
  * Шаги навигации по всей системе ПО СВП
@@ -15,16 +15,16 @@ public class NavigationSteps extends ScenarioSteps {
 
     CPPLoginPage cppLoginPage;
     CPPOwnerRegistrationPage cppOwnerRegistrationPage;
-    LKVehiclesPage lkVehiclesPage;
+    LKMainPage  lkMainPage;
     LKLoginPage lkLoginPage;
 
     @Step("Открывает страницу {0}")
     public void opensPage(String page) {
         switch (page) {
-            case "Авторизации в ЦИПП"             : cppLoginPage.open(); break;
-            case "Регистрации ВТС в ЦИПП"         : cppOwnerRegistrationPage.open(); break;
-            case "Авторизации в ЛК"               : lkLoginPage.open(); break;
-            case "Транспортные средства в ЛК"     : lkVehiclesPage.open(); break;
+            case "Авторизации в ЦИПП"              : cppLoginPage.open(); break;
+            case "Регистрации ВТС в ЦИПП"          : cppOwnerRegistrationPage.open(); break;
+            case "авторизации ЛК"                  : lkLoginPage.open(); break;
+            case "главной ЛК"                      : lkMainPage.open(); break;
         }
     }
 
@@ -33,8 +33,8 @@ public class NavigationSteps extends ScenarioSteps {
         switch (page) {
             case "Авторизации в ЦИПП"              : cppLoginPage.shouldBeDisplayed(); break;
             case "Регистрации ВТС в ЦИПП"          : cppOwnerRegistrationPage.shouldBeDisplayed(); break;
-            case "Авторизации в ЛК"                : lkLoginPage.shouldBeDisplayed(); break;
-            case "Транспортные средства в ЛК"      : lkVehiclesPage.shouldBeDisplayed(); break;
+            case "авторизации ЛК"                  : lkLoginPage.shouldBeDisplayed(); break;
+            case "главной ЛК"                      : lkMainPage.shouldBeDisplayed(); break;
         }
     }
 

@@ -21,6 +21,7 @@ public class LKUserActions {
 
     @When("пользователь отметит в списке $amountVehicles своих ТС и назовет это объединение $groupName")
     public void userChooseVehiclesForGroup(int amountVehicles, String groupName) {
+        user.clickToVehiclesItemMenu();
         user.clickToGroupsVehiclesLink();
         user.clickToNewGroupVehiclesLink();
         user.enterNameForNewGroupVehicles(groupName);
