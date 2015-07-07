@@ -18,8 +18,8 @@ public class LKPreconditionsSteps {
 
     @Given("пользователь находится на странице $page")
     public void userIsOn(String page) {
-        if (!page.equals("авторизации ЛК")) {
-            navigation.opensPage("авторизации ЛК");
+        if (!page.equals("Авторизации в ЛК")) {
+            navigation.opensPage("Авторизации в ЛК");
             user.entersLoginAndPassword("okapustina", "!QAZ2wsx");
             user.clickLoginButton();
         }
