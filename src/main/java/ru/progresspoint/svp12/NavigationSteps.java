@@ -18,16 +18,17 @@ public class NavigationSteps extends ScenarioSteps {
     CPPOwnerRegistrationPage cppOwnerRegistrationPage;
     LKMainPage lkMainPage;
     LKLoginPage lkLoginPage;
-    LKVehiclesPage vehiclesPage;
+    LKVehiclesPage lkVehiclesPage;
 
     @Step("Открывает страницу {0}")
     public void opensPage(String page) {
         switch (page) {
-            case "Авторизации в ЦИПП"              : cppLoginPage.open(); break;
-            case "Регистрации ВТС в ЦИПП"          : cppOwnerRegistrationPage.open(); break;
-            case "Авторизации в ЛК"                : lkLoginPage.open(); break;
-            case "главной ЛК"                      : lkMainPage.open(); break;
-            case "Транспортные средства"           : vehiclesPage.open(); break;
+            case "Авторизации в ЦИПП"              : cppLoginPage.openAt("http://10.0.13.41/sign_in"); break;
+            case "Регистрации ВТС в ЦИПП"          : cppOwnerRegistrationPage.openAt("http://10.0.13.41/clients/draft"); break;
+            case "Авторизации в ЛК"                : lkLoginPage.openAt("http://10.0.13.42/sign_in"); break;
+            case "главной ЛК"                      : lkMainPage.openAt("http://10.0.13.42"); break;
+            case "Транспортные средства"           : lkMainPage.loading();
+                                                     lkMainPage.clickToVehiclesItemMenu(); break;
         }
     }
 
@@ -38,7 +39,7 @@ public class NavigationSteps extends ScenarioSteps {
             case "Регистрации ВТС в ЦИПП"          : cppOwnerRegistrationPage.shouldBeDisplayed(); break;
             case "Авторизации в ЛК"                : lkLoginPage.shouldBeDisplayed(); break;
             case "главной ЛК"                      : lkMainPage.shouldBeDisplayed(); break;
-            case "Транспортные средства"           : vehiclesPage.shouldBeDisplayed(); break;
+            case "Транспортные средства"           : lkVehiclesPage.shouldBeDisplayed(); break;
         }
     }
 
