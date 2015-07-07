@@ -18,9 +18,9 @@ public class CPPPreconditionSteps {
 
     @Given("оператор находится на странице $page")
     public void operatorIsOn(String page) {
-        if (!navigation.titleIs("АРМ ЦИПП") && !page.contains("Авторизации")) {
+        if (!navigation.titleIs("АРМ ЦИПП") && !page.contains("Авторизации в ЦИПП")) {
             navigation.opensPage("Авторизации в ЦИПП");
-            operator.entersLoginAndPassword("Operator", "!Test1");
+            operator.entersLoginAndPassword("Admin3", "Test123$");
             operator.clickLoginButton();
         }
         navigation.opensPage(page);
