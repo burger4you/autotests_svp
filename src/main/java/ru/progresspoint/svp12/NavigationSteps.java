@@ -16,7 +16,7 @@ public class NavigationSteps extends ScenarioSteps {
 
     CPPLoginPage cppLoginPage;
     CPPOwnerRegistrationPage cppOwnerRegistrationPage;
-    LKMainPage  lkMainPage;
+    LKMainPage lkMainPage;
     LKLoginPage lkLoginPage;
     LKVehiclesPage vehiclesPage;
 

@@ -20,7 +20,7 @@ public class LKPreconditionsSteps {
     public void userIsOn(String page) {
         if (!page.equals("Авторизации в ЛК")) {
             navigation.opensPage("Авторизации в ЛК");
-            user.entersLoginAndPassword("okapustina", "!QAZ2wsx");
+            user.entersLoginAndPassword("okapustina", "!QAZ2wsc");
             user.clickLoginButton();
         }
         navigation.opensPage(page);

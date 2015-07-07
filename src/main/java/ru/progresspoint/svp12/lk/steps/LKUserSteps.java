@@ -25,7 +25,6 @@ public class LKUserSteps extends ScenarioSteps {
     @Step("Жмет кнопку Войти")
     public void clickLoginButton() {
         loginPage.clickConfirmButton();
-        mainPage.loading();
     }
 
     @Step("Выбирает в меню Транспортные средства")
