@@ -9,18 +9,14 @@ import org.jbehave.core.io.LoadFromClasspath;
 import org.jbehave.core.model.ExamplesTableFactory;
 import org.jbehave.core.parsers.RegexStoryParser;
 import org.jbehave.core.reporters.ConsoleOutput;
-import org.jbehave.core.reporters.CrossReference;
-import org.jbehave.core.reporters.Format;
+import org.jbehave.core.reporters.StoryReporterBuilder;
 import org.jbehave.core.steps.InjectableStepsFactory;
 import org.jbehave.core.steps.MarkUnmatchedStepsAsPending;
 import org.jbehave.core.steps.ParameterControls;
 import org.jbehave.core.steps.ParameterConverters;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.Locale;
 
-import static org.jbehave.core.reporters.Format.*;
 import static org.jbehave.core.steps.ParameterConverters.ExamplesTableConverter;
 
 /**
@@ -34,9 +30,6 @@ import static org.jbehave.core.steps.ParameterConverters.ExamplesTableConverter;
  * </ul>
  */
 public abstract class LocalizedUserStories extends SerenityStories {
-
-    private static final CrossReference xref = new CrossReference();
-    private List<Format> formats = Arrays.asList(CONSOLE, HTML, XML);
 
     public Configuration ruConfiguration() {
         Keywords keywords = new LocalizedKeywords(new Locale("ru"));
@@ -56,13 +49,12 @@ public abstract class LocalizedUserStories extends SerenityStories {
                                 .addConverters(
                                         new ExamplesTableConverter(
                                                 new ExamplesTableFactory(new LoadFromClasspath(this.getClass())))))
-//                .useStoryReporterBuilder(new StoryReporterBuilder().withKeywords(keywords))
-//                        configuration().storyReporterBuilder()
-//                                .withKeywords(keywords))
+                .useStoryReporterBuilder(
+                        new StoryReporterBuilder()
+                                .withKeywords(keywords))
                 .useParameterControls(
                         new ParameterControls().useDelimiterNamedParameters(true));
     }
-
 
     @Override
     public InjectableStepsFactory stepsFactory() {
