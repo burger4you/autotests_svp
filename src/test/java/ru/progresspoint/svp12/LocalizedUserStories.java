@@ -9,7 +9,6 @@ import org.jbehave.core.io.LoadFromClasspath;
 import org.jbehave.core.model.ExamplesTableFactory;
 import org.jbehave.core.parsers.RegexStoryParser;
 import org.jbehave.core.reporters.ConsoleOutput;
-import org.jbehave.core.reporters.StoryReporterBuilder;
 import org.jbehave.core.steps.InjectableStepsFactory;
 import org.jbehave.core.steps.MarkUnmatchedStepsAsPending;
 import org.jbehave.core.steps.ParameterControls;
@@ -50,8 +49,7 @@ public abstract class LocalizedUserStories extends SerenityStories {
                                         new ExamplesTableConverter(
                                                 new ExamplesTableFactory(new LoadFromClasspath(this.getClass())))))
                 .useStoryReporterBuilder(
-                        new StoryReporterBuilder()
-                                .withKeywords(keywords))
+                        configuration().storyReporterBuilder().withKeywords(keywords))
                 .useParameterControls(
                         new ParameterControls().useDelimiterNamedParameters(true));
     }
