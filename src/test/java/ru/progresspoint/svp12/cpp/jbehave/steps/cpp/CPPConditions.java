@@ -21,7 +21,7 @@ public class CPPConditions {
         navigation.isOnPage(page);
     }
 
-    @Then("оператор входит в подсистему $title")
+    @Then("система предоставляет доступ к его аккаунту в $title")
     public void operatorShouldBeLogin(String title) {
         navigation.isOnSystem(title);
     }
