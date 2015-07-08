@@ -13,7 +13,7 @@ public class LKUserActions {
     LKUserSteps user;
 
 
-    @When("пользователь вводит логин $login и пароль $password для авторизации")
+    @When("пользователь вводит логин $login и пароль $password для авторизации в ЛК")
     public void userEntersLoginAndPassword(String login, String password) {
         user.entersLoginAndPassword(login, password);
         user.clickLoginButton();

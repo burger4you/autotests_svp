@@ -12,7 +12,7 @@ public class CPPOperatorActions {
     @Steps
     CPPOperatorSteps operator;
 
-    @When("он вводит логин $login и пароль $password для авторизации")
+    @When("он вводит логин $login и пароль $password для авторизации в ЦИПП")
     public void operatorEntersLoginAndPassword(String login, String password) {
         operator.entersLoginAndPassword(login, password);
         operator.clickLoginButton();
