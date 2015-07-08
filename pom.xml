@@ -78,7 +78,7 @@
                 <version>2.18</version>
                 <configuration>
                     <includes>
-                        <include>**/jbehave/*.java</include>
+                        <include>**/jbehave/*Runner.java</include>
                     </includes>
                     <!--<reuseForks>true</reuseForks>-->
                     <argLine>-Xmx1024m -XX:MaxPermSize=256m</argLine>

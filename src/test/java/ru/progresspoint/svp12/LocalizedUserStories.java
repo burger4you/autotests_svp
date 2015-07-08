@@ -1,4 +1,4 @@
-package ru.progresspoint.svp12.cpp.jbehave;
+package ru.progresspoint.svp12;
 
 import net.serenitybdd.jbehave.SerenityStepFactory;
 import net.serenitybdd.jbehave.SerenityStories;
