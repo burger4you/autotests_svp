@@ -4,6 +4,7 @@ package ru.progresspoint.svp12;
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.steps.ScenarioSteps;
 import ru.progresspoint.svp12.cpp.pages.CPPLoginPage;
+import ru.progresspoint.svp12.cpp.pages.CPPMainPage;
 import ru.progresspoint.svp12.cpp.pages.CPPOwnerRegistrationPage;
 import ru.progresspoint.svp12.lk.pages.LKLoginPage;
 import ru.progresspoint.svp12.lk.pages.LKMainPage;
@@ -16,6 +17,8 @@ public class NavigationSteps extends ScenarioSteps {
 
     CPPLoginPage cppLoginPage;
     CPPOwnerRegistrationPage cppOwnerRegistrationPage;
+    CPPMainPage cppMainPage;
+
     LKMainPage lkMainPage;
     LKLoginPage lkLoginPage;
     LKVehiclesPage lkVehiclesPage;
@@ -24,8 +27,8 @@ public class NavigationSteps extends ScenarioSteps {
     public void opensPage(String page) {
         switch (page) {
             case "Авторизации в ЦИПП"              : cppLoginPage.openAt("http://10.0.12.227/sign_in"); break;
-            case "Регистрации ВТС в ЦИПП"          : cppOwnerRegistrationPage.openAt("http://10.0.12.227/clients/draft"); break;
-
+            case "Регистрации ВТС в ЦИПП"          : cppMainPage.loading();
+                                                     cppMainPage.clickOwnerRegistrationLink(); break;
 
             case "Авторизации в ЛК"                : lkLoginPage.openAt("http://10.0.12.225/sign_in"); break;
             case "главной ЛК"                      : lkMainPage.openAt("http://10.0.12.225"); break;

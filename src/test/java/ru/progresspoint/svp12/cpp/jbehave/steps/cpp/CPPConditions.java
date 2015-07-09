@@ -26,7 +26,7 @@ public class CPPConditions {
         navigation.isOnSystem(title);
     }
 
-    @Then("оператору предлагается зарегистрировать транспортное средство")
+    @Then("система регистрирует ВТС с этими данными")
     public void registrationVehicleShouldBeDisplayed() {
         operator.shouldSeeInviteToRegistrationVehicle();
     }
