@@ -31,8 +31,11 @@ public class LKNewVehiclesGroupPage extends PageObject {
     WebElementFacade confirmButton;
 
     public void chooseForGroupRandomVehicles(int amountVehicles) {
-        for (int i = 0; i < amountVehicles; i++) {
-            vehiclesCheckBoxes.get(i + 1).click();
+        for (WebElementFacade vehiclesCheckBox : vehiclesCheckBoxes) {
+            int count = amountVehicles - 1;
+            vehiclesCheckBox = vehiclesCheckBoxes.get(count + 1);
+            vehiclesCheckBox.click();
+            if (count == 0) break;
         }
     }
 
