@@ -11,7 +11,6 @@ import org.jbehave.core.parsers.RegexStoryParser;
 import org.jbehave.core.reporters.ConsoleOutput;
 import org.jbehave.core.steps.InjectableStepsFactory;
 import org.jbehave.core.steps.MarkUnmatchedStepsAsPending;
-import org.jbehave.core.steps.ParameterControls;
 import org.jbehave.core.steps.ParameterConverters;
 
 import java.util.Locale;
@@ -38,9 +37,7 @@ public abstract class LocalizedUserStories extends SerenityStories {
                         new MarkUnmatchedStepsAsPending(keywords))
                 .useStoryParser(
                         new RegexStoryParser(
-                                keywords,
-                                new ExamplesTableFactory(
-                                        new LoadFromClasspath(this.getClass()))))
+                                keywords))
                 .useDefaultStoryReporter(
                         new ConsoleOutput(keywords))
                 .useParameterConverters(
@@ -49,9 +46,7 @@ public abstract class LocalizedUserStories extends SerenityStories {
                                         new ExamplesTableConverter(
                                                 new ExamplesTableFactory(new LoadFromClasspath(this.getClass())))))
                 .useStoryReporterBuilder(
-                        configuration().storyReporterBuilder().withKeywords(keywords))
-                .useParameterControls(
-                        new ParameterControls().useDelimiterNamedParameters(true));
+                        configuration().storyReporterBuilder().withKeywords(keywords));
     }
 
     @Override

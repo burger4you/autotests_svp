@@ -137,7 +137,7 @@ public class CPPOperatorActions {
         operator.setsMatchedAgentAddresses();
     }
 
-    @When("заполняет личные данные владельца: $clientSurname $clientName $clientPatronymic родился $clientBirthday")
+    @When("заполняет личные данные владельца: <clientSurname> <clientName> <clientPatronymic> родился <clientBirthday>")
     public void operatorFillsClientPersonalData(String clientSurname,
                                                 String clientName,
                                                 String clientPatronymic,
@@ -146,14 +146,14 @@ public class CPPOperatorActions {
         operator.fillsClientBirthday(clientBirthday);
     }
 
-    @When("заполняет паспортные данные владельца: $clientPassportSeriesAndNumber выдан $clientPassportIssuedBy $clientPassportIssuedWhen")
+    @When("заполняет паспортные данные владельца: <clientPassportSeriesAndNumber> выдан <clientPassportIssuedBy> <clientPassportIssuedWhen>")
     public void operatorFillsClientPassportData(String clientPassportSeriesAndNumber,
                                                 String clientPassportIssuedBy,
                                                 String clientPassportIssuedWhen) {
         operator.fillsClientPassportData(clientPassportSeriesAndNumber, clientPassportIssuedBy, clientPassportIssuedWhen);
     }
 
-    @When("заполняет адрес регистрации: $clientAddressIndex; $clientAddressCityAndStreet; д. $clientAddressHome; кв. $clientAddressApartment")
+    @When("заполняет адрес регистрации: <clientAddressIndex>; <clientAddressCityAndStreet>; д. <clientAddressHome>; кв. <clientAddressApartment>")
     public void operatorFillsClientAddressData(String clientAddressIndex,
                                                String clientAddressCityAndStreet,
                                                String clientAddressHome,
@@ -166,14 +166,14 @@ public class CPPOperatorActions {
         operator.setsMatchedClientAddresses();
     }
 
-    @When("заполняет личные данные контактного лица: $contactSurname $contactName $contactPatronymic")
+    @When("заполняет личные данные контактного лица: <contactSurname> <contactName> <contactPatronymic>")
     public void operatorFillsContactPersonalData(String contactSurname,
                                                  String contactName,
                                                  String contactPatronymic) {
         operator.fillsContactPersonalData(contactSurname, contactName, contactPatronymic);
     }
 
-    @When("заполняет основные контакты: телефон $contactMainPhone и email $contactMainEmail")
+    @When("заполняет основные контакты: телефон <contactMainPhone> и email <contactMainEmail>")
     public void operatorFillsContactPersonalData(String contactMainPhone,
                                                  String contactMainEmail) {
         operator.fillsContactPhoneAndEmail(contactMainPhone, contactMainEmail);

@@ -1,4 +1,5 @@
 Регистрация ФЛ в АРМ ЦИПП
+Meta: @1
 
 Описание:
 Чтобы регистрировать ТС частных лиц в системе ПО СВП
@@ -10,14 +11,26 @@
 
 Изначально оператор находится на странице Регистрации ВТС в ЦИПП
 Если он выбирает тип клиента "Физическое лицо" и резидентство "Российская Федерация"
-И заполняет личные данные владельца: <clientSurname> <clientName> <clientPatronymic> родился <clientBirthday>
-И заполняет паспортные данные владельца: <clientPassportSeriesAndNumber> выдан <clientPassportIssuedBy> <clientPassportIssuedWhen>
-И заполняет адрес регистрации: <clientAddressIndex>; <clientAddressCityAndStreet>; д. <clientAddressHome>; кв. <clientAddressApartment>
+И заполняет личные данные владельца: Степанов Станислав Ерофеевич родился 22.11.1984
+И заполняет паспортные данные владельца: 3232 145532 выдан ОВД Тейксковского р-на Ивановской области 22.06.2004
+И заполняет адрес регистрации: 111111; Город Москва улица Краснодарская; д. 3; кв. 7
 И указывает, что фактический адрес клиента совпадает с адресом регистрации
-И заполняет личные данные контактного лица: <contactSurname> <contactName> <contactPatronymic>
-И заполняет основные контакты: телефон <contactMainPhone> и email <contactMainEmail>
+И заполняет личные данные контактного лица: Степанова Станислава Ерофеевна
+И заполняет основные контакты: телефон 9823744433 и email burger4you@mail.ru
 И подтверждает регистрацию
 То система регистрирует ВТС с этими данными
 
-Примеры:
-examples/Регистрация_физического_лица.csv
+!--Изначально оператор находится на странице Регистрации ВТС в ЦИПП
+!--Если он выбирает тип клиента "Физическое лицо" и резидентство "Российская Федерация"
+!--И заполняет личные данные владельца: <clientSurname> <clientName> <clientPatronymic> родился <clientBirthday>
+!--И заполняет паспортные данные владельца: <clientPassportSeriesAndNumber> выдан <clientPassportIssuedBy> <clientPassportIssuedWhen>
+!--И заполняет адрес регистрации: <clientAddressIndex>; <clientAddressCityAndStreet>; д. <clientAddressHome>; кв. <clientAddressApartment>
+!--И указывает, что фактический адрес клиента совпадает с адресом регистрации
+!--И заполняет личные данные контактного лица: <contactSurname> <contactName> <contactPatronymic>
+!--И заполняет основные контакты: телефон <contactMainPhone> и email <contactMainEmail>
+!--И подтверждает регистрацию
+!--То система регистрирует ВТС с этими данными
+
+!--Примеры:
+!--| clientSurname | clientName | clientPatronymic | clientBirthday | clientPassportSeriesAndNumber | clientPassportIssuedBy                    | clientPassportIssuedWhen | clientAddressIndex | clientAddressCityAndStreet       | clientAddressHome | clientAddressApartment | contactSurname | contactName | contactPatronymic | contactMainPhone | contactMainEmail   |
+!--| Степанов      | Станислав  | Ерофеевич        | 22.11.1984     | 3232 145532                   | ОВД Тейксковского р-на Ивановской области | 22.06.2004               | 111111             | Город Москва улица Краснодарская | 3                 | 7                      | Степанова      | Станислава  | Ерофеевна         | 9823744433       | burger4you@mail.ru |
