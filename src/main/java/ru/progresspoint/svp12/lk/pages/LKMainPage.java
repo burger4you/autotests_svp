@@ -22,8 +22,23 @@ public class LKMainPage extends PageObject {
         contentDashboard.shouldBeVisible();
     }
 
+    public void clickToMapsItemMenu() {
+        menu.clickToMapsItem();
+    }
+
+    public void clickToPaymentsItemMenu() {
+        menu.clickToPaymentsItem();
+    }
+
     public void clickToVehiclesItemMenu() {
         menu.clickToVehiclesItem();
     }
 
+    public void clickToProfileItemMenu() {
+        menu.clickToProfileItem();
+    }
+
+    public void clickToAppealsItemMenu() {
+        menu.clickToAppealsItem();
+    }
 }

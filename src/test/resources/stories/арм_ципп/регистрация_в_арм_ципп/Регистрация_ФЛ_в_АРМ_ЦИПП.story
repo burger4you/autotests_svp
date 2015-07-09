@@ -10,5 +10,15 @@
 
 Изначально оператор находится на странице Регистрации ВТС в ЦИПП
 Если он выбирает тип клиента "Физическое лицо" и резидентство "Российская Федерация"
-И заполняет данные клиента из файла: examples/Регистрация_физического_лица.csv
+И заполняет личные данные владельца: <clientSurname> <clientName> <clientPatronymic> родился <clientBirthday>
+И заполняет паспортные данные владельца: <clientPassportSeriesAndNumber> выдан <clientPassportIssuedBy> <clientPassportIssuedWhen>
+И заполняет адрес регистрации: <clientAddressIndex>; <clientAddressCityAndStreet>; д. <clientAddressHome>; кв. <clientAddressApartment>
+И указывает, что фактический адрес клиента совпадает с адресом регистрации
+И заполняет личные данные контактного лица: <contactSurname> <contactName> <contactPatronymic>
+И заполняет основные контакты: телефон <contactMainPhone> и email <contactMainEmail>
+И подтверждает регистрацию
+То оператору предлагается зарегистрировать транспортное средство
+
+Примеры:
+examples/Регистрация_физического_лица.csv
 То система регистрирует ВТС с этими данными

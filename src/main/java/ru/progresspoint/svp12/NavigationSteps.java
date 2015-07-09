@@ -23,12 +23,22 @@ public class NavigationSteps extends ScenarioSteps {
     @Step("Открывает страницу {0}")
     public void opensPage(String page) {
         switch (page) {
-            case "Авторизации в ЦИПП"              : cppLoginPage.openAt("http://10.0.13.41/sign_in"); break;
-            case "Регистрации ВТС в ЦИПП"          : cppOwnerRegistrationPage.openAt("http://10.0.13.41/clients/draft"); break;
-            case "Авторизации в ЛК"                : lkLoginPage.openAt("http://10.0.13.42/sign_in"); break;
-            case "главной ЛК"                      : lkMainPage.openAt("http://10.0.13.42"); break;
+            case "Авторизации в ЦИПП"              : cppLoginPage.openAt("http://10.0.12.227/sign_in"); break;
+            case "Регистрации ВТС в ЦИПП"          : cppOwnerRegistrationPage.openAt("http://10.0.12.227/clients/draft"); break;
+
+
+            case "Авторизации в ЛК"                : lkLoginPage.openAt("http://10.0.12.225/sign_in"); break;
+            case "главной ЛК"                      : lkMainPage.openAt("http://10.0.12.225"); break;
             case "Транспортные средства"           : lkMainPage.loading();
                                                      lkMainPage.clickToVehiclesItemMenu(); break;
+            case "Маршрутные карты"                : lkMainPage.loading();
+                                                     lkMainPage.clickToMapsItemMenu(); break;
+            case "Платежи"                         : lkMainPage.loading();
+                                                     lkMainPage.clickToPaymentsItemMenu(); break;
+            case "Профиль"                         : lkMainPage.loading();
+                                                     lkMainPage.clickToProfileItemMenu(); break;
+            case "Обращения"                       : lkMainPage.loading();
+                                                     lkMainPage.clickToAppealsItemMenu(); break;
         }
     }
 

@@ -9,10 +9,38 @@ import net.serenitybdd.core.pages.WebElementFacade;
  */
 public class LKMainPageMenu extends PageObject {
 
+    @FindBy(linkText = "Маршрутные карты")
+    WebElementFacade mapsItem;
+
+    @FindBy(linkText = "Платежи")
+    WebElementFacade paymentsItem;
+
     @FindBy(linkText = "Транспортные средства")
     WebElementFacade vehiclesItem;
 
-   public void clickToVehiclesItem() {
-       vehiclesItem.click();
-   }
+    @FindBy(linkText = "Профиль")
+    WebElementFacade profileItem;
+
+    @FindBy(linkText = "Обращения")
+    WebElementFacade appealsItem;
+
+    public void clickToMapsItem() {
+        mapsItem.click();
+    }
+
+    public void clickToPaymentsItem() {
+        paymentsItem.click();
+    }
+
+    public void clickToVehiclesItem() {
+        vehiclesItem.click();
+    }
+
+    public void clickToProfileItem() {
+        profileItem.click();
+    }
+
+    public void clickToAppealsItem() {
+        appealsItem.click();
+    }
 }

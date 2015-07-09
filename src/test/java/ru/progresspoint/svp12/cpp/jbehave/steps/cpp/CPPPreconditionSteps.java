@@ -20,7 +20,7 @@ public class CPPPreconditionSteps {
     public void operatorIsOn(String page) {
         if (!navigation.titleIs("АРМ ЦИПП") && !page.contains("Авторизации в ЦИПП")) {
             navigation.opensPage("Авторизации в ЦИПП");
-            operator.entersLoginAndPassword("Admin3", "Test123$");
+            operator.entersLoginAndPassword("operator.cpp", "Test123!");
             operator.clickLoginButton();
         }
         navigation.opensPage(page);
