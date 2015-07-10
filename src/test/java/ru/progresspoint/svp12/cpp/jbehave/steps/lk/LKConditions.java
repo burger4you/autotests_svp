@@ -21,18 +21,20 @@ public class LKConditions {
         navigation.isOnPage(page);
     }
 
-    @Then("система предоставляет доступ к его аккаунту в $title")
-    public void operatorShouldBeLogin(String title) {
-        navigation.isOnSystem(title);
-    }
-
-    @Then("система предоставляет доступ к его аккаунту в Личный кабинет пользователя")
+    @Then("система предоставляет доступ к личному кабинету пользователя")
     public void registrationVehicleShouldBeDisplayed() {
-        navigation.isOnPage("");
+        navigation.isOnPage("Главная страница ЛК");
     }
 
     @Then("система создаст группу для этих ТС с названием $groupName")
     public void vehiclesGroupShouldBeCreated(String groupName) {
         user.shouldSeeConfirmAlert(groupName);
+    }
+
+    @Then("система увеличит баланс лицевого счета на $fundsAmount рублей")
+    public void fundsShouldBeAdded(String fundsAmount) {
+        navigation.messageShouldDisplayed("Ваш платеж банковской картой совершен успешно.");
+        user.comesBackToShop();
+        user.shouldSeeBalancesDifference();
     }
 }

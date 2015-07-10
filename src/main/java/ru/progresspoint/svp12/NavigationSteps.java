@@ -10,6 +10,9 @@ import ru.progresspoint.svp12.lk.pages.LKLoginPage;
 import ru.progresspoint.svp12.lk.pages.LKMainPage;
 import ru.progresspoint.svp12.lk.pages.LKVehiclesPage;
 
+import static java.lang.String.format;
+import static org.assertj.core.api.Assertions.assertThat;
+
 /**
  * Шаги навигации по всей системе ПО СВП
  */
@@ -49,20 +52,26 @@ public class NavigationSteps extends ScenarioSteps {
     public void isOnPage(String page) {
         switch (page) {
             case "Авторизации в ЦИПП"              : cppLoginPage.shouldBeDisplayed(); break;
+            case "Главная страница ЦИПП"           : cppMainPage.shouldBeDisplayed(); break;
             case "Регистрации ВТС в ЦИПП"          : cppOwnerRegistrationPage.shouldBeDisplayed(); break;
             case "Авторизации в ЛК"                : lkLoginPage.shouldBeDisplayed(); break;
-            case "главной ЛК"                      : lkMainPage.shouldBeDisplayed(); break;
+            case "Главная страница ЛК"             : lkMainPage.shouldBeDisplayed(); break;
             case "Транспортные средства"           : lkVehiclesPage.shouldBeDisplayed(); break;
         }
     }
 
-    @Step("Заголовок вкладки меняется на {0}")
-    public boolean isOnSystem(String title) {
-        return titleIs(title);
+    @Step("Заголовок вкладки {0}")
+    public void titleShouldBe(String title) {
+        String currentTitle = getDriver().getTitle();
+        assertThat(currentTitle)
+                .overridingErrorMessage(format("Заголовок вкладки %s, а не %s", currentTitle, title))
+                .isEqualToIgnoringCase(title);
     }
 
-    public boolean titleIs(String title) {
-        waitABit(3000);
-        return getDriver().getTitle().equals(title);
+    @Step("Отображается сообщение {0}")
+    public void messageShouldDisplayed(String message) {
+        assertThat(getDriver().getPageSource())
+                .overridingErrorMessage(format("Сообщение %s не отображается на странице", message))
+                .contains(message);
     }
 }

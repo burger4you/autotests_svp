@@ -16,16 +16,24 @@ public class LKUserActions {
     @When("пользователь вводит логин $login и пароль $password для авторизации в ЛК")
     public void userEntersLoginAndPassword(String login, String password) {
         user.entersLoginAndPassword(login, password);
-        user.clickLoginButton();
+        user.clicksToLoginButton();
     }
 
     @When("пользователь отметит в списке $amountVehicles своих ТС и назовет это объединение $groupName")
     public void userChooseVehiclesForGroup(int amountVehicles, String groupName) {
-        user.clickToVehiclesItemMenu();
-        user.clickToGroupsVehiclesLink();
-        user.clickToNewGroupVehiclesLink();
-        user.enterNameForNewGroupVehicles(groupName);
+        user.clicksToVehiclesItemMenu();
+        user.clicksToGroupsVehiclesLink();
+        user.clicksToNewGroupVehiclesLink();
+        user.entersNameForNewGroupVehicles(groupName);
         user.chooseVehiclesForGroup(amountVehicles);
-        user.clickToConfirmButton();
+        user.clicksToConfirmChooseButton();
+    }
+
+    @When("он пополнит счет на $fundsAmount рублей")
+    public void userAddsFundsInAccount(String fundsAmount) {
+        user.clicksToAddsFundsLink();
+        user.entersFundsAmount(fundsAmount);
+        user.confirmsPayment();
+        user.entersCardDataAndPay("123");
     }
 }

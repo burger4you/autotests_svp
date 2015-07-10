@@ -21,7 +21,7 @@ public class LKPreconditionsSteps {
         if (!page.equals("Авторизации в ЛК")) {
             navigation.opensPage("Авторизации в ЛК");
             user.entersLoginAndPassword("okapustina", "!QAZ2wsc");
-            user.clickLoginButton();
+            user.clicksToLoginButton();
         }
         navigation.opensPage(page);
 

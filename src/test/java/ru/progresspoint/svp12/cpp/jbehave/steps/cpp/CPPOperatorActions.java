@@ -1,6 +1,7 @@
 package ru.progresspoint.svp12.cpp.jbehave.steps.cpp;
 
 import net.thucydides.core.annotations.Steps;
+import org.jbehave.core.annotations.Alias;
 import org.jbehave.core.annotations.When;
 import ru.progresspoint.svp12.cpp.steps.CPPOperatorSteps;
 
@@ -137,7 +138,8 @@ public class CPPOperatorActions {
         operator.setsMatchedAgentAddresses();
     }
 
-    @When("заполняет личные данные владельца: <clientSurname> <clientName> <clientPatronymic> родился <clientBirthday>")
+    @When("заполняет личные данные владельца: $clientSurname $clientName $clientPatronymic родился $clientBirthday")
+    @Alias("заполняет личные данные владельца: <clientSurname> <clientName> <clientPatronymic> родился <clientBirthday>")
     public void operatorFillsClientPersonalData(String clientSurname,
                                                 String clientName,
                                                 String clientPatronymic,

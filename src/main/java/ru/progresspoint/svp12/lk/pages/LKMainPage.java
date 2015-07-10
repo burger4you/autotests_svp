@@ -17,6 +17,9 @@ public class LKMainPage extends PageObject {
     @FindBy(xpath = ".//*[@class='content dashboard']")
     WebElementFacade contentDashboard;
 
+    @FindBy(xpath = ".//*[text()='Баланс лицевого счета:']/span[@class='tab__value']")
+    WebElementFacade accountBalanceField;
+
     @WhenPageOpens
     public void loading() {
         contentDashboard.shouldBeVisible();
@@ -40,5 +43,9 @@ public class LKMainPage extends PageObject {
 
     public void clickToAppealsItemMenu() {
         menu.clickToAppealsItem();
+    }
+
+    public String getsCurrentAccountBalance() {
+        return accountBalanceField.getText();
     }
 }

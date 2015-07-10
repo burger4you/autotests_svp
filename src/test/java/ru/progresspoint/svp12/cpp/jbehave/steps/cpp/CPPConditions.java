@@ -21,9 +21,9 @@ public class CPPConditions {
         navigation.isOnPage(page);
     }
 
-    @Then("система предоставляет доступ к его аккаунту в $title")
+    @Then("система предоставляет доступ к АРМ ЦИПП")
     public void operatorShouldBeLogin(String title) {
-        navigation.isOnSystem(title);
+        navigation.isOnPage("Главная страница ЦИПП");
     }
 
     @Then("система регистрирует ВТС с этими данными")
