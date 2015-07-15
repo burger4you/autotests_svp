@@ -1,7 +1,7 @@
 Отмена МК в личном кабинете
 Meta:
 @arm lk
-@feature route maps
+@component route maps
 
 Описание:
 Чтобы самостоятельно вернуть оплату за МК в системе ПО СВП

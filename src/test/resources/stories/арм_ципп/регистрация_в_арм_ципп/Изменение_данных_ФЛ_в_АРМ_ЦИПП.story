@@ -1,7 +1,7 @@
 Изменение данных ФЛ в АРМ ЦИПП
 Meta:
 @arm cpp
-@feature registration
+@component registration
 
 Описание:
 Чтобы контролировать акутальность данных в системе ПО СВП

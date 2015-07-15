@@ -1,7 +1,7 @@
 Просмотр ТС в личном кабинете
 Meta:
 @arm lk
-@feature vehicles
+@component vehicles
 
 Описание:
 Чтобы уточнить детали о своем ТС в системе ПО СВП

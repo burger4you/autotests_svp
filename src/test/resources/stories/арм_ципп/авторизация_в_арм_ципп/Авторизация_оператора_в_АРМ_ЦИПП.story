@@ -1,7 +1,7 @@
 Авторизация оператора в АРМ ЦИПП
 Meta:
 @arm cpp
-@feature authorization
+@component authorization
 
 Описание:
 Чтобы войти в АРМ ЦИПП

@@ -18,20 +18,20 @@ mvn clean verify -Dmetafilter="+arm cpp"
 Используя эту команду, мы запустим все тесты для АРМа ЛК, исключая тесты на авторизацию:
 
 ```
-mvn clean verify -Dmetafilter="+arm lk -feature authorization"
+mvn clean verify -Dmetafilter="+arm lk -component authorization"
 ```
 
 А так мы запустим все тесты связанные с авторизацией и маршрутными картами для всех подсистем, за исключением АРМа ЦИПП:
  
 ```
-mvn clean verify -Dmetafilter="+feature authorization +feature route maps -arm cpp"
+mvn clean verify -Dmetafilter="+component authorization +component route maps -arm cpp"
 ```
 
 Доступные мета фильтры:
 
 arm: cpp, lk
 
-feature: authorization, registration, route maps, appeals, payments, profile, vehicles
+component: authorization, registration, route maps, appeals, payments, profile, vehicles
 
 
 Отчет генерируется в дирректорию `target/site/serenity`.

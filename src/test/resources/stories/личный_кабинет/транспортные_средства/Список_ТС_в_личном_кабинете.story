@@ -1,7 +1,7 @@
 Список ТС в личном кабинете
 Meta:
 @arm lk
-@feature vehicles
+@component vehicles
 
 Описание:
 Чтобы мониторить свои ТС в системе ПО СВП

@@ -1,7 +1,7 @@
 Регистрация ИП в АРМ ЦИПП
 Meta:
 @arm cpp
-@feature registration
+@component registration
 
 Описание:
 Чтобы регистрировать транспортные средства ИП
