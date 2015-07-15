@@ -1,13 +1,42 @@
-## Автоматизированное тестирование всех АРМов искользуя JBehave и WebDriver
+## Автоматизированное тестирование всех подсистем ПО СВП искользуя JBehave и WebDriver
 
-Сценарии автоматизации написаны в BDD-стиле.
+Сценарии автоматизации написаны в BDD-стиле, их можно найти в дирректории `/src/test/resources/stories`.
 
-Запуск тестов выполняется командой Maven:
+Запуск всех тестов выполняется командой Maven:
 
 ```
-mvn clean verify -Dwebdriver.base.url=http://localhost:3000
+mvn clean verify
 ```
 
-Где http://localhost:3000 - адрес развернутого АРМа
+При запуске тестов есть возможность их фильтровать с помощью -Dmetafilter:
 
-Отчет генерируется в дирректорию `target/site/thucydides`.
+```
+mvn clean verify -Dmetafilter="+arm cpp"
+```
+
+При этом возможно указать не только какие тесты необходимо запустить, но и какие из них необходимо пропустить.
+Используя эту команду, мы запустим все тесты для АРМа ЛК, исключая тесты на авторизацию:
+
+```
+mvn clean verify -Dmetafilter="+arm lk -feature authorization"
+```
+
+А так мы запустим все тесты связанные с авторизацией и маршрутными картами для всех подсистем, за исключением АРМа ЦИПП:
+ 
+```
+mvn clean verify -Dmetafilter="+feature authorization +feature route maps -arm cpp"
+```
+
+Доступные мета фильтры:
+
+arm: cpp, lk
+
+feature: authorization, registration, route maps, appeals, payments, profile, vehicles
+
+
+Отчет генерируется в дирректорию `target/site/serenity`.
+
+Отчет последнего прогона тестов на стеджинге: http://report-stage.progresspoint.ru
+
+Отчет последнего прогона тестов на проде: 
+

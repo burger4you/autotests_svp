@@ -16,14 +16,14 @@ public class LKConditions {
     @Steps
     LKUserSteps user;
 
-    @Then("открывается страница $page")
+    @Then("открывается страница $page в ЛК")
     public void pageShouldBeDisplayed(String page) {
-        navigation.isOnPage(page);
+        navigation.isOnLKPage(page);
     }
 
     @Then("система предоставляет доступ к личному кабинету пользователя")
     public void registrationVehicleShouldBeDisplayed() {
-        navigation.isOnPage("Главная страница ЛК");
+        navigation.isOnLKPage("Главная");
     }
 
     @Then("система создаст группу для этих ТС с названием $groupName")

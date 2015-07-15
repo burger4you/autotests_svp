@@ -30,23 +30,23 @@ import static org.jbehave.core.steps.ParameterConverters.ExamplesTableConverter;
 public abstract class LocalizedUserStories extends SerenityStories {
 
     public Configuration ruConfiguration() {
-        Keywords keywords = new LocalizedKeywords(new Locale("ru"));
+        Keywords keywords = new LocalizedKeywords(Locale.forLanguageTag("ru"));
         return configuration()
                 .useKeywords(keywords)
                 .useStepCollector(
                         new MarkUnmatchedStepsAsPending(keywords))
                 .useStoryParser(
                         new RegexStoryParser(
-                                keywords))
+                                keywords,
+                                new ExamplesTableFactory(
+                                        new LoadFromClasspath(this.getClass()))))
                 .useDefaultStoryReporter(
                         new ConsoleOutput(keywords))
                 .useParameterConverters(
                         new ParameterConverters()
                                 .addConverters(
                                         new ExamplesTableConverter(
-                                                new ExamplesTableFactory(new LoadFromClasspath(this.getClass())))))
-                .useStoryReporterBuilder(
-                        configuration().storyReporterBuilder().withKeywords(keywords));
+                                                new ExamplesTableFactory(new LoadFromClasspath(this.getClass())))));
     }
 
     @Override

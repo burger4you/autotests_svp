@@ -26,37 +26,78 @@ public class NavigationSteps extends ScenarioSteps {
     LKLoginPage lkLoginPage;
     LKVehiclesPage lkVehiclesPage;
 
-    @Step("Открывает страницу {0}")
-    public void opensPage(String page) {
+    @Step("Открывает страницу {0} в ЦИПП")
+    public void opensCPPPage(String page) {
         switch (page) {
-            case "Авторизации в ЦИПП"              : cppLoginPage.openAt("http://10.0.12.227/sign_in"); break;
-            case "Регистрации ВТС в ЦИПП"          : cppMainPage.loading();
-                                                     cppMainPage.clickOwnerRegistrationLink(); break;
-
-            case "Авторизации в ЛК"                : lkLoginPage.openAt("http://10.0.12.225/sign_in"); break;
-            case "главной ЛК"                      : lkMainPage.openAt("http://10.0.12.225"); break;
-            case "Транспортные средства"           : lkMainPage.loading();
-                                                     lkMainPage.clickToVehiclesItemMenu(); break;
-            case "Маршрутные карты"                : lkMainPage.loading();
-                                                     lkMainPage.clickToMapsItemMenu(); break;
-            case "Платежи"                         : lkMainPage.loading();
-                                                     lkMainPage.clickToPaymentsItemMenu(); break;
-            case "Профиль"                         : lkMainPage.loading();
-                                                     lkMainPage.clickToProfileItemMenu(); break;
-            case "Обращения"                       : lkMainPage.loading();
-                                                     lkMainPage.clickToAppealsItemMenu(); break;
+            case "Авторизации":
+                cppLoginPage.openAt("http://cpp-stage.progresspoint.ru/sign_in");
+                break;
+            case "Регистрации ВТС":
+                cppMainPage.loading();
+                cppMainPage.clickOwnerRegistrationLink();
+                break;
         }
     }
 
-    @Step("Находится на странице {0}")
-    public void isOnPage(String page) {
+    @Step("Открывает страницу {0} в ЛК")
+    public void opensLKPage(String page) {
         switch (page) {
-            case "Авторизации в ЦИПП"              : cppLoginPage.shouldBeDisplayed(); break;
-            case "Главная страница ЦИПП"           : cppMainPage.shouldBeDisplayed(); break;
-            case "Регистрации ВТС в ЦИПП"          : cppOwnerRegistrationPage.shouldBeDisplayed(); break;
-            case "Авторизации в ЛК"                : lkLoginPage.shouldBeDisplayed(); break;
-            case "Главная страница ЛК"             : lkMainPage.shouldBeDisplayed(); break;
-            case "Транспортные средства"           : lkVehiclesPage.shouldBeDisplayed(); break;
+            case "Авторизации":
+                lkLoginPage.openAt("http://lk-stage.progresspoint.ru/sign_in");
+                break;
+            case "Главная":
+                lkMainPage.openAt("http://lk-stage.progresspoint.ru/");
+                break;
+            case "Транспортные средства":
+                lkMainPage.loading();
+                lkMainPage.clickToVehiclesItemMenu();
+                break;
+            case "Маршрутные карты":
+                lkMainPage.loading();
+                lkMainPage.clickToMapsItemMenu();
+                break;
+            case "Платежи":
+                lkMainPage.loading();
+                lkMainPage.clickToPaymentsItemMenu();
+                break;
+            case "Профиль":
+                lkMainPage.loading();
+                lkMainPage.clickToProfileItemMenu();
+                break;
+            case "Обращения":
+                lkMainPage.loading();
+                lkMainPage.clickToAppealsItemMenu();
+                break;
+        }
+    }
+
+    @Step("Находится на странице {0} в ЦИПП")
+    public void isOnCPPPage(String page) {
+        switch (page) {
+            case "Авторизации":
+                cppLoginPage.shouldBeDisplayed();
+                break;
+            case "Главная":
+                cppMainPage.shouldBeDisplayed();
+                break;
+            case "Регистрации ВТС":
+                cppOwnerRegistrationPage.shouldBeDisplayed();
+                break;
+        }
+    }
+
+    @Step("Находится на странице {0} в ЛК")
+    public void isOnLKPage(String page) {
+        switch (page) {
+            case "Авторизации":
+                lkLoginPage.shouldBeDisplayed();
+                break;
+            case "Главная":
+                lkMainPage.shouldBeDisplayed();
+                break;
+            case "Транспортные средства":
+                lkVehiclesPage.shouldBeDisplayed();
+                break;
         }
     }
 

@@ -16,14 +16,14 @@ public class CPPConditions {
     @Steps
     CPPOperatorSteps operator;
 
-    @Then("открывается страница $page")
+    @Then("открывается страница $page в ЦИПП")
     public void pageShouldBeDisplayed(String page) {
-        navigation.isOnPage(page);
+        navigation.isOnCPPPage(page);
     }
 
     @Then("система предоставляет доступ к АРМ ЦИПП")
     public void operatorShouldBeLogin(String title) {
-        navigation.isOnPage("Главная страница ЦИПП");
+        navigation.isOnCPPPage("Главная");
     }
 
     @Then("система регистрирует ВТС с этими данными")

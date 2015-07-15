@@ -16,13 +16,13 @@ public class CPPPreconditionSteps {
     @Steps
     CPPOperatorSteps operator;
 
-    @Given("оператор находится на странице $page")
+    @Given("оператор находится на странице $page в ЦИПП")
     public void operatorIsOn(String page) {
-        if (!page.contains("Авторизации в ЦИПП")) {
-            navigation.opensPage("Авторизации в ЦИПП");
+        if (!page.contains("Авторизации")) {
+            navigation.opensCPPPage("Авторизации");
             operator.entersLoginAndPassword("operator.cpp", "Test123!");
             operator.clickLoginButton();
         }
-        navigation.opensPage(page);
+        navigation.opensCPPPage(page);
     }
 }
