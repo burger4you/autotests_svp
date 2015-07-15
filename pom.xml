@@ -13,7 +13,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <serenity.version>1.0.47</serenity.version>
+        <serenity.version>1.0.59</serenity.version>
         <serenity.jbehave.version>1.0.23</serenity.jbehave.version>
     </properties>
 
@@ -21,7 +21,7 @@
         <dependency>
             <groupId>net.serenity-bdd</groupId>
             <artifactId>core</artifactId>
-            <version>${serenity.version}</version>
+            <version>1.0.47</version>
         </dependency>
         <dependency>
             <groupId>net.serenity-bdd</groupId>
