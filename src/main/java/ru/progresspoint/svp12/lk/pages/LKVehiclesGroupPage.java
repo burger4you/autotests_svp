@@ -11,7 +11,7 @@ import net.thucydides.core.annotations.At;
 @At("#HOST/client_accounts/.*/vehicles")
 public class LKVehiclesGroupPage extends PageObject {
 
-    LKMainPageMenu menu;
+    LKMainMenu menu;
 
     @FindBy(linkText = "Добавить группу")
     WebElementFacade newVehiclesGroupLink;

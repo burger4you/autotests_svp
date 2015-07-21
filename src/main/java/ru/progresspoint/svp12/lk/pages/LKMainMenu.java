@@ -7,7 +7,7 @@ import net.serenitybdd.core.pages.WebElementFacade;
 /**
  * Меню на главной странице Личного Кабинета
  */
-public class LKMainPageMenu extends PageObject {
+public class LKMainMenu extends PageObject {
 
     @FindBy(linkText = "Маршрутные карты")
     WebElementFacade mapsItem;

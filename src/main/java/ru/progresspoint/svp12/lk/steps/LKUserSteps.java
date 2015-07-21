@@ -3,9 +3,11 @@ package ru.progresspoint.svp12.lk.steps;
 
 import net.serenitybdd.core.Serenity;
 import net.thucydides.core.annotations.Step;
+import net.thucydides.core.matchers.BeanMatcher;
 import net.thucydides.core.steps.ScenarioSteps;
 import ru.progresspoint.svp12.lk.pages.*;
 
+import static net.thucydides.core.matchers.BeanMatcherAsserts.shouldMatch;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
@@ -55,7 +57,10 @@ public class LKUserSteps extends ScenarioSteps {
 
     @Step("Выбирает {0} машин(ы) для новой группы")
     public void chooseVehiclesForGroup(int amountVehicles) {
-        newVehiclesGroupPage.chooseForGroupRandomVehicles(amountVehicles);
+        for (int vehicle = 0; vehicle < amountVehicles; vehicle++) {
+            newVehiclesGroupPage.setForAddToGroupVehicle(vehicle);
+        }
+
     }
 
     @Step("Кликает кнопку подтверждения")
@@ -77,7 +82,7 @@ public class LKUserSteps extends ScenarioSteps {
     public void entersFundsAmount(String fundsAmount) {
         paymentsPage.shouldDisplayAddFundsPopUp();
         // Запоминаем баланс лс до пополнения для следующей проверки
-        Serenity.getCurrentSession().put("oldAccountBalance", paymentsPage.getsCurrentAccountBalance());
+        Serenity.getCurrentSession().put("oldAccountBalance", paymentsPage.getCurrentAccountBalance());
         paymentsPage.enterFundsAmount(fundsAmount);
         paymentsPage.clickToPayPopUpLink();
     }
@@ -106,5 +111,21 @@ public class LKUserSteps extends ScenarioSteps {
     public void comesBackToShop() {
         unitellerPage.clickToComesBackButton();
         mainPage.shouldBeDisplayed();
+    }
+
+    @Step("Вводит период тразакций с {0} по {1}")
+    public void entersPeriodTransactionsDates(String startDate, String endDate) {
+        paymentsPage.enterStartTransactionsDate(startDate);
+        paymentsPage.enterEndTransactionsDate(endDate);
+    }
+
+    @Step("Указывает тип тразакций {0}")
+    public void setsTransactionsType(String transactionsType) {
+        paymentsPage.setTypeTransactions(transactionsType);
+    }
+
+    @Step("Видит отфильтрованные тразакции")
+    public void shouldSeeTransactionsWhere(BeanMatcher... matchers) {
+        shouldMatch(paymentsPage.getSearchTransactions(), matchers);
     }
 }

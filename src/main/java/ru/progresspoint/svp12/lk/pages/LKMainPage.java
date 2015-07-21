@@ -12,7 +12,7 @@ import net.thucydides.core.annotations.WhenPageOpens;
 @At("#HOST")
 public class LKMainPage extends PageObject {
 
-    LKMainPageMenu menu;
+    LKMainMenu menu;
 
     @FindBy(xpath = ".//*[@class='content dashboard']")
     WebElementFacade contentDashboard;

@@ -19,14 +19,18 @@ public class LKUserActions {
         user.clicksToLoginButton();
     }
 
-    @When("пользователь отметит в списке $amountVehicles своих ТС и назовет это объединение $groupName")
+    @When("пользователь объеденит $amountVehicles своих ТС в группу $groupName")
     public void userChooseVehiclesForGroup(int amountVehicles, String groupName) {
-        user.clicksToVehiclesItemMenu();
         user.clicksToGroupsVehiclesLink();
         user.clicksToNewGroupVehiclesLink();
         user.entersNameForNewGroupVehicles(groupName);
         user.chooseVehiclesForGroup(amountVehicles);
         user.clicksToConfirmChooseButton();
+    }
+
+    @When("он укажет период операций с $startDate по $endDate")
+    public void userSetsTransactionsPeriod(String startDate, String endDate) {
+        user.entersPeriodTransactionsDates(startDate, endDate);
     }
 
     @When("он пополнит счет на $fundsAmount рублей")
