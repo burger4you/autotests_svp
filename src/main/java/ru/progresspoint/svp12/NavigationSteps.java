@@ -46,26 +46,26 @@ public class NavigationSteps extends ScenarioSteps {
                 lkLoginPage.open();
                 break;
             case "Главная":
-                lkMainPage.open();
+                lkMainPage.loading();
                 break;
             case "Транспортные средства":
-                lkMainPage.open();
+                lkMainPage.loading();
                 lkMainPage.clickToVehiclesItemMenu();
                 break;
             case "Маршрутные карты":
-                lkMainPage.open();
+                lkMainPage.loading();
                 lkMainPage.clickToMapsItemMenu();
                 break;
             case "Платежи":
-                lkMainPage.open();
+                lkMainPage.loading();
                 lkMainPage.clickToPaymentsItemMenu();
                 break;
             case "Профиль":
-                lkMainPage.open();
+                lkMainPage.loading();
                 lkMainPage.clickToProfileItemMenu();
                 break;
             case "Обращения":
-                lkMainPage.open();
+                lkMainPage.loading();
                 lkMainPage.clickToAppealsItemMenu();
                 break;
         }

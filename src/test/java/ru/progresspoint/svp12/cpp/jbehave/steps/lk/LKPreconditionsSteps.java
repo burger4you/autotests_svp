@@ -18,7 +18,7 @@ public class LKPreconditionsSteps {
 
     @Given("пользователь находится на странице $page в ЛК")
     public void userIsOnLKPage(String page) {
-        navigation.opensLKPage(page);
+        navigation.opensLKPage("Главная");
         if (navigation.getTitle().endsWith("sign_in")) {
             user.entersLoginAndPassword("okapustina", "!QAZ2wsc");
             user.clicksToLoginButton();

@@ -4,7 +4,6 @@ import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.DefaultUrl;
-import net.thucydides.core.annotations.WhenPageOpens;
 
 /**
  * Главная страница Личного Кабинета
@@ -20,7 +19,6 @@ public class LKMainPage extends PageObject {
     @FindBy(xpath = ".//*[text()='Баланс лицевого счета:']/span[@class='tab__value']")
     WebElementFacade accountBalanceField;
 
-    @WhenPageOpens
     public void loading() {
         contentDashboard.shouldBeVisible();
     }
