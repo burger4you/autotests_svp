@@ -16,7 +16,7 @@ public class CPPOperatorActions {
     @When("он вводит логин $login и пароль $password для авторизации в ЦИПП")
     public void operatorEntersLoginAndPassword(String login, String password) {
         operator.entersLoginAndPassword(login, password);
-        operator.clickLoginButton();
+        operator.clicksToLoginButton();
     }
 
     @When("он выбирает тип клиента \"$clientType\" и резидентство \"$clientResidence\"")

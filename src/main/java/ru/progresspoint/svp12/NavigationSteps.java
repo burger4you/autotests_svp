@@ -32,8 +32,12 @@ public class NavigationSteps extends ScenarioSteps {
             case "Авторизации":
                 cppLoginPage.openAt("http://cpp-stage.progresspoint.ru/sign_in");
                 break;
+            case "Главная":
+                cppMainPage.openAt("http://cpp-stage.progresspoint.ru");
+                cppMainPage.setDefaultBaseUrl("http://cpp-stage.progresspoint.ru");
+                break;
             case "Регистрации ВТС":
-                cppMainPage.open();
+                cppMainPage.loading();
                 cppMainPage.clickOwnerRegistrationLink();
                 break;
         }
@@ -43,10 +47,11 @@ public class NavigationSteps extends ScenarioSteps {
     public void opensLKPage(String page) {
         switch (page) {
             case "Авторизации":
-                lkLoginPage.open();
+                lkLoginPage.openAt("http://lk-stage.progresspoint.ru/sign_in");
                 break;
             case "Главная":
-                lkMainPage.open();
+                lkMainPage.openAt("http://lk-stage.progresspoint.ru");
+                lkMainPage.setDefaultBaseUrl("http://lk-stage.progresspoint.ru");
                 break;
             case "Транспортные средства":
                 lkMainPage.loading();

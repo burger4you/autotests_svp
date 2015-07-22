@@ -23,8 +23,7 @@ public class LKPreconditionsSteps {
             if (navigation.getTitle().endsWith("sign_in")) {
                 user.entersLoginAndPassword("okapustina", "!QAZ2wsc");
                 user.clicksToLoginButton();
-                navigation.opensLKPage(page);
-            }
+            } else navigation.opensLKPage(page);
         } else navigation.opensLKPage("Авторизации");
     }
 }

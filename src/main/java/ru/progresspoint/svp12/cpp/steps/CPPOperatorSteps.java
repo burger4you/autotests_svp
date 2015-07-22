@@ -23,7 +23,7 @@ public class CPPOperatorSteps extends ScenarioSteps {
     }
 
     @Step("Жмет кнопку Войти")
-    public void clickLoginButton() {
+    public void clicksToLoginButton() {
         CPPLoginPage.clickConfirmButton();
     }
 

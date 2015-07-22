@@ -18,11 +18,12 @@ public class CPPPreconditionSteps {
 
     @Given("оператор находится на странице $page в ЦИПП")
     public void operatorIsOn(String page) {
-        if (!page.contains("Авторизации")) {
-            navigation.opensCPPPage("Авторизации");
-            operator.entersLoginAndPassword("operator.cpp", "Test123!");
-            operator.clickLoginButton();
-        }
-        navigation.opensCPPPage(page);
+        if (!page.equals("Авторизации")) {
+            navigation.opensCPPPage("Главная");
+            if (navigation.getTitle().endsWith("sign_in")) {
+                operator.entersLoginAndPassword("operator.cpp", "Test123!");
+                operator.clicksToLoginButton();
+            } else navigation.opensCPPPage(page);
+        } else navigation.opensCPPPage("Авторизации");
     }
 }
