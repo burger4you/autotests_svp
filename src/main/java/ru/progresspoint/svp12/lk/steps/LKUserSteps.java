@@ -144,8 +144,8 @@ public class LKUserSteps extends ScenarioSteps {
         List<WebElement> allRows = paymentsPage.getFilteredTransactions();
         int countRows = allRows.size();
         List<DateTime> dates = new ArrayList<>(countRows);
-        for (WebElement targetTransactions : allRows) {
-            String dateString = targetTransactions.findElement(By.xpath(".//tr/td[1]")).getText();
+        for (WebElement targetTransaction : allRows) {
+            String dateString = targetTransaction.findElement(By.xpath(".//td[1]")).getText();
             DateTime date = getDateTimeFormatter.parseDateTime(dateString);
             dates.add(date);
         }
