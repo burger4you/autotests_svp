@@ -73,7 +73,7 @@ public class LKUserSteps extends ScenarioSteps {
                             .getAllVehicles()
                             .get(amountVehicles);
             WebElement addToGroupCheckBox =
-                    targetVehicle.findElement(By.xpath(".//i[@class,'checkbox__field']"));
+                    targetVehicle.findElement(By.xpath(".//i[@class='checkbox__field']"));
             addToGroupCheckBox.click();
         }
     }
@@ -145,7 +145,7 @@ public class LKUserSteps extends ScenarioSteps {
         int countRows = allRows.size();
         List<DateTime> dates = new ArrayList<>(countRows);
         for (WebElement targetTransactions : allRows) {
-            String dateString = targetTransactions.findElement(By.xpath(".//tr[1]/td[1]")).getText();
+            String dateString = targetTransactions.findElement(By.xpath(".//tr/td[1]")).getText();
             DateTime date = getDateTimeFormatter.parseDateTime(dateString);
             dates.add(date);
         }
