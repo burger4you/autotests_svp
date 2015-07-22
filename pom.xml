@@ -69,7 +69,7 @@
                         <include>**/jbehave/*Runner.java</include>
                     </includes>
                     <!--<reuseForks>true</reuseForks>-->
-                    <argLine>-Xmx1024m</argLine>
+                    <argLine>-Xmx512m</argLine>
                 </configuration>
                 <executions>
                     <execution>
