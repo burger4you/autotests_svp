@@ -8,7 +8,7 @@ import net.thucydides.core.annotations.DefaultUrl;
 /**
  * Страница авторизации пользователя в Личный Кабинет
  */
-@DefaultUrl("http://google.com")
+@DefaultUrl("http://lk-stage.progresspoint.ru/sign_in")
 public class LKLoginPage extends PageObject {
 
     @FindBy(id = "session_login")

@@ -46,7 +46,7 @@ public class NavigationSteps extends ScenarioSteps {
                 lkLoginPage.open();
                 break;
             case "Главная":
-                lkMainPage.loading();
+                lkMainPage.open();
                 break;
             case "Транспортные средства":
                 lkMainPage.loading();

@@ -18,11 +18,13 @@ public class LKPreconditionsSteps {
 
     @Given("пользователь находится на странице $page в ЛК")
     public void userIsOnLKPage(String page) {
-        navigation.opensLKPage("Главная");
-        if (navigation.getTitle().endsWith("sign_in")) {
-            user.entersLoginAndPassword("okapustina", "!QAZ2wsc");
-            user.clicksToLoginButton();
-            if (!page.equals("Авторизации")) navigation.opensLKPage(page);
-        }
+        if (!page.equals("Авторизации")) {
+            navigation.opensLKPage("Главная");
+            if (navigation.getTitle().endsWith("sign_in")) {
+                user.entersLoginAndPassword("okapustina", "!QAZ2wsc");
+                user.clicksToLoginButton();
+                navigation.opensLKPage(page);
+            }
+        } else navigation.opensLKPage("Авторизации");
     }
 }
