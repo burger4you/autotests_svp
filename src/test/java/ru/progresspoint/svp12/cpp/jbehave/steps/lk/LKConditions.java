@@ -3,6 +3,8 @@ package ru.progresspoint.svp12.cpp.jbehave.steps.lk;
 import net.thucydides.core.annotations.Steps;
 import org.jbehave.core.annotations.Then;
 import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormatter;
+import org.joda.time.format.DateTimeFormatterBuilder;
 import ru.progresspoint.svp12.NavigationSteps;
 import ru.progresspoint.svp12.lk.steps.LKUserSteps;
 
@@ -42,15 +44,25 @@ public class LKConditions {
         user.shouldSeeBalancesDifference();
     }
 
-    @Then("система покажет в выписке все операции с $startDay.$startMonth.$startYear по $endDay.$endMonth.$endYear")
-    public void shouldBeDisplayedTransactionsInPeriod(int startDay,
-                                                      int startMonth,
-                                                      int startYear,
-                                                      int endDay,
-                                                      int endMonth,
-                                                      int endYear) {
-        DateTime yodaStartDate = new DateTime(startYear, startDay, startMonth, 12, 0).toDateTime();
-        DateTime yodaEndDate = new DateTime(endYear, endMonth, endDay, 12, 0).toDateTime();
+    @Then("система покажет в выписке все операции с $startDate по $endDate")
+    public void shouldBeDisplayedTransactionsInPeriod(String startDay, String endDate) {
+
+        DateTime yodaStartDate = getDateTimeFormatter().parseDateTime(startDay);
+        DateTime yodaEndDate = getDateTimeFormatter().parseDateTime(endDate);
         user.shouldSeeTransactionsWhere(the("Дата и время", isBetween(yodaStartDate, yodaEndDate)));
+    }
+
+    public static DateTimeFormatter getDateTimeFormatter() {
+        return new DateTimeFormatterBuilder()
+                .appendDayOfMonth(2)
+                .appendLiteral('.')
+                .appendMonthOfYear(2)
+                .appendLiteral('.')
+                .appendYear(4, 4)
+                .appendLiteral(' ')
+                .appendHourOfDay(2)
+                .appendLiteral(':')
+                .appendMinuteOfHour(2)
+                .toFormatter();
     }
 }

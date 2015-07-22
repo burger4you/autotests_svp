@@ -5,7 +5,12 @@ import net.serenitybdd.core.Serenity;
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.matchers.BeanMatcher;
 import net.thucydides.core.steps.ScenarioSteps;
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormatter;
 import ru.progresspoint.svp12.lk.pages.*;
+
+import java.util.List;
+import java.util.Map;
 
 import static net.thucydides.core.matchers.BeanMatcherAsserts.shouldMatch;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -23,6 +28,9 @@ public class LKUserSteps extends ScenarioSteps {
     LKPaymentsPage paymentsPage;
     LKBalanceIncreasePage balanceIncreasePage;
     UnitellerPaymentsPage unitellerPage;
+
+
+    private DateTimeFormatter getDateTimeFormatter;
 
     @Step("Вводит логин {0} и пароль {1}")
     public void entersLoginAndPassword(String login, String password) {
@@ -80,7 +88,7 @@ public class LKUserSteps extends ScenarioSteps {
 
     @Step("Вводит {0} рублей в окне Пополениние счета и жмет Оплатить")
     public void entersFundsAmount(String fundsAmount) {
-        paymentsPage.shouldDisplayAddFundsPopUp();
+        paymentsPage.shouldBeDisplayedAddFundsPopUp();
         // Запоминаем баланс лс до пополнения для следующей проверки
         Serenity.getCurrentSession().put("oldAccountBalance", paymentsPage.getCurrentAccountBalance());
         paymentsPage.enterFundsAmount(fundsAmount);
@@ -126,6 +134,13 @@ public class LKUserSteps extends ScenarioSteps {
 
     @Step("Видит отфильтрованные тразакции")
     public void shouldSeeTransactionsWhere(BeanMatcher... matchers) {
-        shouldMatch(paymentsPage.getSearchTransactions(), matchers);
+        List<Map<Object, String>> stringRows = paymentsPage.getSearchTransactions();
+        System.out.println(stringRows);
+        int rowsCount = stringRows.size();
+        for (Map<Object, String> stringRow : stringRows) {
+            DateTime date = getDateTimeFormatter.parseDateTime(stringRow.get("Дата и время"));
+            System.out.println(date);
+        }
+        shouldMatch(stringRows, matchers);
     }
 }

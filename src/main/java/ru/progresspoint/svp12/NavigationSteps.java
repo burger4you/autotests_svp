@@ -33,7 +33,7 @@ public class NavigationSteps extends ScenarioSteps {
                 cppLoginPage.openAt("http://cpp-stage.progresspoint.ru/sign_in");
                 break;
             case "Регистрации ВТС":
-                cppMainPage.loading();
+                cppMainPage.open();
                 cppMainPage.clickOwnerRegistrationLink();
                 break;
         }
@@ -43,29 +43,29 @@ public class NavigationSteps extends ScenarioSteps {
     public void opensLKPage(String page) {
         switch (page) {
             case "Авторизации":
-                lkLoginPage.openAt("http://lk-stage.progresspoint.ru/sign_in");
+                lkLoginPage.open();
                 break;
             case "Главная":
-                lkMainPage.openAt("http://lk-stage.progresspoint.ru/");
+                lkMainPage.open();
                 break;
             case "Транспортные средства":
-                lkMainPage.loading();
+                lkMainPage.open();
                 lkMainPage.clickToVehiclesItemMenu();
                 break;
             case "Маршрутные карты":
-                lkMainPage.loading();
+                lkMainPage.open();
                 lkMainPage.clickToMapsItemMenu();
                 break;
             case "Платежи":
-                lkMainPage.loading();
+                lkMainPage.open();
                 lkMainPage.clickToPaymentsItemMenu();
                 break;
             case "Профиль":
-                lkMainPage.loading();
+                lkMainPage.open();
                 lkMainPage.clickToProfileItemMenu();
                 break;
             case "Обращения":
-                lkMainPage.loading();
+                lkMainPage.open();
                 lkMainPage.clickToAppealsItemMenu();
                 break;
         }
@@ -114,5 +114,9 @@ public class NavigationSteps extends ScenarioSteps {
         assertThat(getDriver().getPageSource())
                 .overridingErrorMessage(format("Сообщение %s не отображается на странице", message))
                 .contains(message);
+    }
+
+    public String getTitle() {
+        return getDriver().getTitle();
     }
 }

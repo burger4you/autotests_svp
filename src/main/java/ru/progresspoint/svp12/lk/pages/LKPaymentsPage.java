@@ -49,10 +49,8 @@ public class LKPaymentsPage extends LKSelectizePageObject {
     @FindBy(linkText = "Оплатить")
     WebElementFacade payPopUpLink;
 
-    public void shouldDisplayAddFundsPopUp() {
-        payPopUpLink
-                .expect("Не доступна кнопка Оплатить в окне Пополнение счета")
-                .shouldBeEnabled();
+    public void shouldBeDisplayedAddFundsPopUp() {
+        waitFor("//h2[.='Пополнение счета']");
     }
 
     public void enterFundsAmount(String fundsAmount) {
@@ -98,10 +96,10 @@ public class LKPaymentsPage extends LKSelectizePageObject {
 
     // Таблица операций
     @FindBy(xpath = ".//*[@id='transactions']/table")
-    WebElement vehiclesTable;
+    WebElement transactionsTable;
 
     public List<Map<Object, String>> getSearchTransactions() {
-        return rowsFrom(vehiclesTable);
+        return rowsFrom(transactionsTable);
     }
     //
 

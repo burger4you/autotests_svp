@@ -3,13 +3,13 @@ package ru.progresspoint.svp12.lk.pages;
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
-import net.thucydides.core.annotations.At;
+import net.thucydides.core.annotations.DefaultUrl;
 import net.thucydides.core.annotations.WhenPageOpens;
 
 /**
  * Главная страница Личного Кабинета
  */
-@At("#HOST")
+@DefaultUrl("http://lk-stage.progresspoint.ru")
 public class LKMainPage extends PageObject {
 
     LKMainMenu menu;
