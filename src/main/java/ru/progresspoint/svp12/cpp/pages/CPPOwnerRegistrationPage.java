@@ -1,7 +1,6 @@
 package ru.progresspoint.svp12.cpp.pages;
 
 import net.serenitybdd.core.annotations.findby.FindBy;
-import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.At;
 
@@ -9,12 +8,7 @@ import net.thucydides.core.annotations.At;
  * Страница Регистрация ВТС
  */
 @At("#HOST/clients/draft")
-public class CPPOwnerRegistrationPage extends PageObject {
-
-    static final String DROP_DOWN_XPATH = ".//*[@id='%s']/..//*[@class='item']";
-    static final String DROP_DOWN_ITEM_XPATH = ".//*[@class='selectize-dropdown-content']/*[text()='%s']";
-    static final String INPUT_XPATH = ".//*[@id='%s']/.//*[@class='selectize-input items not-full']/input";
-    static final String INPUT_ITEM_XPATH = ".//*[@id='%s']/.//div[@class='selectize-dropdown-content']/div[1]";
+public class CPPOwnerRegistrationPage extends CPPSelectizePageObject {
 
     String clientTypeDropDown = "client_client_type_id";
     String clientCountryDropDown = "client_country_id";
@@ -141,18 +135,6 @@ public class CPPOwnerRegistrationPage extends PageObject {
 
     public void clickRegistrationButton() {
         registrationButton.click();
-    }
-
-    private void selectForSelectizePlugin(String selectId, String selectingValue) {
-        findBy(String.format(DROP_DOWN_XPATH, selectId)).click();
-        waitFor(String.format(DROP_DOWN_ITEM_XPATH, selectingValue));
-        findBy(String.format(DROP_DOWN_ITEM_XPATH, selectingValue)).click();
-    }
-
-    private void enterForSelectizePlugin(String inputId, String inputtingValue) {
-        enter(inputtingValue).into(findBy(String.format(INPUT_XPATH, inputId)));
-        waitFor(String.format(INPUT_ITEM_XPATH, inputId));
-        findBy(String.format(INPUT_ITEM_XPATH, inputId)).click();
     }
 
     public boolean displayedInviteToRegistrationVehicle() {

@@ -28,7 +28,7 @@ public class LKConditions {
     }
 
     @Then("система предоставляет доступ к личному кабинету пользователя")
-    public void registrationVehicleShouldBeDisplayed() {
+    public void lkShouldBeAvailableForUser() {
         navigation.isOnLKPage("Главная");
     }
 

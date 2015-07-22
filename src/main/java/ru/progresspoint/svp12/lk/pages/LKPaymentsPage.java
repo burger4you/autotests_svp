@@ -6,9 +6,8 @@ import net.thucydides.core.annotations.At;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
-import java.util.Map;
 
-import static net.thucydides.core.pages.components.HtmlTable.rowsFrom;
+import static net.thucydides.core.pages.components.HtmlTable.filterRows;
 
 /**
  * Страница Платежи в Личном Кабинете
@@ -98,8 +97,8 @@ public class LKPaymentsPage extends LKSelectizePageObject {
     @FindBy(xpath = ".//*[@id='transactions']/table")
     WebElement transactionsTable;
 
-    public List<Map<Object, String>> getSearchTransactions() {
-        return rowsFrom(transactionsTable);
+    public List<WebElement> getFilteredTransactions() {
+        return filterRows(transactionsTable);
     }
     //
 

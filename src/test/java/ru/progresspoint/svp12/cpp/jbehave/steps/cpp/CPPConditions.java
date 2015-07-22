@@ -22,7 +22,7 @@ public class CPPConditions {
     }
 
     @Then("система предоставляет доступ к АРМ ЦИПП")
-    public void operatorShouldBeLogin(String title) {
+    public void cppShouldBeAvailableForUser() {
         navigation.isOnCPPPage("Главная");
     }
 

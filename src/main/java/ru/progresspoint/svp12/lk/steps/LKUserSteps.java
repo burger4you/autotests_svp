@@ -2,15 +2,17 @@ package ru.progresspoint.svp12.lk.steps;
 
 
 import net.serenitybdd.core.Serenity;
+import net.serenitybdd.core.annotations.findby.By;
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.matchers.BeanMatcher;
 import net.thucydides.core.steps.ScenarioSteps;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormatter;
+import org.openqa.selenium.WebElement;
 import ru.progresspoint.svp12.lk.pages.*;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import static net.thucydides.core.matchers.BeanMatcherAsserts.shouldMatch;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -66,9 +68,14 @@ public class LKUserSteps extends ScenarioSteps {
     @Step("Выбирает {0} машин(ы) для новой группы")
     public void chooseVehiclesForGroup(int amountVehicles) {
         for (int vehicle = 0; vehicle < amountVehicles; vehicle++) {
-            newVehiclesGroupPage.setForAddToGroupVehicle(vehicle);
+            WebElement targetVehicle =
+                    newVehiclesGroupPage
+                            .getAllVehicles()
+                            .get(amountVehicles);
+            WebElement addToGroupCheckBox =
+                    targetVehicle.findElement(By.xpath(".//i[@class,'checkbox__field']"));
+            addToGroupCheckBox.click();
         }
-
     }
 
     @Step("Кликает кнопку подтверждения")
@@ -132,15 +139,16 @@ public class LKUserSteps extends ScenarioSteps {
         paymentsPage.setTypeTransactions(transactionsType);
     }
 
-    @Step("Видит отфильтрованные тразакции")
+    @Step("Видит отфильтрованные транзакции")
     public void shouldSeeTransactionsWhere(BeanMatcher... matchers) {
-        List<Map<Object, String>> stringRows = paymentsPage.getSearchTransactions();
-        System.out.println(stringRows);
-        int rowsCount = stringRows.size();
-        for (Map<Object, String> stringRow : stringRows) {
-            DateTime date = getDateTimeFormatter.parseDateTime(stringRow.get("Дата и время"));
-            System.out.println(date);
+        List<WebElement> allRows = paymentsPage.getFilteredTransactions();
+        int countRows = allRows.size();
+        List<DateTime> dates = new ArrayList<>(countRows);
+        for (WebElement targetTransactions : allRows) {
+            String dateString = targetTransactions.findElement(By.xpath(".//tr[1]/td[1]")).getText();
+            DateTime date = getDateTimeFormatter.parseDateTime(dateString);
+            dates.add(date);
         }
-        shouldMatch(stringRows, matchers);
+        shouldMatch(dates, matchers);
     }
 }
