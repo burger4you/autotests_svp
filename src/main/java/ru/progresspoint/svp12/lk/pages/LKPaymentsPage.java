@@ -119,7 +119,7 @@ public class LKPaymentsPage extends LKSelectizePageObject {
     }
 
     public List<DateTime> getDatesSearchedTransactions() {
-        List<WebElement> rows = filterRows(transactionsTable, the("ДАТА И ВРЕМЯ", is(not(empty()))));
+        List<WebElement> rows = filterRows(transactionsTable, the("ДАТА И ВРЕМЯ", is(not(""))));
         List<DateTime> dates = new ArrayList<>();
         for (WebElement row : rows) {
             List<WebElement> cells = row.findElements(By.tagName("td"));
