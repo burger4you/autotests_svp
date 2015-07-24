@@ -6,7 +6,7 @@ import ru.progresspoint.svp12.NavigationSteps;
 import ru.progresspoint.svp12.lk.steps.LKUserSteps;
 
 import static net.thucydides.core.matchers.BeanMatchers.the;
-import static ru.progresspoint.utils.DateMatchers.isBetween;
+import static ru.progresspoint.utils.StringTimeIsBetweenMatcher.isBetween;
 
 
 /**
@@ -44,7 +44,7 @@ public class LKConditions {
 
     @Then("система покажет в выписке все операции с $startDate по $endDate")
     public void shouldBeDisplayedTransactionsInPeriod(String startDay, String endDate) {
-        user.shouldSeeDatesTransactionsWhere(the("date", isBetween(startDay, endDate)));
+        user.shouldSeeTransactionsWhere(the("ДАТА И ВРЕМЯ", isBetween(startDay, endDate)));
     }
 }
 

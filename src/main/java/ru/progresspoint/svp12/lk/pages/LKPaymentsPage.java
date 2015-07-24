@@ -1,23 +1,16 @@
 package ru.progresspoint.svp12.lk.pages;
 
-import net.serenitybdd.core.annotations.findby.By;
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.At;
-import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormatter;
 import org.joda.time.format.DateTimeFormatterBuilder;
 import org.openqa.selenium.WebElement;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import static net.thucydides.core.matchers.BeanMatchers.the;
-import static net.thucydides.core.pages.components.HtmlTable.filterRows;
 import static net.thucydides.core.pages.components.HtmlTable.rowsFrom;
-import static org.hamcrest.Matchers.*;
-import static org.joda.time.DateTime.parse;
 
 /**
  * Страница Платежи в Личном Кабинете
@@ -118,15 +111,15 @@ public class LKPaymentsPage extends LKSelectizePageObject {
         return rowsFrom(transactionsTable);
     }
 
-    public List<DateTime> getDatesSearchedTransactions() {
-        List<WebElement> rows = filterRows(transactionsTable, the("ДАТА И ВРЕМЯ", is(not(""))));
-        List<DateTime> dates = new ArrayList<>();
-        for (WebElement row : rows) {
-            List<WebElement> cells = row.findElements(By.tagName("td"));
-            dates.add(parse(cells.get(0).getText(), dayMonthYearHourMinute()));
-        }
-        return dates;
-    }
+//    public List<DateTime> getDatesSearchedTransactions() {
+//        List<WebElement> rows = filterRows(transactionsTable, the("ДАТА И ВРЕМЯ", is(not(""))));
+//        List<DateTime> dates = new ArrayList<>();
+//        for (WebElement row : rows) {
+//            List<WebElement> cells = row.findElements(By.tagName("td"));
+//            dates.add(parse(cells.get(0).getText(), dayMonthYearHourMinute()));
+//        }
+//        return dates;
+//    }
 
     public static DateTimeFormatter dayMonthYearHourMinute() {
         return new DateTimeFormatterBuilder()

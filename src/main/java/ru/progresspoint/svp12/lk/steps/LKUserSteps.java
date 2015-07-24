@@ -148,9 +148,4 @@ public class LKUserSteps extends ScenarioSteps {
         transactions.remove(countRows - 3);
         shouldMatch(transactions, matchers);
     }
-
-    @Step("Видит отфильтрованные по дате транзакции")
-    public void shouldSeeDatesTransactionsWhere(BeanMatcher... matchers) {
-        shouldMatch(paymentsPage.getDatesSearchedTransactions(), matchers);
-    }
 }
