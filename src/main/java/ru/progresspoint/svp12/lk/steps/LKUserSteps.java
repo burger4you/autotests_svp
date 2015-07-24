@@ -6,13 +6,11 @@ import net.serenitybdd.core.annotations.findby.By;
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.matchers.BeanMatcher;
 import net.thucydides.core.steps.ScenarioSteps;
-import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormatter;
 import org.openqa.selenium.WebElement;
 import ru.progresspoint.svp12.lk.pages.*;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import static net.thucydides.core.matchers.BeanMatcherAsserts.shouldMatch;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -30,9 +28,6 @@ public class LKUserSteps extends ScenarioSteps {
     LKPaymentsPage paymentsPage;
     LKBalanceIncreasePage balanceIncreasePage;
     UnitellerPaymentsPage unitellerPage;
-
-
-    private DateTimeFormatter getDateTimeFormatter;
 
     @Step("Вводит логин {0} и пароль {1}")
     public void entersLoginAndPassword(String login, String password) {
@@ -128,6 +123,11 @@ public class LKUserSteps extends ScenarioSteps {
         mainPage.shouldBeDisplayed();
     }
 
+    @Step("Открывает выписку операций по счету")
+    public void clicksToAccountTransactionsLink() {
+        paymentsPage.clickToAccountTransactionsLink();
+    }
+
     @Step("Вводит период тразакций с {0} по {1}")
     public void entersPeriodTransactionsDates(String startDate, String endDate) {
         paymentsPage.enterStartTransactionsDate(startDate);
@@ -141,14 +141,16 @@ public class LKUserSteps extends ScenarioSteps {
 
     @Step("Видит отфильтрованные транзакции")
     public void shouldSeeTransactionsWhere(BeanMatcher... matchers) {
-        List<WebElement> allRows = paymentsPage.getFilteredTransactions();
-        int countRows = allRows.size();
-        List<DateTime> dates = new ArrayList<>(countRows);
-        for (WebElement targetTransaction : allRows) {
-            String dateString = targetTransaction.findElement(By.xpath(".//td[1]")).getText();
-            DateTime date = getDateTimeFormatter.parseDateTime(dateString);
-            dates.add(date);
-        }
-        shouldMatch(dates, matchers);
+        List<Map<Object, String>> transactions = paymentsPage.getSearchTransactions();
+        int countRows = transactions.size();
+        transactions.remove(countRows - 1);
+        transactions.remove(countRows - 2);
+        transactions.remove(countRows - 3);
+        shouldMatch(transactions, matchers);
+    }
+
+    @Step("Видит отфильтрованные по дате транзакции")
+    public void shouldSeeDatesTransactionsWhere(BeanMatcher... matchers) {
+        shouldMatch(paymentsPage.getDatesSearchedTransactions(), matchers);
     }
 }

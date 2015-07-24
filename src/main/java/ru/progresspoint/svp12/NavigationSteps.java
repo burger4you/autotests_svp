@@ -34,7 +34,6 @@ public class NavigationSteps extends ScenarioSteps {
                 break;
             case "Главная":
                 cppMainPage.openAt("http://cpp-stage.progresspoint.ru");
-                cppMainPage.setDefaultBaseUrl("http://cpp-stage.progresspoint.ru");
                 break;
             case "Регистрации ВТС":
                 cppMainPage.loading();
@@ -51,7 +50,6 @@ public class NavigationSteps extends ScenarioSteps {
                 break;
             case "Главная":
                 lkMainPage.openAt("http://lk-stage.progresspoint.ru");
-                lkMainPage.setDefaultBaseUrl("http://lk-stage.progresspoint.ru");
                 break;
             case "Транспортные средства":
                 lkMainPage.loading();
@@ -119,6 +117,10 @@ public class NavigationSteps extends ScenarioSteps {
         assertThat(getDriver().getPageSource())
                 .overridingErrorMessage(format("Сообщение %s не отображается на странице", message))
                 .contains(message);
+    }
+
+    public String getCurrentURL() {
+        return getDriver().getCurrentUrl();
     }
 
     public String getTitle() {

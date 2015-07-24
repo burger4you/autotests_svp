@@ -20,10 +20,11 @@ public class LKPreconditionsSteps {
     public void userIsOnLKPage(String page) {
         if (!page.equals("Авторизации")) {
             navigation.opensLKPage("Главная");
-            if (navigation.getTitle().endsWith("sign_in")) {
+            if (navigation.getCurrentURL().endsWith("sign_in")) {
                 user.entersLoginAndPassword("okapustina", "!QAZ2wsc");
                 user.clicksToLoginButton();
-            } else navigation.opensLKPage(page);
+            }
+            navigation.opensLKPage(page);
         } else navigation.opensLKPage("Авторизации");
     }
 }

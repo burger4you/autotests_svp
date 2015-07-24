@@ -28,8 +28,9 @@ public class LKUserActions {
         user.clicksToConfirmChooseButton();
     }
 
-    @When("он укажет период операций с $startDate по $endDate")
+    @When("он отфильтрует выписку операций с $startDate по $endDate")
     public void userSetsTransactionsPeriod(String startDate, String endDate) {
+        user.clicksToAccountTransactionsLink();
         user.entersPeriodTransactionsDates(startDate, endDate);
     }
 

@@ -20,10 +20,11 @@ public class CPPPreconditionSteps {
     public void operatorIsOn(String page) {
         if (!page.equals("Авторизации")) {
             navigation.opensCPPPage("Главная");
-            if (navigation.getTitle().endsWith("sign_in")) {
+            if (navigation.getCurrentURL().endsWith("sign_in")) {
                 operator.entersLoginAndPassword("operator.cpp", "Test123!");
                 operator.clicksToLoginButton();
-            } else navigation.opensCPPPage(page);
+            }
+            navigation.opensCPPPage(page);
         } else navigation.opensCPPPage("Авторизации");
     }
 }
