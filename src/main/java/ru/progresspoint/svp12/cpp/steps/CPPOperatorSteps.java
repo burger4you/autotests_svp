@@ -7,6 +7,7 @@ import ru.progresspoint.svp12.cpp.pages.CPPLoginPage;
 import ru.progresspoint.svp12.cpp.pages.CPPOwnerRegistrationPage;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.openqa.selenium.By.linkText;
 
 /**
  * Шаги оператора
@@ -22,7 +23,7 @@ public class CPPOperatorSteps extends ScenarioSteps {
         CPPLoginPage.enterPassword(password);
     }
 
-    @Step("Жмет кнопку Войти")
+    @Step("Нажимает на кнопку Войти")
     public void clicksToLoginButton() {
         CPPLoginPage.clickConfirmButton();
     }
@@ -87,7 +88,7 @@ public class CPPOperatorSteps extends ScenarioSteps {
         CPPOwnerRegistrationPage.enterContactMainEmail(contactMainEmail);
     }
 
-    @Step("Жмет кнопку Зарегистрировать")
+    @Step("Нажимает на кнопку Зарегистрировать")
     public void clickRegistrationButton() {
         CPPOwnerRegistrationPage.clickRegistrationButton();
     }
@@ -205,5 +206,26 @@ public class CPPOperatorSteps extends ScenarioSteps {
 
     public void setsMatchedAgentAddresses() {
 
+    }
+
+    @Step("Нажимает на ссылку {0}")
+    public void clicksToLink(String linkText) {
+        getDriver().findElement(linkText(linkText));
+    }
+
+    @Step("Находит заявку на верификацию ВТС")
+    public void findsOwnerVerificationRequest() {
+    }
+
+    @Step("Проводит верификацию ВТС")
+    public void conductOwnerVerificationRequest() {
+    }
+
+    @Step("Находит заявку на верификацию ТС")
+    public void findsVehicleVerificationRequest() {
+    }
+
+    @Step("Проводит верификацию ТС")
+    public void conductVehicleVerificationRequest() {
     }
 }

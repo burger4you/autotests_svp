@@ -11,8 +11,6 @@ import net.thucydides.core.annotations.DefaultUrl;
 @DefaultUrl("http://lk-stage.progresspoint.ru")
 public class LKMainPage extends PageObject {
 
-    LKMainMenu menu;
-
     @FindBy(xpath = ".//*[@class='content dashboard']")
     WebElementFacade contentDashboard;
 
@@ -21,26 +19,6 @@ public class LKMainPage extends PageObject {
 
     public void loading() {
         contentDashboard.shouldBeVisible();
-    }
-
-    public void clickToMapsItemMenu() {
-        menu.clickToMapsItem();
-    }
-
-    public void clickToPaymentsItemMenu() {
-        menu.clickToPaymentsItem();
-    }
-
-    public void clickToVehiclesItemMenu() {
-        menu.clickToVehiclesItem();
-    }
-
-    public void clickToProfileItemMenu() {
-        menu.clickToProfileItem();
-    }
-
-    public void clickToAppealsItemMenu() {
-        menu.clickToAppealsItem();
     }
 
     public String getsCurrentAccountBalance() {

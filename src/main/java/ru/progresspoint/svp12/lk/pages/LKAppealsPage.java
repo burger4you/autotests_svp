@@ -1,10 +1,8 @@
 package ru.progresspoint.svp12.lk.pages;
 
-import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.At;
-import net.thucydides.core.annotations.WhenPageOpens;
 
 /**
  * Страница обращений в Личном Кабинете
@@ -12,15 +10,15 @@ import net.thucydides.core.annotations.WhenPageOpens;
 @At("#HOST/appeals")
 public class LKAppealsPage extends PageObject {
 
-    @FindBy(xpath = ".//*[@href='/appeals/new']")
-    WebElementFacade createAppealLink;
+    WebElementFacade startAppealsDateField;
 
-    @WhenPageOpens
-    public void loading() {
-        createAppealLink.shouldBeEnabled();
+    WebElementFacade endAppealsDateField;
+
+    public void enterStartAppealsDate(String startDate) {
+        enter(startDate).into(startAppealsDateField);
     }
 
-    public void clickToCreateAppealLink() {
-        createAppealLink.click();
+    public void enterEndAppealsDate(String endDate) {
+        enter(endDate).into(endAppealsDateField);
     }
 }

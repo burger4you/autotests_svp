@@ -5,7 +5,7 @@ import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
 
 /**
- * Меню на главной странице Личного Кабинета
+ * Главное меню Личного Кабинета
  */
 public class LKMainMenu extends PageObject {
 
@@ -24,7 +24,7 @@ public class LKMainMenu extends PageObject {
     @FindBy(linkText = "Обращения")
     WebElementFacade appealsItem;
 
-    public void clickToMapsItem() {
+    public void clickToRouteMapsItem() {
         mapsItem.click();
     }
 

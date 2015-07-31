@@ -1,4 +1,4 @@
-Изменение данных ФЛ в АРМ ЦИПП
+Изменение данных ФЛ в ЦИПП
 Meta:
 @arm cpp
 @component registration

@@ -3,12 +3,12 @@ package ru.progresspoint.svp12;
 
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.steps.ScenarioSteps;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import ru.progresspoint.svp12.cpp.pages.CPPLoginPage;
 import ru.progresspoint.svp12.cpp.pages.CPPMainPage;
 import ru.progresspoint.svp12.cpp.pages.CPPOwnerRegistrationPage;
-import ru.progresspoint.svp12.lk.pages.LKLoginPage;
-import ru.progresspoint.svp12.lk.pages.LKMainPage;
-import ru.progresspoint.svp12.lk.pages.LKVehiclesPage;
+import ru.progresspoint.svp12.lk.pages.*;
 
 import static java.lang.String.format;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -23,8 +23,10 @@ public class NavigationSteps extends ScenarioSteps {
     CPPMainPage cppMainPage;
 
     LKMainPage lkMainPage;
+    LKMainMenu lkMainMenu;
     LKLoginPage lkLoginPage;
     LKVehiclesPage lkVehiclesPage;
+    LKMainHeader lkMainHeader;
 
     @Step("Открывает страницу {0} в ЦИПП")
     public void opensCPPPage(String page) {
@@ -53,23 +55,23 @@ public class NavigationSteps extends ScenarioSteps {
                 break;
             case "Транспортные средства":
                 lkMainPage.loading();
-                lkMainPage.clickToVehiclesItemMenu();
+                lkMainMenu.clickToVehiclesItem();
                 break;
             case "Маршрутные карты":
                 lkMainPage.loading();
-                lkMainPage.clickToMapsItemMenu();
+                lkMainMenu.clickToRouteMapsItem();
                 break;
             case "Платежи":
                 lkMainPage.loading();
-                lkMainPage.clickToPaymentsItemMenu();
+                lkMainMenu.clickToPaymentsItem();
                 break;
             case "Профиль":
                 lkMainPage.loading();
-                lkMainPage.clickToProfileItemMenu();
+                lkMainMenu.clickToProfileItem();
                 break;
             case "Обращения":
                 lkMainPage.loading();
-                lkMainPage.clickToAppealsItemMenu();
+                lkMainMenu.clickToAppealsItem();
                 break;
         }
     }
@@ -104,7 +106,12 @@ public class NavigationSteps extends ScenarioSteps {
         }
     }
 
-    @Step("Заголовок вкладки {0}")
+    @Step("Устанавливается размер окна браузера {0}х{1}")
+    public void setBrowserSizeOn(int width, int height) {
+        getDriver().manage().window().setSize(new Dimension(width, height));
+    }
+
+    @Step("Отображается заголовок страницы {0}")
     public void titleShouldBe(String title) {
         String currentTitle = getDriver().getTitle();
         assertThat(currentTitle)
@@ -117,6 +124,19 @@ public class NavigationSteps extends ScenarioSteps {
         assertThat(getDriver().getPageSource())
                 .overridingErrorMessage(format("Сообщение %s не отображается на странице", message))
                 .contains(message);
+    }
+
+    @Step("Отображается {0} уведомлений")
+    public void notificationCounterShouldDisplayed(String notificationsCounter) {
+        String currentNotificationsCounter = lkMainHeader.getNotificationsCounter();
+        assertThat(currentNotificationsCounter)
+                .overridingErrorMessage(format("В шапке отображается %s уведомлений, а не %s", currentNotificationsCounter, notificationsCounter))
+                .isEqualTo(notificationsCounter);
+    }
+
+    @Step("Устанавливается {0} язык интерфейса")
+    public void setInterfaceLanguage(String language) {
+        getDriver().findElement(By.id(""));
     }
 
     public String getCurrentURL() {

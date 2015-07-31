@@ -18,9 +18,6 @@ public class LKNewAppealPage extends LKSelectizePageObject {
     @FindBy(id = "itop_service_appeal_description")
     WebElementFacade appealTextField;
 
-    @FindBy(name = "commit")
-    WebElementFacade confirmButton;
-
     public void setAppealTheme(String appealTheme) {
         selectForSelectizePlugin(APPEAL_THEM_DROP_DOWN_ID, appealTheme);
     }
@@ -32,9 +29,4 @@ public class LKNewAppealPage extends LKSelectizePageObject {
     public void enterAppealText(String appealText) {
         enter(appealText).into(appealTextField);
     }
-
-    public void clickConfirmButton() {
-        confirmButton.click();
-    }
-
 }

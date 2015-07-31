@@ -1,4 +1,4 @@
-Регистрация ЮЛ в АРМ ЦИПП
+Регистрация ЮЛ в ЦИПП
 Meta:
 @arm cpp
 @component registration

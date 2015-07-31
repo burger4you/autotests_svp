@@ -14,6 +14,8 @@ import java.util.Map;
 
 import static net.thucydides.core.matchers.BeanMatcherAsserts.shouldMatch;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.openqa.selenium.By.linkText;
+import static org.openqa.selenium.By.name;
 
 /**
  * Шаги конечного пользователя АРМа Личный Кабинет
@@ -22,12 +24,99 @@ public class LKUserSteps extends ScenarioSteps {
 
     LKLoginPage loginPage;
     LKMainPage mainPage;
-    LKVehiclesPage vehiclesPage;
-    LKVehiclesGroupPage groupVehiclesPage;
     LKNewVehiclesGroupPage newVehiclesGroupPage;
     LKPaymentsPage paymentsPage;
-    LKBalanceIncreasePage balanceIncreasePage;
     UnitellerPaymentsPage unitellerPage;
+    LKAppealsPage appealsPage;
+    LKNewAppealPage newAppealPage;
+    LKAccountPage accountPage;
+    LKBasicInfoPage basicInfoPage;
+    LKPasswordPage passwordPage;
+    LKNewVehiclePage newVehiclePage;
+    LKMainHeader mainHeader;
+
+
+    @Step("Нажимает на ссылку {0}")
+    public void clicksToLink(String linkText) {
+        getDriver().findElement(linkText(linkText));
+    }
+
+    @Step("Вводит данные учетной записи")
+    public void entersAccountData(String accountData) {
+        accountPage.enterAccountData(accountData);
+    }
+
+    @Step("Выбирает из списка тип ВТС {0}")
+    public void selectsOwnerType(String ownerType) {
+        accountPage.selectOwnerType(ownerType);
+    }
+
+    @Step("Выбирает из списка страну резиденства {0}")
+    public void selectsOwnerCountry(String ownerCountry) {
+        accountPage.selectOwnerCountry(ownerCountry);
+    }
+
+    @Step("Вводит CAPTCHA")
+    public void entersCaptcha(String captcha) {
+        accountPage.enterCaptcha(captcha);
+    }
+
+    @Step("Нажимает на кнопку подтверждения")
+    public void clicksToConfirmButton() {
+        getDriver().findElement(name("commit")).click();
+    }
+
+    @Step("Вводит данные ВТС")
+    public void entersOwnerData(String ownerData) {
+        basicInfoPage.enterOwnerData(ownerData);
+    }
+
+    @Step("Прикладывает скан-копии документов ВТС")
+    public void uploadsOwnerDocumentsCopies(String filename) {
+        basicInfoPage.uploadOwnerDocumentsCopies(filename);
+    }
+
+    @Step("Вводит данные ТС")
+    public void entersVehicleData(String vehicleData) {
+        basicInfoPage.enterVehicleData(vehicleData);
+    }
+
+    @Step("Прикладывает скан-копии документов ТС")
+    public void uploadsVehicleDocumentsCopies(String filename) {
+        basicInfoPage.uploadVehicleDocumentsCopies(filename);
+    }
+
+    @Step("Вводит пароль {0}")
+    public void entersPassword(String password) {
+        passwordPage.enterPassword(password);
+    }
+
+//    @Step("Нажимает кнопку Войти в Личный кабинет")
+
+//    @Step("Нажимает Зарегистрировать ТС")
+
+    @Step("Вводит данные ТС")
+    public void entersNewVehicleData(String vehicleData) {
+        newVehiclePage.enterVehicleData(vehicleData);
+    }
+
+    @Step("Прикладывает скан-копии документов ТС")
+    public void uploadsNewVehicleDocumentsCopies(String filename) {
+        newVehiclePage.uploadVehicleDocumentsCopies(filename);
+    }
+
+//    @Step("Нажимает Зарегистрировать")
+
+//    Перейти на вкладку «Основная информация».
+
+//    @Step("Нажимает на кнопку Редактировать")
+//
+//    @Step("Вводит изменения в регистрационные данные")
+//    @Step("Нажимает на кнопку Сохранить")
+//    @Step("Нажимает на кнопку Редактировать")
+//    @Step("Вводит изменения в регистрационные данные")
+//    @Step("Нажимает на кнопку Сохранить")
+
 
     @Step("Вводит логин {0} и пароль {1}")
     public void entersLoginAndPassword(String login, String password) {
@@ -35,33 +124,13 @@ public class LKUserSteps extends ScenarioSteps {
         loginPage.enterPassword(password);
     }
 
-    @Step("Жмет кнопку Войти")
-    public void clicksToLoginButton() {
-        loginPage.clickConfirmButton();
-    }
-
-    @Step("Выбирает в меню Транспортные средства")
-    public void clicksToVehiclesItemMenu() {
-        mainPage.clickToVehiclesItemMenu();
-    }
-
-    @Step("Жмет ссылку Группы транспортных средств")
-    public void clicksToGroupsVehiclesLink() {
-        vehiclesPage.clickToVehiclesGroupsLink();
-    }
-
-    @Step("Жмет ссылку Добавить новую группы транспортных средств")
-    public void clicksToNewGroupVehiclesLink() {
-        groupVehiclesPage.clickToNewVehiclesGroupLink();
-    }
-
     @Step("Вводит название новой группы {0}")
     public void entersNameForNewGroupVehicles(String groupName) {
         newVehiclesGroupPage.enterVehiclesGroupName(groupName);
     }
 
-    @Step("Выбирает {0} машин(ы) для новой группы")
-    public void chooseVehiclesForGroup(int amountVehicles) {
+    @Step("Выбирает из списка {0} машин(ы) для новой группы")
+    public void selectsVehiclesForGroup(int amountVehicles) {
         for (int vehicle = 0; vehicle < amountVehicles; vehicle++) {
             WebElement targetVehicle =
                     newVehiclesGroupPage
@@ -73,21 +142,6 @@ public class LKUserSteps extends ScenarioSteps {
         }
     }
 
-    @Step("Кликает кнопку подтверждения")
-    public void clicksToConfirmChooseButton() {
-        newVehiclesGroupPage.clickConfirmButton();
-    }
-
-    @Step("Должен увидеть алерт, что группа {0} создана")
-    public void shouldSeeConfirmAlert(String groupName) {
-        newVehiclesGroupPage.waitForTextToAppear(String.format("Группа %s успешно создана.", groupName));
-    }
-
-    @Step("Жмет ссылку Пополнить счет")
-    public void clicksToAddsFundsLink() {
-        paymentsPage.clickToAddsFundsLink();
-    }
-
     @Step("Вводит {0} рублей в окне Пополениние счета и жмет Оплатить")
     public void entersFundsAmount(String fundsAmount) {
         paymentsPage.shouldBeDisplayedAddFundsPopUp();
@@ -95,11 +149,6 @@ public class LKUserSteps extends ScenarioSteps {
         Serenity.getCurrentSession().put("oldAccountBalance", paymentsPage.getCurrentAccountBalance());
         paymentsPage.enterFundsAmount(fundsAmount);
         paymentsPage.clickToPayPopUpLink();
-    }
-
-    @Step("Подтверждает платеж")
-    public void confirmsPayment() {
-        balanceIncreasePage.clickToConfirmButton();
     }
 
     @Step("Вводит данные карты и оплачивает счет")
@@ -117,15 +166,10 @@ public class LKUserSteps extends ScenarioSteps {
                 .isNotEqualTo(oldAccountBalance);
     }
 
-    @Step("Возвращается на главную ЛК со страницы оплаты")
-    public void comesBackToShop() {
+    @Step("Нажимает на кнопку Вернуться в магазин")
+    public void clicksToComesBackToShopButton() {
         unitellerPage.clickToComesBackButton();
         mainPage.shouldBeDisplayed();
-    }
-
-    @Step("Открывает выписку операций по счету")
-    public void clicksToAccountTransactionsLink() {
-        paymentsPage.clickToAccountTransactionsLink();
     }
 
     @Step("Вводит период тразакций с {0} по {1}")
@@ -134,8 +178,8 @@ public class LKUserSteps extends ScenarioSteps {
         paymentsPage.enterEndTransactionsDate(endDate);
     }
 
-    @Step("Указывает тип тразакций {0}")
-    public void setsTransactionsType(String transactionsType) {
+    @Step("Выбирает из списка тип тразакций {0}")
+    public void selectsTransactionsType(String transactionsType) {
         paymentsPage.setTypeTransactions(transactionsType);
     }
 
@@ -147,5 +191,50 @@ public class LKUserSteps extends ScenarioSteps {
         transactions.remove(countRows - 2);
         transactions.remove(countRows - 3);
         shouldMatch(transactions, matchers);
+    }
+
+
+    @Step("Вводит данные в форму подачи обращения")
+    public void entersAppealDetails(String title, String theme, String text) {
+        newAppealPage.enterAppealTitle(title);
+        newAppealPage.setAppealTheme(theme);
+        newAppealPage.enterAppealText(text);
+
+    }
+
+    @Step("Нажимает на кнопку Загрузить новый файл")
+    public void clicksToUploadNewFileButton() {
+        getDriver().findElement(name("")).click();
+    }
+
+    @Step("Прикрепляет файл {0}")
+    public void uploadFile(String filename) {
+        newAppealPage.upload(filename);
+    }
+
+    @Step("Находит обращение {0} в списке")
+    public void findsAppealInList(String appealTitle) {
+
+    }
+
+    @Step("Нажимает на обращение {0} для просмотра")
+    public void opensAppealForDetail(String appealTitle) {
+
+    }
+
+//    @Step("Нажимает на кнопку Запросить историю")
+
+    @Step("Вводит период обращений с {0} по {1}")
+    public void entersPeriodAppealsDates(String startDate, String endDate) {
+        appealsPage.enterStartAppealsDate(startDate);
+        appealsPage.enterEndAppealsDate(endDate);
+    }
+
+//    @Step("Нажимает на кнопку Запросить историю")
+
+
+    @Step("Нажимает на кнопку Уведомления")
+    public void clicksToNotificationsButton() {
+        mainHeader.clickToNotificationsButton();
     }
 }

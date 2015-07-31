@@ -1,4 +1,4 @@
-Регистрация ФЛ в АРМ ЦИПП
+Регистрация ФЛ в ЦИПП
 Meta:
 @arm cpp
 @component registration

@@ -185,4 +185,14 @@ public class CPPOperatorActions {
     public void operatorConfirmRegistration() {
         operator.clickRegistrationButton();
     }
+
+    @When("оператор проводит верификацию данных пользователя")
+    public void operatorVerifiesUserData() {
+        operator.clicksToLink("Регистрация");
+        operator.clicksToLink("Верификация");
+        operator.findsOwnerVerificationRequest();
+        operator.conductOwnerVerificationRequest();
+        operator.findsVehicleVerificationRequest();
+        operator.conductVehicleVerificationRequest();
+    }
 }

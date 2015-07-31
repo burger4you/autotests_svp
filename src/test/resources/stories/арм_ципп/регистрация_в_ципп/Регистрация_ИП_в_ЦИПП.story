@@ -1,4 +1,4 @@
-Регистрация ИП в АРМ ЦИПП
+Регистрация ИП в ЦИПП
 Meta:
 @arm cpp
 @component registration

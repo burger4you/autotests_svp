@@ -103,7 +103,7 @@ public class LKPaymentsPage extends LKSelectizePageObject {
     }
     //
 
-    // Таблица операций
+    // Таблица транзакций
     @FindBy(xpath = ".//*[@id='transactions']/table")
     WebElement transactionsTable;
 

@@ -30,15 +30,8 @@ public class LKNewVehiclesGroupPage extends PageObject {
     @FindBy(id = "search-vehicle")
     WebElementFacade searchVehicleField;
 
-    @FindBy(name = "commit")
-    WebElementFacade confirmButton;
-
     public List<WebElement> getAllVehicles() {
         return filterRows(vehiclesTable);
-    }
-
-    public void clickConfirmButton() {
-        confirmButton.click();
     }
 
     public void enterVehiclesGroupName(String vehiclesGroupName) {

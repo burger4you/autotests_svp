@@ -2,6 +2,7 @@ package ru.progresspoint.svp12.cpp.jbehave.steps.lk;
 
 import net.thucydides.core.annotations.Steps;
 import org.jbehave.core.annotations.Then;
+import ru.progresspoint.svp12.EmailUserSteps;
 import ru.progresspoint.svp12.NavigationSteps;
 import ru.progresspoint.svp12.lk.steps.LKUserSteps;
 
@@ -20,6 +21,9 @@ public class LKConditions {
     @Steps
     LKUserSteps user;
 
+    @Steps
+    EmailUserSteps email;
+
     @Then("открывается страница $page в ЛК")
     public void pageShouldBeDisplayed(String page) {
         navigation.isOnLKPage(page);
@@ -32,19 +36,33 @@ public class LKConditions {
 
     @Then("система создаст группу для этих ТС с названием $groupName")
     public void vehiclesGroupShouldBeCreated(String groupName) {
-        user.shouldSeeConfirmAlert(groupName);
+        navigation.messageShouldDisplayed(groupName);
     }
 
     @Then("система увеличит баланс лицевого счета на $fundsAmount рублей")
     public void fundsShouldBeAdded(String fundsAmount) {
         navigation.messageShouldDisplayed("Ваш платеж банковской картой совершен успешно.");
-        user.comesBackToShop();
+        user.clicksToComesBackToShopButton();
         user.shouldSeeBalancesDifference();
     }
 
     @Then("система покажет в выписке все операции с $startDate по $endDate")
     public void shouldBeDisplayedTransactionsInPeriod(String startDay, String endDate) {
         user.shouldSeeTransactionsWhere(the("ДАТА И ВРЕМЯ", isBetween(startDay, endDate)));
+    }
+
+    @Then("система зарегистрирует обращение со заголовком <title>")
+    public void shouldBeDisplayedAppealWithTitle(String title) {
+
+    }
+
+    @Then("система предоставляет пользователю доступ к личному кабинету")
+    public void shouldSendEmailWithLoginLink() {
+        email.waitForEmailWithVerification();
+        email.clickToLoginLink();
+        user.entersPassword("Новый пароль");
+        user.clicksToConfirmButton();
+        navigation.isOnLKPage("Главная");
     }
 }
 
