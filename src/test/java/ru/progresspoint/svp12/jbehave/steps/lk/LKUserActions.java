@@ -1,4 +1,4 @@
-package ru.progresspoint.svp12.cpp.jbehave.steps.lk;
+package ru.progresspoint.svp12.jbehave.steps.lk;
 
 import net.thucydides.core.annotations.Steps;
 import org.jbehave.core.annotations.When;
@@ -57,17 +57,17 @@ public class LKUserActions {
         user.entersCardDataAndPay("123");
     }
 
-    @When("он создаст обращение $title в рзаделе $theme с текстом $text")
-    public void userCreatesNewAppeal(String title, String theme, String text) {
-        user.clicksToLink("Подать новое обращение");
-        user.entersAppealDetails(title, theme, text);
+    @When("он создаст новое обращение")
+    public void userCreatesNewAppeal() {
+        user.clicksToLink("Написать обращение");
+        user.entersAppealDetails();
+        user.uploadsAdditionalDocument();
+        user.clicksToConfirmButton();
+        user.clicksToOkInConfirmationAppealPopUp();
     }
 
-//    @When("он создаст обращение <title> в рзаделе <theme> с текстом <text> и прикрепит файл <filename>")
-//    public void userCreatesNewAppealWithUploadedFile(String title, String theme, String text, String filename) {
-//        user.clicksToCreateNewAppealButton();
-//        user.entersAppealDetails(title, theme, text);
-//        user.clicksToUploadNewFileButtonAndUploadFile(filename);
-//        user.clicksToSendAppealButton();
-//    }
+    @When("он нажмет на него")
+    public void userClicksToAppeal() {
+        user.clicksToAppealForDetail();
+    }
 }

@@ -54,23 +54,23 @@ public class NavigationSteps extends ScenarioSteps {
                 lkMainPage.openAt("http://lk-stage.progresspoint.ru");
                 break;
             case "Транспортные средства":
-                lkMainPage.loading();
+                lkMainMenu.loading();
                 lkMainMenu.clickToVehiclesItem();
                 break;
             case "Маршрутные карты":
-                lkMainPage.loading();
+                lkMainMenu.loading();
                 lkMainMenu.clickToRouteMapsItem();
                 break;
             case "Платежи":
-                lkMainPage.loading();
+                lkMainMenu.loading();
                 lkMainMenu.clickToPaymentsItem();
                 break;
             case "Профиль":
-                lkMainPage.loading();
+                lkMainMenu.loading();
                 lkMainMenu.clickToProfileItem();
                 break;
             case "Обращения":
-                lkMainPage.loading();
+                lkMainMenu.loading();
                 lkMainMenu.clickToAppealsItem();
                 break;
         }

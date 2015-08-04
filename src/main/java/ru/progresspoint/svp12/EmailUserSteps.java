@@ -24,7 +24,7 @@ import static net.serenitybdd.core.Serenity.getCurrentSession;
 public class EmailUserSteps extends ScenarioSteps {
 
     private static final long serialVersionUID = 7L;
-    private static final String SURFINGBIRD = "noreply@surfingbird.ru";
+    private static final String PROGRESSPOINT_RU = "mail@progresspoint.ru";
     private static final String PROTOCOL = "mail.store.protocol";
     private static final String IMAPS = "imaps";
     private static final String GMAIL = "imap.gmail.com";
@@ -37,12 +37,14 @@ public class EmailUserSteps extends ScenarioSteps {
     private Message[] messages;
 
     /**
+     * Получает письмо со ссылкой на завершение регистрации
+     *
      * @param gmailBox - адрес почтового ящика на gmail
      * @throws MessagingException
      * @throws IOException
      */
-    @Step("Получает письмо с ссылкой на завершение регистрации")
-    public void waitForEmailWithVerification(String gmailBox) throws IOException, MessagingException {
+    @Step("Получает письмо со ссылкой на завершение регистрации")
+    public void waitsForEmailWithConfirmationLink(String gmailBox) throws IOException, MessagingException {
         waitABit(5000);
         // Устанавливаем протокол
         props = new Properties();
@@ -57,8 +59,8 @@ public class EmailUserSteps extends ScenarioSteps {
         folder = store.getFolder(INBOX);
         // Открываем папку в режиме чтения
         if (!folder.isOpen()) folder.open(READ_ONLY);
-        // Нас интересуют письма от Серфингберд
-        SearchTerm totalTerm = new FromStringTerm(SURFINGBIRD);
+        // Нас интересуют письма от progresspoint
+        SearchTerm totalTerm = new FromStringTerm(PROGRESSPOINT_RU);
         // Которые еще не прочитаны
         FlagTerm flagSeen = new FlagTerm(new Flags(Flag.SEEN), false);
         // Объединяем эти параметры и ищем нужные письма
@@ -73,21 +75,21 @@ public class EmailUserSteps extends ScenarioSteps {
         // Форматируем его в текст
         String fullText = bodyPart.getContent().toString();
         // И колдуем: делим тело письма на 2 части (до ссылки и после)
-        String[] array = fullText.split("http://lk-stage.progresspoint\\.ru/\\S+");
+        String[] array = fullText.split("http://office.progresspoint\\.ru/\\S+");
         // Что бы потом удалить их из общего текста и оставить нужную нам урлу.
         String url = fullText.replace(String.valueOf(array[0]), "").replace(String.valueOf(array[1]), "");
         // Которую и запоминаем
-        getCurrentSession().put("recoveryURL", url);
+        getCurrentSession().put("confirmationLink", url);
     }
 
     /**
-     * Удаляет все письма от Серфингберд
+     * Удаляет все письма от Progresspoint
      *
      * @param gmailBox - адрес почтового ящика
      * @throws MessagingException
      */
     @Step
-    public void deletes_all_messages_from_surfingbird(String gmailBox) throws MessagingException {
+    public void deletesAllMessagesFromProgresspoint(String gmailBox) throws MessagingException {
         // Все по старой схеме
         props = new Properties();
         props.setProperty(PROTOCOL, IMAPS);
@@ -98,8 +100,8 @@ public class EmailUserSteps extends ScenarioSteps {
         // Единственное, что папку входящих необходимо открыть в режиме редактирования
         if (folder.isOpen()) folder.close(true);
         folder.open(READ_WRITE);
-        // Находим все письма от Серфингберд
-        SearchTerm totalTerm = new FromStringTerm(SURFINGBIRD);
+        // Находим все письма от progresspoint
+        SearchTerm totalTerm = new FromStringTerm(PROGRESSPOINT_RU);
         messages = folder.search(totalTerm);
         // Выставляем им флаги на удаление
         for (Message message : messages) message.setFlag(Flag.DELETED, true);
@@ -108,14 +110,13 @@ public class EmailUserSteps extends ScenarioSteps {
         store.close();
     }
 
-
     @Step("Нажимает на ссылку в письме")
-    public void clickToLoginLink() {
-        String url = (String) Serenity.getCurrentSession().get("recoveryURL");
+    public void clicksToConfirmationLink() {
+        String url = (String) Serenity.getCurrentSession().get("confirmationLink");
         getDriver().get(url);
     }
 
     @Step("Получает письмо с историей подачи и обработки всех обращений данного пользователя")
-    public void waitForEmailWithVAppealsHistory() {
+    public void waitsForEmailWithVAppealsHistory() {
     }
 }

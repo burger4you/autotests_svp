@@ -17,10 +17,6 @@ public class LKMainPage extends PageObject {
     @FindBy(xpath = ".//*[text()='Баланс лицевого счета:']/span[@class='tab__value']")
     WebElementFacade accountBalanceField;
 
-    public void loading() {
-        contentDashboard.shouldBeVisible();
-    }
-
     public String getsCurrentAccountBalance() {
         return accountBalanceField.getText();
     }

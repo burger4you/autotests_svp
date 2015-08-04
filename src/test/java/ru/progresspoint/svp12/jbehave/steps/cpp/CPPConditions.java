@@ -1,4 +1,4 @@
-package ru.progresspoint.svp12.cpp.jbehave.steps.cpp;
+package ru.progresspoint.svp12.jbehave.steps.cpp;
 
 import net.thucydides.core.annotations.Steps;
 import org.jbehave.core.annotations.Then;

@@ -1,4 +1,4 @@
-package ru.progresspoint.svp12.cpp.jbehave.steps.lk;
+package ru.progresspoint.svp12.jbehave.steps.lk;
 
 import net.thucydides.core.annotations.Steps;
 import org.jbehave.core.annotations.Then;
@@ -22,10 +22,10 @@ public class LKConditions {
     NavigationSteps navigation;
 
     @Steps
-    LKUserSteps user;
+    EmailUserSteps email;
 
     @Steps
-    EmailUserSteps email;
+    LKUserSteps user;
 
     @Then("открывается страница $page в ЛК")
     public void pageShouldBeDisplayed(String page) {
@@ -46,7 +46,6 @@ public class LKConditions {
     public void fundsShouldBeAdded(String fundsAmount) {
         navigation.messageShouldDisplayed("Ваш платеж банковской картой совершен успешно.");
         user.clicksToComesBackToShopButton();
-        user.shouldSeeBalancesDifference();
     }
 
     @Then("система покажет в выписке все операции с $startDate по $endDate")
@@ -54,16 +53,21 @@ public class LKConditions {
         user.shouldSeeTransactionsWhere(the("ДАТА И ВРЕМЯ", isBetween(startDay, endDate)));
     }
 
-    @Then("система зарегистрирует обращение со заголовком <title>")
-    public void shouldBeDisplayedAppealWithTitle(String title) {
+    @Then("система отобразит его в общем списке обращений")
+    public void systemShouldDisplaysAppeal() {
+        user.shouldSeeAppealInCommonList();
+    }
 
+    @Then("оно откроется для просмотра деталей")
+    public void systemShouldDisplaysAppealDetails() {
+        user.shouldSeeCorrectAppealDetail();
     }
 
     @Then("система предоставляет пользователю доступ к личному кабинету")
     public void shouldSendEmailWithLoginLink() throws IOException, MessagingException {
-        email.waitForEmailWithVerification("activestylework@gmail.com");
-        email.clickToLoginLink();
-        user.entersPassword("Новый пароль");
+        email.waitsForEmailWithConfirmationLink("activestylework@gmail.com");
+        email.clicksToConfirmationLink();
+        user.entersPassword("!QAZ2wsx");
         user.clicksToConfirmButton();
         navigation.isOnLKPage("Главная");
     }

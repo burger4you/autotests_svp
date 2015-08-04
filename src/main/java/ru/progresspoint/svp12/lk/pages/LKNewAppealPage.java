@@ -1,6 +1,7 @@
 package ru.progresspoint.svp12.lk.pages;
 
 import net.serenitybdd.core.annotations.findby.FindBy;
+import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.At;
 
@@ -8,9 +9,7 @@ import net.thucydides.core.annotations.At;
  * Страница создания обращения в Личном Кабинете
  */
 @At("#HOST/appeals/new")
-public class LKNewAppealPage extends LKSelectizePageObject {
-
-    final static String APPEAL_THEM_DROP_DOWN_ID = "itop_service_appeal_servicesubcategory_id";
+public class LKNewAppealPage extends PageObject {
 
     @FindBy(id = "itop_service_appeal_title")
     WebElementFacade appealTitleField;
@@ -18,9 +17,8 @@ public class LKNewAppealPage extends LKSelectizePageObject {
     @FindBy(id = "itop_service_appeal_description")
     WebElementFacade appealTextField;
 
-    public void setAppealTheme(String appealTheme) {
-        selectForSelectizePlugin(APPEAL_THEM_DROP_DOWN_ID, appealTheme);
-    }
+    @FindBy(id = "itop_service_appeal_attachments")
+    WebElementFacade appealAdditionalDocument;
 
     public void enterAppealTitle(String appealTitle) {
         enter(appealTitle).into(appealTitleField);
@@ -28,5 +26,17 @@ public class LKNewAppealPage extends LKSelectizePageObject {
 
     public void enterAppealText(String appealText) {
         enter(appealText).into(appealTextField);
+    }
+
+    public void uploadAdditionalDocument(String fileName) {
+        // Меняем атрибут display у инпута, для возможности загружать файлы
+        evaluateJavascript("document.getElementById('itop_service_appeal_attachments').setAttribute('Style','display:block');");
+        upload(fileName).to(appealAdditionalDocument);
+    }
+
+    public void clickToOkConfirmationPopUp() {
+        waitFor("//h2[.='Обращение подано']");
+        waitABit(1000);
+        findBy(".//*[@class='b-link__icon svp svp-ok']").click();
     }
 }

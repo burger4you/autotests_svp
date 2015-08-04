@@ -24,6 +24,14 @@ public class LKMainMenu extends PageObject {
     @FindBy(linkText = "Обращения")
     WebElementFacade appealsItem;
 
+    public void loading() {
+        mapsItem.shouldBeEnabled();
+        paymentsItem.shouldBeEnabled();
+        vehiclesItem.shouldBeEnabled();
+        profileItem.shouldBeEnabled();
+        appealsItem.shouldBeEnabled();
+    }
+
     public void clickToRouteMapsItem() {
         mapsItem.click();
     }

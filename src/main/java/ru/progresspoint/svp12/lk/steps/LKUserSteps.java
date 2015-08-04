@@ -14,11 +14,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import static net.serenitybdd.core.Serenity.getCurrentSession;
 import static net.thucydides.core.matchers.BeanMatcherAsserts.shouldMatch;
+import static net.thucydides.core.matchers.BeanMatchers.the;
 import static org.apache.commons.lang3.RandomStringUtils.random;
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 import static org.apache.commons.lang3.StringUtils.capitalize;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.hamcrest.Matchers.is;
 import static org.openqa.selenium.By.linkText;
 import static org.openqa.selenium.By.name;
 
@@ -35,6 +38,7 @@ public class LKUserSteps extends ScenarioSteps {
     LKPaymentsPage paymentsPage;
     UnitellerPaymentsPage unitellerPage;
     LKAppealsPage appealsPage;
+    LKAppealDetailPage appealDetailPage;
     LKNewAppealPage newAppealPage;
     LKAccountPage accountPage;
     LKBasicInfoPage basicInfoPage;
@@ -128,9 +132,8 @@ public class LKUserSteps extends ScenarioSteps {
     @Step("Вводит пароль {0}")
     public void entersPassword(String password) {
         passwordPage.enterPassword(password);
+        passwordPage.enterConfirmPassword(password);
     }
-
-//    @Step("Нажимает кнопку Войти в Личный кабинет")
 
 //    @Step("Нажимает Зарегистрировать ТС")
 
@@ -185,7 +188,7 @@ public class LKUserSteps extends ScenarioSteps {
     public void entersFundsAmount(String fundsAmount) {
         paymentsPage.shouldBeDisplayedAddFundsPopUp();
         // Запоминаем баланс лс до пополнения для следующей проверки
-        Serenity.getCurrentSession().put("oldAccountBalance", paymentsPage.getCurrentAccountBalance());
+        getCurrentSession().put("oldAccountBalance", paymentsPage.getCurrentAccountBalance());
         paymentsPage.enterFundsAmount(fundsAmount);
         paymentsPage.clickToPayPopUpLink();
     }
@@ -194,15 +197,6 @@ public class LKUserSteps extends ScenarioSteps {
     public void entersCardDataAndPay(String cardData) {
         unitellerPage.entersCardData(cardData);
         unitellerPage.clickToPayButton();
-    }
-
-    @Step("Сравнивает баланс ЛС до пополнения и после")
-    public void shouldSeeBalancesDifference() {
-        String oldAccountBalance = (String) Serenity.getCurrentSession().get("oldAccountBalance");
-        String currentAccountBalance = mainPage.getsCurrentAccountBalance();
-        assertThat(currentAccountBalance)
-                .overridingErrorMessage("Баланс лицевого счета на главной странице не изменился")
-                .isNotEqualTo(oldAccountBalance);
     }
 
     @Step("Нажимает на кнопку Вернуться в магазин")
@@ -222,6 +216,15 @@ public class LKUserSteps extends ScenarioSteps {
         paymentsPage.setTypeTransactions(transactionsType);
     }
 
+    @Step("Сравнивает баланс ЛС до пополнения и после")
+    public void shouldSeeBalancesDifference() {
+        String oldAccountBalance = (String) Serenity.getCurrentSession().get("oldAccountBalance");
+        String currentAccountBalance = mainPage.getsCurrentAccountBalance();
+        assertThat(currentAccountBalance)
+                .overridingErrorMessage("Баланс лицевого счета на главной странице не изменился")
+                .isNotEqualTo(oldAccountBalance);
+    }
+
     @Step("Видит отфильтрованные транзакции")
     public void shouldSeeTransactionsWhere(BeanMatcher... matchers) {
         List<Map<Object, String>> transactions = paymentsPage.getSearchTransactions();
@@ -232,33 +235,46 @@ public class LKUserSteps extends ScenarioSteps {
         shouldMatch(transactions, matchers);
     }
 
-
     @Step("Вводит данные в форму подачи обращения")
-    public void entersAppealDetails(String title, String theme, String text) {
-        newAppealPage.enterAppealTitle(title);
-        newAppealPage.setAppealTheme(theme);
-        newAppealPage.enterAppealText(text);
-
+    public void entersAppealDetails() {
+        getCurrentSession().put("appealTitle", getRandomCyrillicProperString(12));
+        getCurrentSession().put("appealText", getRandomCyrillicProperString(4) + getRandomAlphabeticString(8) + getRandomNumber(4));
+        newAppealPage.enterAppealTitle((String) getCurrentSession().get("appealTitle"));
+        newAppealPage.enterAppealText((String) getCurrentSession().get("appealText"));
     }
 
-    @Step("Нажимает на кнопку Загрузить новый файл")
-    public void clicksToUploadNewFileButton() {
-        getDriver().findElement(name("")).click();
+    @Step("Прикладывает дополнительный документ")
+    public void uploadsAdditionalDocument() {
+        newAppealPage.uploadAdditionalDocument("documents/Appeal.pdf");
     }
 
-    @Step("Прикрепляет файл {0}")
-    public void uploadFile(String filename) {
-        newAppealPage.upload(filename);
+    @Step("Нажимает на кнопку Ок в окне подтверждения отправки обращения")
+    public void clicksToOkInConfirmationAppealPopUp() {
+        newAppealPage.clickToOkConfirmationPopUp();
     }
 
-    @Step("Находит обращение {0} в списке")
-    public void findsAppealInList(String appealTitle) {
-
+    @Step("Находит обращение в общем списке")
+    public void shouldSeeAppealInCommonList() {
+        shouldMatch(appealsPage.getSearchAppeals(), the("ТЕМА:", is((String) getCurrentSession().get("appealTitle"))));
     }
 
-    @Step("Нажимает на обращение {0} для просмотра")
-    public void opensAppealForDetail(String appealTitle) {
+    @Step("Нажимает на обращение для просмотра деталей")
+    public void clicksToAppealForDetail() {
+        BeanMatcher matchers = the("ТЕМА:", is((String) getCurrentSession().get("appealTitle")));
+        appealsPage.clickOnAppeal(matchers);
+    }
 
+    @Step("Находит в обращении все детали")
+    public void shouldSeeCorrectAppealDetail() {
+        assertThat(appealDetailPage.getAppealTitle())
+                .overridingErrorMessage("Тема обращения не верная")
+                .isEqualTo((String) getCurrentSession().get("appealTitle"));
+        assertThat(appealDetailPage.getAppealText())
+                .overridingErrorMessage("Текст обращения не верный")
+                .isEqualTo((String) getCurrentSession().get("appealText"));
+        assertThat(appealDetailPage.getAppealAdditionalFileName())
+                .overridingErrorMessage("Имя приложенного файла к обращению не верный")
+                .isEqualTo("Appeal.pdf");
     }
 
 //    @Step("Нажимает на кнопку Запросить историю")
