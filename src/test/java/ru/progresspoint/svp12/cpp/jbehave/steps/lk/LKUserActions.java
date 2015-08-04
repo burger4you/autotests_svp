@@ -12,18 +12,19 @@ public class LKUserActions {
     @Steps
     LKUserSteps user;
 
-    @When("пользователь регистрирует себя как $clientType")
-    public void userSetTypeAndResidenceOfClient(String clientType) {
+    @When("пользователь регистрирует себя как $clientType ($clientEmail)")
+    public void userSetTypeAndResidenceOfClient(String clientType, String clientEmail) {
         user.clicksToLink("Зарегистрироваться");
-        user.entersAccountData("Данные учетной записи");
+        user.entersAccountData(clientEmail);
         user.selectsOwnerType(clientType);
         user.selectsOwnerCountry("Российская Федерация");
         user.entersCaptcha("captcha");
         user.clicksToConfirmButton();
-        user.entersOwnerData("Данные ВТС");
-        user.uploadsOwnerDocumentsCopies("Скан-копии документов ВТС");
-        user.entersVehicleData("Данные ТС");
-        user.uploadsVehicleDocumentsCopies("Скан-копии документов ТС");
+        user.entersOwnerData(clientEmail);
+        user.clicksToConfirmButton();
+//        user.uploadsOwnerDocumentsCopies("Скан-копии документов ВТС");
+        user.entersVehicleData();
+        user.uploadsVehicleDocumentsCopies();
         user.clicksToConfirmButton();
     }
 

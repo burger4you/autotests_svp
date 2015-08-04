@@ -6,7 +6,7 @@ import org.jbehave.core.annotations.When;
 import ru.progresspoint.svp12.cpp.steps.CPPOperatorSteps;
 
 /**
- * Шаги пользователей АРМа ЦИПП
+ * Шаги оператора АРМа ЦИПП
  */
 public class CPPOperatorActions {
 

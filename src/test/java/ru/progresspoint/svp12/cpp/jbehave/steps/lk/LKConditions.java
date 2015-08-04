@@ -6,6 +6,9 @@ import ru.progresspoint.svp12.EmailUserSteps;
 import ru.progresspoint.svp12.NavigationSteps;
 import ru.progresspoint.svp12.lk.steps.LKUserSteps;
 
+import javax.mail.MessagingException;
+import java.io.IOException;
+
 import static net.thucydides.core.matchers.BeanMatchers.the;
 import static ru.progresspoint.utils.StringTimeIsBetweenMatcher.isBetween;
 
@@ -57,8 +60,8 @@ public class LKConditions {
     }
 
     @Then("система предоставляет пользователю доступ к личному кабинету")
-    public void shouldSendEmailWithLoginLink() {
-        email.waitForEmailWithVerification();
+    public void shouldSendEmailWithLoginLink() throws IOException, MessagingException {
+        email.waitForEmailWithVerification("activestylework@gmail.com");
         email.clickToLoginLink();
         user.entersPassword("Новый пароль");
         user.clicksToConfirmButton();
