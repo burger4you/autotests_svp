@@ -1,4 +1,4 @@
-package ru.progresspoint.svp12;
+package ru.progresspoint.svp12.jbehave;
 
 import net.serenitybdd.jbehave.SerenityStories;
 import org.jbehave.core.configuration.Configuration;
