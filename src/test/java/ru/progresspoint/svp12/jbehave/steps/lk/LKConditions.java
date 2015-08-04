@@ -9,7 +9,6 @@ import ru.progresspoint.svp12.lk.steps.LKUserSteps;
 import javax.mail.MessagingException;
 import java.io.IOException;
 
-import static net.thucydides.core.matchers.BeanMatchers.the;
 import static ru.progresspoint.utils.StringTimeIsBetweenMatcher.isBetween;
 
 
@@ -50,12 +49,17 @@ public class LKConditions {
 
     @Then("система покажет в выписке все операции с $startDate по $endDate")
     public void shouldBeDisplayedTransactionsInPeriod(String startDay, String endDate) {
-        user.shouldSeeTransactionsWhere(the("ДАТА И ВРЕМЯ", isBetween(startDay, endDate)));
+        user.shouldSeeTransactionsDateWhere(isBetween(startDay, endDate));
     }
 
     @Then("система отобразит его в общем списке обращений")
     public void systemShouldDisplaysAppeal() {
         user.shouldSeeAppealInCommonList();
+    }
+
+    @Then("найдет только обращения, поданные за последние три месяца")
+    public void systemShouldDisplaysAppealForLastThreeMonth() {
+        user.shouldSeeAppealForLastThreeMonth();
     }
 
     @Then("оно откроется для просмотра деталей")

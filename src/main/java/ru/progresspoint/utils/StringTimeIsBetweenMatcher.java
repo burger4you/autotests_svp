@@ -34,13 +34,27 @@ public class StringTimeIsBetweenMatcher extends TypeSafeMatcher<String> {
         description.appendText(formatted(endDate));
     }
 
+//    public static DateTimeFormatter dayMonthYearHourMinute() {
+//        return new DateTimeFormatterBuilder()
+//                .appendDayOfMonth(2)
+//                .appendLiteral('.')
+//                .appendMonthOfYear(2)
+//                .appendLiteral('.')
+//                .appendYear(4, 4)
+//                .appendLiteral(' ')
+//                .appendHourOfDay(2)
+//                .appendLiteral(':')
+//                .appendMinuteOfHour(2)
+//                .toFormatter();
+//    }
+
     public static DateTimeFormatter dayMonthYearHourMinute() {
         return new DateTimeFormatterBuilder()
-                .appendDayOfMonth(2)
-                .appendLiteral('.')
-                .appendMonthOfYear(2)
-                .appendLiteral('.')
                 .appendYear(4, 4)
+                .appendLiteral('-')
+                .appendMonthOfYear(2)
+                .appendLiteral('-')
+                .appendDayOfMonth(2)
                 .appendLiteral(' ')
                 .appendHourOfDay(2)
                 .appendLiteral(':')

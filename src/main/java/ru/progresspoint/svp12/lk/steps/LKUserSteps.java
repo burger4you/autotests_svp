@@ -6,15 +6,16 @@ import net.serenitybdd.core.annotations.findby.By;
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.matchers.BeanMatcher;
 import net.thucydides.core.steps.ScenarioSteps;
+import org.hamcrest.Matcher;
 import org.joda.time.DateTime;
 import org.openqa.selenium.WebElement;
 import ru.progresspoint.svp12.lk.pages.*;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 
 import static net.serenitybdd.core.Serenity.getCurrentSession;
+import static net.thucydides.core.matchers.BeanMatcherAsserts.matches;
 import static net.thucydides.core.matchers.BeanMatcherAsserts.shouldMatch;
 import static net.thucydides.core.matchers.BeanMatchers.the;
 import static org.apache.commons.lang3.RandomStringUtils.random;
@@ -24,6 +25,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.openqa.selenium.By.linkText;
 import static org.openqa.selenium.By.name;
+import static ru.progresspoint.utils.StringTimeIsBetweenMatcher.isBetween;
 
 /**
  * Шаги конечного пользователя АРМа Личный Кабинет
@@ -226,13 +228,10 @@ public class LKUserSteps extends ScenarioSteps {
     }
 
     @Step("Видит отфильтрованные транзакции")
-    public void shouldSeeTransactionsWhere(BeanMatcher... matchers) {
-        List<Map<Object, String>> transactions = paymentsPage.getSearchTransactions();
-        int countRows = transactions.size();
-        transactions.remove(countRows - 1);
-        transactions.remove(countRows - 2);
-        transactions.remove(countRows - 3);
-        shouldMatch(transactions, matchers);
+    public void shouldSeeTransactionsDateWhere(Matcher<String> matchers) {
+        List<String> dates = paymentsPage.getDatesSearchedTransactions();
+        for (String date : dates)
+            matches(date);
     }
 
     @Step("Вводит данные в форму подачи обращения")
@@ -256,6 +255,14 @@ public class LKUserSteps extends ScenarioSteps {
     @Step("Находит обращение в общем списке")
     public void shouldSeeAppealInCommonList() {
         shouldMatch(appealsPage.getSearchAppeals(), the("ТЕМА:", is((String) getCurrentSession().get("appealTitle"))));
+    }
+
+    @Step("Находит обращения за последние 3 месяца")
+    public void shouldSeeAppealForLastThreeMonth() {
+        DateTime today = DateTime.now().toDateTime();
+        String endDate = today.minusDays(2).toString("dd.MM.yyyy");
+        String startDay = today.minusMonths(3).toString("dd.MM.yyyy");
+        shouldMatch(appealsPage.getSearchAppeals(), the("ПОДАНО:", isBetween(startDay, endDate)));
     }
 
     @Step("Нажимает на обращение для просмотра деталей")

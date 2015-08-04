@@ -57,6 +57,10 @@ public class LKUserActions {
         user.entersCardDataAndPay("123");
     }
 
+    @When("он просмотрит историю своих обращений")
+    public void userLookUpsAllAppeals() {
+    }
+
     @When("он создаст новое обращение")
     public void userCreatesNewAppeal() {
         user.clicksToLink("Написать обращение");
