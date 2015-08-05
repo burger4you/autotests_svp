@@ -78,13 +78,13 @@ public class LKUserSteps extends ScenarioSteps {
     }
 
     @Step("Выбирает из списка тип ВТС {0}")
-    public void selectsOwnerType(String ownerType) {
-        accountPage.selectOwnerType(ownerType);
+    public void selectsClientType(String clientType) {
+        accountPage.selectClientType(clientType);
     }
 
     @Step("Выбирает из списка страну резиденства {0}")
-    public void selectsOwnerCountry(String ownerCountry) {
-        accountPage.selectOwnerCountry(ownerCountry);
+    public void selectsClientCountry(String clientCountry) {
+        accountPage.selectClientCountry(clientCountry);
     }
 
     @Step("Вводит CAPTCHA")
@@ -97,19 +97,26 @@ public class LKUserSteps extends ScenarioSteps {
         getDriver().findElement(name("commit")).click();
     }
 
-    @Step("Вводит данные ВТС")
-    public void entersOwnerData(String ownerEmail) {
-        fillsPersonalOwnerData(ownerEmail);
-        fillsOwnerRegistrationAddress("Город Санкт-Петербург, улица Иркутская");
-        fillsOwnerLocationAddress("Город Москва, Театральный проезд");
-        fillsOwnerPostalAddress("Ивановская область, город Иваново, улица Лежневская");
-        fillsOwnerBankData();
+    @Step("Вводит данные ИП")
+    public void entersIPData(String clientEmail) {
+        fillsClientData(clientEmail);
+        fillsClientRegistrationAddress("Город Санкт-Петербург, улица Иркутская");
+        fillsClientLocationAddress("Город Москва, Театральный проезд");
+        fillsClientPostalAddress("Ивановская область, город Иваново, улица Лежневская");
+        fillsClientBankData();
     }
 
-//    @Step("Прикладывает скан-копии документов ВТС")
-//    public void uploadsOwnerDocumentsCopies(String filename) {
-//        basicInfoPage.uploadOwnerDocumentsCopies(filename);
-//    }
+    @Step("Вводит данные ЮЛ")
+    public void entersULData(String organizationEmail) {
+        fillsOrganizationData(organizationEmail);
+        fillsDirectorData(organizationEmail);
+        fillsDirectorDocuments();
+        fillsDirectorPersonalDocument();
+        fillsClientRegistrationAddress("Город Санкт-Петербург, улица Иркутская");
+        fillsClientLocationAddress("Город Москва, Театральный проезд");
+        fillsClientPostalAddress("Ивановская область, город Иваново, улица Лежневская");
+        fillsClientBankData();
+    }
 
     @Step("Вводит данные ТС")
     public void entersVehicleData() {
@@ -353,79 +360,124 @@ public class LKUserSteps extends ScenarioSteps {
         return String.valueOf(date.toString("dd.MM.yyyy"));
     }
 
-    private void fillsPersonalOwnerData(String ownerEmail) {
-        String ownerShortName = getRandomCyrillicProperString(10);
-        String ownerName = getRandomCyrillicProperString(5);
-        String ownerINN = getRandomNumber(10);
-        String ownerOGRN = getRandomNumber(15);
-        String ownerPhone = getRandomNumber(10);
+    private void fillsClientData(String clientEmail) {
+        String clientShortName = getRandomCyrillicProperString(10);
+        String clientName = getRandomCyrillicProperString(5);
+        String clientINN = getRandomNumber(10);
+        String clientOGRN = getRandomNumber(15);
+        String clientPhone = getRandomNumber(10);
 
-        basicInfoPage.enterOwnerShortName(ownerShortName);
-        basicInfoPage.enterOwnerName(ownerName);
-        basicInfoPage.enterOwnerINN(ownerINN);
-        basicInfoPage.enterOwnerOGRN(ownerOGRN);
-        basicInfoPage.enterOwnerMainEmail(ownerEmail);
-        basicInfoPage.enterOwnerMainPhone(ownerPhone);
+        basicInfoPage.enterClientShortName(clientShortName);
+        basicInfoPage.enterClientName(clientName);
+        basicInfoPage.enterClientINN(clientINN);
+        basicInfoPage.enterClientOGRN(clientOGRN);
+        basicInfoPage.enterClientMainEmail(clientEmail);
+        basicInfoPage.enterClientMainPhone(clientPhone);
     }
 
-    private void fillsOwnerRegistrationAddress(String registrationAddressKladr) {
+    private void fillsOrganizationData(String organizationEmail) {
+        basicInfoPage.selectOrganizationOPF("Общества с ограниченной ответственностью");
+        fillsClientData(organizationEmail);
+    }
+
+    public void entersFLData(String clientEmail) {
+
+    }
+
+    private void fillsDirectorData(String directorEmail) {
+
+        String directorSurname = getRandomCyrillicProperString(7);
+        String directorName = getRandomCyrillicProperString(5);
+        String directorPatronymic = getRandomCyrillicProperString(10);
+        String directorPhone = getRandomNumber(10);
+        
+        basicInfoPage.enterDirectorSurname(directorSurname);
+        basicInfoPage.enterDirectorName(directorName);
+        basicInfoPage.enterDirectorPatronymic(directorPatronymic);
+        basicInfoPage.enterDirectorPhone(directorPhone);
+        basicInfoPage.enterDirectorLogin(directorEmail);
+        basicInfoPage.enterDirectorPosition("Генеральный директор");
+    }
+
+    private void fillsDirectorDocuments() {
+        String directorDocumentNumber = getRandomNumber(10);
+        String directorDocumentDate = getRandomDate();
+
+        basicInfoPage.selectDirectorDocumentType("Устав");
+        basicInfoPage.enterDirectorDocumentNumber(directorDocumentNumber);
+        basicInfoPage.enterDirectorDocumentIssuedDate(directorDocumentDate);
+        basicInfoPage.enterDirectorDocumentValidity("31.12.2015");
+    }
+
+    private void fillsDirectorPersonalDocument() {
+        String directorPersonalDocumentNumber = getRandomNumber(10);
+        String directorPersonalDocumentDate = getRandomDate();
+        String directorPersonalDocumentBy = getRandomCyrillicProperString(12);
+
+        basicInfoPage.selectDirectorPersonalDocumentType("Удостоверение личности военнослужащего РФ");
+        basicInfoPage.enterDirectorPersonalDocumentNumber(directorPersonalDocumentNumber);
+        basicInfoPage.enterDirectorPersonalDocumentIssuedDate(directorPersonalDocumentDate);
+        basicInfoPage.enterDirectorPersonalDocumentIssuedBy(directorPersonalDocumentBy);
+    }
+
+    private void fillsClientRegistrationAddress(String registrationAddressKladr) {
         String registrationAddressIndex = getRandomNumber(6);
         String registrationAddressHouse = getRandomNumber(3);
         String registrationAddressHousing = getRandomNumber(1);
         String registrationAddressBuilding = getRandomNumber(1);
         String registrationAddressRoom = getRandomNumber(2);
 
-        basicInfoPage.selectOwnerRegistrationAddressKladr(registrationAddressKladr);
-        basicInfoPage.enterOwnerRegistrationAddressIndex(registrationAddressIndex);
-        basicInfoPage.enterOwnerRegistrationAddressHouse(registrationAddressHouse);
-        basicInfoPage.enterOwnerRegistrationAddressHousing(registrationAddressHousing);
-        basicInfoPage.enterOwnerRegistrationAddressBuilding(registrationAddressBuilding);
-        basicInfoPage.enterOwnerRegistrationAddressRoom(registrationAddressRoom);
+        basicInfoPage.selectClientRegistrationAddressKladr(registrationAddressKladr);
+        basicInfoPage.enterClientRegistrationAddressIndex(registrationAddressIndex);
+        basicInfoPage.enterClientRegistrationAddressHouse(registrationAddressHouse);
+        basicInfoPage.enterClientRegistrationAddressHousing(registrationAddressHousing);
+        basicInfoPage.enterClientRegistrationAddressBuilding(registrationAddressBuilding);
+        basicInfoPage.enterClientRegistrationAddressRoom(registrationAddressRoom);
     }
 
-    private void fillsOwnerLocationAddress(String locationAddressKladr) {
+    private void fillsClientLocationAddress(String locationAddressKladr) {
         String locationAddressIndex = getRandomNumber(6);
         String locationAddressHouse = getRandomNumber(3);
         String locationAddressHousing = getRandomNumber(1);
         String locationAddressBuilding = getRandomNumber(1);
         String locationAddressRoom = getRandomNumber(2);
 
-        basicInfoPage.selectOwnerLocationAddressKladr(locationAddressKladr);
-        basicInfoPage.enterOwnerLocationAddressIndex(locationAddressIndex);
-        basicInfoPage.enterOwnerLocationAddressHouse(locationAddressHouse);
-        basicInfoPage.enterOwnerLocationAddressHousing(locationAddressHousing);
-        basicInfoPage.enterOwnerLocationAddressBuilding(locationAddressBuilding);
-        basicInfoPage.enterOwnerLocationAddressRoom(locationAddressRoom);
+        basicInfoPage.selectClientLocationAddressKladr(locationAddressKladr);
+        basicInfoPage.enterClientLocationAddressIndex(locationAddressIndex);
+        basicInfoPage.enterClientLocationAddressHouse(locationAddressHouse);
+        basicInfoPage.enterClientLocationAddressHousing(locationAddressHousing);
+        basicInfoPage.enterClientLocationAddressBuilding(locationAddressBuilding);
+        basicInfoPage.enterClientLocationAddressRoom(locationAddressRoom);
     }
 
-    private void fillsOwnerPostalAddress(String postalAddressKladr) {
+    private void fillsClientPostalAddress(String postalAddressKladr) {
         String postalAddressIndex = getRandomNumber(6);
         String postalAddressHouse = getRandomNumber(3);
         String postalAddressHousing = getRandomNumber(1);
         String postalAddressBuilding = getRandomNumber(1);
         String postalAddressRoom = getRandomNumber(2);
 
-        basicInfoPage.selectOwnerPostalAddressKladr(postalAddressKladr);
-        basicInfoPage.enterOwnerPostalAddressIndex(postalAddressIndex);
-        basicInfoPage.enterOwnerPostalAddressHouse(postalAddressHouse);
-        basicInfoPage.enterOwnerPostalAddressHousing(postalAddressHousing);
-        basicInfoPage.enterOwnerPostalAddressBuilding(postalAddressBuilding);
-        basicInfoPage.enterOwnerPostalAddressRoom(postalAddressRoom);
+        basicInfoPage.selectClientPostalAddressKladr(postalAddressKladr);
+        basicInfoPage.enterClientPostalAddressIndex(postalAddressIndex);
+        basicInfoPage.enterClientPostalAddressHouse(postalAddressHouse);
+        basicInfoPage.enterClientPostalAddressHousing(postalAddressHousing);
+        basicInfoPage.enterClientPostalAddressBuilding(postalAddressBuilding);
+        basicInfoPage.enterClientPostalAddressRoom(postalAddressRoom);
     }
 
-    private void fillsOwnerBankData() {
-        String ownerBankName = getRandomCyrillicProperString(6);
-        String ownerBankBIK = getRandomNumber(9);
-        String ownerBankINN = getRandomNumber(10);
-        String ownerBankKorNumber = getRandomNumber(20);
-        String ownerAccountNumber = getRandomNumber(20);
-        String ownerBankReceiverName = getRandomCyrillicProperString(18);
+    private void fillsClientBankData() {
+        String clientBankName = getRandomCyrillicProperString(6);
+        String clientBankBIK = getRandomNumber(9);
+        String clientBankINN = getRandomNumber(10);
+        String clientBankKorNumber = getRandomNumber(20);
+        String clientAccountNumber = getRandomNumber(20);
+        String clientBankReceiverName = getRandomCyrillicProperString(18);
 
-        basicInfoPage.enterOwnerBankName(ownerBankName);
-        basicInfoPage.enterOwnerBankBIK(ownerBankBIK);
-        basicInfoPage.enterOwnerBankINN(ownerBankINN);
-        basicInfoPage.enterOwnerBankKorNumber(ownerBankKorNumber);
-        basicInfoPage.enterOwnerBankAccountNumber(ownerAccountNumber);
-        basicInfoPage.enterOwnerBankReceiverName(ownerBankReceiverName);
+        basicInfoPage.enterClientBankName(clientBankName);
+        basicInfoPage.enterClientBankBIK(clientBankBIK);
+        basicInfoPage.enterClientBankINN(clientBankINN);
+        basicInfoPage.enterClientBankKorNumber(clientBankKorNumber);
+        basicInfoPage.enterClientBankAccountNumber(clientAccountNumber);
+        basicInfoPage.enterClientBankReceiverName(clientBankReceiverName);
     }
 }

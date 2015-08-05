@@ -16,13 +16,22 @@ public class LKUserActions {
     public void userSetTypeAndResidenceOfClient(String clientType, String clientEmail) {
         user.clicksToLink("Зарегистрироваться");
         user.entersAccountData(clientEmail);
-        user.selectsOwnerType(clientType);
-        user.selectsOwnerCountry("Российская Федерация");
+        user.selectsClientType(clientType);
+        user.selectsClientCountry("Российская Федерация");
         user.entersCaptcha("captcha");
         user.clicksToConfirmButton();
-        user.entersOwnerData(clientEmail);
+        switch (clientType) {
+            case "Индивидуальный предприниматель":
+                user.entersIPData(clientEmail);
+                break;
+            case "Юридическое лицо":
+                user.entersULData(clientEmail);
+                break;
+            case "Физическое лицо":
+                user.entersFLData(clientEmail);
+                break;
+        }
         user.clicksToConfirmButton();
-//        user.uploadsOwnerDocumentsCopies("Скан-копии документов ВТС");
         user.entersVehicleData();
         user.uploadsVehicleDocumentsCopies();
         user.clicksToConfirmButton();

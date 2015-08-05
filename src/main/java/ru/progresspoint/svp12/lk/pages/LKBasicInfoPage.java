@@ -12,217 +12,327 @@ public class LKBasicInfoPage extends LKSelectizePageObject {
 
     //Данные об ИП
     @FindBy(id = "client_short_name")
-    WebElementFacade ownerShortNameField;
+    WebElementFacade clientShortNameField;
 
     @FindBy(id = "client_name")
-    WebElementFacade ownerNameField;
+    WebElementFacade clientNameField;
 
     @FindBy(id = "client_inn")
-    WebElementFacade ownerINNField;
+    WebElementFacade clientINNField;
 
     @FindBy(id = "client_ogrn")
-    WebElementFacade ownerOGRNField;
+    WebElementFacade clientOGRNField;
 
     @FindBy(id = "client_main_email")
-    WebElementFacade ownerMainEmailField;
+    WebElementFacade clientMainEmailField;
 
     @FindBy(id = "client_main_phone")
-    WebElementFacade ownerMainPhoneField;
+    WebElementFacade clientMainPhoneField;
 
-    public void enterOwnerShortName(String ownerShortName) {
-        enter(ownerShortName).into(ownerShortNameField);
+    public void enterClientShortName(String clientShortName) {
+        enter(clientShortName).into(clientShortNameField);
     }
 
-    public void enterOwnerName(String ownerName) {
-        enter(ownerName).into(ownerNameField);
+    public void enterClientName(String clientName) {
+        enter(clientName).into(clientNameField);
     }
 
-    public void enterOwnerINN(String ownerINN) {
-        enter(ownerINN).into(ownerINNField);
+    public void enterClientINN(String clientINN) {
+        enter(clientINN).into(clientINNField);
     }
 
-    public void enterOwnerOGRN(String ownerOGRN) {
-        enter(ownerOGRN).into(ownerOGRNField);
+    public void enterClientOGRN(String clientOGRN) {
+        enter(clientOGRN).into(clientOGRNField);
     }
 
-    public void enterOwnerMainEmail(String ownerMainEmail) {
-        enter(ownerMainEmail).into(ownerMainEmailField);
+    public void enterClientMainEmail(String clientMainEmail) {
+        enter(clientMainEmail).into(clientMainEmailField);
     }
 
-    public void enterOwnerMainPhone(String ownerMainPhone) {
-        enter(ownerMainPhone).into(ownerMainPhoneField);
+    public void enterClientMainPhone(String clientMainPhone) {
+        enter(clientMainPhone).into(clientMainPhoneField);
+    }
+
+    //Данные об организации
+
+    private static final String organizationOPFField = "client_okopf_id";
+
+    public void selectOrganizationOPF(String organizationOPF) {
+        selectForSelectizePlugin(organizationOPFField, organizationOPF);
+    }
+
+    //Данные о руководителе
+
+    @FindBy(id = "client_ceo_last_name")
+    WebElementFacade directorSurnameField;
+
+    @FindBy(id = "client_ceo_first_name")
+    WebElementFacade directorNameField;
+
+    @FindBy(id = "client_ceo_middle_name")
+    WebElementFacade directorPatronymicField;
+
+    @FindBy(id = "client_ceo_job_name")
+    WebElementFacade directorPositionField;
+
+    @FindBy(id = "client_ceo_main_phone_name")
+    WebElementFacade directorPhoneField;
+
+    @FindBy(id = "client_ceo_main_email_name")
+    WebElementFacade directorEmailField;
+
+    public void enterDirectorSurname(String directorSurname) {
+        enter(directorSurname).into(directorSurnameField);
+    }
+
+    public void enterDirectorName(String directorName) {
+        enter(directorName).into(directorNameField);
+    }
+
+    public void enterDirectorPatronymic(String directorPatronymic) {
+        enter(directorPatronymic).into(directorPatronymicField);
+    }
+
+    public void enterDirectorPhone(String directorPhone) {
+        enter(directorPhone).into(directorPhoneField);
+    }
+
+    public void enterDirectorLogin(String directorEmail) {
+        enter(directorEmail).into(directorEmailField);
+    }
+
+    public void enterDirectorPosition(String directorPosition) {
+        enter(directorPosition).into(directorPositionField);
+    }
+
+    //Документ, подтверждающий полномочия руководителя
+
+    private static final String directorDocumentTypeField = "client_ceo_authority_doc_type_id";
+
+    @FindBy(id = "client_ceo_authority_number")
+    WebElementFacade directorDocumentNumberField;
+
+    @FindBy(id = "client_ceo_authority_issue_date")
+    WebElementFacade directorDocumentDateField;
+
+    @FindBy(id = "client_ceo_authority_end_date")
+    WebElementFacade directorDocumentValidityField;
+
+    public void selectDirectorDocumentType(String directorDocumentType) {
+        selectForSelectizePlugin(directorDocumentTypeField, directorDocumentType);
+    }
+
+    public void enterDirectorDocumentNumber(String directorDocumentNumber) {
+        enter(directorDocumentNumber).into(directorDocumentNumberField);
+    }
+
+    public void enterDirectorDocumentIssuedDate(String directorDocumentDate) {
+        enter(directorDocumentDate).into(directorDocumentDateField);
+    }
+
+    public void enterDirectorDocumentValidity(String directorDocumentValidity) {
+        enter(directorDocumentValidity).into(directorDocumentValidityField);
+    }
+
+    //Реквизиты документа, удостоверящего личность руководителя
+
+    private static final String directorPersonalDocumentTypeField = "client_ceo_certify_doc_type_id";
+
+    @FindBy(id = "client_ceo_certify_number")
+    WebElementFacade directorPersonalDocumentNumberField;
+
+    @FindBy(id = "client_ceo_certify_issue_date")
+    WebElementFacade directorPersonalDocumentDateField;
+
+    @FindBy(id = "client_ceo_certify_issued")
+    WebElementFacade directorPersonalDocumentByField;
+
+    public void selectDirectorPersonalDocumentType(String directorPersonalDocumentType) {
+        selectForSelectizePlugin(directorPersonalDocumentTypeField, directorPersonalDocumentType);
+    }
+
+    public void enterDirectorPersonalDocumentNumber(String directorPersonalDocumentNumber) {
+        enter(directorPersonalDocumentNumber).into(directorPersonalDocumentNumberField);
+    }
+
+    public void enterDirectorPersonalDocumentIssuedDate(String directorPersonalDocumentDate) {
+        enter(directorPersonalDocumentDate).into(directorPersonalDocumentDateField);
+    }
+
+    public void enterDirectorPersonalDocumentIssuedBy(String directorPersonalDocumentBy) {
+        enter(directorPersonalDocumentBy).into(directorPersonalDocumentByField);
     }
 
     //Юридический адрес
 
     @FindBy(id = "client_reg_address_post_index")
-    WebElementFacade ownerRegistrationAddressIndexField;
+    WebElementFacade clientRegistrationAddressIndexField;
 
-    private static final String ownerRegistrationAddressKladrField = "client_reg_address_kladr_code";
+    private static final String clientRegistrationAddressKladrField = "client_reg_address_kladr_code";
 
     @FindBy(id = "client_reg_address_house")
-    WebElementFacade ownerRegistrationAddressHouseField;
+    WebElementFacade clientRegistrationAddressHouseField;
 
     @FindBy(id = "client_reg_address_housing")
-    WebElementFacade ownerRegistrationAddressHousingField;
+    WebElementFacade clientRegistrationAddressHousingField;
 
     @FindBy(id = "client_reg_address_building")
-    WebElementFacade ownerRegistrationAddressBuildingField;
+    WebElementFacade clientRegistrationAddressBuildingField;
 
     @FindBy(id = "client_reg_address_room")
-    WebElementFacade ownerRegistrationAddressRoomField;
+    WebElementFacade clientRegistrationAddressRoomField;
 
-    public void enterOwnerRegistrationAddressIndex(String ownerRegistrationAddressIndex) {
-        enter(ownerRegistrationAddressIndex).into(ownerRegistrationAddressIndexField);
+    public void enterClientRegistrationAddressIndex(String clientRegistrationAddressIndex) {
+        enter(clientRegistrationAddressIndex).into(clientRegistrationAddressIndexField);
     }
 
-    public void selectOwnerRegistrationAddressKladr(String ownerRegistrationAddressKladr) {
-        enterForSelectizePlugin(ownerRegistrationAddressKladrField, ownerRegistrationAddressKladr);
+    public void selectClientRegistrationAddressKladr(String clientRegistrationAddressKladr) {
+        enterForSelectizePlugin(clientRegistrationAddressKladrField, clientRegistrationAddressKladr);
     }
 
-    public void enterOwnerRegistrationAddressHouse(String ownerRegistrationAddressHouse) {
-        enter(ownerRegistrationAddressHouse).into(ownerRegistrationAddressHouseField);
+    public void enterClientRegistrationAddressHouse(String clientRegistrationAddressHouse) {
+        enter(clientRegistrationAddressHouse).into(clientRegistrationAddressHouseField);
     }
 
-    public void enterOwnerRegistrationAddressHousing(String ownerRegistrationAddressHousing) {
-        enter(ownerRegistrationAddressHousing).into(ownerRegistrationAddressHousingField);
+    public void enterClientRegistrationAddressHousing(String clientRegistrationAddressHousing) {
+        enter(clientRegistrationAddressHousing).into(clientRegistrationAddressHousingField);
     }
 
-    public void enterOwnerRegistrationAddressBuilding(String ownerRegistrationAddressBuilding) {
-        enter(ownerRegistrationAddressBuilding).into(ownerRegistrationAddressBuildingField);
+    public void enterClientRegistrationAddressBuilding(String clientRegistrationAddressBuilding) {
+        enter(clientRegistrationAddressBuilding).into(clientRegistrationAddressBuildingField);
     }
 
-    public void enterOwnerRegistrationAddressRoom(String ownerRegistrationAddressRoom) {
-        enter(ownerRegistrationAddressRoom).into(ownerRegistrationAddressRoomField);
+    public void enterClientRegistrationAddressRoom(String clientRegistrationAddressRoom) {
+        enter(clientRegistrationAddressRoom).into(clientRegistrationAddressRoomField);
     }
 
     //Адрес местонахождения
 
     @FindBy(id = "client_location_address_post_index")
-    WebElementFacade ownerLocationAddressIndexField;
+    WebElementFacade clientLocationAddressIndexField;
 
-    private static final String ownerLocationAddressKladrField = "client_location_address_kladr_code";
+    private static final String clientLocationAddressKladrField = "client_location_address_kladr_code";
 
     @FindBy(id = "client_location_address_house")
-    WebElementFacade ownerLocationAddressHouseField;
+    WebElementFacade clientLocationAddressHouseField;
 
     @FindBy(id = "client_location_address_housing")
-    WebElementFacade ownerLocationAddressHousingField;
+    WebElementFacade clientLocationAddressHousingField;
 
     @FindBy(id = "client_location_address_building")
-    WebElementFacade ownerLocationAddressBuildingField;
+    WebElementFacade clientLocationAddressBuildingField;
 
     @FindBy(id = "client_location_address_room")
-    WebElementFacade ownerLocationAddressRoomField;
+    WebElementFacade clientLocationAddressRoomField;
 
-    public void enterOwnerLocationAddressIndex(String ownerLocationAddressIndex) {
-        enter(ownerLocationAddressIndex).into(ownerLocationAddressIndexField);
+    public void enterClientLocationAddressIndex(String clientLocationAddressIndex) {
+        enter(clientLocationAddressIndex).into(clientLocationAddressIndexField);
     }
 
-    public void selectOwnerLocationAddressKladr(String ownerLocationAddressKladr) {
-        enterForSelectizePlugin(ownerLocationAddressKladrField, ownerLocationAddressKladr);
+    public void selectClientLocationAddressKladr(String clientLocationAddressKladr) {
+        enterForSelectizePlugin(clientLocationAddressKladrField, clientLocationAddressKladr);
     }
 
-    public void enterOwnerLocationAddressHouse(String ownerLocationAddressHouse) {
-        enter(ownerLocationAddressHouse).into(ownerLocationAddressHouseField);
+    public void enterClientLocationAddressHouse(String clientLocationAddressHouse) {
+        enter(clientLocationAddressHouse).into(clientLocationAddressHouseField);
     }
 
-    public void enterOwnerLocationAddressHousing(String ownerLocationAddressHousing) {
-        enter(ownerLocationAddressHousing).into(ownerLocationAddressHousingField);
+    public void enterClientLocationAddressHousing(String clientLocationAddressHousing) {
+        enter(clientLocationAddressHousing).into(clientLocationAddressHousingField);
     }
 
-    public void enterOwnerLocationAddressBuilding(String ownerLocationAddressBuilding) {
-        enter(ownerLocationAddressBuilding).into(ownerLocationAddressBuildingField);
+    public void enterClientLocationAddressBuilding(String clientLocationAddressBuilding) {
+        enter(clientLocationAddressBuilding).into(clientLocationAddressBuildingField);
     }
 
-    public void enterOwnerLocationAddressRoom(String ownerLocationAddressRoom) {
-        enter(ownerLocationAddressRoom).into(ownerLocationAddressRoomField);
+    public void enterClientLocationAddressRoom(String clientLocationAddressRoom) {
+        enter(clientLocationAddressRoom).into(clientLocationAddressRoomField);
     }
 
     //Почтовый адрес
 
     @FindBy(id = "client_postal_address_post_index")
-    WebElementFacade ownerPostalAddressIndexField;
+    WebElementFacade clientPostalAddressIndexField;
 
-    private static final String ownerPostalAddressKladrField = "client_postal_address_kladr_code";
+    private static final String clientPostalAddressKladrField = "client_postal_address_kladr_code";
 
     @FindBy(id = "client_postal_address_house")
-    WebElementFacade ownerPostalAddressHouseField;
+    WebElementFacade clientPostalAddressHouseField;
 
     @FindBy(id = "client_postal_address_housing")
-    WebElementFacade ownerPostalAddressHousingField;
+    WebElementFacade clientPostalAddressHousingField;
 
     @FindBy(id = "client_postal_address_building")
-    WebElementFacade ownerPostalAddressBuildingField;
+    WebElementFacade clientPostalAddressBuildingField;
 
     @FindBy(id = "client_postal_address_room")
-    WebElementFacade ownerPostalAddressRoomField;
+    WebElementFacade clientPostalAddressRoomField;
 
-    public void enterOwnerPostalAddressIndex(String ownerPostalAddressIndex) {
-        enter(ownerPostalAddressIndex).into(ownerPostalAddressIndexField);
+    public void enterClientPostalAddressIndex(String clientPostalAddressIndex) {
+        enter(clientPostalAddressIndex).into(clientPostalAddressIndexField);
     }
 
-    public void selectOwnerPostalAddressKladr(String ownerPostalAddressKladr) {
-        enterForSelectizePlugin(ownerPostalAddressKladrField, ownerPostalAddressKladr);
+    public void selectClientPostalAddressKladr(String clientPostalAddressKladr) {
+        enterForSelectizePlugin(clientPostalAddressKladrField, clientPostalAddressKladr);
     }
 
-    public void enterOwnerPostalAddressHouse(String ownerPostalAddressHouse) {
-        enter(ownerPostalAddressHouse).into(ownerPostalAddressHouseField);
+    public void enterClientPostalAddressHouse(String clientPostalAddressHouse) {
+        enter(clientPostalAddressHouse).into(clientPostalAddressHouseField);
     }
 
-    public void enterOwnerPostalAddressHousing(String ownerPostalAddressHousing) {
-        enter(ownerPostalAddressHousing).into(ownerPostalAddressHousingField);
+    public void enterClientPostalAddressHousing(String clientPostalAddressHousing) {
+        enter(clientPostalAddressHousing).into(clientPostalAddressHousingField);
     }
 
-    public void enterOwnerPostalAddressBuilding(String ownerPostalAddressBuilding) {
-        enter(ownerPostalAddressBuilding).into(ownerPostalAddressBuildingField);
+    public void enterClientPostalAddressBuilding(String clientPostalAddressBuilding) {
+        enter(clientPostalAddressBuilding).into(clientPostalAddressBuildingField);
     }
 
-    public void enterOwnerPostalAddressRoom(String ownerPostalAddressRoom) {
-        enter(ownerPostalAddressRoom).into(ownerPostalAddressRoomField);
+    public void enterClientPostalAddressRoom(String clientPostalAddressRoom) {
+        enter(clientPostalAddressRoom).into(clientPostalAddressRoomField);
     }
 
     //Банковские реквизиты
 
     @FindBy(id = "client_settlement_account_bank_name")
-    WebElementFacade ownerBankNameField;
+    WebElementFacade clientBankNameField;
 
     @FindBy(id = "client_settlement_account_bik")
-    WebElementFacade ownerBankBIKField;
+    WebElementFacade clientBankBIKField;
 
     @FindBy(id = "client_settlement_account_inn")
-    WebElementFacade ownerBankINNField;
+    WebElementFacade clientBankINNField;
 
     @FindBy(id = "client_settlement_account_kor_num")
-    WebElementFacade ownerBankKorNumberField;
+    WebElementFacade clientBankKorNumberField;
 
     @FindBy(id = "client_settlement_account_account_num")
-    WebElementFacade ownerBankAccountNumberField;
+    WebElementFacade clientBankAccountNumberField;
 
     @FindBy(id = "client_settlement_account_receiver_name")
-    WebElementFacade ownerBankReceiverNameField;
+    WebElementFacade clientBankReceiverNameField;
 
-    public void enterOwnerBankName(String ownerBankName) {
-        enter(ownerBankName).into(ownerBankNameField);
+    public void enterClientBankName(String clientBankName) {
+        enter(clientBankName).into(clientBankNameField);
     }
 
-    public void enterOwnerBankBIK(String ownerBankBIK) {
-        enter(ownerBankBIK).into(ownerBankBIKField);
+    public void enterClientBankBIK(String clientBankBIK) {
+        enter(clientBankBIK).into(clientBankBIKField);
     }
 
-    public void enterOwnerBankINN(String ownerBankINN) {
-        enter(ownerBankINN).into(ownerBankINNField);
+    public void enterClientBankINN(String clientBankINN) {
+        enter(clientBankINN).into(clientBankINNField);
     }
 
-    public void enterOwnerBankKorNumber(String ownerBankKorNumber) {
-        enter(ownerBankKorNumber).into(ownerBankKorNumberField);
+    public void enterClientBankKorNumber(String clientBankKorNumber) {
+        enter(clientBankKorNumber).into(clientBankKorNumberField);
     }
 
-    public void enterOwnerBankAccountNumber(String ownerBankAccountNumber) {
-        enter(ownerBankAccountNumber).into(ownerBankAccountNumberField);
+    public void enterClientBankAccountNumber(String clientBankAccountNumber) {
+        enter(clientBankAccountNumber).into(clientBankAccountNumberField);
     }
 
-    public void enterOwnerBankReceiverName(String ownerBankReceiverName) {
-        enter(ownerBankReceiverName).into(ownerBankReceiverNameField);
+    public void enterClientBankReceiverName(String clientBankReceiverName) {
+        enter(clientBankReceiverName).into(clientBankReceiverNameField);
     }
 }

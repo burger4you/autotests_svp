@@ -84,11 +84,11 @@ public class LKAccountPage extends LKSelectizePageObject {
         enter(registrationDocumentIssuedBy).into(registrationDocumentIssuedByField);
     }
 
-    public void selectOwnerType(String ownerType) {
+    public void selectClientType(String ownerType) {
         selectForSelectizePlugin(ownerTypeField, ownerType);
     }
 
-    public void selectOwnerCountry(String ownerCountry) {
+    public void selectClientCountry(String ownerCountry) {
         selectForSelectizePlugin(ownerCountryField, ownerCountry);
     }
 
