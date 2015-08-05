@@ -9,8 +9,7 @@ import ru.progresspoint.svp12.lk.steps.LKUserSteps;
 import javax.mail.MessagingException;
 import java.io.IOException;
 
-import static ru.progresspoint.utils.StringTimeIsBetweenMatcher.isBetween;
-
+import static org.joda.time.DateTime.parse;
 
 /**
  * Состояния системы, к которым она приходит в результате действий пользователя
@@ -49,7 +48,7 @@ public class LKConditions {
 
     @Then("система покажет в выписке все операции с $startDate по $endDate")
     public void shouldBeDisplayedTransactionsInPeriod(String startDay, String endDate) {
-        user.shouldSeeTransactionsDateWhere(isBetween(startDay, endDate));
+        user.shouldSeeTransactionsDatesBetween(parse(startDay), parse(endDate));
     }
 
     @Then("система отобразит его в общем списке обращений")
