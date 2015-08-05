@@ -14,18 +14,16 @@ import ru.progresspoint.svp12.lk.pages.*;
 import java.util.List;
 import java.util.Random;
 
-import static net.thucydides.core.matchers.BeanMatcherAsserts.shouldMatch;
-import static net.thucydides.core.matchers.dates.DateMatchers.isAfter;
-
-import static net.thucydides.core.matchers.BeanMatchers.*;
-import static net.thucydides.core.matchers.dates.DateMatchers.isBefore;
 import static net.serenitybdd.core.Serenity.getCurrentSession;
+import static net.thucydides.core.matchers.BeanMatcherAsserts.shouldMatch;
+import static net.thucydides.core.matchers.BeanMatchers.the;
+import static net.thucydides.core.matchers.dates.DateMatchers.isAfter;
+import static net.thucydides.core.matchers.dates.DateMatchers.isBefore;
 import static org.apache.commons.lang3.RandomStringUtils.random;
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 import static org.apache.commons.lang3.StringUtils.capitalize;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.registerCustomDateFormat;
-import static org.hamcrest.Matchers.everyItem;
 import static org.hamcrest.Matchers.is;
 import static org.joda.time.DateTime.parse;
 import static org.openqa.selenium.By.linkText;
@@ -118,6 +116,13 @@ public class LKUserSteps extends ScenarioSteps {
         fillsClientRegistrationAddress("Город Санкт-Петербург, улица Иркутская");
         fillsClientLocationAddress("Город Москва, Театральный проезд");
         fillsClientPostalAddress("Ивановская область, город Иваново, улица Лежневская");
+        fillsClientBankData();
+    }
+
+    @Step("Вводит данные ФЛ")
+    public void entersFLData() {
+        fillsClientRegistrationAddress("Костромская область, Костромской район, город Кострома, улица Сусанина Ивана");
+        fillsClientLocationAddress("Новосибирская область, город Новосибирск, улица Парижской Коммуны");
         fillsClientBankData();
     }
 
@@ -384,10 +389,6 @@ public class LKUserSteps extends ScenarioSteps {
     private void fillsOrganizationData(String organizationEmail) {
         basicInfoPage.selectOrganizationOPF("Общества с ограниченной ответственностью");
         fillsClientData(organizationEmail);
-    }
-
-    public void entersFLData(String clientEmail) {
-
     }
 
     private void fillsDirectorData(String directorEmail) {

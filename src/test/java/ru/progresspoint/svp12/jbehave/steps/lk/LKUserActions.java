@@ -28,7 +28,7 @@ public class LKUserActions {
                 user.entersULData(clientEmail);
                 break;
             case "Физическое лицо":
-                user.entersFLData(clientEmail);
+                user.entersFLData();
                 break;
         }
         user.clicksToConfirmButton();

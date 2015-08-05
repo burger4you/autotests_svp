@@ -5,6 +5,7 @@ import org.jbehave.core.configuration.Configuration;
 import org.jbehave.core.i18n.LocalizedKeywords;
 import org.jbehave.core.model.ExamplesTableFactory;
 import org.jbehave.core.parsers.RegexStoryParser;
+import org.jbehave.core.reporters.ConsoleOutput;
 import org.jbehave.core.steps.MarkUnmatchedStepsAsPending;
 import org.jbehave.core.steps.ParameterConverters;
 
@@ -28,7 +29,7 @@ public class UserStoriesRunner extends SerenityStories {
                 .useKeywords(keywords)
                 .useStoryParser(new RegexStoryParser(keywords))
                 .useStepCollector(new MarkUnmatchedStepsAsPending(keywords))
-//                .useDefaultStoryReporter(new ConsoleOutput(keywords))
+                .useDefaultStoryReporter(new ConsoleOutput(keywords))
                 .useParameterConverters(
                         cfg.parameterConverters().addConverters(
                                 new ParameterConverters.ExamplesTableConverter(new ExamplesTableFactory(keywords))))
