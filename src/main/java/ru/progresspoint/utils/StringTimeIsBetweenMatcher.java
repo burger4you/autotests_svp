@@ -1,37 +1,24 @@
 package ru.progresspoint.utils;
 
-import org.hamcrest.Description;
-import org.hamcrest.Factory;
+import org.hamcrest.FeatureMatcher;
 import org.hamcrest.Matcher;
-import org.hamcrest.TypeSafeMatcher;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormatter;
 import org.joda.time.format.DateTimeFormatterBuilder;
 
+import static net.thucydides.core.matchers.dates.DateMatchers.isAfter;
 import static org.joda.time.DateTime.parse;
 
 
-public class StringTimeIsBetweenMatcher extends TypeSafeMatcher<String> {
+public class StringTimeIsBetweenMatcher {
 
-    private final DateTime startDate;
-    private final DateTime endDate;
-
-    public StringTimeIsBetweenMatcher(final String startDate, final String endDate) {
-        this.startDate = parse(startDate, dayMonthYear());
-        this.endDate = parse(endDate, dayMonthYear());
-    }
-
-    public boolean matchesSafely(String providedS) {
-        final DateTime provided = parse(providedS, dayMonthYearHourMinute());
-        return (provided.isEqual(startDate) || provided.isAfter(startDate))
-                && (provided.isEqual(endDate) || provided.isBefore(endDate));
-    }
-
-    public void describeTo(Description description) {
-        description.appendText("a date that is between ");
-        description.appendText(formatted(startDate));
-        description.appendText(" and ");
-        description.appendText(formatted(endDate));
+    public static Matcher<String> after(final DateTime startDate) {
+        return new FeatureMatcher<String, DateTime>(isAfter(startDate), "string same as", "string -") {
+            @Override
+            protected DateTime featureValueOf(String s) {
+                return parse(s);
+            }
+        };
     }
 
 //    public static DateTimeFormatter dayMonthYearHourMinute() {
@@ -70,14 +57,5 @@ public class StringTimeIsBetweenMatcher extends TypeSafeMatcher<String> {
                 .appendLiteral('.')
                 .appendYear(4, 4)
                 .toFormatter();
-    }
-
-    @Factory
-    public static Matcher<String> isBetween(String startDate, String endDate){
-        return new StringTimeIsBetweenMatcher(startDate, endDate);
-    }
-
-    private static String formatted(DateTime dateTime) {
-        return dateTime.toString("dd.MM.yyyy");
     }
 }

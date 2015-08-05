@@ -6,7 +6,7 @@ import net.serenitybdd.core.annotations.findby.By;
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.matchers.BeanMatcher;
 import net.thucydides.core.steps.ScenarioSteps;
-import org.hamcrest.Matcher;
+import org.assertj.jodatime.api.Assertions;
 import org.joda.time.DateTime;
 import org.openqa.selenium.WebElement;
 import ru.progresspoint.svp12.lk.pages.*;
@@ -14,19 +14,22 @@ import ru.progresspoint.svp12.lk.pages.*;
 import java.util.List;
 import java.util.Random;
 
-import static net.serenitybdd.core.Serenity.getCurrentSession;
-import static net.thucydides.core.matchers.BeanMatcherAsserts.matches;
 import static net.thucydides.core.matchers.BeanMatcherAsserts.shouldMatch;
-import static net.thucydides.core.matchers.BeanMatchers.the;
+import static net.thucydides.core.matchers.dates.DateMatchers.isAfter;
+
+import static net.thucydides.core.matchers.BeanMatchers.*;
+import static net.thucydides.core.matchers.dates.DateMatchers.isBefore;
+import static net.serenitybdd.core.Serenity.getCurrentSession;
 import static org.apache.commons.lang3.RandomStringUtils.random;
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 import static org.apache.commons.lang3.StringUtils.capitalize;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.registerCustomDateFormat;
+import static org.hamcrest.Matchers.everyItem;
 import static org.hamcrest.Matchers.is;
+import static org.joda.time.DateTime.parse;
 import static org.openqa.selenium.By.linkText;
 import static org.openqa.selenium.By.name;
-import static ru.progresspoint.utils.StringTimeIsBetweenMatcher.isBetween;
-
 /**
  * Шаги конечного пользователя АРМа Личный Кабинет
  */
@@ -230,15 +233,17 @@ public class LKUserSteps extends ScenarioSteps {
         String oldAccountBalance = (String) Serenity.getCurrentSession().get("oldAccountBalance");
         String currentAccountBalance = mainPage.getsCurrentAccountBalance();
         assertThat(currentAccountBalance)
-                .overridingErrorMessage("Баланс лицевого счета на главной странице не изменился")
+                .overridingErrorMessage("Баланс parse(лицевого счета на главной странице не изменился")
                 .isNotEqualTo(oldAccountBalance);
     }
 
-    @Step("Видит отфильтрованные транзакции")
-    public void shouldSeeTransactionsDateWhere(Matcher<String> matchers) {
+    @Step("Видит транзакции c {0} по {1}")
+    public void shouldSeeTransactionsDatesBetween(DateTime startDay, DateTime endDay) {
         List<String> dates = paymentsPage.getDatesSearchedTransactions();
-        for (String date : dates)
-            matches(date);
+        for (String date : dates) {
+            Assertions.assertThat(startDay).isBefore(parse(date));
+            Assertions.assertThat(endDay).isAfter(parse(date));
+        }
     }
 
     @Step("Вводит данные в форму подачи обращения")
@@ -266,13 +271,14 @@ public class LKUserSteps extends ScenarioSteps {
 
     @Step("Находит обращения за последние 3 месяца")
     public void shouldSeeAppealForLastThreeMonth() {
-        DateTime today = DateTime.now().toDateTime();
-        String endDate = today.minusDays(2).toString("dd.MM.yyyy");
-        String startDay = today.minusMonths(3).toString("dd.MM.yyyy");
-        shouldMatch(appealsPage.getSearchAppeals(), the("ПОДАНО:", isBetween(startDay, endDate)));
+        registerCustomDateFormat("yyyy-mm-dd hh:mm");
+        DateTime today = DateTime.now();
+        DateTime endDate = today.minusDays(2);
+        DateTime startDay = today.minusMonths(3);
+        shouldMatch(appealsPage.getSearchAppeals(), the("Дата", isAfter(startDay)), the("Дата", isBefore(endDate)));
     }
 
-    @Step("Нажимает на обращение для просмотра деталей")
+    @Step("Нажимает на обращение дл просмотра деталей")
     public void clicksToAppealForDetail() {
         BeanMatcher matchers = the("ТЕМА:", is((String) getCurrentSession().get("appealTitle")));
         appealsPage.clickOnAppeal(matchers);
