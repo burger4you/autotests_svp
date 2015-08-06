@@ -3,6 +3,7 @@
 Meta:
 @arm lk
 @component payments
+@skip
 
 Описание:
 Чтобы автоматически пополнять лицевой счет

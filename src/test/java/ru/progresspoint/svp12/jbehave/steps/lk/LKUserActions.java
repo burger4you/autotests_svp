@@ -45,7 +45,7 @@ public class LKUserActions {
 
     @When("пользователь объеденит $amountVehicles своих ТС в группу $groupName")
     public void userChooseVehiclesForGroup(int amountVehicles, String groupName) {
-        user.clicksToLink("Список групп ТС");
+        user.clicksToLink("Группы");
         user.clicksToLink("Создать новую группу");
         user.entersNameForNewGroupVehicles(groupName);
         user.selectsVehiclesForGroup(amountVehicles);
