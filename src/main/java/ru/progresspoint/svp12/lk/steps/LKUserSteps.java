@@ -110,11 +110,25 @@ public class LKUserSteps extends ScenarioSteps {
         fillsClientBankData();
     }
 
-    @Step("Прикладывает скан-копии документов ВТС")
-    public void uploadsClientDocumentsCopies() {
-        basicInfoPage.uploadClientDocumentsCopies(
+    @Step("Прикладывает скан-копии документов ИП")
+    public void uploadsIPDocumentsCopies() {
+        basicInfoPage.uploadIPDocumentsCopies(
                 "documents/CertificateOfStateRegistration.jpg",
                 "documents/INN.jpg",
+                "documents/CertificateOfAbsenceTaxDebt.jpg",
+                "documents/CertificateOfAbsencePFRDebt.jpg",
+                "documents/CertificateOfAbsenceFSSDebt.png",
+                "documents/CertificateOfAbsenceFMSDebt.png"
+        );
+    }
+
+    @Step("Прикладывает скан-копии документов ЮЛ")
+    public void uploadsULDocumentsCopies() {
+        basicInfoPage.uploadULDocumentsCopies(
+                "documents/StatuteSecondPage.jpg",
+                "documents/CertificateOfStateRegistration.jpg",
+                "documents/INN.jpg",
+                "documents/EGRUL.jpg",
                 "documents/CertificateOfAbsenceTaxDebt.jpg",
                 "documents/CertificateOfAbsencePFRDebt.jpg",
                 "documents/CertificateOfAbsenceFSSDebt.png",

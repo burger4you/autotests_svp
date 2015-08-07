@@ -356,24 +356,72 @@ public class LKBasicInfoPage extends LKSelectizePageObject {
     @FindBy(xpath = ".//input[@name='client[client_files][5][file]']")
     WebElementFacade clientDocumentSixthCopyField;
 
-    public void uploadClientDocumentsCopies(
+    @FindBy(xpath = ".//input[@name='client[client_files][6][file]']")
+    WebElementFacade clientDocumentSeventhCopyField;
+
+    @FindBy(xpath = ".//input[@name='client[client_files][7][file]']")
+    WebElementFacade clientDocumentEighthCopyField;
+
+    public void uploadULDocumentsCopies(
+            String filename1,
+            String filename2,
+            String filename3,
+            String filename4,
+            String filename5,
+            String filename6,
+            String filename7,
+            String filename8) {
+
+        // Меняем атрибут display у инпута, для возможности загружать файлы
+        evaluateJavascript("document.getElementsByName('client[client_files][0][file]')[0].setAttribute('Style','display:block');");
+        upload(filename1).to(clientDocumentFirstCopyField);
+
+        evaluateJavascript("document.getElementsByName('client[client_files][1][file]')[0].setAttribute('Style','display:block');");
+        upload(filename2).to(clientDocumentSecondCopyField);
+
+        evaluateJavascript("document.getElementsByName('client[client_files][2][file]')[0].setAttribute('Style','display:block');");
+        upload(filename3).to(clientDocumentThirdCopyField);
+
+        evaluateJavascript("document.getElementsByName('client[client_files][3][file]')[0].setAttribute('Style','display:block');");
+        upload(filename4).to(clientDocumentFourthCopyField);
+
+        evaluateJavascript("document.getElementsByName('client[client_files][4][file]')[0].setAttribute('Style','display:block');");
+        upload(filename5).to(clientDocumentFifthCopyField);
+
+        evaluateJavascript("document.getElementsByName('client[client_files][5][file]')[0].setAttribute('Style','display:block');");
+        upload(filename6).to(clientDocumentSixthCopyField);
+
+        evaluateJavascript("document.getElementsByName('client[client_files][6][file]')[0].setAttribute('Style','display:block');");
+        upload(filename7).to(clientDocumentSeventhCopyField);
+
+        evaluateJavascript("document.getElementsByName('client[client_files][7][file]')[0].setAttribute('Style','display:block');");
+        upload(filename8).to(clientDocumentEighthCopyField);
+    }
+
+    public void uploadIPDocumentsCopies(
             String filename1,
             String filename2,
             String filename3,
             String filename4,
             String filename5,
             String filename6) {
+
         // Меняем атрибут display у инпута, для возможности загружать файлы
         evaluateJavascript("document.getElementsByName('client[client_files][0][file]')[0].setAttribute('Style','display:block');");
         upload(filename1).to(clientDocumentFirstCopyField);
+
         evaluateJavascript("document.getElementsByName('client[client_files][1][file]')[0].setAttribute('Style','display:block');");
         upload(filename2).to(clientDocumentSecondCopyField);
+
         evaluateJavascript("document.getElementsByName('client[client_files][2][file]')[0].setAttribute('Style','display:block');");
         upload(filename3).to(clientDocumentThirdCopyField);
+
         evaluateJavascript("document.getElementsByName('client[client_files][3][file]')[0].setAttribute('Style','display:block');");
         upload(filename4).to(clientDocumentFourthCopyField);
+
         evaluateJavascript("document.getElementsByName('client[client_files][4][file]')[0].setAttribute('Style','display:block');");
         upload(filename5).to(clientDocumentFifthCopyField);
+
         evaluateJavascript("document.getElementsByName('client[client_files][5][file]')[0].setAttribute('Style','display:block');");
         upload(filename6).to(clientDocumentSixthCopyField);
     }

@@ -30,15 +30,16 @@ public class LKUserActions {
         switch (clientType) {
             case "Индивидуальный предприниматель":
                 user.entersIPData(clientEmail);
+                user.uploadsIPDocumentsCopies();
                 break;
             case "Юридическое лицо":
                 user.entersULData(clientEmail);
+                user.uploadsULDocumentsCopies();
                 break;
             case "Физическое лицо":
                 user.entersFLData();
                 break;
         }
-        user.uploadsClientDocumentsCopies();
         user.clicksToConfirmButton();
         user.entersVehicleData();
         user.uploadsVehicleDocumentsCopies();

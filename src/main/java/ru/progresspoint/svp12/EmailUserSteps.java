@@ -12,6 +12,7 @@ import javax.mail.search.SearchTerm;
 import java.io.IOException;
 import java.util.Properties;
 
+import static java.lang.String.valueOf;
 import static javax.mail.Flags.Flag;
 import static javax.mail.Folder.READ_ONLY;
 import static javax.mail.Folder.READ_WRITE;
@@ -74,11 +75,11 @@ public class EmailUserSteps extends ScenarioSteps {
 //        BodyPart bodyPart = multipart.getBodyPart(0);
 //        // Форматируем его в текст
 //        String fullText = bodyPart.getContent().toString();
-        String fullText = (String) message.getContent();
+        String fullText = valueOf(message.getContent());
         // И колдуем: делим тело письма на 2 части (до ссылки и после)
         String[] array = fullText.split("http://10.0.12.225/\\S+"); //http://10.0.12.225/\S+  </div><p>
         // Что бы потом удалить их из общего текста и оставить нужную нам урлу.
-        String url = fullText.replace(String.valueOf(array[0]), "").replace(String.valueOf("</div><p>С"+array[1]), "");
+        String url = fullText.replace(valueOf(array[0]), "").replace(valueOf("</div><p>С" + array[1]), "");
         // Которую и запоминаем
         getCurrentSession().put("confirmationLink", url);
     }
