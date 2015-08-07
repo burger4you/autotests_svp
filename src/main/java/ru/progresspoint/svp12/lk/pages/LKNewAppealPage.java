@@ -33,10 +33,4 @@ public class LKNewAppealPage extends PageObject {
         evaluateJavascript("document.getElementById('itop_service_appeal_attachments').setAttribute('Style','display:block');");
         upload(fileName).to(appealAdditionalDocument);
     }
-
-    public void clickToOkConfirmationPopUp() {
-        waitFor("//h2[.='Обращение подано']");
-        waitABit(1000);
-        findBy(".//*[@class='b-link__icon svp svp-ok']").click();
-    }
 }

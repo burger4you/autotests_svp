@@ -108,6 +108,13 @@ public class NavigationSteps extends ScenarioSteps {
         }
     }
 
+    @Step("Нажимает на кнопку Ок в окне подтверждения")
+    public void clicksToOkInConfirmationPopUp(String message) {
+        getDriver().findElement(By.xpath(String.format("//h2[.='%s']", message)));
+        waitABit(1000);
+        getDriver().findElement(By.xpath(".//*[@class='b-link__icon svp svp-ok']")).click();
+    }
+
     @Step("Устанавливается размер окна браузера {0}х{1}")
     public void setBrowserSizeOn(int width, int height) {
         getDriver().manage().window().setSize(new Dimension(width, height));

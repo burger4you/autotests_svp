@@ -2,7 +2,6 @@ package ru.progresspoint.svp12.jbehave.steps.lk;
 
 import net.thucydides.core.annotations.Steps;
 import org.jbehave.core.annotations.When;
-import ru.progresspoint.svp12.EmailUserSteps;
 import ru.progresspoint.svp12.lk.steps.LKUserSteps;
 
 import javax.mail.MessagingException;
@@ -15,10 +14,7 @@ public class LKUserActions {
     @Steps
     LKUserSteps user;
 
-    @Steps
-    EmailUserSteps email;
-
-    @When("пользователь регистрирует себя как $clientType ($clientEmail)")
+    @When("пользователь зарегистрирует себя как $clientType ($clientEmail)")
     public void userSetTypeAndResidenceOfClient(String clientType, String clientEmail) throws MessagingException {
         user.clicksToLink("Зарегистрироваться");
         user.entersAccountData(clientEmail);
@@ -52,10 +48,23 @@ public class LKUserActions {
         user.clicksToConfirmButton();
     }
 
+    @When("он зарегистрирует новое ТС")
+    public void userRegistersNewVehicle() {
+        user.clicksToLink("Зарегистрировать ТС");
+        user.entersNewVehicleData();
+        user.uploadsNewVehicleDocumentsCopies();
+        user.clicksToConfirmButton();
+    }
+
+    @When("он нажмет на это ТС")
+    public void userClicksToVehicle() {
+        user.clicksToVehicleForDetail();
+    }
+
     @When("пользователь объеденит $amountVehicles своих ТС в группу $groupName")
     public void userChooseVehiclesForGroup(int amountVehicles, String groupName) {
         user.clicksToLink("Группы");
-        user.clicksToLink("Создать новую группу");
+        user.clicksToLink("Добавить группу");
         user.entersNameForNewGroupVehicles(groupName);
         user.selectsVehiclesForGroup(amountVehicles);
         user.clicksToConfirmButton();
@@ -85,10 +94,9 @@ public class LKUserActions {
         user.entersAppealDetails();
         user.uploadsAdditionalDocument();
         user.clicksToConfirmButton();
-        user.clicksToOkInConfirmationAppealPopUp();
     }
 
-    @When("он нажмет на него")
+    @When("он нажмет на это обращение")
     public void userClicksToAppeal() {
         user.clicksToAppealForDetail();
     }

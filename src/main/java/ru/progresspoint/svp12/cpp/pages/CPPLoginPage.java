@@ -23,8 +23,8 @@ public class CPPLoginPage extends PageObject {
 
     @WhenPageOpens
     public void loading() {
-        loginField.shouldBeEnabled();
-        passwordField.shouldBeEnabled();
+        loginField.expect("Страница авторизации в ЦИПП не доступна").shouldBeEnabled();
+        passwordField.expect("Страница авторизации в ЦИПП не доступна").shouldBeEnabled();
     }
 
     public void enterLogin(String login) {

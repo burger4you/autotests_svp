@@ -23,7 +23,8 @@ import static org.apache.commons.lang3.StringUtils.capitalize;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.jodatime.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.is;
-import static org.joda.time.DateTime.*;
+import static org.hamcrest.Matchers.startsWith;
+import static org.joda.time.DateTime.now;
 import static org.joda.time.DateTime.parse;
 import static org.joda.time.format.DateTimeFormat.forPattern;
 import static org.openqa.selenium.By.linkText;
@@ -47,9 +48,11 @@ public class LKUserSteps extends ScenarioSteps {
     LKAccountPage accountPage;
     LKBasicInfoPage basicInfoPage;
     LKVehicleInfoPage vehicleInfoPage;
+    LKVehiclesPage vehiclesPage;
     LKPasswordPage passwordPage;
     LKNewVehiclePage newVehiclePage;
     LKMainHeader mainHeader;
+    LKVehicleDetailPage vehicleDetailPage;
 
 
     @Step("Нажимает на ссылку {0}")
@@ -167,16 +170,52 @@ public class LKUserSteps extends ScenarioSteps {
         passwordPage.enterConfirmPassword(password);
     }
 
-//    @Step("Нажимает Зарегистрировать ТС")
+    @Step("Вводит данные нового ТС")
+    public void entersNewVehicleData() {
+        getCurrentSession().put("vehicleGRNZ", getRandomNumber(3));
+        getCurrentSession().put("vehicleCountry", "Российская Федерация");
+        getCurrentSession().put("vehicleBasisType", "Договор лизинга");
+        String registrationDocumentNumber = getRandomNumber(10);
+        String vehicleVIN = getRandomNumber(17);
 
-    @Step("Вводит данные ТС")
-    public void entersNewVehicleData(String vehicleData) {
-        newVehiclePage.enterVehicleData(vehicleData);
+        newVehiclePage.enterVehicleGRNZ("A" + getCurrentSession().get("vehicleGRNZ") + "AA" + getRandomNumber(3));
+        newVehiclePage.selectVehicleCountry((String) getCurrentSession().get("vehicleCountry"));
+        newVehiclePage.selectVehicleBasisType((String) getCurrentSession().get("vehicleBasisType"));
+        newVehiclePage.enterVehicleDocumentNumber(registrationDocumentNumber);
+        newVehiclePage.selectVehicleMark("Ariel");
+        newVehiclePage.enterVehicleVIN(vehicleVIN);
+        newVehiclePage.selectVehicleMass("более 12 тонн");
+        newVehiclePage.selectAccountId("№ 101 000 001 010");
+        newVehiclePage.selectVehicleGroup("");
     }
 
     @Step("Прикладывает скан-копии документов ТС")
-    public void uploadsNewVehicleDocumentsCopies(String filename) {
-        newVehiclePage.uploadVehicleDocumentsCopies(filename);
+    public void uploadsNewVehicleDocumentsCopies() {
+        newVehiclePage.uploadVehicleDocumentsCopies("documents/STS_1.jpg", "documents/STS_2.jpg");
+    }
+
+    @Step("Находит ТС в общем списке")
+    public void shouldSeeVehicleInCommonList() {
+        shouldMatch(vehiclesPage.getSearchVehicles(), the("РЕГИСТРАЦИОННЫЙ ЗНАК:", startsWith("A " + getCurrentSession().get("vehicleGRNZ") + " AA")));
+    }
+
+    @Step("Нажимает на ТС для просмотра деталей")
+    public void clicksToVehicleForDetail() {
+        BeanMatcher matchers = the("РЕГИСТРАЦИОННЫЙ ЗНАК:", startsWith("A " + getCurrentSession().get("vehicleGRNZ") + " AA"));
+        vehiclesPage.clickOnVehicle(matchers);
+    }
+
+    @Step("Находит в ТС все детали")
+    public void shouldSeeCorrectVehicleDetail() {
+        assertThat(vehicleDetailPage.getVehicleGRNZ())
+                .overridingErrorMessage("Регистрационный знак ТС не верный")
+                .containsIgnoringCase("A " + getCurrentSession().get("vehicleGRNZ") + " AA");
+        assertThat(vehicleDetailPage.getVehicleCountry())
+                .overridingErrorMessage("Страна, выдавшая гос. номер ТС не верная")
+                .isEqualTo((String) getCurrentSession().get("vehicleCountry"));
+        assertThat(vehicleDetailPage.getVehicleBasisType())
+                .overridingErrorMessage("Основание владения ТС не верное")
+                .isEqualTo((String) getCurrentSession().get("vehicleBasisType"));
     }
 
 //    @Step("Нажимает Зарегистрировать")
@@ -279,11 +318,6 @@ public class LKUserSteps extends ScenarioSteps {
         newAppealPage.uploadAdditionalDocument("documents/Appeal.pdf");
     }
 
-    @Step("Нажимает на кнопку Ок в окне подтверждения отправки обращения")
-    public void clicksToOkInConfirmationAppealPopUp() {
-        newAppealPage.clickToOkConfirmationPopUp();
-    }
-
     @Step("Находит обращение в общем списке")
     public void shouldSeeAppealInCommonList() {
         shouldMatch(appealsPage.getSearchAppeals(), the("ТЕМА:", is((String) getCurrentSession().get("appealTitle"))));
@@ -293,7 +327,7 @@ public class LKUserSteps extends ScenarioSteps {
     public void shouldSeeAppealForLastThreeMonth() {
         DateTime today = now();
         DateTime startDay = today.minusMonths(3);
-        for( Map<Object, String> row : appealsPage.getSearchAppeals()) {
+        for (Map<Object, String> row : appealsPage.getSearchAppeals()) {
             String date = row.get("ПОДАНО:");
             assertThat(parse(date, forPattern("yyyy-MM-dd HH:mm")))
                     .isAfterOrEqualTo(startDay)

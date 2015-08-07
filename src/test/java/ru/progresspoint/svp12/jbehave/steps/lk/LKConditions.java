@@ -30,9 +30,20 @@ public class LKConditions {
         navigation.isOnLKPage(page);
     }
 
-    @Then("система предоставляет доступ к личному кабинету пользователя")
+    @Then("система предоставит доступ к личному кабинету пользователя")
     public void lkShouldBeAvailableForUser() {
         navigation.isOnLKPage("Главная");
+    }
+
+    @Then("система отобразит его в общем списке ТС")
+    public void systemShouldDisplaysVehicle() {
+        navigation.clicksToOkInConfirmationPopUp("ТС зарегистрировано");
+        user.shouldSeeVehicleInCommonList();
+    }
+
+    @Then("ТС откроется для просмотра деталей")
+    public void systemShouldDisplaysVehicleDetails() {
+        user.shouldSeeCorrectVehicleDetail();
     }
 
     @Then("система создаст группу для этих ТС с названием $groupName")
@@ -51,8 +62,9 @@ public class LKConditions {
         user.shouldSeeTransactionsDatesBetween(parse(startDay), parse(endDate));
     }
 
-    @Then("система отобразит его в общем списке обращений")
+    @Then("система отобразит это обращение в общем списке обращений")
     public void systemShouldDisplaysAppeal() {
+        navigation.clicksToOkInConfirmationPopUp("Обращение подано");
         user.shouldSeeAppealInCommonList();
     }
 
@@ -61,7 +73,7 @@ public class LKConditions {
         user.shouldSeeAppealForLastThreeMonth();
     }
 
-    @Then("оно откроется для просмотра деталей")
+    @Then("обращение откроется для просмотра деталей")
     public void systemShouldDisplaysAppealDetails() {
         user.shouldSeeCorrectAppealDetail();
     }
