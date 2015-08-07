@@ -24,7 +24,7 @@ import static net.serenitybdd.core.Serenity.getCurrentSession;
 public class EmailUserSteps extends ScenarioSteps {
 
     private static final long serialVersionUID = 7L;
-    private static final String PROGRESSPOINT_RU = "mail@progresspoint.ru";
+    private static final String NO_REPLY_PLATON_RU = "no-reply@platon.ru";
     private static final String PROTOCOL = "mail.store.protocol";
     private static final String IMAPS = "imaps";
     private static final String GMAIL = "imap.gmail.com";
@@ -59,8 +59,8 @@ public class EmailUserSteps extends ScenarioSteps {
         folder = store.getFolder(INBOX);
         // Открываем папку в режиме чтения
         if (!folder.isOpen()) folder.open(READ_ONLY);
-        // Нас интересуют письма от progresspoint
-        SearchTerm totalTerm = new FromStringTerm(PROGRESSPOINT_RU);
+        // Нас интересуют письма от системы ПО СВП
+        SearchTerm totalTerm = new FromStringTerm(NO_REPLY_PLATON_RU);
         // Которые еще не прочитаны
         FlagTerm flagSeen = new FlagTerm(new Flags(Flag.SEEN), false);
         // Объединяем эти параметры и ищем нужные письма
@@ -68,27 +68,28 @@ public class EmailUserSteps extends ScenarioSteps {
         messages = folder.search(totalTerm);
         // Берем последнее письмо
         Message message = folder.getMessage(1);
-        // И парсим его
-        Multipart multipart = (Multipart) message.getContent();
-        // В данном случае, нам важно тело письма
-        BodyPart bodyPart = multipart.getBodyPart(0);
-        // Форматируем его в текст
-        String fullText = bodyPart.getContent().toString();
+//        // И парсим его
+//        Multipart multipart = (Multipart) message.getContent();
+//        // В данном случае, нам важно тело письма
+//        BodyPart bodyPart = multipart.getBodyPart(0);
+//        // Форматируем его в текст
+//        String fullText = bodyPart.getContent().toString();
+        String fullText = (String) message.getContent();
         // И колдуем: делим тело письма на 2 части (до ссылки и после)
-        String[] array = fullText.split("http://office.progresspoint\\.ru/\\S+");
+        String[] array = fullText.split("http://10.0.12.225/\\S+"); //http://10.0.12.225/\S+  </div><p>
         // Что бы потом удалить их из общего текста и оставить нужную нам урлу.
-        String url = fullText.replace(String.valueOf(array[0]), "").replace(String.valueOf(array[1]), "");
+        String url = fullText.replace(String.valueOf(array[0]), "").replace(String.valueOf("</div><p>С"+array[1]), "");
         // Которую и запоминаем
         getCurrentSession().put("confirmationLink", url);
     }
 
     /**
-     * Удаляет все письма от Progresspoint
+     * Удаляет все письма от системы Платон
      *
      * @param gmailBox - адрес почтового ящика
      * @throws MessagingException
      */
-    @Step
+    @Step("Удаляет все письма от системы Платон")
     public void deletesAllMessagesFromProgresspoint(String gmailBox) throws MessagingException {
         // Все по старой схеме
         props = new Properties();
@@ -100,8 +101,8 @@ public class EmailUserSteps extends ScenarioSteps {
         // Единственное, что папку входящих необходимо открыть в режиме редактирования
         if (folder.isOpen()) folder.close(true);
         folder.open(READ_WRITE);
-        // Находим все письма от progresspoint
-        SearchTerm totalTerm = new FromStringTerm(PROGRESSPOINT_RU);
+        // Находим все письма от системы ПО СВП
+        SearchTerm totalTerm = new FromStringTerm(NO_REPLY_PLATON_RU);
         messages = folder.search(totalTerm);
         // Выставляем им флаги на удаление
         for (Message message : messages) message.setFlag(Flag.DELETED, true);
@@ -110,7 +111,7 @@ public class EmailUserSteps extends ScenarioSteps {
         store.close();
     }
 
-    @Step("Нажимает на ссылку в письме")
+    @Step("Переходит по ссылке из письма")
     public void clicksToConfirmationLink() {
         String url = (String) Serenity.getCurrentSession().get("confirmationLink");
         getDriver().get(url);

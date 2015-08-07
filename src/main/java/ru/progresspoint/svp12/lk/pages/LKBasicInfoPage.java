@@ -335,4 +335,46 @@ public class LKBasicInfoPage extends LKSelectizePageObject {
     public void enterClientBankReceiverName(String clientBankReceiverName) {
         enter(clientBankReceiverName).into(clientBankReceiverNameField);
     }
+
+    //Скан-копии документов ВТС необходимые для регистрации
+
+    @FindBy(xpath = ".//input[@name='client[client_files][0][file]']")
+    WebElementFacade clientDocumentFirstCopyField;
+
+    @FindBy(xpath = ".//input[@name='client[client_files][1][file]']")
+    WebElementFacade clientDocumentSecondCopyField;
+
+    @FindBy(xpath = ".//input[@name='client[client_files][2][file]']")
+    WebElementFacade clientDocumentThirdCopyField;
+
+    @FindBy(xpath = ".//input[@name='client[client_files][3][file]']")
+    WebElementFacade clientDocumentFourthCopyField;
+
+    @FindBy(xpath = ".//input[@name='client[client_files][4][file]']")
+    WebElementFacade clientDocumentFifthCopyField;
+
+    @FindBy(xpath = ".//input[@name='client[client_files][5][file]']")
+    WebElementFacade clientDocumentSixthCopyField;
+
+    public void uploadClientDocumentsCopies(
+            String filename1,
+            String filename2,
+            String filename3,
+            String filename4,
+            String filename5,
+            String filename6) {
+        // Меняем атрибут display у инпута, для возможности загружать файлы
+        evaluateJavascript("document.getElementsByName('client[client_files][0][file]')[0].setAttribute('Style','display:block');");
+        upload(filename1).to(clientDocumentFirstCopyField);
+        evaluateJavascript("document.getElementsByName('client[client_files][1][file]')[0].setAttribute('Style','display:block');");
+        upload(filename2).to(clientDocumentSecondCopyField);
+        evaluateJavascript("document.getElementsByName('client[client_files][2][file]')[0].setAttribute('Style','display:block');");
+        upload(filename3).to(clientDocumentThirdCopyField);
+        evaluateJavascript("document.getElementsByName('client[client_files][3][file]')[0].setAttribute('Style','display:block');");
+        upload(filename4).to(clientDocumentFourthCopyField);
+        evaluateJavascript("document.getElementsByName('client[client_files][4][file]')[0].setAttribute('Style','display:block');");
+        upload(filename5).to(clientDocumentFifthCopyField);
+        evaluateJavascript("document.getElementsByName('client[client_files][5][file]')[0].setAttribute('Style','display:block');");
+        upload(filename6).to(clientDocumentSixthCopyField);
+    }
 }

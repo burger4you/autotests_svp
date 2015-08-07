@@ -2,7 +2,10 @@ package ru.progresspoint.svp12.jbehave.steps.lk;
 
 import net.thucydides.core.annotations.Steps;
 import org.jbehave.core.annotations.When;
+import ru.progresspoint.svp12.EmailUserSteps;
 import ru.progresspoint.svp12.lk.steps.LKUserSteps;
+
+import javax.mail.MessagingException;
 
 /**
  * Действия пользователя в Личном кабинете
@@ -12,8 +15,12 @@ public class LKUserActions {
     @Steps
     LKUserSteps user;
 
+    @Steps
+    EmailUserSteps email;
+
     @When("пользователь регистрирует себя как $clientType ($clientEmail)")
-    public void userSetTypeAndResidenceOfClient(String clientType, String clientEmail) {
+    public void userSetTypeAndResidenceOfClient(String clientType, String clientEmail) throws MessagingException {
+        email.deletesAllMessagesFromProgresspoint(clientEmail);
         user.clicksToLink("Зарегистрироваться");
         user.entersAccountData(clientEmail);
         user.selectsClientType(clientType);
@@ -31,6 +38,7 @@ public class LKUserActions {
                 user.entersFLData();
                 break;
         }
+        user.uploadsClientDocumentsCopies();
         user.clicksToConfirmButton();
         user.entersVehicleData();
         user.uploadsVehicleDocumentsCopies();

@@ -12,7 +12,7 @@ public class LKVehicleInfoPage extends LKSelectizePageObject {
 
     //Данные о ТС
 
-    private static final String vehicleRegistrationCountryField = "vehicle_country_id";
+    private static final String vehicleRegistrationCountryField = "vehicle_grnz_country_id";
 
     @FindBy(id = "vehicle_grnz")
     WebElementFacade vehicleRegistrationGRNZField;

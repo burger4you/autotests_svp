@@ -66,9 +66,9 @@ public class LKConditions {
         user.shouldSeeCorrectAppealDetail();
     }
 
-    @Then("система предоставляет пользователю доступ к личному кабинету")
-    public void shouldSendEmailWithLoginLink() throws IOException, MessagingException {
-        email.waitsForEmailWithConfirmationLink("activestylework@gmail.com");
+    @Then("система предоставляет пользователю доступ к личному кабинету ($userEmail)")
+    public void shouldSendEmailWithLoginLink(String userEmail) throws IOException, MessagingException {
+        email.waitsForEmailWithConfirmationLink(userEmail);
         email.clicksToConfirmationLink();
         user.entersPassword("!QAZ2wsx");
         user.clicksToConfirmButton();

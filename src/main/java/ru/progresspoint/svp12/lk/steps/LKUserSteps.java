@@ -28,6 +28,7 @@ import static org.hamcrest.Matchers.is;
 import static org.joda.time.DateTime.parse;
 import static org.openqa.selenium.By.linkText;
 import static org.openqa.selenium.By.name;
+
 /**
  * Шаги конечного пользователя АРМа Личный Кабинет
  */
@@ -58,24 +59,7 @@ public class LKUserSteps extends ScenarioSteps {
 
     @Step("Вводит данные учетной записи")
     public void entersAccountData(String registrationEmail) {
-        String registrationPhone = getRandomNumber(10);
-        String registrationSurname = getRandomCyrillicProperString(7);
-        String registrationName = getRandomCyrillicProperString(5);
-        String registrationPatronymic = getRandomCyrillicProperString(10);
-        String registrationDocumentNumber = getRandomNumber(10);
-        String registrationDocumentDate = getRandomDate();
-        String registrationDocumentBy = getRandomCyrillicProperString(12);
-
-        accountPage.enterRegistrationLogin(registrationEmail);
-        accountPage.enterRegistrationPhone(registrationPhone);
-        accountPage.enterRegistrationPosition("Тестовый аккаунт");
-        accountPage.enterRegistrationSurname(registrationSurname);
-        accountPage.enterRegistrationName(registrationName);
-        accountPage.enterRegistrationPatronymic(registrationPatronymic);
-        accountPage.selectRegistrationDocumentType("Паспорт");
-        accountPage.enterRegistrationDocumentNumber(registrationDocumentNumber);
-        accountPage.enterRegistrationDocumentIssuedDate(registrationDocumentDate);
-        accountPage.enterRegistrationDocumentIssuedBy(registrationDocumentBy);
+        fillsAccountData(registrationEmail);
     }
 
     @Step("Выбирает из списка тип ВТС {0}")
@@ -124,6 +108,18 @@ public class LKUserSteps extends ScenarioSteps {
         fillsClientRegistrationAddress("Костромская область, Костромской район, город Кострома, улица Сусанина Ивана");
         fillsClientLocationAddress("Новосибирская область, город Новосибирск, улица Парижской Коммуны");
         fillsClientBankData();
+    }
+
+    @Step("Прикладывает скан-копии документов ВТС")
+    public void uploadsClientDocumentsCopies() {
+        basicInfoPage.uploadClientDocumentsCopies(
+                "documents/CertificateOfStateRegistration.jpg",
+                "documents/INN.jpg",
+                "documents/CertificateOfAbsenceTaxDebt.jpg",
+                "documents/CertificateOfAbsencePFRDebt.jpg",
+                "documents/CertificateOfAbsenceFSSDebt.png",
+                "documents/CertificateOfAbsenceFMSDebt.png"
+        );
     }
 
     @Step("Вводит данные ТС")
@@ -371,10 +367,33 @@ public class LKUserSteps extends ScenarioSteps {
         return String.valueOf(date.toString("dd.MM.yyyy"));
     }
 
+    private void fillsAccountData(String registrationEmail) {
+        String randomForEmail = getRandomNumber(6);
+        String registrationPhone = getRandomNumber(10);
+        String registrationSurname = getRandomCyrillicProperString(7);
+        String registrationName = getRandomCyrillicProperString(5);
+        String registrationPatronymic = getRandomCyrillicProperString(10);
+        String registrationDocumentNumber = getRandomNumber(10);
+        String registrationDocumentDate = getRandomDate();
+        String registrationDocumentBy = getRandomCyrillicProperString(12);
+
+        accountPage.enterRegistrationLogin(registrationEmail.replace("@gmail.com", "+" + randomForEmail + "@gmail.com"));
+        accountPage.enterRegistrationPhone(registrationPhone);
+        accountPage.enterRegistrationPosition("Тестовый аккаунт");
+        accountPage.enterRegistrationSurname(registrationSurname);
+        accountPage.enterRegistrationName(registrationName);
+        accountPage.enterRegistrationPatronymic(registrationPatronymic);
+        accountPage.selectRegistrationDocumentType("Паспорт");
+        accountPage.enterRegistrationDocumentNumber(registrationDocumentNumber);
+        accountPage.enterRegistrationDocumentIssuedDate(registrationDocumentDate);
+        accountPage.enterRegistrationDocumentIssuedBy(registrationDocumentBy);
+    }
+
     private void fillsClientData(String clientEmail) {
+        String randomForEmail = getRandomNumber(6);
         String clientShortName = getRandomCyrillicProperString(10);
         String clientName = getRandomCyrillicProperString(5);
-        String clientINN = getRandomNumber(10);
+        String clientINN = getRandomNumber(12);
         String clientOGRN = getRandomNumber(15);
         String clientPhone = getRandomNumber(10);
 
@@ -382,7 +401,7 @@ public class LKUserSteps extends ScenarioSteps {
         basicInfoPage.enterClientName(clientName);
         basicInfoPage.enterClientINN(clientINN);
         basicInfoPage.enterClientOGRN(clientOGRN);
-        basicInfoPage.enterClientMainEmail(clientEmail);
+        basicInfoPage.enterClientMainEmail(clientEmail.replace("@gmail.com", "+" + randomForEmail + "@gmail.com"));
         basicInfoPage.enterClientMainPhone(clientPhone);
     }
 
@@ -392,17 +411,17 @@ public class LKUserSteps extends ScenarioSteps {
     }
 
     private void fillsDirectorData(String directorEmail) {
-
+        String randomForEmail = getRandomNumber(6);
         String directorSurname = getRandomCyrillicProperString(7);
         String directorName = getRandomCyrillicProperString(5);
         String directorPatronymic = getRandomCyrillicProperString(10);
         String directorPhone = getRandomNumber(10);
-        
+
         basicInfoPage.enterDirectorSurname(directorSurname);
         basicInfoPage.enterDirectorName(directorName);
         basicInfoPage.enterDirectorPatronymic(directorPatronymic);
         basicInfoPage.enterDirectorPhone(directorPhone);
-        basicInfoPage.enterDirectorLogin(directorEmail);
+        basicInfoPage.enterDirectorLogin(directorEmail.replace("@gmail.com", "+" + randomForEmail + "@gmail.com"));
         basicInfoPage.enterDirectorPosition("Генеральный директор");
     }
 

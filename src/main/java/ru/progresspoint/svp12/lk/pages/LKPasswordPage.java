@@ -14,7 +14,7 @@ public class LKPasswordPage extends PageObject {
     @FindBy(id = "user_password")
     WebElementFacade passwordField;
 
-    @FindBy(id = "confirmation_token")
+    @FindBy(id = "user_password_confirmation")
     WebElementFacade confirmPasswordField;
 
     public void enterPassword(String password) {
