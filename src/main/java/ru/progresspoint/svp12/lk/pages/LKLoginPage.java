@@ -3,12 +3,13 @@ package ru.progresspoint.svp12.lk.pages;
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
-import net.thucydides.core.annotations.DefaultUrl;
+import net.thucydides.core.annotations.At;
+import net.thucydides.core.annotations.WhenPageOpens;
 
 /**
  * Страница авторизации пользователя в Личный Кабинет
  */
-@DefaultUrl("http://lk-stage.progresspoint.ru/sign_in")
+@At("#HOST/sign_in")
 public class LKLoginPage extends PageObject {
 
     @FindBy(id = "session_login")
@@ -16,6 +17,12 @@ public class LKLoginPage extends PageObject {
 
     @FindBy(id = "session_password")
     WebElementFacade passwordField;
+
+    @WhenPageOpens
+    public void loading() {
+        loginField.shouldBeEnabled();
+        passwordField.shouldBeEnabled();
+    }
 
     public void enterLogin(String login) {
         enter(login).into(loginField);

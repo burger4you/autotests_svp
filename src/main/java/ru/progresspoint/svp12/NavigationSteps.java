@@ -32,6 +32,7 @@ public class NavigationSteps extends ScenarioSteps {
     public void opensCPPPage(String page) {
         switch (page) {
             case "Авторизации":
+                getDriver().get("http://cpp-stage.progresspoint.ru/sign_out");
                 cppLoginPage.openAt("http://cpp-stage.progresspoint.ru/sign_in");
                 break;
             case "Главная":

@@ -4,6 +4,7 @@ import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.At;
+import net.thucydides.core.annotations.WhenPageOpens;
 
 /**
  * Страница авторизации пользователя АРМа ЦИПП
@@ -19,6 +20,12 @@ public class CPPLoginPage extends PageObject {
 
     @FindBy(name = "commit")
     WebElementFacade confirmButton;
+
+    @WhenPageOpens
+    public void loading() {
+        loginField.shouldBeEnabled();
+        passwordField.shouldBeEnabled();
+    }
 
     public void enterLogin(String login) {
         enter(login).into(loginField);

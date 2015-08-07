@@ -3,7 +3,7 @@
 Meta:
 @arm lk
 @component payments
-@skip
+@wip
 
 Описание:
 Чтобы самостоятельно мониторить операции по ЛС
