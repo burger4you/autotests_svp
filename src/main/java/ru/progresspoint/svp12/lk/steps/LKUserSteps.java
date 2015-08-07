@@ -136,6 +136,11 @@ public class LKUserSteps extends ScenarioSteps {
         );
     }
 
+    @Step("Прикладывает скан-копии документов ФЛ")
+    public void uploadsFLDocumentsCopies() {
+        basicInfoPage.uploadFLDocumentsCopies("documents/CertificateOfAbsenceTaxDebt.jpg");
+    }
+
     @Step("Вводит данные ТС")
     public void entersVehicleData() {
         String vehicleRegistrationGRNZ = "T" + getRandomNumber(3) + "TT" + getRandomNumber(2);

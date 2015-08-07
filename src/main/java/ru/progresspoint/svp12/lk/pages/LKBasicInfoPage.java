@@ -425,4 +425,10 @@ public class LKBasicInfoPage extends LKSelectizePageObject {
         evaluateJavascript("document.getElementsByName('client[client_files][5][file]')[0].setAttribute('Style','display:block');");
         upload(filename6).to(clientDocumentSixthCopyField);
     }
+
+    public void uploadFLDocumentsCopies(String filename) {
+        // Меняем атрибут display у инпута, для возможности загружать файлы
+        evaluateJavascript("document.getElementsByName('client[client_files][0][file]')[0].setAttribute('Style','display:block');");
+        upload(filename).to(clientDocumentFirstCopyField);
+    }
 }
