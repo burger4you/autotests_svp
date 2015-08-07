@@ -20,7 +20,6 @@ public class LKUserActions {
 
     @When("пользователь регистрирует себя как $clientType ($clientEmail)")
     public void userSetTypeAndResidenceOfClient(String clientType, String clientEmail) throws MessagingException {
-        email.deletesAllMessagesFromProgresspoint(clientEmail);
         user.clicksToLink("Зарегистрироваться");
         user.entersAccountData(clientEmail);
         user.selectsClientType(clientType);

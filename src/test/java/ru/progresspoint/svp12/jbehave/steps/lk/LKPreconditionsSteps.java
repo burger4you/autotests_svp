@@ -26,7 +26,6 @@ public class LKPreconditionsSteps {
             }
             navigation.opensLKPage(page);
         } else
-            navigation.getDriver().get("http://lk-stage.progresspoint.ru/sign_out");
             navigation.opensLKPage("Авторизации");
     }
 }

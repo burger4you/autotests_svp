@@ -48,6 +48,7 @@ public class NavigationSteps extends ScenarioSteps {
     public void opensLKPage(String page) {
         switch (page) {
             case "Авторизации":
+                getDriver().get("http://lk-stage.progresspoint.ru/sign_out");
                 lkLoginPage.openAt("http://lk-stage.progresspoint.ru/sign_in");
                 break;
             case "Главная":

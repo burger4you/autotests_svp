@@ -6,26 +6,26 @@ import net.serenitybdd.core.annotations.findby.By;
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.matchers.BeanMatcher;
 import net.thucydides.core.steps.ScenarioSteps;
-import org.assertj.jodatime.api.Assertions;
 import org.joda.time.DateTime;
 import org.openqa.selenium.WebElement;
 import ru.progresspoint.svp12.lk.pages.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import static net.serenitybdd.core.Serenity.getCurrentSession;
 import static net.thucydides.core.matchers.BeanMatcherAsserts.shouldMatch;
 import static net.thucydides.core.matchers.BeanMatchers.the;
-import static net.thucydides.core.matchers.dates.DateMatchers.isAfter;
-import static net.thucydides.core.matchers.dates.DateMatchers.isBefore;
 import static org.apache.commons.lang3.RandomStringUtils.random;
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 import static org.apache.commons.lang3.StringUtils.capitalize;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.registerCustomDateFormat;
+import static org.assertj.jodatime.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.is;
+import static org.joda.time.DateTime.*;
 import static org.joda.time.DateTime.parse;
+import static org.joda.time.format.DateTimeFormat.forPattern;
 import static org.openqa.selenium.By.linkText;
 import static org.openqa.selenium.By.name;
 
@@ -261,8 +261,8 @@ public class LKUserSteps extends ScenarioSteps {
     public void shouldSeeTransactionsDatesBetween(DateTime startDay, DateTime endDay) {
         List<String> dates = paymentsPage.getDatesSearchedTransactions();
         for (String date : dates) {
-            Assertions.assertThat(startDay).isBefore(parse(date));
-            Assertions.assertThat(endDay).isAfter(parse(date));
+            assertThat(startDay).isBefore(parse(date));
+            assertThat(endDay).isAfter(parse(date));
         }
     }
 
@@ -291,11 +291,14 @@ public class LKUserSteps extends ScenarioSteps {
 
     @Step("Находит обращения за последние 3 месяца")
     public void shouldSeeAppealForLastThreeMonth() {
-        registerCustomDateFormat("yyyy-mm-dd hh:mm");
-        DateTime today = DateTime.now();
-        DateTime endDate = today.minusDays(2);
+        DateTime today = now();
         DateTime startDay = today.minusMonths(3);
-        shouldMatch(appealsPage.getSearchAppeals(), the("Дата", isAfter(startDay)), the("Дата", isBefore(endDate)));
+        for( Map<Object, String> row : appealsPage.getSearchAppeals()) {
+            String date = row.get("ПОДАНО:");
+            assertThat(parse(date, forPattern("yyyy-MM-dd HH:mm")))
+                    .isAfterOrEqualTo(startDay)
+                    .isBefore(today);
+        }
     }
 
     @Step("Нажимает на обращение дл просмотра деталей")
