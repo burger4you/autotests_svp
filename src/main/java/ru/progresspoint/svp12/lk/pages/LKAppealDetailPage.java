@@ -14,10 +14,10 @@ public class LKAppealDetailPage extends PageObject {
     @FindBy(xpath = ".//h2")
     WebElementFacade appealTitleField;
 
-    @FindBy(xpath = ".//*[@class='dialog__text']")
+    @FindBy(xpath = ".//*[@class='b-text']")
     WebElementFacade appealTextField;
 
-    @FindBy(xpath = ".//*[@class='file__button non_decorate']")
+    @FindBy(xpath = ".//*[@class='file__title']")
     WebElementFacade appealFileField;
 
     public String getAppealTitle() {
