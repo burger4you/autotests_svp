@@ -34,11 +34,11 @@ public class NavigationSteps extends ScenarioSteps {
     public void opensCPPPage(String page) {
         switch (page) {
             case "Авторизации":
-                getDriver().get("http://svp-arm-frontend-1.svp.prod:9001/sign_out");
-                cppLoginPage.openAt("http://svp-arm-frontend-1.svp.prod:9001/sign_in");
+                getDriver().get("http://10.0.12.236/sign_out");
+                cppLoginPage.openAt("http://10.0.12.236/sign_in");
                 break;
             case "Главная":
-                cppMainPage.openAt("http://svp-arm-frontend-1.svp.prod:9001");
+                cppMainPage.openAt("http://10.0.12.236");
                 break;
             case "Регистрации ВТС":
                 cppMainPage.loading();
@@ -51,11 +51,11 @@ public class NavigationSteps extends ScenarioSteps {
     public void opensLKPage(String page) {
         switch (page) {
             case "Авторизации":
-                getDriver().get("http://svp-arm-frontend-1.svp.prod:9002/sign_out");
-                lkLoginPage.openAt("http://svp-arm-frontend-1.svp.prod:9002/sign_in");
+                getDriver().get("http://10.0.12.225/sign_out");
+                lkLoginPage.openAt("http://10.0.12.225/sign_in");
                 break;
             case "Главная":
-                lkMainPage.openAt("http://svp-arm-frontend-1.svp.prod:9002");
+                lkMainPage.openAt("http://10.0.12.225");
                 break;
             case "Транспортные средства":
                 lkMainMenu.loading();
