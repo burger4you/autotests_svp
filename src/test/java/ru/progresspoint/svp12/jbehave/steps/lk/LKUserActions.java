@@ -4,8 +4,6 @@ import net.thucydides.core.annotations.Steps;
 import org.jbehave.core.annotations.When;
 import ru.progresspoint.svp12.lk.steps.LKUserSteps;
 
-import javax.mail.MessagingException;
-
 /**
  * Действия пользователя в Личном кабинете
  */
@@ -15,7 +13,7 @@ public class LKUserActions {
     LKUserSteps user;
 
     @When("пользователь зарегистрирует себя как $clientType ($clientEmail)")
-    public void userSetTypeAndResidenceOfClient(String clientType, String clientEmail) throws MessagingException {
+    public void userSetTypeAndResidenceOfClient(String clientType, String clientEmail) {
         user.clicksToLink("Зарегистрироваться");
         user.entersAccountData(clientEmail);
         user.selectsClientType(clientType);

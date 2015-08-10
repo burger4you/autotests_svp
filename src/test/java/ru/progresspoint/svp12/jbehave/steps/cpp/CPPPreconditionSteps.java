@@ -21,8 +21,8 @@ public class CPPPreconditionSteps {
         if (!page.equals("Авторизации")) {
             navigation.opensCPPPage("Главная");
             if (navigation.getCurrentURL().endsWith("sign_in")) {
-                operator.entersLoginAndPassword("operator.cpp", "Test123!");
-                operator.clicksToLoginButton();
+                operator.entersLoginAndPassword("Admin3", "Test123$");
+                operator.clicksToConfirmButton();
             }
             navigation.opensCPPPage(page);
         } else navigation.opensCPPPage("Авторизации");

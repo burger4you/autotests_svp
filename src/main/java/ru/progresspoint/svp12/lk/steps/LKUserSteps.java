@@ -5,21 +5,17 @@ import net.serenitybdd.core.Serenity;
 import net.serenitybdd.core.annotations.findby.By;
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.matchers.BeanMatcher;
-import net.thucydides.core.steps.ScenarioSteps;
 import org.joda.time.DateTime;
 import org.openqa.selenium.WebElement;
+import ru.progresspoint.svp12.RandomGenerators;
 import ru.progresspoint.svp12.lk.pages.*;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
 import static net.serenitybdd.core.Serenity.getCurrentSession;
 import static net.thucydides.core.matchers.BeanMatcherAsserts.shouldMatch;
 import static net.thucydides.core.matchers.BeanMatchers.the;
-import static org.apache.commons.lang3.RandomStringUtils.random;
-import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
-import static org.apache.commons.lang3.StringUtils.capitalize;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.jodatime.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -33,9 +29,7 @@ import static org.openqa.selenium.By.name;
 /**
  * Шаги конечного пользователя АРМа Личный Кабинет
  */
-public class LKUserSteps extends ScenarioSteps {
-
-    final Random randomNum = new Random();
+public class LKUserSteps extends RandomGenerators {
 
     LKLoginPage loginPage;
     LKMainPage mainPage;
@@ -176,17 +170,16 @@ public class LKUserSteps extends ScenarioSteps {
         getCurrentSession().put("vehicleCountry", "Российская Федерация");
         getCurrentSession().put("vehicleBasisType", "Договор лизинга");
         String registrationDocumentNumber = getRandomNumber(10);
-        String vehicleVIN = getRandomNumber(17);
 
         newVehiclePage.enterVehicleGRNZ("A" + getCurrentSession().get("vehicleGRNZ") + "AA" + getRandomNumber(3));
         newVehiclePage.selectVehicleCountry((String) getCurrentSession().get("vehicleCountry"));
         newVehiclePage.selectVehicleBasisType((String) getCurrentSession().get("vehicleBasisType"));
         newVehiclePage.enterVehicleDocumentNumber(registrationDocumentNumber);
         newVehiclePage.selectVehicleMark("Ariel");
-        newVehiclePage.enterVehicleVIN(vehicleVIN);
+        newVehiclePage.enterVehicleVIN(getRandomNumber(17));
         newVehiclePage.selectVehicleMass("более 12 тонн");
-        newVehiclePage.selectAccountId("№ 101 000 001 010");
-        newVehiclePage.selectVehicleGroup("");
+//        newVehiclePage.selectAccountId("№ 101 000 001 010");
+//        newVehiclePage.selectVehicleGroup("");
     }
 
     @Step("Прикладывает скан-копии документов ТС")
@@ -368,59 +361,6 @@ public class LKUserSteps extends ScenarioSteps {
     @Step("Нажимает на кнопку Уведомления")
     public void clicksToNotificationsButton() {
         mainHeader.clickToNotificationsButton();
-    }
-
-    /**
-     * Генератор случайного слова на латиннице
-     *
-     * @param count - количество символов в результате
-     * @return - случайное слово на латиннице в LowerCase формате
-     */
-    private String getRandomAlphabeticString(int count) {
-        return randomAlphabetic(count).toLowerCase();
-    }
-
-    /**
-     * Генератор случайного слова на кириллице
-     *
-     * @param count - количество символов в результате
-     * @return - случайное слово на кириллице в ProperCase формате
-     */
-    private String getRandomCyrillicProperString(int count) {
-        String result = random(count, "абвгдеёжзийклмнопрстуфхцчшщъыьэюя");
-        return capitalize(result);
-    }
-
-    /**
-     * Генератор случайного слова из цифр
-     *
-     * @param count - количество цифр в результате
-     * @return - случайное слово состоящие из цифр
-     */
-    private String getRandomNumber(int count) {
-        String result = "";
-        for (int i = 0; i < count; i++) result += String.valueOf(randomNum.nextInt(10));
-        return result;
-    }
-
-    /**
-     * Генератор случайной даты
-     *
-     * @return - случайная дата между 1940 и 2015 годом
-     */
-    private String getRandomDate() {
-
-        DateTime date;
-        long ms;
-
-        // Получить значение Epoch между 1940 и 2015:
-        // -946771200000L = 1 января, 1940
-        // прибавить к этому 75 лет
-        ms = -946771200000L + (Math.abs(randomNum.nextLong()) % (75L * 365 * 24 * 60 * 60 * 1000));
-
-        // Собрать дату
-        date = new DateTime(ms);
-        return String.valueOf(date.toString("dd.MM.yyyy"));
     }
 
     private void fillsAccountData(String registrationEmail) {

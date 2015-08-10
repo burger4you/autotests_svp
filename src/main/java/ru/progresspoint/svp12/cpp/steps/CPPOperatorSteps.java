@@ -2,215 +2,95 @@ package ru.progresspoint.svp12.cpp.steps;
 
 
 import net.thucydides.core.annotations.Step;
-import net.thucydides.core.steps.ScenarioSteps;
-import ru.progresspoint.svp12.cpp.pages.CPPLoginPage;
-import ru.progresspoint.svp12.cpp.pages.CPPOwnerRegistrationPage;
+import ru.progresspoint.svp12.RandomGenerators;
+import ru.progresspoint.svp12.cpp.pages.*;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static net.serenitybdd.core.Serenity.getCurrentSession;
 import static org.openqa.selenium.By.linkText;
+import static org.openqa.selenium.By.name;
 
 /**
  * Шаги оператора
  */
-public class CPPOperatorSteps extends ScenarioSteps {
-
-    CPPLoginPage CPPLoginPage;
-    CPPOwnerRegistrationPage CPPOwnerRegistrationPage;
-
-    @Step("Вводит логин {0} и пароль {1}")
-    public void entersLoginAndPassword(String login, String password) {
-        CPPLoginPage.enterLogin(login);
-        CPPLoginPage.enterPassword(password);
-    }
-
-    @Step("Нажимает на кнопку Войти")
-    public void clicksToLoginButton() {
-        CPPLoginPage.clickConfirmButton();
-    }
-
-    @Step("Выбирает тип клиента {0}")
-    public void setsClientType(String clientType) {
-        CPPOwnerRegistrationPage.selectOwnerType(clientType);
-    }
-
-    @Step("Выбирает резидентство {0}")
-    public void setsClientResidence(String clientCountry) {
-        CPPOwnerRegistrationPage.selectOwnerCountry(clientCountry);
-    }
-
-    @Step("Вводит ФИО клиента {0} {1} {2}")
-    public void fillsClientPersonalData(String clientSurname,
-                                        String clientName,
-                                        String clientPatronymic) {
-        CPPOwnerRegistrationPage.enterClientFullName(clientSurname, clientName, clientPatronymic);
-    }
-
-    @Step("Вводит дату рожденя {0}")
-    public void fillsClientBirthday(String clientBirthday) {
-        CPPOwnerRegistrationPage.enterClientBirthday(clientBirthday);
-    }
-
-    @Step("Вводит серию и номер паспорта {0} кем и когда выдан {1} {2}")
-    public void fillsClientPassportData(String passportSeriesAndNumber,
-                                        String passportIssuedBy,
-                                        String passportIssuedWhen) {
-        CPPOwnerRegistrationPage.enterClientPassportData(passportSeriesAndNumber, passportIssuedBy, passportIssuedWhen);
-    }
-
-    @Step("Вводит адрес {0}, {1}, д.{2}, кв.{3}")
-    public void fillsClientAddressData(String addressIndex,
-                                       String addressCityAndStreet,
-                                       String addressHouse,
-                                       String addressApartment) {
-        CPPOwnerRegistrationPage.enterClientIndex(addressIndex);
-        CPPOwnerRegistrationPage.enterClientCityAndStreet(addressCityAndStreet);
-        CPPOwnerRegistrationPage.enterClientHome(addressHouse);
-        CPPOwnerRegistrationPage.enterClientApartment(addressApartment);
-    }
-
-    @Step("Указывает, что фактический и адрес регистрации совпадают")
-    public void setsMatchedClientAddresses() {
-        CPPOwnerRegistrationPage.selectActualClientAddressSameAsRegistration();
-    }
-
-    @Step("Вводит ФИО контактного лица {0} {1} {2}")
-    public void fillsContactPersonalData(String contactSurname,
-                                         String contactName,
-                                         String contactPatronymic) {
-        CPPOwnerRegistrationPage.clickContactInfoMenuItem();
-        CPPOwnerRegistrationPage.enterContactFullName(contactSurname, contactName, contactPatronymic);
-    }
-
-    @Step("Вводит основные телефон {0} и адрес почты {1} контактного лица")
-    public void fillsContactPhoneAndEmail(String contactMainPhone,
-                                          String contactMainEmail) {
-        CPPOwnerRegistrationPage.enterContactMainPhone(contactMainPhone);
-        CPPOwnerRegistrationPage.enterContactMainEmail(contactMainEmail);
-    }
-
-    @Step("Нажимает на кнопку Зарегистрировать")
-    public void clickRegistrationButton() {
-        CPPOwnerRegistrationPage.clickRegistrationButton();
-    }
-
-    @Step("Должен увидеть алерт с кнопкой регистрации ТС")
-    public void shouldSeeInviteToRegistrationVehicle() {
-        assertThat(CPPOwnerRegistrationPage.displayedInviteToRegistrationVehicle())
-                .overridingErrorMessage("Алерт с кнопкой регистрации ТС не отображается")
-                .isTrue();
-    }
-
-    public void fillsEntityOGRN(String entityOGRN) {
-
-    }
-
-    public void fillsEntityOGRNDate(String entityOGRNDate) {
-
-    }
-
-    public void fillsEntityINN(String entityINN) {
-
-    }
-
-    public void fillsEntityKPP(String entityKPP) {
-
-    }
-
-    public void setsEntityForm(String entityForm) {
-
-    }
-
-    public void setsEntityCategory(String entityCategory) {
-
-    }
-
-    public void fillsEntityFullName(String entityFullName) {
-
-    }
-
-    public void fillsEntityShortName(String entityShortName) {
-
-    }
-
-    public void fillsEntityAddressData(String entityAddressIndex, String entityAddressCityAndStreet, String entityAddressHome, String entityAddressApartment) {
-
-    }
-
-    public void fillsEntityAccountNumber(String accountNumber) {
-
-    }
-
-    public void fillsEntityAccountBank(String accountBank) {
-
-    }
-
-    public void fillsEntityAccountBIK(String accountBIK) {
-
-    }
-
-    public void fillsEntityAccountINN(String accountINN) {
-
-    }
-
-    public void fillsEntityAccountKPP(String accountKPP) {
-
-    }
-
-    public void fillsEntityAccountOKPO(String accountOKPO) {
-
-    }
-
-    public void fillsEntityAccountCorr(String accountCorr) {
-
-    }
-
-    public void fillsEntityAccountRecipient(String accountRecipient) {
-
-    }
-
-    public void fillsDirectorPersonalData(String directorSurname, String directorName, String directorPatronymic) {
-
-    }
-
-    public void fillsDirectorBirthday(String directorBirthday) {
-
-    }
-
-    public void fillsDirectorPassportData(String directorPassportSeriesAndNumber, String directorPassportIssuedBy, String directorPassportIssuedWhen) {
-
-    }
-
-    public void fillsDirectorAddressData(String directorAddressIndex, String directorAddressCityAndStreet, String directorAddressHome, String directorAddressApartment) {
-
-    }
-
-    public void setsMatchedDirectorAddresses() {
-
-    }
-
-    public void fillsAgentPersonalData(String agentSurname, String agentName, String agentPatronymic) {
-
-    }
-
-    public void fillsAgentBirthday(String agentBirthday) {
-
-    }
-
-    public void fillsAgentPassportData(String agentPassportSeriesAndNumber, String agentPassportIssuedBy, String agentPassportIssuedWhen) {
-
-    }
-
-    public void fillsAgentAddressData(String agentAddressIndex, String agentAddressCityAndStreet, String agentAddressHome, String agentAddressApartment) {
-
-    }
-
-    public void setsMatchedAgentAddresses() {
-
-    }
+public class CPPOperatorSteps extends RandomGenerators {
+
+    CPPLoginPage loginPage;
+    CPPSelectActionDialog selectActionDialog;
+    CPPClientRegistrationPage clientRegistrationPage;
+    CPPVehicleRegistrationPage vehicleRegistrationPage;
+    CPPIPRegistrationPage ipRegistrationPage;
+    CPPOrganizationRegistrationPage organizationRegistrationPage;
 
     @Step("Нажимает на ссылку {0}")
     public void clicksToLink(String linkText) {
         getDriver().findElement(linkText(linkText));
+    }
+
+    @Step("Вводит логин {0} и пароль {1}")
+    public void entersLoginAndPassword(String login, String password) {
+        loginPage.enterLogin(login);
+        loginPage.enterPassword(password);
+    }
+
+    @Step("Нажимает на кнопку подтверждения")
+    public void clicksToConfirmButton() {
+        getDriver().findElement(name("commit")).click();
+    }
+
+    @Step("Выбирает тип клиента {0}")
+    public void selectsClientType(String clientType) {
+        selectActionDialog.selectClientType(clientType);
+    }
+
+    @Step("Выбирает резидентство {0}")
+    public void selectsClientCountry(String clientCountry) {
+        selectActionDialog.selectClientCountry(clientCountry);
+    }
+
+    @Step("Нажимает на кнопку Зарегитрировать")
+    public void clicksToRegistrationButton() {
+        selectActionDialog.clickregistrationButton();
+    }
+
+    @Step("Вводит данные ИП")
+    public void entersIPData(String ipEmail) {
+        fillsIPData(ipEmail);
+        fillsIPRegistrationAddress("Город Санкт-Петербург, улица Иркутская");
+        fillsIPLocationAddress("Совпадает с адресом регистрации");
+        fillsIPPostalAddress("Совпадает с адресом регистрации");
+        fillsClientBankData();
+    }
+
+    @Step("Вводит данные ЮЛ")
+    public void entersULData(String organizationEmail) {
+        fillsOrganizationData(organizationEmail);
+        fillsOrganizationRegistrationAddress("Город Санкт-Петербург, улица Иркутская");
+        fillsOrganizationLocationAddress("Совпадает с адресом регистрации");
+        fillsOrganizationPostalAddress("Совпадает с адресом регистрации");
+        fillsDirectorData(organizationEmail);
+        fillsClientBankData();
+    }
+
+    @Step("Вводит данные ФЛ")
+    public void entersFLData(String clientEmail) {
+        fillsClientPersonalData(clientEmail);
+        fillsClientRegistrationAddress("Город Санкт-Петербург, улица Иркутская");
+        fillsClientLocationAddress("Совпадает с адресом регистрации");
+        fillsClientPostalAddress("Совпадает с адресом регистрации");
+        fillsClientBankData();
+    }
+
+    @Step("Вводит данные ТС")
+    public void entersVehicleData() {
+        vehicleRegistrationPage.selectVehicleCountry("Российская Федерация");
+        vehicleRegistrationPage.enterVehicleDocumentNumber(getRandomNumber(10));
+        vehicleRegistrationPage.enterVehicleDocumentDateIssue(getRandomDate());
+        vehicleRegistrationPage.enterVehicleGRNZ("A" + getCurrentSession().get("vehicleGRNZ") + "AA" + getRandomNumber(3));
+        vehicleRegistrationPage.selectVehicleType("Рефрижератор");
+        vehicleRegistrationPage.enterVehicleVIN(getRandomNumber(17));
+        vehicleRegistrationPage.selectVehicleBasisType("");
+        vehicleRegistrationPage.selectVehicleMark("MAN");
+        vehicleRegistrationPage.selectVehicleMass("3,5 - 6 тонн");
     }
 
     @Step("Находит заявку на верификацию ВТС")
@@ -227,5 +107,198 @@ public class CPPOperatorSteps extends ScenarioSteps {
 
     @Step("Проводит верификацию ТС")
     public void conductVehicleVerificationRequest() {
+    }
+
+    private void fillsClientPersonalData(String clientEmail) {
+        clientRegistrationPage.selectClientDocumentType("Паспорт");
+        clientRegistrationPage.enterClientDocumentNumber(getRandomNumber(10));
+        clientRegistrationPage.enterClientDocumentIssuedBy(getRandomCyrillicProperString(12));
+        clientRegistrationPage.enterClientDocumentIssuedDate(getRandomDate());
+        clientRegistrationPage.enterClientSurname(getRandomCyrillicProperString(7));
+        clientRegistrationPage.enterClientName(getRandomCyrillicProperString(5));
+        clientRegistrationPage.enterClientPatronymic(getRandomCyrillicProperString(10));
+        clientRegistrationPage.enterClientPhone(getRandomNumber(10));
+        clientRegistrationPage.enterClientEmail(clientEmail.replace("@gmail.com", "+" + getRandomNumber(5) + "@gmail.com"));
+        clientRegistrationPage.selectClientRole("Главный менеджер");
+    }
+
+    private void fillsIPData(String ipEmail) {
+        ipRegistrationPage.enterIPOGRN(getRandomNumber(15));
+        ipRegistrationPage.enterIPINN(getRandomNumber(12));
+        ipRegistrationPage.enterIPSurname(getRandomCyrillicProperString(7));
+        ipRegistrationPage.enterIPName(getRandomCyrillicProperString(5));
+        ipRegistrationPage.enterIPPatronymic(getRandomCyrillicProperString(10));
+        ipRegistrationPage.enterIPShortName(getRandomCyrillicProperString(10));
+        ipRegistrationPage.selectIPDocumentType("Паспорт");
+        ipRegistrationPage.enterIPDocumentNumber(getRandomNumber(10));
+        ipRegistrationPage.enterIPDocumentIssuedBy(getRandomCyrillicProperString(12));
+        ipRegistrationPage.enterIPDocumentIssuedDate(getRandomDate());
+        ipRegistrationPage.enterIPMainPhone(getRandomNumber(10));
+        ipRegistrationPage.enterIPMainEmail(ipEmail.replace("@gmail.com", "+" + getRandomNumber(6) + "@gmail.com"));
+        ipRegistrationPage.selectIPRole("Главный менеджер");
+    }
+
+    private void fillsOrganizationData(String organizationEmail) {
+        organizationRegistrationPage.selectOrganizationOPF("Общества с ограниченной ответственностью");
+        organizationRegistrationPage.enterOrganizationOGRN(getRandomNumber(15));
+        organizationRegistrationPage.enterOrganizationINN(getRandomNumber(12));
+        organizationRegistrationPage.enterOrganizationName(getRandomCyrillicProperString(10));
+        organizationRegistrationPage.enterOrganizationShortName(getRandomCyrillicProperString(5));
+        organizationRegistrationPage.enterOrganizationMainPhone(getRandomNumber(10));
+        organizationRegistrationPage.enterOrganizationMainEmail(organizationEmail.replace("@gmail.com", "+" + getRandomNumber(6) + "@gmail.com"));
+    }
+
+    private void fillsDirectorData(String directorEmail) {
+        organizationRegistrationPage.enterDirectorSurname(getRandomCyrillicProperString(7));
+        organizationRegistrationPage.enterDirectorName(getRandomCyrillicProperString(5));
+        organizationRegistrationPage.enterDirectorPatronymic(getRandomCyrillicProperString(10));
+        organizationRegistrationPage.selectDirectorPersonalDocumentType("Удостоверение личности военнослужащего РФ");
+        organizationRegistrationPage.enterDirectorPersonalDocumentNumber(getRandomNumber(10));
+        organizationRegistrationPage.enterDirectorPersonalDocumentIssuedDate(getRandomDate());
+        organizationRegistrationPage.enterDirectorPersonalDocumentIssuedBy(getRandomCyrillicProperString(12));
+        organizationRegistrationPage.selectDirectorDocumentType("Устав");
+        organizationRegistrationPage.enterDirectorDocumentNumber(getRandomNumber(10));
+        organizationRegistrationPage.enterDirectorDocumentIssuedDate(getRandomDate());
+        organizationRegistrationPage.enterDirectorDocumentValidity("31.12.2015");
+        organizationRegistrationPage.enterDirectorPhone(getRandomNumber(10));
+        organizationRegistrationPage.enterDirectorLogin(directorEmail.replace("@gmail.com", "+" + getRandomNumber(6) + "@gmail.com"));
+        organizationRegistrationPage.selectDirectorPosition("Генеральный директор");
+        organizationRegistrationPage.selectDirectorRole("Главный менеджер");
+    }
+
+    private void fillsClientRegistrationAddress(String clientAddressKladr) {
+        clientRegistrationPage.selectClientRegistrationAddressKladr(clientAddressKladr);
+//        clientRegistrationPage.enterClientRegistrationAddressIndex(getRandomNumber(6));
+        clientRegistrationPage.enterClientRegistrationAddressHouse(getRandomNumber(3));
+        clientRegistrationPage.enterClientRegistrationAddressHousing(getRandomNumber(1));
+        clientRegistrationPage.enterClientRegistrationAddressBuilding(getRandomNumber(1));
+        clientRegistrationPage.enterClientRegistrationAddressRoom(getRandomNumber(2));
+    }
+
+    private void fillsIPRegistrationAddress(String clientAddressKladr) {
+        ipRegistrationPage.selectClientRegistrationAddressKladr(clientAddressKladr);
+//        ipRegistrationPage.enterClientRegistrationAddressIndex(getRandomNumber(6));
+        ipRegistrationPage.enterClientRegistrationAddressHouse(getRandomNumber(3));
+        ipRegistrationPage.enterClientRegistrationAddressHousing(getRandomNumber(1));
+        ipRegistrationPage.enterClientRegistrationAddressBuilding(getRandomNumber(1));
+        ipRegistrationPage.enterClientRegistrationAddressRoom(getRandomNumber(2));
+    }
+
+    private void fillsOrganizationRegistrationAddress(String clientAddressKladr) {
+        organizationRegistrationPage.selectClientRegistrationAddressKladr(clientAddressKladr);
+//        organizationRegistrationPage.enterClientRegistrationAddressIndex(getRandomNumber(6));
+        organizationRegistrationPage.enterClientRegistrationAddressHouse(getRandomNumber(3));
+        organizationRegistrationPage.enterClientRegistrationAddressHousing(getRandomNumber(1));
+        organizationRegistrationPage.enterClientRegistrationAddressBuilding(getRandomNumber(1));
+        organizationRegistrationPage.enterClientRegistrationAddressRoom(getRandomNumber(2));
+    }
+
+    private void fillsClientLocationAddress(String locationAddressKladr) {
+        switch (locationAddressKladr) {
+            case "Совпадает с адресом регистрации":
+                clientRegistrationPage.clickToLocationAddressSameAsRegistrationCheckBox();
+                break;
+            default:
+                clientRegistrationPage.selectClientLocationAddressKladr(locationAddressKladr);
+//        clientRegistrationPage.enterClientLocationAddressIndex(getRandomNumber(6));
+                clientRegistrationPage.enterClientLocationAddressHouse(getRandomNumber(3));
+                clientRegistrationPage.enterClientLocationAddressHousing(getRandomNumber(1));
+                clientRegistrationPage.enterClientLocationAddressBuilding(getRandomNumber(1));
+                clientRegistrationPage.enterClientLocationAddressRoom(getRandomNumber(2));
+        }
+    }
+
+    private void fillsIPLocationAddress(String locationAddressKladr) {
+        switch (locationAddressKladr) {
+            case "Совпадает с адресом регистрации":
+                ipRegistrationPage.clickToLocationAddressSameAsRegistrationCheckBox();
+                break;
+            default:
+                ipRegistrationPage.selectClientLocationAddressKladr(locationAddressKladr);
+//        ipRegistrationPage.enterClientLocationAddressIndex(getRandomNumber(6));
+                ipRegistrationPage.enterClientLocationAddressHouse(getRandomNumber(3));
+                ipRegistrationPage.enterClientLocationAddressHousing(getRandomNumber(1));
+                ipRegistrationPage.enterClientLocationAddressBuilding(getRandomNumber(1));
+                ipRegistrationPage.enterClientLocationAddressRoom(getRandomNumber(2));
+                break;
+        }
+    }
+
+    private void fillsOrganizationLocationAddress(String locationAddressKladr) {
+        switch (locationAddressKladr) {
+            case "Совпадает с адресом регистрации":
+                organizationRegistrationPage.clickToLocationAddressSameAsRegistrationCheckBox();
+                break;
+            default:
+                organizationRegistrationPage.selectClientLocationAddressKladr(locationAddressKladr);
+//        organizationRegistrationPage.enterClientLocationAddressIndex(getRandomNumber(6));
+                organizationRegistrationPage.enterClientLocationAddressHouse(getRandomNumber(3));
+                organizationRegistrationPage.enterClientLocationAddressHousing(getRandomNumber(1));
+                organizationRegistrationPage.enterClientLocationAddressBuilding(getRandomNumber(1));
+                organizationRegistrationPage.enterClientLocationAddressRoom(getRandomNumber(2));
+        }
+    }
+
+    private void fillsClientPostalAddress(String postalAddressKladr) {
+        switch (postalAddressKladr) {
+            case "Совпадает с адресом регистрации":
+                clientRegistrationPage.clickToPostalAddressSameAsRegistrationCheckBox();
+                break;
+            default:
+                clientRegistrationPage.selectClientPostalAddressKladr(postalAddressKladr);
+//        clientRegistrationPage.enterClientPostalAddressIndex(getRandomNumber(6));
+                clientRegistrationPage.enterClientPostalAddressHouse(getRandomNumber(3));
+                clientRegistrationPage.enterClientPostalAddressHousing(getRandomNumber(1));
+                clientRegistrationPage.enterClientPostalAddressBuilding(getRandomNumber(1));
+                clientRegistrationPage.enterClientPostalAddressRoom(getRandomNumber(2));
+        }
+    }
+
+    private void fillsIPPostalAddress(String postalAddressKladr) {
+        switch (postalAddressKladr) {
+            case "Совпадает с адресом регистрации":
+                ipRegistrationPage.clickToPostalAddressSameAsRegistrationCheckBox();
+                break;
+            default:
+                ipRegistrationPage.selectClientPostalAddressKladr(postalAddressKladr);
+//        ipRegistrationPage.enterClientPostalAddressIndex(getRandomNumber(6));
+                ipRegistrationPage.enterClientPostalAddressHouse(getRandomNumber(3));
+                ipRegistrationPage.enterClientPostalAddressHousing(getRandomNumber(1));
+                ipRegistrationPage.enterClientPostalAddressBuilding(getRandomNumber(1));
+                ipRegistrationPage.enterClientPostalAddressRoom(getRandomNumber(2));
+        }
+    }
+
+    private void fillsOrganizationPostalAddress(String postalAddressKladr) {
+        switch (postalAddressKladr) {
+            case "Совпадает с адресом регистрации":
+                ipRegistrationPage.clickToPostalAddressSameAsRegistrationCheckBox();
+                break;
+            default:
+                organizationRegistrationPage.selectClientPostalAddressKladr(postalAddressKladr);
+//        organizationRegistrationPage.enterClientPostalAddressIndex(getRandomNumber(6));
+                organizationRegistrationPage.enterClientPostalAddressHouse(getRandomNumber(3));
+                organizationRegistrationPage.enterClientPostalAddressHousing(getRandomNumber(1));
+                organizationRegistrationPage.enterClientPostalAddressBuilding(getRandomNumber(1));
+                organizationRegistrationPage.enterClientPostalAddressRoom(getRandomNumber(2));
+        }
+    }
+
+    private void fillsClientBankData() {
+        clientRegistrationPage.enterClientBankName(getRandomCyrillicProperString(6));
+        clientRegistrationPage.enterClientBankBIK(getRandomNumber(9));
+        clientRegistrationPage.enterClientBankINN(getRandomNumber(10));
+        clientRegistrationPage.enterClientBankKorNumber(getRandomNumber(20));
+        clientRegistrationPage.enterClientBankAccountNumber(getRandomNumber(20));
+        clientRegistrationPage.enterClientBankReceiverName(getRandomCyrillicProperString(18));
+    }
+
+    public void uploadsVehicleDocumentsCopies() {
+
+    }
+
+
+    public void uploadsClientDocumentsCopies() {
+
     }
 }

@@ -17,9 +17,4 @@ public class CPPAdministratorSteps extends ScenarioSteps {
         CPPLoginPage.enterLogin(login);
         CPPLoginPage.enterPassword(password);
     }
-
-    @Step("Жмет кнопку Войти")
-    public void clickLoginButton() {
-        CPPLoginPage.clickConfirmButton();
-    }
 }

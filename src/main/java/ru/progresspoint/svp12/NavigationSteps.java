@@ -7,7 +7,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import ru.progresspoint.svp12.cpp.pages.CPPLoginPage;
 import ru.progresspoint.svp12.cpp.pages.CPPMainPage;
-import ru.progresspoint.svp12.cpp.pages.CPPOwnerRegistrationPage;
+import ru.progresspoint.svp12.cpp.pages.CPPClientRegistrationPage;
+import ru.progresspoint.svp12.cpp.pages.CPPSelectActionDialog;
 import ru.progresspoint.svp12.lk.pages.*;
 
 import static java.lang.String.format;
@@ -19,8 +20,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class NavigationSteps extends ScenarioSteps {
 
     CPPLoginPage cppLoginPage;
-    CPPOwnerRegistrationPage cppOwnerRegistrationPage;
+    CPPClientRegistrationPage cppOwnerRegistrationPage;
     CPPMainPage cppMainPage;
+    CPPSelectActionDialog cppSelectActionDialog;
 
     LKMainPage lkMainPage;
     LKMainMenu lkMainMenu;
@@ -32,15 +34,15 @@ public class NavigationSteps extends ScenarioSteps {
     public void opensCPPPage(String page) {
         switch (page) {
             case "Авторизации":
-                getDriver().get("http://cpp-stage.progresspoint.ru/sign_out");
-                cppLoginPage.openAt("http://cpp-stage.progresspoint.ru/sign_in");
+                getDriver().get("http://svp-arm-frontend-1.svp.prod:9001/sign_out");
+                cppLoginPage.openAt("http://svp-arm-frontend-1.svp.prod:9001/sign_in");
                 break;
             case "Главная":
-                cppMainPage.openAt("http://cpp-stage.progresspoint.ru");
+                cppMainPage.openAt("http://svp-arm-frontend-1.svp.prod:9001");
                 break;
             case "Регистрации ВТС":
                 cppMainPage.loading();
-                cppMainPage.clickOwnerRegistrationLink();
+                cppSelectActionDialog.clickOwnerRegistrationLink();
                 break;
         }
     }
@@ -49,11 +51,11 @@ public class NavigationSteps extends ScenarioSteps {
     public void opensLKPage(String page) {
         switch (page) {
             case "Авторизации":
-                getDriver().get("http://lk-stage.progresspoint.ru/sign_out");
-                lkLoginPage.openAt("http://lk-stage.progresspoint.ru/sign_in");
+                getDriver().get("http://svp-arm-frontend-1.svp.prod:9002/sign_out");
+                lkLoginPage.openAt("http://svp-arm-frontend-1.svp.prod:9002/sign_in");
                 break;
             case "Главная":
-                lkMainPage.openAt("http://lk-stage.progresspoint.ru");
+                lkMainPage.openAt("http://svp-arm-frontend-1.svp.prod:9002");
                 break;
             case "Транспортные средства":
                 lkMainMenu.loading();

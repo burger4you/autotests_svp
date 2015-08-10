@@ -41,10 +41,6 @@ public class LKNewVehiclePage extends LKSelectizePageObject {
         enter(vehicleGRNZ).into(vehicleGRNZField);
     }
 
-    public String getVehicleGRNZ() {
-        return findBy("//*[@id='grnz']").getText();
-    }
-
     public void selectVehicleBasisType(String vehicleBasisType) {
         selectForSelectizePlugin(vehicleBasisTypeField, vehicleBasisType);
     }

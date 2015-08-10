@@ -11,14 +11,12 @@ import net.thucydides.core.annotations.At;
 @At("#HOST")
 public class CPPMainPage extends PageObject {
 
-    @FindBy(xpath = ".//*[@href='/create_session']")
-    WebElementFacade ownerRegistrationLink;
+    @FindBy(xpath = ".//*[@class='mca-one']")
+    WebElementFacade selectActionDialog;
 
     public void loading() {
-        ownerRegistrationLink.shouldBeEnabled();
+        selectActionDialog.expect("Не доступоно диалоговое окно Выберите действие").shouldBePresent();
     }
 
-    public void clickOwnerRegistrationLink() {
-        ownerRegistrationLink.click();
-    }
+
 }
