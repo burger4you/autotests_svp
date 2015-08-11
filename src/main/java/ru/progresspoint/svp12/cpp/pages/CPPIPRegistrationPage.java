@@ -192,7 +192,7 @@ public class CPPIPRegistrationPage extends CPPSelectizePageObject {
     }
 
     //ПОЧТОВЫЙ АДРЕС
-    @FindBy(xpath = ".//*[@for='client_ip_persons_attributes_0_postal_address_attributes_same_as_reg']")
+    @FindBy(xpath = ".//*[@for='client_ip_persons_attributes_0_postal_address_attributes_same_as_reg']/div")
     WebElementFacade clientPostalAddressSameAsClientRegistrationCheckBox;
 
     @FindBy(id = "client_ip_persons_attributes_0_postal_address_attributes_post_index")

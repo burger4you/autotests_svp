@@ -114,8 +114,8 @@ public class LKUserSteps extends RandomGenerators {
                 "documents/INN.jpg",
                 "documents/CertificateOfAbsenceTaxDebt.jpg",
                 "documents/CertificateOfAbsencePFRDebt.jpg",
-                "documents/CertificateOfAbsenceFSSDebt.png",
-                "documents/CertificateOfAbsenceFMSDebt.png"
+                "documents/CertificateOfAbsenceFSSDebt.jpg",
+                "documents/CertificateOfAbsenceFMSDebt.jpg"
         );
     }
 
@@ -128,8 +128,8 @@ public class LKUserSteps extends RandomGenerators {
                 "documents/EGRUL.jpg",
                 "documents/CertificateOfAbsenceTaxDebt.jpg",
                 "documents/CertificateOfAbsencePFRDebt.jpg",
-                "documents/CertificateOfAbsenceFSSDebt.png",
-                "documents/CertificateOfAbsenceFMSDebt.png"
+                "documents/CertificateOfAbsenceFSSDebt.jpg",
+                "documents/CertificateOfAbsenceFMSDebt.jpg"
         );
     }
 

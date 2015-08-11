@@ -122,7 +122,7 @@ public class CPPClientRegistrationPage extends CPPSelectizePageObject {
     }
 
     //АДРЕС МЕСТОНАХОЖДЕНИЯ
-    @FindBy(xpath = ".//*[@for='client_fl_persons_attributes_0_postal_address_attributes_same_as_reg']")
+    @FindBy(xpath = ".//*[@for='client_fl_persons_attributes_0_postal_address_attributes_same_as_reg']/div")
     WebElementFacade clientLocationAddressSameAsClientRegistrationCheckBox;
 
     @FindBy(id = "client_fl_persons_attributes_0_location_address_attributes_post_index")
@@ -171,7 +171,7 @@ public class CPPClientRegistrationPage extends CPPSelectizePageObject {
     }
 
     //ПОЧТОВЫЙ АДРЕС
-    @FindBy(xpath = ".//*[@for='client_fl_persons_attributes_0_postal_address_attributes_same_as_reg']")
+    @FindBy(xpath = ".//*[@for='client_fl_persons_attributes_0_postal_address_attributes_same_as_reg']/div")
     WebElementFacade clientPostalAddressSameAsClientRegistrationCheckBox;
 
     @FindBy(id = "client_fl_persons_attributes_0_postal_address_attributes_post_index")

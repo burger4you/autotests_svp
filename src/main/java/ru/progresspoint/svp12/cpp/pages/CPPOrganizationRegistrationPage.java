@@ -204,7 +204,7 @@ public class CPPOrganizationRegistrationPage extends CPPSelectizePageObject {
     }
 
     //АДРЕС МЕСТОНАХОЖДЕНИЯ
-    @FindBy(xpath = ".//*[@for='client_postal_address_attributes_same_as_reg']")
+    @FindBy(xpath = ".//*[@for='client_postal_address_attributes_same_as_reg']/div")
     WebElementFacade clientLocationAddressSameAsClientRegistrationCheckBox;
 
     @FindBy(id = "client_location_address_attributes_post_index")
@@ -253,7 +253,7 @@ public class CPPOrganizationRegistrationPage extends CPPSelectizePageObject {
     }
 
     //ПОЧТОВЫЙ АДРЕС
-    @FindBy(xpath = ".//*[@for='client_postal_address_attributes_same_as_reg']")
+    @FindBy(xpath = ".//*[@for='client_postal_address_attributes_same_as_reg']/div")
     WebElementFacade clientPostalAddressSameAsClientRegistrationCheckBox;
 
     @FindBy(id = "client_postal_address_attributes_post_index")

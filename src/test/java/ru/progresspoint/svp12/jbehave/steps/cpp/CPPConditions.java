@@ -2,8 +2,15 @@ package ru.progresspoint.svp12.jbehave.steps.cpp;
 
 import net.thucydides.core.annotations.Steps;
 import org.jbehave.core.annotations.Then;
+import ru.progresspoint.svp12.EmailUserSteps;
 import ru.progresspoint.svp12.NavigationSteps;
 import ru.progresspoint.svp12.cpp.steps.CPPOperatorSteps;
+import ru.progresspoint.svp12.lk.steps.LKUserSteps;
+
+import javax.mail.MessagingException;
+import java.io.IOException;
+
+import static net.serenitybdd.core.Serenity.getCurrentSession;
 
 /**
  * Состояния системы, к которым она приходит в результате действий пользователя
@@ -16,6 +23,12 @@ public class CPPConditions {
     @Steps
     CPPOperatorSteps operator;
 
+    @Steps
+    EmailUserSteps email;
+
+    @Steps
+    LKUserSteps user;
+
     @Then("открывается страница $page в ЦИПП")
     public void pageShouldBeDisplayed(String page) {
         navigation.isOnCPPPage(page);
@@ -26,8 +39,11 @@ public class CPPConditions {
         navigation.isOnCPPPage("Главная");
     }
 
-    @Then("система регистрирует ВТС с этими данными")
-    public void registrationVehicleShouldBeDisplayed() {
-//        operator.shouldSeeInviteToRegistrationVehicle();
+    @Then("система отправит на $email ссылку с доступом к ЛК")
+    public void systemSentLinkToLKOn(String emailAddress) throws IOException, MessagingException {
+        email.waitsForEmailWithAccessLink(emailAddress);
+        navigation.opensLKPage("Авторизации");
+        user.entersLoginAndPassword((String) getCurrentSession().get("login"), (String) getCurrentSession().get("password"));
+        navigation.isOnLKPage("Главная");
     }
 }

@@ -38,11 +38,12 @@ public class CPPOperatorActions {
 //                operator.uploadsFLDocumentsCopies();
                 break;
         }
-        operator.clicksToLink("Завершить регистрацию");
+        operator.clicksToTextButton("Завершить регистрацию");
         operator.uploadsClientDocumentsCopies();
-        operator.entersVehicleData();
-        operator.uploadsVehicleDocumentsCopies();
-        operator.clicksToConfirmButton();
+        operator.clicksToTextButton("Подтвердить");
+//        operator.entersVehicleData();
+//        operator.uploadsVehicleDocumentsCopies();
+//        operator.clicksToConfirmButton();
     }
 
     @When("оператор проводит верификацию данных пользователя")

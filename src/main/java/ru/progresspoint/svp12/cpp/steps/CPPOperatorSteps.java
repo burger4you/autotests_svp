@@ -5,9 +5,9 @@ import net.thucydides.core.annotations.Step;
 import ru.progresspoint.svp12.RandomGenerators;
 import ru.progresspoint.svp12.cpp.pages.*;
 
+import static java.lang.String.format;
 import static net.serenitybdd.core.Serenity.getCurrentSession;
-import static org.openqa.selenium.By.linkText;
-import static org.openqa.selenium.By.name;
+import static org.openqa.selenium.By.*;
 
 /**
  * Шаги оператора
@@ -49,7 +49,7 @@ public class CPPOperatorSteps extends RandomGenerators {
 
     @Step("Нажимает на кнопку Зарегитрировать")
     public void clicksToRegistrationButton() {
-        selectActionDialog.clickregistrationButton();
+        selectActionDialog.clickRegistrationButton();
     }
 
     @Step("Вводит данные ИП")
@@ -78,6 +78,21 @@ public class CPPOperatorSteps extends RandomGenerators {
         fillsClientLocationAddress("Совпадает с адресом регистрации");
         fillsClientPostalAddress("Совпадает с адресом регистрации");
         fillsClientBankData();
+    }
+
+    @Step("Нажимает на кнопку $textButton")
+    public void clicksToTextButton(String textButton) {
+        getDriver().findElement(xpath(format(".//a[text()='%s']", textButton))).click();
+    }
+
+    @Step("Прикладывает скан-копии документов ВТС")
+    public void uploadsClientDocumentsCopies() {
+
+    }
+
+    @Step("Прикладывает скан-копии документов ТС")
+    public void uploadsVehicleDocumentsCopies() {
+
     }
 
     @Step("Вводит данные ТС")
@@ -118,7 +133,8 @@ public class CPPOperatorSteps extends RandomGenerators {
         clientRegistrationPage.enterClientName(getRandomCyrillicProperString(5));
         clientRegistrationPage.enterClientPatronymic(getRandomCyrillicProperString(10));
         clientRegistrationPage.enterClientPhone(getRandomNumber(10));
-        clientRegistrationPage.enterClientEmail(clientEmail.replace("@gmail.com", "+" + getRandomNumber(5) + "@gmail.com"));
+        getCurrentSession().put("login", clientEmail.replace("@gmail.com", "+" + getRandomNumber(6) + "@gmail.com"));
+        clientRegistrationPage.enterClientEmail((String) getCurrentSession().get("login"));
         clientRegistrationPage.selectClientRole("Главный менеджер");
     }
 
@@ -134,7 +150,8 @@ public class CPPOperatorSteps extends RandomGenerators {
         ipRegistrationPage.enterIPDocumentIssuedBy(getRandomCyrillicProperString(12));
         ipRegistrationPage.enterIPDocumentIssuedDate(getRandomDate());
         ipRegistrationPage.enterIPMainPhone(getRandomNumber(10));
-        ipRegistrationPage.enterIPMainEmail(ipEmail.replace("@gmail.com", "+" + getRandomNumber(6) + "@gmail.com"));
+        getCurrentSession().put("login", ipEmail.replace("@gmail.com", "+" + getRandomNumber(6) + "@gmail.com"));
+        ipRegistrationPage.enterIPMainEmail((String) getCurrentSession().get("login"));
         ipRegistrationPage.selectIPRole("Главный менеджер");
     }
 
@@ -161,7 +178,8 @@ public class CPPOperatorSteps extends RandomGenerators {
         organizationRegistrationPage.enterDirectorDocumentIssuedDate(getRandomDate());
         organizationRegistrationPage.enterDirectorDocumentValidity("31.12.2015");
         organizationRegistrationPage.enterDirectorPhone(getRandomNumber(10));
-        organizationRegistrationPage.enterDirectorLogin(directorEmail.replace("@gmail.com", "+" + getRandomNumber(6) + "@gmail.com"));
+        getCurrentSession().put("login", directorEmail.replace("@gmail.com", "+" + getRandomNumber(6) + "@gmail.com"));
+        organizationRegistrationPage.enterDirectorLogin((String) getCurrentSession().get("login"));
         organizationRegistrationPage.selectDirectorPosition("Генеральный директор");
         organizationRegistrationPage.selectDirectorRole("Главный менеджер");
     }
@@ -291,14 +309,5 @@ public class CPPOperatorSteps extends RandomGenerators {
         clientRegistrationPage.enterClientBankKorNumber(getRandomNumber(20));
         clientRegistrationPage.enterClientBankAccountNumber(getRandomNumber(20));
         clientRegistrationPage.enterClientBankReceiverName(getRandomCyrillicProperString(18));
-    }
-
-    public void uploadsVehicleDocumentsCopies() {
-
-    }
-
-
-    public void uploadsClientDocumentsCopies() {
-
     }
 }

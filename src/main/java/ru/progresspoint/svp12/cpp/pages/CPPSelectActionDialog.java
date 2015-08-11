@@ -31,7 +31,7 @@ public class CPPSelectActionDialog extends CPPSelectizePageObject {
         registrationClientLink.click();
     }
 
-    public void clickregistrationButton() {
+    public void clickRegistrationButton() {
         registrationButton.click();
     }
 }

@@ -121,4 +121,44 @@ public class EmailUserSteps extends ScenarioSteps {
     @Step("Получает письмо с историей подачи и обработки всех обращений данного пользователя")
     public void waitsForEmailWithVAppealsHistory() {
     }
+
+    @Step("Получает письмо со ссылкой на личный кабинет, логином и паролем к нему")
+    public void waitsForEmailWithAccessLink(String gmailBox) throws MessagingException, IOException {
+        waitABit(5000);
+        // Устанавливаем протокол
+        props = new Properties();
+        props.setProperty(PROTOCOL, IMAPS);
+        // Получаем сессию
+        session = Session.getInstance(props, null);
+        // Получаем место в сессии
+        store = session.getStore();
+        // Коннектимся к ящику
+        store.connect(GMAIL, gmailBox, PASSWORD);
+        // В ящике ищмем папку "Входящие"
+        folder = store.getFolder(INBOX);
+        // Открываем папку в режиме чтения
+        if (!folder.isOpen()) folder.open(READ_ONLY);
+        // Нас интересуют письма от системы ПО СВП
+        SearchTerm totalTerm = new FromStringTerm(NO_REPLY_PLATON_RU);
+        // Которые еще не прочитаны
+        FlagTerm flagSeen = new FlagTerm(new Flags(Flag.SEEN), false);
+        // Объединяем эти параметры и ищем нужные письма
+        totalTerm = new AndTerm(flagSeen, totalTerm);
+        messages = folder.search(totalTerm);
+        // Берем последнее письмо
+        Message message = folder.getMessage(1);
+//        // И парсим его
+//        Multipart multipart = (Multipart) message.getContent();
+//        // В данном случае, нам важно тело письма
+//        BodyPart bodyPart = multipart.getBodyPart(0);
+//        // Форматируем его в текст
+//        String fullText = bodyPart.getContent().toString();
+        String fullText = valueOf(message.getContent());
+        // И колдуем: делим тело письма на 2 части (до ссылки и после)
+        String[] array = fullText.split("Пароль: \\S+"); //http://10.0.12.225/\S+  </div><p>
+        // Что бы потом удалить их из общего текста и оставить нужную нам урлу.
+        String password = fullText.replace(valueOf(array[0] + "Пароль: "), "").replace(valueOf("</p><p>Ссылка" + array[1]), "");
+        // Которую и запоминаем
+        getCurrentSession().put("password", password);
+    }
 }
