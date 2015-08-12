@@ -28,19 +28,19 @@ public class LKAccountPage extends LKSelectizePageObject {
     @FindBy(id = "registration_middle_name")
     WebElementFacade registrationPatronymicField;
 
-    @FindBy(id = "registration_document_num")
+    @FindBy(id = "registration_document_number")
     WebElementFacade registrationDocumentNumberField;
 
-    @FindBy(id = "registration_document_issued_date")
+    @FindBy(id = "registration_document_issue_date")
     WebElementFacade registrationDocumentIssuedDateField;
 
-    @FindBy(id = "registration_document_issued_by")
+    @FindBy(id = "registration_document_issued")
     WebElementFacade registrationDocumentIssuedByField;
 
     @FindBy(id = "captcha")
     WebElementFacade captchaField;
 
-    private static final String ownerDocumentTypeField = "registration_document_document_type";
+    private static final String ownerDocumentTypeField = "registration_document_doc_type_id";
     private static final String ownerTypeField = "registration_client_type_id";
     private static final String ownerCountryField = "registration_country_id";
 

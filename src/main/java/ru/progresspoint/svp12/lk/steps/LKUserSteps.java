@@ -365,7 +365,7 @@ public class LKUserSteps extends RandomGenerators {
 
     private void fillsAccountData(String registrationEmail) {
         String randomForEmail = getRandomNumber(6);
-        String registrationPhone = getRandomNumber(10);
+        String registrationPhone = getRandomNumber(11);
         String registrationSurname = getRandomCyrillicProperString(7);
         String registrationName = getRandomCyrillicProperString(5);
         String registrationPatronymic = getRandomCyrillicProperString(10);
@@ -391,7 +391,7 @@ public class LKUserSteps extends RandomGenerators {
         String clientName = getRandomCyrillicProperString(5);
         String clientINN = getRandomNumber(12);
         String clientOGRN = getRandomNumber(15);
-        String clientPhone = getRandomNumber(10);
+        String clientPhone = getRandomNumber(11);
 
         basicInfoPage.enterClientShortName(clientShortName);
         basicInfoPage.enterClientName(clientName);
@@ -411,7 +411,7 @@ public class LKUserSteps extends RandomGenerators {
         String directorSurname = getRandomCyrillicProperString(7);
         String directorName = getRandomCyrillicProperString(5);
         String directorPatronymic = getRandomCyrillicProperString(10);
-        String directorPhone = getRandomNumber(10);
+        String directorPhone = getRandomNumber(11);
 
         basicInfoPage.enterDirectorSurname(directorSurname);
         basicInfoPage.enterDirectorName(directorName);
