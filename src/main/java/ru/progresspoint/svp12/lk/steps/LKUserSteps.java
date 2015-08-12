@@ -82,6 +82,7 @@ public class LKUserSteps extends RandomGenerators {
     @Step("Вводит данные ИП")
     public void entersIPData(String clientEmail) {
         fillsClientData(clientEmail);
+        fillsClientPersonalDocument();
         fillsClientRegistrationAddress("Город Санкт-Петербург, улица Иркутская");
         fillsClientLocationAddress("Город Москва, Театральный проезд");
         fillsClientPostalAddress("Ивановская область, город Иваново, улица Лежневская");
@@ -104,6 +105,7 @@ public class LKUserSteps extends RandomGenerators {
     public void entersFLData() {
         fillsClientRegistrationAddress("Костромская область, Костромской район, город Кострома, улица Сусанина Ивана");
         fillsClientLocationAddress("Новосибирская область, город Новосибирск, улица Парижской Коммуны");
+        fillsClientPostalAddress("Ивановская область, город Иваново, улица Лежневская");
         fillsClientBankData();
     }
 
@@ -144,6 +146,7 @@ public class LKUserSteps extends RandomGenerators {
         String registrationDocumentNumber = getRandomNumber(10);
         String vehicleVIN = getRandomNumber(17);
 
+        vehicleInfoPage.loading();
         vehicleInfoPage.selectVehicleRegistrationCountry("Российская Федерация");
         vehicleInfoPage.enterVehicleRegistrationGRNZ(vehicleRegistrationGRNZ);
         vehicleInfoPage.selectVehicleBasisType("Собственность");
@@ -364,142 +367,180 @@ public class LKUserSteps extends RandomGenerators {
     }
 
     private void fillsAccountData(String registrationEmail) {
-        String randomForEmail = getRandomNumber(6);
-        String registrationPhone = getRandomNumber(11);
-        String registrationSurname = getRandomCyrillicProperString(7);
-        String registrationName = getRandomCyrillicProperString(5);
-        String registrationPatronymic = getRandomCyrillicProperString(10);
-        String registrationDocumentNumber = getRandomNumber(10);
-        String registrationDocumentDate = getRandomDate();
-        String registrationDocumentBy = getRandomCyrillicProperString(12);
+        getCurrentSession().put("registrationEmail", registrationEmail.replace("@gmail.com", "+" + getRandomNumber(6) + "@gmail.com"));
+        getCurrentSession().put("registrationPhone", getRandomNumber(11));
+        getCurrentSession().put("registrationPosition", "Тестовый аккаунт");
+        getCurrentSession().put("registrationSurname", getRandomCyrillicProperString(7));
+        getCurrentSession().put("registrationName", getRandomCyrillicProperString(5));
+        getCurrentSession().put("registrationPatronymic", getRandomCyrillicProperString(10));
+        getCurrentSession().put("registrationDocumentType", "Паспорт");
+        getCurrentSession().put("registrationDocumentNumber", getRandomNumber(10));
+        getCurrentSession().put("registrationDocumentDate", getRandomDate());
+        getCurrentSession().put("registrationDocumentBy", getRandomCyrillicProperString(12));
 
-        accountPage.enterRegistrationLogin(registrationEmail.replace("@gmail.com", "+" + randomForEmail + "@gmail.com"));
-        accountPage.enterRegistrationPhone(registrationPhone);
-        accountPage.enterRegistrationPosition("Тестовый аккаунт");
-        accountPage.enterRegistrationSurname(registrationSurname);
-        accountPage.enterRegistrationName(registrationName);
-        accountPage.enterRegistrationPatronymic(registrationPatronymic);
-        accountPage.selectRegistrationDocumentType("Паспорт");
-        accountPage.enterRegistrationDocumentNumber(registrationDocumentNumber);
-        accountPage.enterRegistrationDocumentIssuedDate(registrationDocumentDate);
-        accountPage.enterRegistrationDocumentIssuedBy(registrationDocumentBy);
+        accountPage.enterRegistrationLogin((String) getCurrentSession().get("registrationEmail"));
+        accountPage.enterRegistrationPhone((String) getCurrentSession().get("registrationPhone"));
+        accountPage.enterRegistrationPosition((String) getCurrentSession().get("registrationPosition"));
+        accountPage.enterRegistrationSurname((String) getCurrentSession().get("registrationSurname"));
+        accountPage.enterRegistrationName((String) getCurrentSession().get("registrationName"));
+        accountPage.enterRegistrationPatronymic((String) getCurrentSession().get("registrationPatronymic"));
+        accountPage.selectRegistrationDocumentType((String) getCurrentSession().get("registrationDocumentType"));
+        accountPage.enterRegistrationDocumentNumber((String) getCurrentSession().get("registrationDocumentNumber"));
+        accountPage.enterRegistrationDocumentIssuedDate((String) getCurrentSession().get("registrationDocumentDate"));
+        accountPage.enterRegistrationDocumentIssuedBy((String) getCurrentSession().get("registrationDocumentBy"));
     }
 
     private void fillsClientData(String clientEmail) {
-        String randomForEmail = getRandomNumber(6);
-        String clientShortName = getRandomCyrillicProperString(10);
-        String clientName = getRandomCyrillicProperString(5);
-        String clientINN = getRandomNumber(12);
-        String clientOGRN = getRandomNumber(15);
-        String clientPhone = getRandomNumber(11);
+        getCurrentSession().put("clientSurname", getRandomCyrillicProperString(8));
+        getCurrentSession().put("clientName", getRandomCyrillicProperString(6));
+        getCurrentSession().put("clientPatronymic", getRandomCyrillicProperString(10));
+        getCurrentSession().put("clientShortName", getRandomCyrillicProperString(5));
+        getCurrentSession().put("clientINN", getRandomNumber(12));
+        getCurrentSession().put("clientOGRN", getRandomNumber(15));
+        getCurrentSession().put("clientEmail", clientEmail.replace("@gmail.com", "+" + getRandomNumber(6) + "@gmail.com"));
+        getCurrentSession().put("clientPhone", getRandomNumber(11));
 
-        basicInfoPage.enterClientShortName(clientShortName);
-        basicInfoPage.enterClientName(clientName);
-        basicInfoPage.enterClientINN(clientINN);
-        basicInfoPage.enterClientOGRN(clientOGRN);
-        basicInfoPage.enterClientMainEmail(clientEmail.replace("@gmail.com", "+" + randomForEmail + "@gmail.com"));
-        basicInfoPage.enterClientMainPhone(clientPhone);
+        basicInfoPage.enterClientSurname((String) getCurrentSession().get("clientSurname"));
+        basicInfoPage.enterClientName((String) getCurrentSession().get("clientName"));
+        basicInfoPage.enterClientPatronymic((String) getCurrentSession().get("clientPatronymic"));
+        basicInfoPage.enterClientShortName((String) getCurrentSession().get("clientShortName"));
+        basicInfoPage.enterClientINN((String) getCurrentSession().get("clientINN"));
+        basicInfoPage.enterClientOGRN((String) getCurrentSession().get("clientOGRN"));
+        basicInfoPage.enterClientMainEmail((String) getCurrentSession().get("clientEmail"));
+        basicInfoPage.enterClientMainPhone((String) getCurrentSession().get("clientPhone"));
+    }
+
+    private void fillsClientPersonalDocument() {
+        getCurrentSession().put("clientPersonalDocumentType", "Паспорт");
+        getCurrentSession().put("clientPersonalDocumentNumber", getRandomNumber(10));
+        getCurrentSession().put("clientPersonalDocumentDate", getRandomDate());
+        getCurrentSession().put("clientPersonalDocumentBy", getRandomCyrillicProperString(12));
+
+        basicInfoPage.selectClientPersonalDocumentType((String) getCurrentSession().get("clientPersonalDocumentType"));
+        basicInfoPage.enterClientPersonalDocumentNumber((String) getCurrentSession().get("clientPersonalDocumentNumber"));
+        basicInfoPage.enterClientPersonalDocumentIssuedDate((String) getCurrentSession().get("clientPersonalDocumentDate"));
+        basicInfoPage.enterClientPersonalDocumentIssuedBy((String) getCurrentSession().get("clientPersonalDocumentBy"));
     }
 
     private void fillsOrganizationData(String organizationEmail) {
-        basicInfoPage.selectOrganizationOPF("Общества с ограниченной ответственностью");
-        fillsClientData(organizationEmail);
+        getCurrentSession().put("organizationOPF", "Общества с ограниченной ответственностью");
+        getCurrentSession().put("organizationName", getRandomCyrillicProperString(10));
+        getCurrentSession().put("organizationShortName", getRandomCyrillicProperString(5));
+        getCurrentSession().put("organizationOGRN", getRandomNumber(15));
+        getCurrentSession().put("organizationINN", getRandomNumber(12));
+        getCurrentSession().put("organizationEmail", organizationEmail.replace("@gmail.com", "+" + getRandomNumber(6) + "@gmail.com"));
+        getCurrentSession().put("organizationPhone", getRandomNumber(11));
+
+        basicInfoPage.selectOrganizationOPF((String) getCurrentSession().get("organizationOPF"));
+        basicInfoPage.enterClientName((String) getCurrentSession().get("organizationName"));
+        basicInfoPage.enterClientShortName((String) getCurrentSession().get("organizationShortName"));
+        basicInfoPage.enterClientOGRN((String) getCurrentSession().get("organizationOGRN"));
+        basicInfoPage.enterClientINN((String) getCurrentSession().get("organizationINN"));
+        basicInfoPage.enterClientMainEmail((String) getCurrentSession().get("organizationEmail"));
+        basicInfoPage.enterClientMainPhone((String) getCurrentSession().get("organizationPhone"));
     }
 
     private void fillsDirectorData(String directorEmail) {
-        String randomForEmail = getRandomNumber(6);
-        String directorSurname = getRandomCyrillicProperString(7);
-        String directorName = getRandomCyrillicProperString(5);
-        String directorPatronymic = getRandomCyrillicProperString(10);
-        String directorPhone = getRandomNumber(11);
+        getCurrentSession().put("directorSurname", getRandomCyrillicProperString(7));
+        getCurrentSession().put("directorName", getRandomCyrillicProperString(5));
+        getCurrentSession().put("directorPatronymic", getRandomCyrillicProperString(10));
+        getCurrentSession().put("directorPhone", getRandomNumber(11));
+        getCurrentSession().put("directorEmail", directorEmail.replace("@gmail.com", "+" + getRandomNumber(6) + "@gmail.com"));
+        getCurrentSession().put("directorPosition", "Генеральный директор");
 
-        basicInfoPage.enterDirectorSurname(directorSurname);
-        basicInfoPage.enterDirectorName(directorName);
-        basicInfoPage.enterDirectorPatronymic(directorPatronymic);
-        basicInfoPage.enterDirectorPhone(directorPhone);
-        basicInfoPage.enterDirectorLogin(directorEmail.replace("@gmail.com", "+" + randomForEmail + "@gmail.com"));
-        basicInfoPage.enterDirectorPosition("Генеральный директор");
+        basicInfoPage.enterDirectorSurname((String) getCurrentSession().get("directorSurname"));
+        basicInfoPage.enterDirectorName((String) getCurrentSession().get("directorName"));
+        basicInfoPage.enterDirectorPatronymic((String) getCurrentSession().get("directorPatronymic"));
+        basicInfoPage.enterDirectorPhone((String) getCurrentSession().get("directorPhone"));
+        basicInfoPage.enterDirectorLogin((String) getCurrentSession().get("directorEmail"));
+        basicInfoPage.enterDirectorPosition((String) getCurrentSession().get("directorPosition"));
     }
 
     private void fillsDirectorDocuments() {
-        String directorDocumentNumber = getRandomNumber(10);
-        String directorDocumentDate = getRandomDate();
+        getCurrentSession().put("directorDocumentType", "Устав");
+        getCurrentSession().put("directorDocumentNumber", getRandomNumber(10));
+        getCurrentSession().put("directorDocumentDate", getRandomDate());
+        getCurrentSession().put("directorDocumentValidity", "31.12.2015");
 
-        basicInfoPage.selectDirectorDocumentType("Устав");
-        basicInfoPage.enterDirectorDocumentNumber(directorDocumentNumber);
-        basicInfoPage.enterDirectorDocumentIssuedDate(directorDocumentDate);
-        basicInfoPage.enterDirectorDocumentValidity("31.12.2015");
+        basicInfoPage.selectDirectorDocumentType((String) getCurrentSession().get("directorDocumentType"));
+//        basicInfoPage.enterDirectorDocumentNumber((String) getCurrentSession().get("directorDocumentNumber"));
+//        basicInfoPage.enterDirectorDocumentIssuedDate((String) getCurrentSession().get("directorDocumentDate"));
+//        basicInfoPage.enterDirectorDocumentValidity((String) getCurrentSession().get("directorDocumentValidity"));
     }
 
     private void fillsDirectorPersonalDocument() {
-        String directorPersonalDocumentNumber = getRandomNumber(10);
-        String directorPersonalDocumentDate = getRandomDate();
-        String directorPersonalDocumentBy = getRandomCyrillicProperString(12);
+        getCurrentSession().put("directorPersonalDocumentType", "Паспорт");
+        getCurrentSession().put("directorPersonalDocumentNumber", getRandomNumber(10));
+        getCurrentSession().put("directorPersonalDocumentDate", getRandomDate());
+        getCurrentSession().put("directorPersonalDocumentBy", getRandomCyrillicProperString(12));
 
-        basicInfoPage.selectDirectorPersonalDocumentType("Удостоверение личности военнослужащего РФ");
-        basicInfoPage.enterDirectorPersonalDocumentNumber(directorPersonalDocumentNumber);
-        basicInfoPage.enterDirectorPersonalDocumentIssuedDate(directorPersonalDocumentDate);
-        basicInfoPage.enterDirectorPersonalDocumentIssuedBy(directorPersonalDocumentBy);
+        basicInfoPage.selectDirectorPersonalDocumentType((String) getCurrentSession().get("directorPersonalDocumentType"));
+        basicInfoPage.enterDirectorPersonalDocumentNumber((String) getCurrentSession().get("directorPersonalDocumentNumber"));
+        basicInfoPage.enterDirectorPersonalDocumentIssuedDate((String) getCurrentSession().get("directorPersonalDocumentDate"));
+        basicInfoPage.enterDirectorPersonalDocumentIssuedBy((String) getCurrentSession().get("directorPersonalDocumentBy"));
     }
 
     private void fillsClientRegistrationAddress(String registrationAddressKladr) {
-        String registrationAddressIndex = getRandomNumber(6);
-        String registrationAddressHouse = getRandomNumber(3);
-        String registrationAddressHousing = getRandomNumber(1);
-        String registrationAddressBuilding = getRandomNumber(1);
-        String registrationAddressRoom = getRandomNumber(2);
+        getCurrentSession().put("registrationAddressKladr", registrationAddressKladr);
+        getCurrentSession().put("registrationAddressIndex", getRandomNumber(6));
+        getCurrentSession().put("registrationAddressHouse", getRandomNumber(3));
+        getCurrentSession().put("registrationAddressHousing", getRandomNumber(1));
+        getCurrentSession().put("registrationAddressBuilding", getRandomNumber(1));
+        getCurrentSession().put("registrationAddressRoom", getRandomNumber(2));
 
-        basicInfoPage.selectClientRegistrationAddressKladr(registrationAddressKladr);
-        basicInfoPage.enterClientRegistrationAddressIndex(registrationAddressIndex);
-        basicInfoPage.enterClientRegistrationAddressHouse(registrationAddressHouse);
-        basicInfoPage.enterClientRegistrationAddressHousing(registrationAddressHousing);
-        basicInfoPage.enterClientRegistrationAddressBuilding(registrationAddressBuilding);
-        basicInfoPage.enterClientRegistrationAddressRoom(registrationAddressRoom);
+        basicInfoPage.selectClientRegistrationAddressKladr((String) getCurrentSession().get("registrationAddressKladr"));
+        basicInfoPage.enterClientRegistrationAddressIndex((String) getCurrentSession().get("registrationAddressIndex"));
+        basicInfoPage.enterClientRegistrationAddressHouse((String) getCurrentSession().get("registrationAddressHouse"));
+        basicInfoPage.enterClientRegistrationAddressHousing((String) getCurrentSession().get("registrationAddressHousing"));
+        basicInfoPage.enterClientRegistrationAddressBuilding((String) getCurrentSession().get("registrationAddressBuilding"));
+        basicInfoPage.enterClientRegistrationAddressRoom((String) getCurrentSession().get("registrationAddressRoom"));
     }
 
     private void fillsClientLocationAddress(String locationAddressKladr) {
-        String locationAddressIndex = getRandomNumber(6);
-        String locationAddressHouse = getRandomNumber(3);
-        String locationAddressHousing = getRandomNumber(1);
-        String locationAddressBuilding = getRandomNumber(1);
-        String locationAddressRoom = getRandomNumber(2);
+        getCurrentSession().put("locationAddressKladr", locationAddressKladr);
+        getCurrentSession().put("locationAddressIndex", getRandomNumber(6));
+        getCurrentSession().put("locationAddressHouse", getRandomNumber(3));
+        getCurrentSession().put("locationAddressHousing", getRandomNumber(1));
+        getCurrentSession().put("locationAddressBuilding", getRandomNumber(1));
+        getCurrentSession().put("locationAddressRoom", getRandomNumber(2));
 
-        basicInfoPage.selectClientLocationAddressKladr(locationAddressKladr);
-        basicInfoPage.enterClientLocationAddressIndex(locationAddressIndex);
-        basicInfoPage.enterClientLocationAddressHouse(locationAddressHouse);
-        basicInfoPage.enterClientLocationAddressHousing(locationAddressHousing);
-        basicInfoPage.enterClientLocationAddressBuilding(locationAddressBuilding);
-        basicInfoPage.enterClientLocationAddressRoom(locationAddressRoom);
+        basicInfoPage.selectClientLocationAddressKladr((String) getCurrentSession().get("locationAddressKladr"));
+        basicInfoPage.enterClientLocationAddressIndex((String) getCurrentSession().get("locationAddressIndex"));
+        basicInfoPage.enterClientLocationAddressHouse((String) getCurrentSession().get("locationAddressHouse"));
+        basicInfoPage.enterClientLocationAddressHousing((String) getCurrentSession().get("locationAddressHousing"));
+        basicInfoPage.enterClientLocationAddressBuilding((String) getCurrentSession().get("locationAddressBuilding"));
+        basicInfoPage.enterClientLocationAddressRoom((String) getCurrentSession().get("locationAddressRoom"));
     }
 
     private void fillsClientPostalAddress(String postalAddressKladr) {
-        String postalAddressIndex = getRandomNumber(6);
-        String postalAddressHouse = getRandomNumber(3);
-        String postalAddressHousing = getRandomNumber(1);
-        String postalAddressBuilding = getRandomNumber(1);
-        String postalAddressRoom = getRandomNumber(2);
+        getCurrentSession().put("postalAddressKladr", postalAddressKladr);
+        getCurrentSession().put("postalAddressIndex", getRandomNumber(6));
+        getCurrentSession().put("postalAddressHouse", getRandomNumber(3));
+        getCurrentSession().put("postalAddressHousing", getRandomNumber(1));
+        getCurrentSession().put("postalAddressBuilding", getRandomNumber(1));
+        getCurrentSession().put("postalAddressRoom", getRandomNumber(2));
 
-        basicInfoPage.selectClientPostalAddressKladr(postalAddressKladr);
-        basicInfoPage.enterClientPostalAddressIndex(postalAddressIndex);
-        basicInfoPage.enterClientPostalAddressHouse(postalAddressHouse);
-        basicInfoPage.enterClientPostalAddressHousing(postalAddressHousing);
-        basicInfoPage.enterClientPostalAddressBuilding(postalAddressBuilding);
-        basicInfoPage.enterClientPostalAddressRoom(postalAddressRoom);
+        basicInfoPage.selectClientPostalAddressKladr((String) getCurrentSession().get("postalAddressKladr"));
+        basicInfoPage.enterClientPostalAddressIndex((String) getCurrentSession().get("postalAddressIndex"));
+        basicInfoPage.enterClientPostalAddressHouse((String) getCurrentSession().get("postalAddressHouse"));
+        basicInfoPage.enterClientPostalAddressHousing((String) getCurrentSession().get("postalAddressHousing"));
+        basicInfoPage.enterClientPostalAddressBuilding((String) getCurrentSession().get("postalAddressBuilding"));
+        basicInfoPage.enterClientPostalAddressRoom((String) getCurrentSession().get("postalAddressRoom"));
     }
 
     private void fillsClientBankData() {
-        String clientBankName = getRandomCyrillicProperString(6);
-        String clientBankBIK = getRandomNumber(9);
-        String clientBankINN = getRandomNumber(10);
-        String clientBankKorNumber = getRandomNumber(20);
-        String clientAccountNumber = getRandomNumber(20);
-        String clientBankReceiverName = getRandomCyrillicProperString(18);
+        getCurrentSession().put("clientBankName", getRandomCyrillicProperString(6));
+        getCurrentSession().put("clientBankBIK", getRandomNumber(9));
+        getCurrentSession().put("clientBankINN", getRandomNumber(10));
+        getCurrentSession().put("clientBankKorNumber", getRandomNumber(20));
+        getCurrentSession().put("clientAccountNumber", getRandomNumber(20));
+        getCurrentSession().put("clientBankReceiverName", getRandomCyrillicProperString(18));
 
-        basicInfoPage.enterClientBankName(clientBankName);
-        basicInfoPage.enterClientBankBIK(clientBankBIK);
-        basicInfoPage.enterClientBankINN(clientBankINN);
-        basicInfoPage.enterClientBankKorNumber(clientBankKorNumber);
-        basicInfoPage.enterClientBankAccountNumber(clientAccountNumber);
-        basicInfoPage.enterClientBankReceiverName(clientBankReceiverName);
+        basicInfoPage.enterClientBankName((String) getCurrentSession().get("clientBankName"));
+        basicInfoPage.enterClientBankBIK((String) getCurrentSession().get("clientBankBIK"));
+        basicInfoPage.enterClientBankINN((String) getCurrentSession().get("clientBankINN"));
+        basicInfoPage.enterClientBankKorNumber((String) getCurrentSession().get("clientBankKorNumber"));
+        basicInfoPage.enterClientBankAccountNumber((String) getCurrentSession().get("clientAccountNumber"));
+        basicInfoPage.enterClientBankReceiverName((String) getCurrentSession().get("clientBankReceiverName"));
     }
 }

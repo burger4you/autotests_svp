@@ -4,13 +4,14 @@ import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.DefaultUrl;
 
+import static java.util.concurrent.TimeUnit.SECONDS;
+import static org.openqa.selenium.By.id;
+
 /**
  * Страница ввода информации о ТС при регистрации
  */
 @DefaultUrl("http://lk-stage.progresspoint.ru/registration")
 public class LKVehicleInfoPage extends LKSelectizePageObject {
-
-    //Данные о ТС
 
     private static final String vehicleRegistrationCountryField = "vehicle_grnz_country_id";
 
@@ -28,6 +29,11 @@ public class LKVehicleInfoPage extends LKSelectizePageObject {
     WebElementFacade vehicleVINField;
 
     private static final String vehicleMassField = "vehicle_vehicle_mass_id";
+
+    public void loading() {
+        withTimeoutOf(15, SECONDS).waitForPresenceOf(id(vehicleRegistrationCountryField));
+        vehicleRegistrationGRNZField.shouldBeEnabled();
+    }
 
     public void selectVehicleRegistrationCountry(String vehicleRegistrationCountry) {
         selectForSelectizePlugin(vehicleRegistrationCountryField, vehicleRegistrationCountry);

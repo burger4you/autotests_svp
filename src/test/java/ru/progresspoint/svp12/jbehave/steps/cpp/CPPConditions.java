@@ -4,7 +4,6 @@ import net.thucydides.core.annotations.Steps;
 import org.jbehave.core.annotations.Then;
 import ru.progresspoint.svp12.EmailUserSteps;
 import ru.progresspoint.svp12.NavigationSteps;
-import ru.progresspoint.svp12.cpp.steps.CPPOperatorSteps;
 import ru.progresspoint.svp12.lk.steps.LKUserSteps;
 
 import javax.mail.MessagingException;
@@ -19,9 +18,6 @@ public class CPPConditions {
 
     @Steps
     NavigationSteps navigation;
-
-    @Steps
-    CPPOperatorSteps operator;
 
     @Steps
     EmailUserSteps email;
@@ -44,6 +40,8 @@ public class CPPConditions {
         email.waitsForEmailWithAccessLink(emailAddress);
         navigation.opensLKPage("Авторизации");
         user.entersLoginAndPassword((String) getCurrentSession().get("login"), (String) getCurrentSession().get("password"));
+        user.clicksToConfirmButton();
         navigation.isOnLKPage("Главная");
+        email.deletesAllMessagesFromProgresspoint(emailAddress);
     }
 }

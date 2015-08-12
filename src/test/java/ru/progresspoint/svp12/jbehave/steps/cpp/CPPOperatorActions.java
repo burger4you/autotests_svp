@@ -44,6 +44,7 @@ public class CPPOperatorActions {
 //        operator.entersVehicleData();
 //        operator.uploadsVehicleDocumentsCopies();
 //        operator.clicksToConfirmButton();
+        operator.clicksToTextButton("Завершить");
     }
 
     @When("оператор проводит верификацию данных пользователя")

@@ -28,7 +28,7 @@ public class LKAccountPage extends LKSelectizePageObject {
     @FindBy(id = "registration_middle_name")
     WebElementFacade registrationPatronymicField;
 
-    @FindBy(id = "registration_document_number")
+    @FindBy(id = "registration_document_passport_ser_and_num")
     WebElementFacade registrationDocumentNumberField;
 
     @FindBy(id = "registration_document_issue_date")

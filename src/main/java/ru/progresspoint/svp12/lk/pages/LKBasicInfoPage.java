@@ -10,12 +10,18 @@ import net.thucydides.core.annotations.DefaultUrl;
 @DefaultUrl("http://lk-stage.progresspoint.ru/registration")
 public class LKBasicInfoPage extends LKSelectizePageObject {
 
-    //Данные об ИП
-    @FindBy(id = "client_short_name")
-    WebElementFacade clientShortNameField;
+    //ДАННЫЕ ОБ ИП
+    @FindBy(id = "client_surname")
+    WebElementFacade clientSurnameField;
 
     @FindBy(id = "client_name")
     WebElementFacade clientNameField;
+
+    @FindBy(id = "client_patronymic")
+    WebElementFacade clientPatronymicField;
+
+    @FindBy(id = "client_short_name")
+    WebElementFacade clientShortNameField;
 
     @FindBy(id = "client_inn")
     WebElementFacade clientINNField;
@@ -29,12 +35,20 @@ public class LKBasicInfoPage extends LKSelectizePageObject {
     @FindBy(id = "client_main_phone")
     WebElementFacade clientMainPhoneField;
 
-    public void enterClientShortName(String clientShortName) {
-        enter(clientShortName).into(clientShortNameField);
+    public void enterClientSurname(String clientSurname) {
+        enter(clientSurname).into(clientSurnameField);
     }
 
     public void enterClientName(String clientName) {
         enter(clientName).into(clientNameField);
+    }
+
+    public void enterClientPatronymic(String clientPatronymic) {
+        enter(clientPatronymic).into(clientPatronymicField);
+    }
+
+    public void enterClientShortName(String clientShortName) {
+        enter(clientShortName).into(clientShortNameField);
     }
 
     public void enterClientINN(String clientINN) {
@@ -51,6 +65,34 @@ public class LKBasicInfoPage extends LKSelectizePageObject {
 
     public void enterClientMainPhone(String clientMainPhone) {
         enter(clientMainPhone).into(clientMainPhoneField);
+    }
+
+    //РЕКВИЗИТЫ ДОКУМЕНТА, УДОСТОВЕРЯЮЩЕГО ЛИЧНОСТЬ РУКОВОДИТЕЛЯ
+    private static final String clientPersonalDocumentTypeField = "client_ip_person_certify_doc_type_id";
+
+    @FindBy(id = "client_ip_person_certify_number")
+    WebElementFacade clientPersonalDocumentNumberField;
+
+    @FindBy(id = "client_ip_person_certify_issue_date")
+    WebElementFacade clientPersonalDocumentDateField;
+
+    @FindBy(id = "client_ip_person_certify_issued")
+    WebElementFacade clientPersonalDocumentByField;
+
+    public void selectClientPersonalDocumentType(String clientPersonalDocumentType) {
+        selectForSelectizePlugin(clientPersonalDocumentTypeField, clientPersonalDocumentType);
+    }
+
+    public void enterClientPersonalDocumentNumber(String clientPersonalDocumentNumber) {
+        enter(clientPersonalDocumentNumber).into(clientPersonalDocumentNumberField);
+    }
+
+    public void enterClientPersonalDocumentIssuedDate(String clientPersonalDocumentDate) {
+        enter(clientPersonalDocumentDate).into(clientPersonalDocumentDateField);
+    }
+
+    public void enterClientPersonalDocumentIssuedBy(String clientPersonalDocumentBy) {
+        enter(clientPersonalDocumentBy).into(clientPersonalDocumentByField);
     }
 
     //Данные об организации
@@ -163,7 +205,7 @@ public class LKBasicInfoPage extends LKSelectizePageObject {
         enter(directorPersonalDocumentBy).into(directorPersonalDocumentByField);
     }
 
-    //Юридический адрес
+    //ЮРИДИЧЕСКИЙ АДРЕС
 
     @FindBy(id = "client_reg_address_post_index")
     WebElementFacade clientRegistrationAddressIndexField;
@@ -206,8 +248,7 @@ public class LKBasicInfoPage extends LKSelectizePageObject {
         enter(clientRegistrationAddressRoom).into(clientRegistrationAddressRoomField);
     }
 
-    //Адрес местонахождения
-
+    //АДРЕС МЕСТОНАХОЖДЕНИЯ
     @FindBy(id = "client_location_address_post_index")
     WebElementFacade clientLocationAddressIndexField;
 
@@ -249,8 +290,7 @@ public class LKBasicInfoPage extends LKSelectizePageObject {
         enter(clientLocationAddressRoom).into(clientLocationAddressRoomField);
     }
 
-    //Почтовый адрес
-
+    //ПОЧТОВЫЙ АДРЕС
     @FindBy(id = "client_postal_address_post_index")
     WebElementFacade clientPostalAddressIndexField;
 
@@ -292,8 +332,7 @@ public class LKBasicInfoPage extends LKSelectizePageObject {
         enter(clientPostalAddressRoom).into(clientPostalAddressRoomField);
     }
 
-    //Банковские реквизиты
-
+    //БАНКОВСКИЕ РЕКВИЗИТЫ
     @FindBy(id = "client_settlement_account_bank_name")
     WebElementFacade clientBankNameField;
 
@@ -337,7 +376,6 @@ public class LKBasicInfoPage extends LKSelectizePageObject {
     }
 
     //Скан-копии документов ВТС необходимые для регистрации
-
     @FindBy(xpath = ".//input[@name='client[client_files][0][file]']")
     WebElementFacade clientDocumentFirstCopyField;
 
