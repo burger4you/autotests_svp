@@ -47,7 +47,7 @@ public class CPPOperatorSteps extends RandomGenerators {
         selectActionDialog.selectClientCountry(clientCountry);
     }
 
-    @Step("Нажимает на кнопку Зарегитрировать")
+    @Step("Нажимает на кнопку Зарегистрировать")
     public void clicksToRegistrationButton() {
         selectActionDialog.clickRegistrationButton();
     }
@@ -58,6 +58,7 @@ public class CPPOperatorSteps extends RandomGenerators {
         fillsIPRegistrationAddress("Город Санкт-Петербург, улица Иркутская");
         fillsIPLocationAddress("Совпадает с адресом регистрации");
         fillsIPPostalAddress("Совпадает с адресом регистрации");
+        fillsAccountData();
         fillsClientBankData();
     }
 
@@ -68,6 +69,7 @@ public class CPPOperatorSteps extends RandomGenerators {
         fillsOrganizationLocationAddress("Совпадает с адресом регистрации");
         fillsOrganizationPostalAddress("Совпадает с адресом регистрации");
         fillsDirectorData(organizationEmail);
+        fillsAccountData();
         fillsClientBankData();
     }
 
@@ -77,6 +79,7 @@ public class CPPOperatorSteps extends RandomGenerators {
         fillsClientRegistrationAddress("Город Санкт-Петербург, улица Иркутская");
         fillsClientLocationAddress("Совпадает с адресом регистрации");
         fillsClientPostalAddress("Совпадает с адресом регистрации");
+        fillsAccountData();
         fillsClientBankData();
     }
 
@@ -166,6 +169,8 @@ public class CPPOperatorSteps extends RandomGenerators {
     }
 
     private void fillsDirectorData(String directorEmail) {
+        getCurrentSession().put("login", directorEmail.replace("@gmail.com", "+" + getRandomNumber(6) + "@gmail.com"));
+
         organizationRegistrationPage.enterDirectorSurname(getRandomCyrillicProperString(7));
         organizationRegistrationPage.enterDirectorName(getRandomCyrillicProperString(5));
         organizationRegistrationPage.enterDirectorPatronymic(getRandomCyrillicProperString(10));
@@ -178,7 +183,6 @@ public class CPPOperatorSteps extends RandomGenerators {
         organizationRegistrationPage.enterDirectorDocumentIssuedDate(getRandomDate());
         organizationRegistrationPage.enterDirectorDocumentValidity("31.12.2015");
         organizationRegistrationPage.enterDirectorPhone(getRandomNumber(10));
-        getCurrentSession().put("login", directorEmail.replace("@gmail.com", "+" + getRandomNumber(6) + "@gmail.com"));
         organizationRegistrationPage.enterDirectorLogin((String) getCurrentSession().get("login"));
         organizationRegistrationPage.selectDirectorPosition("Генеральный директор");
         organizationRegistrationPage.selectDirectorRole("Главный менеджер");
@@ -290,7 +294,7 @@ public class CPPOperatorSteps extends RandomGenerators {
     private void fillsOrganizationPostalAddress(String postalAddressKladr) {
         switch (postalAddressKladr) {
             case "Совпадает с адресом регистрации":
-                ipRegistrationPage.clickToPostalAddressSameAsRegistrationCheckBox();
+                organizationRegistrationPage.clickToPostalAddressSameAsRegistrationCheckBox();
                 break;
             default:
                 organizationRegistrationPage.selectClientPostalAddressKladr(postalAddressKladr);
@@ -300,6 +304,11 @@ public class CPPOperatorSteps extends RandomGenerators {
                 organizationRegistrationPage.enterClientPostalAddressBuilding(getRandomNumber(1));
                 organizationRegistrationPage.enterClientPostalAddressRoom(getRandomNumber(2));
         }
+    }
+
+    private void fillsAccountData() {
+        clicksToTextButton("Добавить лицевой счет");
+        clientRegistrationPage.enterClientSecondAccountName(getRandomCyrillicProperString(6));
     }
 
     private void fillsClientBankData() {

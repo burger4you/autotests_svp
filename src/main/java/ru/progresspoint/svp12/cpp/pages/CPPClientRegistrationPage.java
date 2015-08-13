@@ -223,11 +223,18 @@ public class CPPClientRegistrationPage extends CPPSelectizePageObject {
     @FindBy(id = "client_accounts_attributes_0_name")
     WebElementFacade clientAccountNameField;
 
+    @FindBy(xpath = ".//*[@class='string optional name-account 0 svp-validate-required form-control']")
+    WebElementFacade clientSecondAccountNameField;
+
     @FindBy(id = "client_accounts_attributes_0_num")
     WebElementFacade clientAccountNamberField;
 
     public void enterClientAccountName(String clientAccountName) {
         enter(clientAccountName).into(clientAccountNameField);
+    }
+
+    public void enterClientSecondAccountName(String clientSecondAccountName) {
+        enter(clientSecondAccountName).into(clientSecondAccountNameField);
     }
 
     public String getClientAccountNamber() {

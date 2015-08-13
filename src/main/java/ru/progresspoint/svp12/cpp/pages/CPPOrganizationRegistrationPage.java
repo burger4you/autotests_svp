@@ -69,32 +69,32 @@ public class CPPOrganizationRegistrationPage extends CPPSelectizePageObject {
     @FindBy(id = "client_ceo_persons_attributes_0_patronymic")
     WebElementFacade directorPatronymicField;
 
-    private static final String directorPersonalDocumentTypeField = "client_ceo_certify_doc_type_id";
+    private static final String directorPersonalDocumentTypeField = "client_ceo_persons_attributes_0_certify_doc_attributes_doc_type_id_or_name";
 
-    @FindBy(id = "client_ceo_certify_number")
+    @FindBy(id = "client_ceo_persons_attributes_0_certify_doc_attributes_passport_ser_and_num")
     WebElementFacade directorPersonalDocumentNumberField;
 
-    @FindBy(id = "client_ceo_certify_issue_date")
+    @FindBy(id = "client_ceo_persons_attributes_0_certify_doc_attributes_issue_date")
     WebElementFacade directorPersonalDocumentDateField;
 
-    @FindBy(id = "client_ceo_certify_issued")
+    @FindBy(id = "client_ceo_persons_attributes_0_certify_doc_attributes_issued")
     WebElementFacade directorPersonalDocumentByField;
 
-    private static final String directorDocumentTypeField = "client_ceo_authority_doc_type_id";
+    private static final String directorDocumentTypeField = "client_ceo_persons_attributes_0_authority_doc_attributes_doc_type_id";
 
-    @FindBy(id = "client_ceo_authority_number")
+    @FindBy(id = "client_ceo_persons_attributes_0_authority_doc_attributes_number")
     WebElementFacade directorDocumentNumberField;
 
-    @FindBy(id = "client_ceo_authority_issue_date")
+    @FindBy(id = "client_ceo_persons_attributes_0_authority_doc_attributes_start_date")
     WebElementFacade directorDocumentDateField;
 
-    @FindBy(id = "client_ceo_authority_end_date")
+    @FindBy(id = "client_ceo_persons_attributes_0_authority_doc_attributes_end_date")
     WebElementFacade directorDocumentValidityField;
 
-    @FindBy(id = "client_ceo_main_phone_name")
+    @FindBy(id = "client_ceo_persons_attributes_0_main_phone_attributes_name")
     WebElementFacade directorPhoneField;
 
-    @FindBy(id = "client_ceo_main_email_name")
+    @FindBy(id = "client_ceo_persons_attributes_0_main_email_attributes_name")
     WebElementFacade directorEmailField;
 
     private static final String directorPositionField = "client_ceo_persons_attributes_0_person_job_id";
@@ -299,63 +299,5 @@ public class CPPOrganizationRegistrationPage extends CPPSelectizePageObject {
 
     public void enterClientPostalAddressRoom(String postalAddressRoom) {
         enter(postalAddressRoom).into(postalAddressRoomField);
-    }
-
-    //ЛИЦЕВОЙ СЧЕТ
-    @FindBy(id = "client_accounts_attributes_0_name")
-    WebElementFacade clientAccountNameField;
-
-    @FindBy(id = "client_accounts_attributes_0_num")
-    WebElementFacade clientAccountNamberField;
-
-    public void enterClientAccountName(String clientAccountName) {
-        enter(clientAccountName).into(clientAccountNameField);
-    }
-
-    public String getClientAccountNamber() {
-        return clientAccountNamberField.getValue();
-    }
-
-    //РАСЧЕТНЫЙ СЧЕТ
-    @FindBy(id = "client_client_settlement_account_attributes_bank_name")
-    WebElementFacade clientBankNameField;
-
-    @FindBy(id = "client_client_settlement_account_attributes_bik")
-    WebElementFacade clientBankBIKField;
-
-    @FindBy(id = "client_client_settlement_account_attributes_inn")
-    WebElementFacade clientBankINNField;
-
-    @FindBy(id = "client_client_settlement_account_attributes_kor_num")
-    WebElementFacade clientBankKorNumberField;
-
-    @FindBy(id = "client_client_settlement_account_attributes_account_num")
-    WebElementFacade clientBankAccountNumberField;
-
-    @FindBy(id = "client_client_settlement_account_attributes_receiver_name")
-    WebElementFacade clientBankReceiverNameField;
-
-    public void enterClientBankName(String clientBankName) {
-        enter(clientBankName).into(clientBankNameField);
-    }
-
-    public void enterClientBankBIK(String clientBankBIK) {
-        enter(clientBankBIK).into(clientBankBIKField);
-    }
-
-    public void enterClientBankINN(String clientBankINN) {
-        enter(clientBankINN).into(clientBankINNField);
-    }
-
-    public void enterClientBankKorNumber(String clientBankKorNumber) {
-        enter(clientBankKorNumber).into(clientBankKorNumberField);
-    }
-
-    public void enterClientBankAccountNumber(String clientBankAccountNumber) {
-        enter(clientBankAccountNumber).into(clientBankAccountNumberField);
-    }
-
-    public void enterClientBankReceiverName(String clientBankReceiverName) {
-        enter(clientBankReceiverName).into(clientBankReceiverNameField);
     }
 }

@@ -41,7 +41,9 @@ public class CPPOperatorActions {
         operator.clicksToTextButton("Завершить регистрацию");
         operator.uploadsClientDocumentsCopies();
         operator.clicksToTextButton("Подтвердить");
-//        operator.entersVehicleData();
+        operator.clicksToTextButton("Регистрация ТС");
+        operator.entersVehicleData();
+        operator.clicksToTextButton("Зарегистрировать");
 //        operator.uploadsVehicleDocumentsCopies();
 //        operator.clicksToConfirmButton();
         operator.clicksToTextButton("Завершить");
