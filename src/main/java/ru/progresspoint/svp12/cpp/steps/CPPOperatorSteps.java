@@ -83,7 +83,7 @@ public class CPPOperatorSteps extends RandomGenerators {
         fillsClientBankData();
     }
 
-    @Step("Нажимает на кнопку $textButton")
+    @Step("Нажимает на кнопку {0}")
     public void clicksToTextButton(String textButton) {
         getDriver().findElement(xpath(format(".//a[text()='%s']", textButton))).click();
     }
