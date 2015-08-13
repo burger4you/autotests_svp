@@ -106,7 +106,7 @@ public class CPPOperatorSteps extends RandomGenerators {
         vehicleRegistrationPage.enterVehicleGRNZ("A" + getCurrentSession().get("vehicleGRNZ") + "AA" + getRandomNumber(3));
         vehicleRegistrationPage.selectVehicleType("Рефрижератор");
         vehicleRegistrationPage.enterVehicleVIN(getRandomNumber(17));
-        vehicleRegistrationPage.selectVehicleBasisType("");
+        vehicleRegistrationPage.selectVehicleBasisType("Собственность");
         vehicleRegistrationPage.selectVehicleMark("MAN");
         vehicleRegistrationPage.selectVehicleMass("3,5 - 6 тонн");
     }
