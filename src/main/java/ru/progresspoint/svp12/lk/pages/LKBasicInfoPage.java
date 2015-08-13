@@ -10,6 +10,15 @@ import net.thucydides.core.annotations.DefaultUrl;
 @DefaultUrl("http://lk-stage.progresspoint.ru/registration")
 public class LKBasicInfoPage extends LKSelectizePageObject {
 
+    public void loading() {
+        clientBankNameField.shouldBeEnabled();
+        clientBankBIKField.shouldBeEnabled();
+        clientBankINNField.shouldBeEnabled();
+        clientBankKorNumberField.shouldBeEnabled();
+        clientBankAccountNumberField.shouldBeEnabled();
+        clientBankReceiverNameField.shouldBeEnabled();
+    }
+
     //ДАННЫЕ ОБ ИП
     @FindBy(id = "client_surname")
     WebElementFacade clientSurnameField;

@@ -400,6 +400,7 @@ public class LKUserSteps extends RandomGenerators {
         getCurrentSession().put("clientEmail", clientEmail.replace("@gmail.com", "+" + getRandomNumber(6) + "@gmail.com"));
         getCurrentSession().put("clientPhone", getRandomNumber(11));
 
+        basicInfoPage.loading();
         basicInfoPage.enterClientSurname((String) getCurrentSession().get("clientSurname"));
         basicInfoPage.enterClientName((String) getCurrentSession().get("clientName"));
         basicInfoPage.enterClientPatronymic((String) getCurrentSession().get("clientPatronymic"));
@@ -431,6 +432,7 @@ public class LKUserSteps extends RandomGenerators {
         getCurrentSession().put("organizationEmail", organizationEmail.replace("@gmail.com", "+" + getRandomNumber(6) + "@gmail.com"));
         getCurrentSession().put("organizationPhone", getRandomNumber(11));
 
+        basicInfoPage.loading();
         basicInfoPage.selectOrganizationOPF((String) getCurrentSession().get("organizationOPF"));
         basicInfoPage.enterClientName((String) getCurrentSession().get("organizationName"));
         basicInfoPage.enterClientShortName((String) getCurrentSession().get("organizationShortName"));
