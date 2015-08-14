@@ -27,7 +27,8 @@ public class LKNewVehiclePage extends LKSelectizePageObject {
     @FindBy(id = "vin")
     WebElementFacade vehicleVINField;
 
-    private static final String vehicleMassField = "vehicle_vehicle_mass_id";
+    @FindBy(id = "vehicle_max_mass")
+    WebElementFacade vehicleMassField;
 
     private static final String vehicleAccountField = "vehicle_account_id";
 
@@ -58,7 +59,7 @@ public class LKNewVehiclePage extends LKSelectizePageObject {
     }
 
     public void selectVehicleMass(String vehicleMass) {
-        selectForSelectizePlugin(vehicleMassField, vehicleMass);
+        enter(vehicleMass).into(vehicleMassField);
     }
 
     public void selectAccountId(String vehicleAccount) {
