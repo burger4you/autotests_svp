@@ -34,7 +34,8 @@ public class CPPVehicleRegistrationPage extends CPPSelectizePageObject {
 
     private static final String vehicleMarkField = "vehicle_vehicle_mark_id";
 
-    private static final String vehicleMassField = "vehicle_vehicle_mass_id";
+    @FindBy(xpath = ".//input[@id='vehicle_max_mass']")
+    WebElementFacade vehicleMassField;
 
     private static final String vehicleAccountField = "vehicle_account_id";
 
@@ -77,8 +78,8 @@ public class CPPVehicleRegistrationPage extends CPPSelectizePageObject {
         selectForSelectizePlugin(vehicleMarkField, vehicleMark);
     }
 
-    public void selectVehicleMass(String vehicleMass) {
-        selectForSelectizePlugin(vehicleMassField, vehicleMass);
+    public void enterVehicleMass(String vehicleMass) {
+        enter(vehicleMass).into(vehicleMassField);
     }
 
     public void selectVehicleAccount(String vehicleAccount) {

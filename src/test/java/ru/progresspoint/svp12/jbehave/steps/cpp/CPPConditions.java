@@ -42,6 +42,5 @@ public class CPPConditions {
         user.entersLoginAndPassword((String) getCurrentSession().get("login"), (String) getCurrentSession().get("password"));
         user.clicksToConfirmButton();
         navigation.isOnLKPage("Главная");
-        email.deletesAllMessagesFromProgresspoint(emailAddress);
     }
 }
