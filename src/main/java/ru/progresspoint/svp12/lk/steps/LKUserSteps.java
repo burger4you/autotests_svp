@@ -153,7 +153,7 @@ public class LKUserSteps extends RandomGenerators {
         vehicleInfoPage.enterVehicleRegistrationDocumentNumber(registrationDocumentNumber);
         vehicleInfoPage.selectVehicleMark("Volvo");
         vehicleInfoPage.enterVehicleVIN(vehicleVIN);
-        vehicleInfoPage.selectVehicleMass("более 12 тонн");
+        vehicleInfoPage.enterVehicleMass("более 12 тонн");
     }
 
     @Step("Прикладывает скан-копии документов ТС")

@@ -28,7 +28,8 @@ public class LKVehicleInfoPage extends LKSelectizePageObject {
     @FindBy(id = "vehicle_vin")
     WebElementFacade vehicleVINField;
 
-    private static final String vehicleMassField = "vehicle_vehicle_mass_id";
+    @FindBy(id = "vehicle_max_mass")
+    WebElementFacade vehicleMassField;
 
     public void loading() {
         withTimeoutOf(15, SECONDS).waitForPresenceOf(id(vehicleRegistrationCountryField));
@@ -59,8 +60,8 @@ public class LKVehicleInfoPage extends LKSelectizePageObject {
         enter(vehicleVIN).into(vehicleVINField);
     }
 
-    public void selectVehicleMass(String vehicleMass) {
-        selectForSelectizePlugin(vehicleMassField, vehicleMass);
+    public void enterVehicleMass(String vehicleMass) {
+        enter(vehicleMass).into(vehicleMassField);
     }
 
     //Скан-копии свидетельства о регистрации ТС
