@@ -1,4 +1,4 @@
-package ru.progresspoint.svp12.cpp.pages;
+package ru.progresspoint.svp12.klad.pages;
 
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.PageObject;
@@ -7,10 +7,10 @@ import net.thucydides.core.annotations.At;
 import net.thucydides.core.annotations.WhenPageOpens;
 
 /**
- * Страница авторизации пользователя АРМа ЦИПП
+ * Страница авторизации пользователя АРМа Кладовщика
  */
 @At("#HOST/sign_in")
-public class CPPLoginPage extends PageObject {
+public class KladLoginPage extends PageObject {
 
     @FindBy(id = "session_login")
     WebElementFacade loginField;
@@ -20,8 +20,8 @@ public class CPPLoginPage extends PageObject {
 
     @WhenPageOpens
     public void loading() {
-        loginField.expect("Страница авторизации в ЦИПП не доступна").shouldBeEnabled();
-        passwordField.expect("Страница авторизации в ЦИПП не доступна").shouldBeEnabled();
+        loginField.shouldBeEnabled();
+        passwordField.shouldBeEnabled();
     }
 
     public void enterLogin(String login) {

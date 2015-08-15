@@ -5,10 +5,14 @@ import net.thucydides.core.annotations.Step;
 import net.thucydides.core.steps.ScenarioSteps;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
+import ru.progresspoint.svp12.cpp.pages.CPPClientRegistrationPage;
 import ru.progresspoint.svp12.cpp.pages.CPPLoginPage;
 import ru.progresspoint.svp12.cpp.pages.CPPMainPage;
-import ru.progresspoint.svp12.cpp.pages.CPPClientRegistrationPage;
 import ru.progresspoint.svp12.cpp.pages.CPPSelectActionDialog;
+import ru.progresspoint.svp12.dz.pages.DZLoginPage;
+import ru.progresspoint.svp12.dz.pages.DZMainPage;
+import ru.progresspoint.svp12.klad.pages.KladLoginPage;
+import ru.progresspoint.svp12.klad.pages.KladMainPage;
 import ru.progresspoint.svp12.lk.pages.*;
 
 import static java.lang.String.format;
@@ -30,11 +34,44 @@ public class NavigationSteps extends ScenarioSteps {
     LKVehiclesPage lkVehiclesPage;
     LKMainHeader lkMainHeader;
 
+    KladLoginPage kladLoginPage;
+    KladMainPage kladMainPage;
+
+    DZLoginPage dzLoginPage;
+    DZMainPage dzMainPage;
+
+    @Step("Открывает страницу {0} в ДЗ")
+    public void opensDZPage(String page) {
+        switch (page) {
+            case "Авторизации":
+                getDriver().get("http://10.0.13.54/sign_out");
+                kladLoginPage.openAt("http://10.0.13.54/sign_in");
+                break;
+            case "Главная":
+                kladMainPage.openAt("http://10.0.13.54");
+                break;
+        }
+    }
+
+    @Step("Открывает страницу {0} в АРМе Кладовщика")
+    public void opensKladPage(String page) {
+        switch (page) {
+            case "Авторизации":
+                getDriver().get("http://10.0.12.206/sign_out");
+                kladLoginPage.openAt("http://10.0.12.206/sign_in");
+                break;
+            case "Главная":
+                kladMainPage.openAt("http://10.0.12.206");
+                break;
+        }
+    }
+
     @Step("Открывает страницу {0} в ЦИПП")
     public void opensCPPPage(String page) {
         switch (page) {
             case "Авторизации":
                 getDriver().get("http://10.0.12.236/sign_out");
+                getDriver().manage().deleteAllCookies();
                 cppLoginPage.openAt("http://10.0.12.236/sign_in");
                 break;
             case "Главная":
@@ -76,6 +113,30 @@ public class NavigationSteps extends ScenarioSteps {
             case "Обращения":
                 lkMainMenu.loading();
                 lkMainMenu.clickToAppealsItem();
+                break;
+        }
+    }
+
+    @Step("Находится на странице {0} АРМа ДЗ")
+    public void isOnDZPage(String page) {
+        switch (page) {
+            case "Авторизации":
+                dzLoginPage.shouldBeDisplayed();
+                break;
+            case "Главная":
+                dzMainPage.shouldBeDisplayed();
+                break;
+        }
+    }
+
+    @Step("Находится на странице {0} АРМа Кладовщика")
+    public void isOnKladPage(String page) {
+        switch (page) {
+            case "Авторизации":
+                kladLoginPage.shouldBeDisplayed();
+                break;
+            case "Главная":
+                kladMainPage.shouldBeDisplayed();
                 break;
         }
     }
