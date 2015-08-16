@@ -7,7 +7,7 @@ import net.serenitybdd.core.pages.PageObject;
  */
 public class LKSelectizePageObject extends PageObject {
     static final String DROP_DOWN_XPATH = ".//*[@id='%s']/..//input";
-    static final String DROP_DOWN_ITEM_XPATH = ".//*[@class='selectize-dropdown-content']/*[text() = '%s']";
+    static final String DROP_DOWN_ITEM_XPATH = ".//*[@class='selectize-dropdown-content']/*[text()[contains(.,'%s')]]";
 
     static final String INPUT_XPATH = ".//*[@id='%s']/..//input";
     static final String INPUT_ITEM_XPATH = ".//*[@id='%s']/..//div[@class='selectize-dropdown-content']/div[2]";

@@ -33,7 +33,9 @@ public class LKUserSteps extends RandomGenerators {
 
     LKLoginPage loginPage;
     LKMainPage mainPage;
+    LKVehiclesGroupsPage vehiclesGroupsPage;
     LKNewVehiclesGroupPage newVehiclesGroupPage;
+    LKVehiclesGroupDetailPage vehiclesGroupDetailPage;
     LKPaymentsPage paymentsPage;
     UnitellerPaymentsPage unitellerPage;
     LKAppealsPage appealsPage;
@@ -214,25 +216,14 @@ public class LKUserSteps extends RandomGenerators {
                 .isEqualTo((String) getCurrentSession().get("vehicleBasisType"));
     }
 
-
-
-//    Перейти на вкладку «Основная информация».
-//
-//    @Step("Вводит изменения в регистрационные данные")
-
-//    @Step("Вводит изменения в регистрационные данные")
-
-
-
-    @Step("Вводит логин {0} и пароль {1}")
-    public void entersLoginAndPassword(String login, String password) {
-        loginPage.enterLogin(login);
-        loginPage.enterPassword(password);
-    }
-
-    @Step("Вводит название новой группы {0}")
-    public void entersNameForNewGroupVehicles(String groupName) {
-        newVehiclesGroupPage.enterVehiclesGroupName(groupName);
+    @Step("Вводит данные новой группы ТС")
+    public void entersNewVehiclesGroupData() {
+        getCurrentSession().put("groupName", getRandomCyrillicProperString(10));
+        getCurrentSession().put("groupLimit", getRandomNumber(4));
+        getCurrentSession().put("groupManager", "Проверочный Иван Петрович");
+        newVehiclesGroupPage.enterVehiclesGroupName((String) getCurrentSession().get("groupName"));
+        newVehiclesGroupPage.enterVehiclesGroupLimit((String) getCurrentSession().get("groupLimit"));
+        newVehiclesGroupPage.selectVehiclesGroupManager((String) getCurrentSession().get("groupManager"));
     }
 
     @Step("Выбирает из списка {0} машин(ы) для новой группы")
@@ -243,9 +234,47 @@ public class LKUserSteps extends RandomGenerators {
                             .getAllVehicles()
                             .get(amountVehicles);
             WebElement addToGroupCheckBox =
-                    targetVehicle.findElement(By.xpath(".//i[@class='checkbox__field']"));
+                    targetVehicle.findElement(By.xpath(".//i[@class='b-checkbox__field']"));
             addToGroupCheckBox.click();
         }
+    }
+
+    @Step("Находит группу ТС в общем списке")
+    public void shouldSeeVehiclesGroupInCommonList() {
+        shouldMatch(vehiclesGroupsPage.getSearchVehiclesGroups(),
+                the("НАЗВАНИЕ:", is((String) getCurrentSession().get("groupName"))),
+                the("МЕНЕДЖЕР ГРУППЫ:", is((String) getCurrentSession().get("groupManager"))),
+                the("ЛИМИТ В МЕСЯЦ:", is((String) getCurrentSession().get("groupLimit"))));
+    }
+
+    @Step("Нажимает на группу ТС для просмотра деталей")
+    public void clicksToVehiclesGroupForDetail() {
+        BeanMatcher matchers = the("НАЗВАНИЕ:", is((String) getCurrentSession().get("vehicleGRNZ")));
+        vehiclesGroupsPage.clickOnVehiclesGroup(matchers);
+    }
+
+    @Step("Находит в группе ТС все детали")
+    public void shouldSeeCorrectVehiclesGroupDetail() {
+        assertThat(vehiclesGroupDetailPage.getVehiclesGroupName())
+                .overridingErrorMessage("Название группы ТС не верное")
+                .isEqualToIgnoringCase((String) getCurrentSession().get("groupName"));
+        assertThat(vehiclesGroupDetailPage.getVehiclesGroupLimit())
+                .overridingErrorMessage("Лимит расходов в месяц для группы ТС не верный")
+                .startsWith((String) getCurrentSession().get("groupLimit"));
+        assertThat(vehiclesGroupDetailPage.getVehiclesGroupManager())
+                .overridingErrorMessage("Менеджер группы ТС не верный")
+                .startsWith((String) getCurrentSession().get("groupManager"));
+    }
+
+//    @Step("Вводит изменения в регистрационные данные")
+
+//    @Step("Вводит изменения в регистрационные данные")
+
+
+    @Step("Вводит логин {0} и пароль {1}")
+    public void entersLoginAndPassword(String login, String password) {
+        loginPage.enterLogin(login);
+        loginPage.enterPassword(password);
     }
 
     @Step("Вводит {0} рублей в окне Пополениние счета и жмет Оплатить")
@@ -328,7 +357,7 @@ public class LKUserSteps extends RandomGenerators {
         }
     }
 
-    @Step("Нажимает на обращение дл просмотра деталей")
+    @Step("Нажимает на обращение для просмотра деталей")
     public void clicksToAppealForDetail() {
         BeanMatcher matchers = the("ТЕМА:", is((String) getCurrentSession().get("appealTitle")));
         appealsPage.clickOnAppeal(matchers);
@@ -347,16 +376,11 @@ public class LKUserSteps extends RandomGenerators {
                 .isEqualTo("Appeal.pdf");
     }
 
-//    @Step("Нажимает на кнопку Запросить историю")
-
     @Step("Вводит период обращений с {0} по {1}")
     public void entersPeriodAppealsDates(String startDate, String endDate) {
         appealsPage.enterStartAppealsDate(startDate);
         appealsPage.enterEndAppealsDate(endDate);
     }
-
-//    @Step("Нажимает на кнопку Запросить историю")
-
 
     @Step("Нажимает на кнопку Уведомления")
     public void clicksToNotificationsButton() {

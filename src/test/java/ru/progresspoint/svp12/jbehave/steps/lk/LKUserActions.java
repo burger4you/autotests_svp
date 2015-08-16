@@ -59,13 +59,18 @@ public class LKUserActions {
         user.clicksToVehicleForDetail();
     }
 
-    @When("пользователь объеденит $amountVehicles своих ТС в группу $groupName")
-    public void userChooseVehiclesForGroup(int amountVehicles, String groupName) {
+    @When("он зарегистрирует новую группу ТС для $amountVehicles -х своих ТС")
+    public void userRegistersNewVehiclesGroup(int amountVehicles) {
         user.clicksToLink("Группы");
         user.clicksToLink("Добавить группу");
-        user.entersNameForNewGroupVehicles(groupName);
+        user.entersNewVehiclesGroupData();
         user.selectsVehiclesForGroup(amountVehicles);
         user.clicksToConfirmButton();
+    }
+
+    @When("он нажмет на эту группу ТС")
+    public void userClicksToVehiclesGroup() {
+        user.clicksToVehiclesGroupForDetail();
     }
 
     @When("он отфильтрует выписку операций с $startDate по $endDate")

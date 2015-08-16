@@ -17,7 +17,7 @@ import static net.thucydides.core.pages.components.HtmlTable.rowsFrom;
  * Страница Транспортные Средства - Группы в личном кабинете
  */
 @At("#HOST/accounts/.*/vehicles")
-public class LKVehiclesGroupPage extends PageObject {
+public class LKVehiclesGroupsPage extends PageObject {
 
     @FindBy(id = "vehicle_groups")
     WebElementFacade vehiclesGroupsTable;

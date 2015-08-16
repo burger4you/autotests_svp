@@ -46,9 +46,15 @@ public class LKConditions {
         user.shouldSeeCorrectVehicleDetail();
     }
 
-    @Then("система создаст группу для этих ТС с названием $groupName")
-    public void vehiclesGroupShouldBeCreated(String groupName) {
-        navigation.messageShouldDisplayed(groupName);
+    @Then("система отобразит её в общем списке групп ТС")
+    public void systemShouldDisplaysVehiclesGroup() {
+        navigation.clicksToOkInConfirmationPopUp("Группа создана");
+        user.shouldSeeVehiclesGroupInCommonList();
+    }
+
+    @Then("группа ТС откроется для просмотра деталей")
+    public void systemShouldDisplaysVehiclesGroupDetails() {
+        user.shouldSeeCorrectVehiclesGroupDetail();
     }
 
     @Then("система увеличит баланс лицевого счета на $fundsAmount рублей")
