@@ -15,8 +15,6 @@ import static net.thucydides.core.pages.components.HtmlTable.filterRows;
 @At("#HOST/client_accounts/.*/vehicle_groups/new")
 public class LKNewVehiclesGroupPage extends LKSelectizePageObject {
 
-    LKMainMenu menu;
-
     @FindBy(id = "vehicle_group_name")
     WebElementFacade vehiclesGroupNameField;
 
@@ -25,7 +23,7 @@ public class LKNewVehiclesGroupPage extends LKSelectizePageObject {
 
     private static final String vehiclesGroupManagerField = "select_manager";
 
-    @FindBy(xpath = "//*[@id='vehicles']/div/div/table")
+    @FindBy(xpath = "//*[@id='vehicles']/table")
     WebElement vehiclesTable;
 
     @FindBy(id = "search-vehicle")
