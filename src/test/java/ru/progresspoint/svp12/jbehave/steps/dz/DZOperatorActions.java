@@ -12,7 +12,7 @@ public class DZOperatorActions {
     @Steps
     DZOperatorSteps operator;
 
-    @When("он вводит логин $login и пароль $password для авторизации в АРМ ДЗ")
+    @When("оператор вводит логин $login и пароль $password для авторизации в АРМ ДЗЗ")
     public void operatorEntersLoginAndPassword(String login, String password) {
         operator.entersLoginAndPassword(login, password);
         operator.clicksToConfirmButton();

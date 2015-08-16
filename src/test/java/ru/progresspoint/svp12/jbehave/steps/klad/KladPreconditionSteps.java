@@ -16,7 +16,7 @@ public class KladPreconditionSteps {
     @Steps
     KladStorekeeperSteps storekeeper;
 
-    @Given("оператор находится на странице $page в АРМ Кладовщика")
+    @Given("кладовщик находится на странице $page в АРМ Кладовщика")
     public void operatorIsOn(String page) {
         if (!page.equals("Авторизации")) {
             navigation.opensKladPage("Главная");

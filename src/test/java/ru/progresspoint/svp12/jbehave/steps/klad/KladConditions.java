@@ -12,7 +12,7 @@ public class KladConditions {
     @Steps
     NavigationSteps navigation;
 
-    @Then("система предоставляет доступ к АРМ ДЗ")
+    @Then("система предоставляет доступ к АРМ Кладовщика")
     public void kladShouldBeAvailableForUser() {
         navigation.isOnKladPage("Главная");
     }
