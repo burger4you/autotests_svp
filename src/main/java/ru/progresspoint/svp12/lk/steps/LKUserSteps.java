@@ -180,7 +180,7 @@ public class LKUserSteps extends RandomGenerators {
         newVehiclePage.enterVehicleDocumentNumber(registrationDocumentNumber);
         newVehiclePage.selectVehicleMark("Ariel");
         newVehiclePage.enterVehicleVIN(getRandomNumber(17));
-        newVehiclePage.selectVehicleMass("более 12 тонн");
+        newVehiclePage.enterVehicleMass("более 12 тонн");
 //        newVehiclePage.selectAccountId("№ 101 000 001 010");
 //        newVehiclePage.selectVehicleGroup("");
     }
@@ -207,24 +207,21 @@ public class LKUserSteps extends RandomGenerators {
                 .overridingErrorMessage("Регистрационный знак ТС не верный")
                 .containsIgnoringCase("A " + getCurrentSession().get("vehicleGRNZ") + " AA");
         assertThat(vehicleDetailPage.getVehicleCountry())
-                .overridingErrorMessage("Страна, выдавшая гос. номер ТС не верная")
+                .overridingErrorMessage("Страна, выдавшая гос. номер ТС, не верная")
                 .isEqualTo((String) getCurrentSession().get("vehicleCountry"));
         assertThat(vehicleDetailPage.getVehicleBasisType())
                 .overridingErrorMessage("Основание владения ТС не верное")
                 .isEqualTo((String) getCurrentSession().get("vehicleBasisType"));
     }
 
-//    @Step("Нажимает Зарегистрировать")
+
 
 //    Перейти на вкладку «Основная информация».
-
-//    @Step("Нажимает на кнопку Редактировать")
 //
 //    @Step("Вводит изменения в регистрационные данные")
-//    @Step("Нажимает на кнопку Сохранить")
-//    @Step("Нажимает на кнопку Редактировать")
+
 //    @Step("Вводит изменения в регистрационные данные")
-//    @Step("Нажимает на кнопку Сохранить")
+
 
 
     @Step("Вводит логин {0} и пароль {1}")

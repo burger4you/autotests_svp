@@ -1,8 +1,8 @@
 package ru.progresspoint.svp12.dz.steps;
 
 
-import net.serenitybdd.core.pages.PageObject;
 import net.thucydides.core.annotations.Step;
+import net.thucydides.core.steps.ScenarioSteps;
 import ru.progresspoint.svp12.dz.pages.DZLoginPage;
 
 import static org.openqa.selenium.By.linkText;
@@ -11,7 +11,7 @@ import static org.openqa.selenium.By.name;
 /**
  * Шаги оператора АРМа ДЗ
  */
-public class DZOperatorSteps extends PageObject {
+public class DZOperatorSteps extends ScenarioSteps {
 
     DZLoginPage loginPage;
 

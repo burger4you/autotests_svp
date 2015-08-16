@@ -1,8 +1,8 @@
 package ru.progresspoint.svp12.klad.steps;
 
 
-import net.serenitybdd.core.pages.PageObject;
 import net.thucydides.core.annotations.Step;
+import net.thucydides.core.steps.ScenarioSteps;
 import ru.progresspoint.svp12.klad.pages.KladLoginPage;
 
 import static org.openqa.selenium.By.linkText;
@@ -11,7 +11,7 @@ import static org.openqa.selenium.By.name;
 /**
  * Шаги кладовщика
  */
-public class KladStorekeeperSteps extends PageObject {
+public class KladStorekeeperSteps extends ScenarioSteps {
 
     KladLoginPage loginPage;
 

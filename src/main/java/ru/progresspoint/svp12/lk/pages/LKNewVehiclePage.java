@@ -58,7 +58,7 @@ public class LKNewVehiclePage extends LKSelectizePageObject {
         enter(vehicleVIN).into(vehicleVINField);
     }
 
-    public void selectVehicleMass(String vehicleMass) {
+    public void enterVehicleMass(String vehicleMass) {
         enter(vehicleMass).into(vehicleMassField);
     }
 
