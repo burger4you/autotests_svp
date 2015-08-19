@@ -2,7 +2,6 @@
 Meta:
 @arm cpp
 @component registration
-@2
 
 Описание:
 Чтобы регистрировать транспортные средства ИП
