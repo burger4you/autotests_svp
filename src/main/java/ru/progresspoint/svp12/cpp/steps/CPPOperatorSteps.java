@@ -135,7 +135,7 @@ public class CPPOperatorSteps extends RandomGenerators {
         clientRegistrationPage.enterClientSurname(getRandomCyrillicProperString(7));
         clientRegistrationPage.enterClientName(getRandomCyrillicProperString(5));
         clientRegistrationPage.enterClientPatronymic(getRandomCyrillicProperString(10));
-        clientRegistrationPage.enterClientPhone(getRandomNumber(10));
+        clientRegistrationPage.enterClientPhone(getRandomNumber(11));
         getCurrentSession().put("login", clientEmail.replace("@gmail.com", "+" + getRandomNumber(6) + "@gmail.com"));
         clientRegistrationPage.enterClientEmail((String) getCurrentSession().get("login"));
         clientRegistrationPage.selectClientRole("Главный менеджер");
@@ -152,7 +152,7 @@ public class CPPOperatorSteps extends RandomGenerators {
         ipRegistrationPage.enterIPDocumentNumber(getRandomNumber(10));
         ipRegistrationPage.enterIPDocumentIssuedBy(getRandomCyrillicProperString(12));
         ipRegistrationPage.enterIPDocumentIssuedDate(getRandomDate());
-        ipRegistrationPage.enterIPMainPhone(getRandomNumber(10));
+        ipRegistrationPage.enterIPMainPhone(getRandomNumber(11));
         getCurrentSession().put("login", ipEmail.replace("@gmail.com", "+" + getRandomNumber(6) + "@gmail.com"));
         ipRegistrationPage.enterIPMainEmail((String) getCurrentSession().get("login"));
         ipRegistrationPage.selectIPRole("Главный менеджер");
@@ -164,7 +164,7 @@ public class CPPOperatorSteps extends RandomGenerators {
         organizationRegistrationPage.enterOrganizationINN(getRandomNumber(12));
         organizationRegistrationPage.enterOrganizationName(getRandomCyrillicProperString(10));
         organizationRegistrationPage.enterOrganizationShortName(getRandomCyrillicProperString(5));
-        organizationRegistrationPage.enterOrganizationMainPhone(getRandomNumber(10));
+        organizationRegistrationPage.enterOrganizationMainPhone(getRandomNumber(11));
         organizationRegistrationPage.enterOrganizationMainEmail(organizationEmail.replace("@gmail.com", "+" + getRandomNumber(6) + "@gmail.com"));
     }
 
@@ -182,7 +182,7 @@ public class CPPOperatorSteps extends RandomGenerators {
         organizationRegistrationPage.enterDirectorDocumentNumber(getRandomNumber(10));
         organizationRegistrationPage.enterDirectorDocumentIssuedDate(getRandomDate());
         organizationRegistrationPage.enterDirectorDocumentValidity("31.12.2015");
-        organizationRegistrationPage.enterDirectorPhone(getRandomNumber(10));
+        organizationRegistrationPage.enterDirectorPhone(getRandomNumber(11));
         organizationRegistrationPage.enterDirectorLogin((String) getCurrentSession().get("login"));
         organizationRegistrationPage.selectDirectorPosition("Генеральный директор");
         organizationRegistrationPage.selectDirectorRole("Главный менеджер");

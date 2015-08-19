@@ -20,7 +20,7 @@ public class CPPOperatorActions {
     }
 
     @When("оператор зарегистрирует ВТС как $clientType ($clientEmail)")
-    public void operatorSetTypeAndResidenceOfClient(String clientType, String clientEmail) {
+    public void operatorRegistersNewClient(String clientType, String clientEmail) {
         operator.selectsClientCountry("Российская Федерация");
         operator.selectsClientType(clientType);
         operator.clicksToRegistrationButton();
@@ -48,6 +48,36 @@ public class CPPOperatorActions {
 //        operator.clicksToConfirmButton();
         operator.clicksToTextButton("Завершить");
     }
+
+//    @When("оператор зарегистрирует ВТС нерезидента РФ как $clientType ($clientEmail)")
+//    public void operatorRegistratesUserData(String clientType, String clientEmail) {
+//        operator.selectsClientCountry("Российская Федерация");
+//        operator.selectsClientType(clientType);
+//        operator.clicksToRegistrationButton();
+//        switch (clientType) {
+//            case "Индивидуальный предприниматель":
+//                operator.entersIPData(clientEmail);
+////                operator.uploadsIPDocumentsCopies();
+//                break;
+//            case "Юридическое лицо":
+//                operator.entersULData(clientEmail);
+////                operator.uploadsULDocumentsCopies();
+//                break;
+//            case "Физическое лицо":
+//                operator.entersFLData(clientEmail);
+////                operator.uploadsFLDocumentsCopies();
+//                break;
+//        }
+//        operator.clicksToTextButton("Завершить регистрацию");
+//        operator.uploadsClientDocumentsCopies();
+//        operator.clicksToTextButton("Подтвердить");
+//        operator.clicksToTextButton("Регистрация ТС");
+//        operator.entersVehicleData();
+//        operator.clicksToTextButton("Зарегистрировать");
+////        operator.uploadsVehicleDocumentsCopies();
+////        operator.clicksToConfirmButton();
+//        operator.clicksToTextButton("Завершить");
+//    }
 
     @When("оператор проводит верификацию данных пользователя")
     public void operatorVerifiesUserData() {
