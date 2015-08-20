@@ -39,6 +39,7 @@ public class CPPOperatorActions {
                 break;
         }
         operator.clicksToTextButton("Завершить регистрацию");
+        operator.clicksToTextButton("Управление документами ВТС");
         operator.uploadsClientDocumentsCopies();
         operator.clicksToTextButton("Подтвердить");
         operator.clicksToTextButton("Регистрация ТС");
@@ -51,7 +52,7 @@ public class CPPOperatorActions {
 
 //    @When("оператор зарегистрирует ВТС нерезидента РФ как $clientType ($clientEmail)")
 //    public void operatorRegistratesUserData(String clientType, String clientEmail) {
-//        operator.selectsClientCountry("Российская Федерация");
+//        operator.selectsClientCountry("Украина");
 //        operator.selectsClientType(clientType);
 //        operator.clicksToRegistrationButton();
 //        switch (clientType) {
@@ -69,8 +70,8 @@ public class CPPOperatorActions {
 //                break;
 //        }
 //        operator.clicksToTextButton("Завершить регистрацию");
-//        operator.uploadsClientDocumentsCopies();
-//        operator.clicksToTextButton("Подтвердить");
+////        operator.uploadsClientDocumentsCopies();
+////        operator.clicksToTextButton("Подтвердить");
 //        operator.clicksToTextButton("Регистрация ТС");
 //        operator.entersVehicleData();
 //        operator.clicksToTextButton("Зарегистрировать");
