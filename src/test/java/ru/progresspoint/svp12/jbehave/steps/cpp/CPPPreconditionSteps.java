@@ -28,7 +28,7 @@ public class CPPPreconditionSteps {
         } else navigation.opensCPPPage("Авторизации");
     }
 
-    @Given("админ находится на $page Авторизации в ЦИПП")
+    @Given("админ находится на странице $page в ЦИПП")
     public void adminIsOn(String page) {
         if (!page.equals("Авторизации")) {
             navigation.opensCPPPage("Главная");

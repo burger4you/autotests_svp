@@ -405,6 +405,8 @@ public class LKUserSteps extends RandomGenerators {
         accountPage.enterRegistrationSurname((String) getCurrentSession().get("registrationSurname"));
         accountPage.enterRegistrationName((String) getCurrentSession().get("registrationName"));
         accountPage.enterRegistrationPatronymic((String) getCurrentSession().get("registrationPatronymic"));
+        accountPage.clickToAgreePersonDataCheckBox();
+        accountPage.clickToAgreeServiceCheckBox();
         accountPage.selectRegistrationDocumentType((String) getCurrentSession().get("registrationDocumentType"));
         accountPage.enterRegistrationDocumentNumber((String) getCurrentSession().get("registrationDocumentNumber"));
         accountPage.enterRegistrationDocumentIssuedDate((String) getCurrentSession().get("registrationDocumentDate"));

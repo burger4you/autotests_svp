@@ -28,6 +28,12 @@ public class LKAccountPage extends LKSelectizePageObject {
     @FindBy(id = "registration_middle_name")
     WebElementFacade registrationPatronymicField;
 
+    @FindBy(xpath = ".//*[@for='registration[is_agree_person_data]']/i")
+    WebElementFacade agreePersonDataCheckBox;
+
+    @FindBy(xpath = ".//*[@for='registration[is_agree_service_conditions]']/i")
+    WebElementFacade agreeServiceCheckBox;
+
     @FindBy(id = "registration_document_passport_ser_and_num")
     WebElementFacade registrationDocumentNumberField;
 
@@ -66,6 +72,14 @@ public class LKAccountPage extends LKSelectizePageObject {
 
     public void enterRegistrationPatronymic(String registrationPatronymic) {
         enter(registrationPatronymic).into(registrationPatronymicField);
+    }
+
+    public void clickToAgreePersonDataCheckBox() {
+        agreePersonDataCheckBox.click();
+    }
+
+    public void clickToAgreeServiceCheckBox() {
+        agreeServiceCheckBox.click();
     }
 
     public void selectRegistrationDocumentType(String ownerDocumentType) {
