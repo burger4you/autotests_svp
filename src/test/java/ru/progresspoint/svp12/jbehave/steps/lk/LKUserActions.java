@@ -31,7 +31,7 @@ public class LKUserActions {
                 break;
             case "Физическое лицо":
                 user.entersFLData();
-                user.uploadsFLDocumentsCopies();
+//                user.uploadsFLDocumentsCopies();
                 break;
         }
         user.clicksToConfirmButton();
