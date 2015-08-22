@@ -5,6 +5,8 @@ import net.thucydides.core.annotations.Step;
 import net.thucydides.core.steps.ScenarioSteps;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
+import ru.progresspoint.svp12.admin.pages.AdminLoginPage;
+import ru.progresspoint.svp12.admin.pages.AdminMainPage;
 import ru.progresspoint.svp12.cpp.pages.CPPClientRegistrationPage;
 import ru.progresspoint.svp12.cpp.pages.CPPLoginPage;
 import ru.progresspoint.svp12.cpp.pages.CPPMainPage;
@@ -39,6 +41,22 @@ public class NavigationSteps extends ScenarioSteps {
 
     DZLoginPage dzLoginPage;
     DZMainPage dzMainPage;
+
+    AdminLoginPage adminLoginPage;
+    AdminMainPage adminMainPage;
+
+    @Step("Открывает страницу {0} в АРМе Администратора")
+    public void opensAdminPage(String page) {
+        switch (page) {
+            case "Авторизации":
+                getDriver().get("http://10.0.12.229/sign_out");
+                adminLoginPage.openAt("http://10.0.12.229/sign_in");
+                break;
+            case "Главная":
+                adminMainPage.openAt("http://10.0.12.229");
+                break;
+        }
+    }
 
     @Step("Открывает страницу {0} в ДЗ")
     public void opensDZPage(String page) {
@@ -113,6 +131,18 @@ public class NavigationSteps extends ScenarioSteps {
             case "Обращения":
                 lkMainMenu.loading();
                 lkMainMenu.clickToAppealsItem();
+                break;
+        }
+    }
+
+    @Step("Находится на странице {0} АРМа Администратора")
+    public void isOnAdminPage(String page) {
+        switch (page) {
+            case "Авторизации":
+                adminLoginPage.shouldBeDisplayed();
+                break;
+            case "Главная":
+                adminMainPage.shouldBeDisplayed();
                 break;
         }
     }

@@ -460,17 +460,17 @@ public class LKBasicInfoPage extends LKSelectizePageObject {
         evaluateJavascript("document.getElementsByName('client[client_files][1][file]')[0].setAttribute('Style','display:block');");
         upload(filename2).to(clientDocumentSecondCopyField);
 
-        evaluateJavascript("document.getElementsByName('client[client_files][2][file]')[0].setAttribute('Style','display:block');");
-        upload(filename3).to(clientDocumentThirdCopyField);
-
-        evaluateJavascript("document.getElementsByName('client[client_files][3][file]')[0].setAttribute('Style','display:block');");
-        upload(filename4).to(clientDocumentFourthCopyField);
-
-        evaluateJavascript("document.getElementsByName('client[client_files][4][file]')[0].setAttribute('Style','display:block');");
-        upload(filename5).to(clientDocumentFifthCopyField);
-
-        evaluateJavascript("document.getElementsByName('client[client_files][5][file]')[0].setAttribute('Style','display:block');");
-        upload(filename6).to(clientDocumentSixthCopyField);
+//        evaluateJavascript("document.getElementsByName('client[client_files][2][file]')[0].setAttribute('Style','display:block');");
+//        upload(filename3).to(clientDocumentThirdCopyField);
+//
+//        evaluateJavascript("document.getElementsByName('client[client_files][3][file]')[0].setAttribute('Style','display:block');");
+//        upload(filename4).to(clientDocumentFourthCopyField);
+//
+//        evaluateJavascript("document.getElementsByName('client[client_files][4][file]')[0].setAttribute('Style','display:block');");
+//        upload(filename5).to(clientDocumentFifthCopyField);
+//
+//        evaluateJavascript("document.getElementsByName('client[client_files][5][file]')[0].setAttribute('Style','display:block');");
+//        upload(filename6).to(clientDocumentSixthCopyField);
     }
 
     public void uploadFLDocumentsCopies(String filename) {

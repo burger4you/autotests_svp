@@ -5,15 +5,15 @@ import org.jbehave.core.annotations.When;
 import ru.progresspoint.svp12.klad.steps.KladStorekeeperSteps;
 
 /**
- * Шаги оператора АРМа Кладовщика
+ * Шаги кладовщика в АРМе Кладовщика
  */
-public class KladOperatorActions {
+public class KladStorekeeperActions {
 
     @Steps
     KladStorekeeperSteps storekeeper;
 
     @When("кладовщик вводит логин $login и пароль $password для авторизации в АРМ Кладовщика")
-    public void operatorEntersLoginAndPassword(String login, String password) {
+    public void storekeeperEntersLoginAndPassword(String login, String password) {
         storekeeper.entersLoginAndPassword(login, password);
         storekeeper.clicksToConfirmButton();
     }
