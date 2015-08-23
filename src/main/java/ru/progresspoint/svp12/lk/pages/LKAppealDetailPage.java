@@ -11,10 +11,10 @@ import net.thucydides.core.annotations.At;
 @At("#HOST/appeals/.*")
 public class LKAppealDetailPage extends PageObject {
 
-    @FindBy(xpath = ".//h2")
+    @FindBy(xpath = ".//h2[@class='headline__title']")
     WebElementFacade appealTitleField;
 
-    @FindBy(xpath = ".//*[@class='b-text']")
+    @FindBy(xpath = ".//*[@class='content']/*[@class='b-text'][1]")
     WebElementFacade appealTextField;
 
     @FindBy(xpath = ".//*[@class='file__title']")
