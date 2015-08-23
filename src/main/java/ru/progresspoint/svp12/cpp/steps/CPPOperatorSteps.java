@@ -100,10 +100,11 @@ public class CPPOperatorSteps extends RandomGenerators {
 
     @Step("Вводит данные ТС")
     public void entersVehicleData() {
+        getCurrentSession().put("vehicleGRNZ", getRandomNumber(3));
         vehicleRegistrationPage.selectVehicleCountry("Российская Федерация");
         vehicleRegistrationPage.enterVehicleDocumentNumber(getRandomNumber(10));
         vehicleRegistrationPage.enterVehicleDocumentDateIssue(getRandomDate());
-        vehicleRegistrationPage.enterVehicleGRNZ("T" + getCurrentSession().get("vehicleGRNZ") + "ST" + getRandomNumber(3));
+        vehicleRegistrationPage.enterVehicleGRNZ("T" + getCurrentSession().get("vehicleGRNZ") + "СT" + getRandomNumber(3));
         vehicleRegistrationPage.selectVehicleType("Рефрижератор");
         vehicleRegistrationPage.enterVehicleVIN(getRandomNumber(17));
         vehicleRegistrationPage.selectVehicleBasisType("Собственность");
