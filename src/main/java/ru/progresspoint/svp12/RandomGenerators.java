@@ -38,14 +38,14 @@ public class RandomGenerators extends ScenarioSteps {
     }
 
     /**
-     * Генератор случайного слова из цифр
+     * Генератор случайного слова из цифр от 1 до 9
      *
      * @param count - количество цифр в результате
      * @return - случайное слово состоящие из цифр
      */
     public String getRandomNumber(int count) {
         String result = "";
-        for (int i = 0; i < count; i++) result += String.valueOf(randomNum.nextInt(10));
+        for (int i = 0; i < count; i++) result += String.valueOf(randomNum.nextInt(9)+1);
         return result;
     }
 

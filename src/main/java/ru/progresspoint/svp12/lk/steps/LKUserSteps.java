@@ -13,6 +13,7 @@ import ru.progresspoint.svp12.lk.pages.*;
 import java.util.List;
 import java.util.Map;
 
+import static java.lang.String.valueOf;
 import static net.serenitybdd.core.Serenity.getCurrentSession;
 import static net.thucydides.core.matchers.BeanMatcherAsserts.shouldMatch;
 import static net.thucydides.core.matchers.BeanMatchers.the;
@@ -219,7 +220,7 @@ public class LKUserSteps extends RandomGenerators {
     @Step("Вводит данные новой группы ТС")
     public void entersNewVehiclesGroupData() {
         getCurrentSession().put("groupName", getRandomCyrillicProperString(10));
-        getCurrentSession().put("groupLimit", getRandomNumber(4));
+        getCurrentSession().put("groupLimit", getRandomNumber(3));
         getCurrentSession().put("groupManager", "Проверочный Иван Петрович");
         newVehiclesGroupPage.enterVehiclesGroupName((String) getCurrentSession().get("groupName"));
         newVehiclesGroupPage.enterVehiclesGroupLimit((String) getCurrentSession().get("groupLimit"));
@@ -228,13 +229,11 @@ public class LKUserSteps extends RandomGenerators {
 
     @Step("Выбирает из списка {0} машин(ы) для новой группы")
     public void selectsVehiclesForGroup(int amountVehicles) {
+        getCurrentSession().put("amountVehicles", valueOf(amountVehicles));
+        List<WebElement> targetVehicles = newVehiclesGroupPage.getAllVehicles();
         for (int vehicle = 0; vehicle < amountVehicles; vehicle++) {
-            WebElement targetVehicle =
-                    newVehiclesGroupPage
-                            .getAllVehicles()
-                            .get(amountVehicles);
-            WebElement addToGroupCheckBox =
-                    targetVehicle.findElement(By.xpath(".//i[@class='b-checkbox__field']"));
+            WebElement targetVehicle = targetVehicles.get(vehicle);
+            WebElement addToGroupCheckBox = targetVehicle.findElement(By.xpath(".//i[@class='b-checkbox__field']"));
             addToGroupCheckBox.click();
         }
     }
@@ -244,12 +243,13 @@ public class LKUserSteps extends RandomGenerators {
         shouldMatch(vehiclesGroupsPage.getSearchVehiclesGroups(),
                 the("НАЗВАНИЕ:", is((String) getCurrentSession().get("groupName"))),
                 the("МЕНЕДЖЕР ГРУППЫ:", is((String) getCurrentSession().get("groupManager"))),
-                the("ЛИМИТ В МЕСЯЦ:", is((String) getCurrentSession().get("groupLimit"))));
+                the("КОЛ-ВО ТС:", is((String) getCurrentSession().get("amountVehicles"))),
+                the("ЛИМИТ В МЕСЯЦ:", startsWith((String) getCurrentSession().get("groupLimit"))));
     }
 
     @Step("Нажимает на группу ТС для просмотра деталей")
     public void clicksToVehiclesGroupForDetail() {
-        BeanMatcher matchers = the("НАЗВАНИЕ:", is((String) getCurrentSession().get("vehicleGRNZ")));
+        BeanMatcher matchers = the("НАЗВАНИЕ:", is((String) getCurrentSession().get("groupName")));
         vehiclesGroupsPage.clickOnVehiclesGroup(matchers);
     }
 
