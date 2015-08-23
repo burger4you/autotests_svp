@@ -108,7 +108,7 @@ public class CPPOperatorSteps extends RandomGenerators {
         vehicleRegistrationPage.enterVehicleVIN(getRandomNumber(17));
         vehicleRegistrationPage.selectVehicleBasisType("Собственность");
         vehicleRegistrationPage.selectVehicleMark("MAN");
-        vehicleRegistrationPage.enterVehicleMass("более 12 тонн");
+        vehicleRegistrationPage.enterVehicleMass("12000");
     }
 
     @Step("Находит заявку на верификацию ВТС")
