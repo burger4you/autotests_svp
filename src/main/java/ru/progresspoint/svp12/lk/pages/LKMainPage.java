@@ -3,12 +3,12 @@ package ru.progresspoint.svp12.lk.pages;
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
-import net.thucydides.core.annotations.DefaultUrl;
+import net.thucydides.core.annotations.At;
 
 /**
  * Главная страница Личного Кабинета
  */
-@DefaultUrl("http://lk-stage.progresspoint.ru")
+@At("#HOST")
 public class LKMainPage extends PageObject {
 
     @FindBy(xpath = ".//*[@class='content dashboard']")

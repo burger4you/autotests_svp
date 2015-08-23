@@ -47,7 +47,7 @@ public class CPPOperatorActions {
         operator.clicksToTextButton("Зарегистрировать");
 //        operator.uploadsVehicleDocumentsCopies();
 //        operator.clicksToConfirmButton();
-        operator.clicksToTextButton("Завершить");
+        operator.clicksToTextButton("OK");
     }
 
 //    @When("оператор зарегистрирует ВТС нерезидента РФ как $clientType ($clientEmail)")
