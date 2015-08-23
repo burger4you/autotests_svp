@@ -8,7 +8,7 @@ import net.thucydides.core.annotations.At;
 /**
  * Главная страница АРМа Кладовщика
  */
-@At("#HOST")
+@At("#HOST/.*")
 public class KladMainPage extends PageObject {
 
     @FindBy(id = "session_login")
