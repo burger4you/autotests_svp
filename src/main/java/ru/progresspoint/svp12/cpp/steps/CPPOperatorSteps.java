@@ -20,6 +20,9 @@ public class CPPOperatorSteps extends RandomGenerators {
     CPPVehicleRegistrationPage vehicleRegistrationPage;
     CPPIPRegistrationPage ipRegistrationPage;
     CPPOrganizationRegistrationPage organizationRegistrationPage;
+    CPPClientNonresidentRegistrationPage clientNonresidentRegistrationPage;
+    CPPIPNonresidentRegistrationPage ipNonresidentRegistrationPage;
+    CPPOrganizationNonresidentRegistrationPage organizationNonresidentRegistrationPage;
 
     @Step("Нажимает на ссылку {0}")
     public void clicksToLink(String linkText) {
@@ -54,7 +57,7 @@ public class CPPOperatorSteps extends RandomGenerators {
 
     @Step("Вводит данные ИП")
     public void entersIPData(String ipEmail) {
-        fillsIPData(ipEmail);
+        fillsIPData(ipEmail, "Паспорт");
         fillsIPRegistrationAddress("Город Санкт-Петербург, улица Иркутская");
         fillsIPLocationAddress("Совпадает с адресом регистрации");
         fillsIPPostalAddress("Совпадает с адресом регистрации");
@@ -68,17 +71,42 @@ public class CPPOperatorSteps extends RandomGenerators {
         fillsOrganizationRegistrationAddress("Город Санкт-Петербург, улица Иркутская");
         fillsOrganizationLocationAddress("Совпадает с адресом регистрации");
         fillsOrganizationPostalAddress("Совпадает с адресом регистрации");
-        fillsDirectorData(organizationEmail);
+        fillsDirectorData(organizationEmail, "Удостоверение личности военнослужащего РФ");
         fillsAccountData();
         fillsClientBankData();
     }
 
     @Step("Вводит данные ФЛ")
     public void entersFLData(String clientEmail) {
-        fillsClientPersonalData(clientEmail);
+        fillsClientPersonalData(clientEmail, "Паспорт");
         fillsClientRegistrationAddress("Город Санкт-Петербург, улица Иркутская");
         fillsClientLocationAddress("Совпадает с адресом регистрации");
         fillsClientPostalAddress("Совпадает с адресом регистрации");
+        fillsAccountData();
+        fillsClientBankData();
+    }
+
+    @Step("Вводит данные ИП, нерезидента РФ")
+    public void entersIPNonresidentData(String ipEmail) {
+        fillsIPData(ipEmail, "Паспорт иностранного гражданина");
+        fillsIPNonresidentAddress();
+        fillsAccountData();
+        fillsClientBankData();
+    }
+
+    @Step("Вводит данные ЮЛ, нерезидента РФ")
+    public void entersULNonresidentData(String organizationEmail) {
+        fillsOrganizationNonresidentData(organizationEmail);
+        fillsOrganizationNonresidentAddress();
+        fillsDirectorData(organizationEmail, "Паспорт иностранного гражданина");
+        fillsAccountData();
+        fillsClientBankData();
+    }
+
+    @Step("Вводит данные ФЛ, нерезидента РФ")
+    public void entersFLNonresidentData(String clientEmail) {
+        fillsClientPersonalData(clientEmail, "Паспорт иностранного гражданина");
+        fillsClientNonresidentAddress();
         fillsAccountData();
         fillsClientBankData();
     }
@@ -128,8 +156,8 @@ public class CPPOperatorSteps extends RandomGenerators {
     public void conductVehicleVerificationRequest() {
     }
 
-    private void fillsClientPersonalData(String clientEmail) {
-        clientRegistrationPage.selectClientDocumentType("Паспорт");
+    private void fillsClientPersonalData(String clientEmail, String clientDocumentType) {
+        clientRegistrationPage.selectClientDocumentType(clientDocumentType);
         clientRegistrationPage.enterClientDocumentNumber(getRandomNumber(10));
         clientRegistrationPage.enterClientDocumentIssuedBy(getRandomCyrillicProperString(12));
         clientRegistrationPage.enterClientDocumentIssuedDate(getRandomDate());
@@ -142,14 +170,14 @@ public class CPPOperatorSteps extends RandomGenerators {
         clientRegistrationPage.selectClientRole("Главный менеджер");
     }
 
-    private void fillsIPData(String ipEmail) {
+    private void fillsIPData(String ipEmail, String ipDocumentType) {
         ipRegistrationPage.enterIPOGRN(getRandomNumber(15));
         ipRegistrationPage.enterIPINN(getRandomNumber(12));
         ipRegistrationPage.enterIPSurname(getRandomCyrillicProperString(7));
         ipRegistrationPage.enterIPName(getRandomCyrillicProperString(5));
         ipRegistrationPage.enterIPPatronymic(getRandomCyrillicProperString(10));
         ipRegistrationPage.enterIPShortName(getRandomCyrillicProperString(10));
-        ipRegistrationPage.selectIPDocumentType("Паспорт");
+        ipRegistrationPage.selectIPDocumentType(ipDocumentType);
         ipRegistrationPage.enterIPDocumentNumber(getRandomNumber(10));
         ipRegistrationPage.enterIPDocumentIssuedBy(getRandomCyrillicProperString(12));
         ipRegistrationPage.enterIPDocumentIssuedDate(getRandomDate());
@@ -169,13 +197,13 @@ public class CPPOperatorSteps extends RandomGenerators {
         organizationRegistrationPage.enterOrganizationMainEmail(organizationEmail.replace("@gmail.com", "+" + getRandomNumber(6) + "@gmail.com"));
     }
 
-    private void fillsDirectorData(String directorEmail) {
+    private void fillsDirectorData(String directorEmail, String directorDocumentType) {
         getCurrentSession().put("login", directorEmail.replace("@gmail.com", "+" + getRandomNumber(6) + "@gmail.com"));
 
         organizationRegistrationPage.enterDirectorSurname(getRandomCyrillicProperString(7));
         organizationRegistrationPage.enterDirectorName(getRandomCyrillicProperString(5));
         organizationRegistrationPage.enterDirectorPatronymic(getRandomCyrillicProperString(10));
-        organizationRegistrationPage.selectDirectorPersonalDocumentType("Удостоверение личности военнослужащего РФ");
+        organizationRegistrationPage.selectDirectorPersonalDocumentType(directorDocumentType);
         organizationRegistrationPage.enterDirectorPersonalDocumentNumber(getRandomNumber(10));
         organizationRegistrationPage.enterDirectorPersonalDocumentIssuedDate(getRandomDate());
         organizationRegistrationPage.enterDirectorPersonalDocumentIssuedBy(getRandomCyrillicProperString(12));
@@ -305,6 +333,36 @@ public class CPPOperatorSteps extends RandomGenerators {
                 organizationRegistrationPage.enterClientPostalAddressBuilding(getRandomNumber(1));
                 organizationRegistrationPage.enterClientPostalAddressRoom(getRandomNumber(2));
         }
+    }
+
+    private void fillsOrganizationNonresidentData(String organizationEmail) {
+        organizationNonresidentRegistrationPage.enterRegistrationNumber(getRandomNumber(12));
+        organizationNonresidentRegistrationPage.enterRegistrationOrgan(getRandomCyrillicProperString(12));
+        organizationNonresidentRegistrationPage.enterTaxNumber(getRandomNumber(8));
+        organizationNonresidentRegistrationPage.enterOrganizationINN(getRandomNumber(10));
+        organizationNonresidentRegistrationPage.enterOrganizationName(getRandomCyrillicProperString(10));
+        organizationNonresidentRegistrationPage.enterOrganizationShortName(getRandomCyrillicProperString(6));
+        organizationNonresidentRegistrationPage.enterOrganizationMainPhone(getRandomNumber(11));
+        organizationNonresidentRegistrationPage.enterOrganizationMainEmail(organizationEmail.replace("@gmail.com", "+" + getRandomNumber(6) + "@gmail.com"));
+    }
+
+    private void fillsClientNonresidentAddress() {
+        clientNonresidentRegistrationPage.enterClientRegistrationAddress(getRandomCyrillicProperString(30));
+        clientNonresidentRegistrationPage.clickToLocationAddressSameAsRegistrationCheckBox();
+        clientNonresidentRegistrationPage.clickToPostalAddressSameAsRegistrationCheckBox();
+
+    }
+
+    private void fillsIPNonresidentAddress() {
+        ipNonresidentRegistrationPage.enterClientRegistrationAddress(getRandomCyrillicProperString(30));
+        ipNonresidentRegistrationPage.clickToLocationAddressSameAsRegistrationCheckBox();
+        ipNonresidentRegistrationPage.clickToPostalAddressSameAsRegistrationCheckBox();
+    }
+
+    private void fillsOrganizationNonresidentAddress() {
+        organizationNonresidentRegistrationPage.enterClientRegistrationAddress(getRandomCyrillicProperString(30));
+        organizationNonresidentRegistrationPage.clickToLocationAddressSameAsRegistrationCheckBox();
+        organizationNonresidentRegistrationPage.clickToPostalAddressSameAsRegistrationCheckBox();
     }
 
     private void fillsAccountData() {

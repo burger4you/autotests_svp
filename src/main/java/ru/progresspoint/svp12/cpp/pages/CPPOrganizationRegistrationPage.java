@@ -5,7 +5,7 @@ import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.At;
 
 /**
- * Страница Регистрациb ВТС
+ * Страница Регистрации ВТС - юридическое лицо
  */
 @At("#HOST/clients/draft")
 public class CPPOrganizationRegistrationPage extends CPPSelectizePageObject {
