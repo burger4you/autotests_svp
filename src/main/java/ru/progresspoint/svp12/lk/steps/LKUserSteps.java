@@ -42,7 +42,8 @@ public class LKUserSteps extends RandomGenerators {
     LKAppealsPage appealsPage;
     LKAppealDetailPage appealDetailPage;
     LKNewAppealPage newAppealPage;
-    LKAccountPage accountPage;
+    LKClientRegistrationPage clientRegistrationPage;
+    LKStartRegistrationPage startRegistrationPage;
     LKBasicInfoPage basicInfoPage;
     LKVehicleInfoPage vehicleInfoPage;
     LKVehiclesPage vehiclesPage;
@@ -64,17 +65,18 @@ public class LKUserSteps extends RandomGenerators {
 
     @Step("Выбирает из списка тип ВТС {0}")
     public void selectsClientType(String clientType) {
-        accountPage.selectClientType(clientType);
+        startRegistrationPage.selectClientType(clientType);
     }
 
-    @Step("Выбирает из списка страну резиденства {0}")
+    @Step("Выбирает из списка страну резиденства {0} и жмет далее")
     public void selectsClientCountry(String clientCountry) {
-        accountPage.selectClientCountry(clientCountry);
+        startRegistrationPage.selectClientCountry(clientCountry);
+        startRegistrationPage.clickSubmitButton();
     }
 
     @Step("Вводит CAPTCHA")
     public void entersCaptcha(String captcha) {
-        accountPage.enterCaptcha(captcha);
+        clientRegistrationPage.enterCaptcha(captcha);
     }
 
     @Step("Нажимает на кнопку подтверждения")
@@ -86,10 +88,6 @@ public class LKUserSteps extends RandomGenerators {
     public void entersIPData(String clientEmail) {
         fillsClientData(clientEmail);
         fillsClientPersonalDocument();
-        fillsClientRegistrationAddress("Город Санкт-Петербург, улица Иркутская");
-        fillsClientLocationAddress("Город Москва, Театральный проезд");
-        fillsClientPostalAddress("Ивановская область, город Иваново, улица Лежневская");
-        fillsClientBankData();
     }
 
     @Step("Вводит данные ЮЛ")
@@ -98,18 +96,28 @@ public class LKUserSteps extends RandomGenerators {
         fillsDirectorData(organizationEmail);
         fillsDirectorDocuments();
         fillsDirectorPersonalDocument();
-        fillsClientRegistrationAddress("Город Санкт-Петербург, улица Иркутская");
-        fillsClientLocationAddress("Город Москва, Театральный проезд");
-        fillsClientPostalAddress("Ивановская область, город Иваново, улица Лежневская");
-        fillsClientBankData();
     }
 
     @Step("Вводит данные ФЛ")
-    public void entersFLData() {
+    public void entersFLData(String clientEmail) {
+        fillsAccountData(clientEmail);
+    }
+
+    @Step("Вводит адреса")
+    public void entersAddressesData() {
         fillsClientRegistrationAddress("Костромская область, Костромской район, город Кострома, улица Сусанина Ивана");
         fillsClientLocationAddress("Новосибирская область, город Новосибирск, улица Парижской Коммуны");
         fillsClientPostalAddress("Ивановская область, город Иваново, улица Лежневская");
+    }
+
+    @Step("Вводит банковские реквизиты")
+    public void entersBankData() {
         fillsClientBankData();
+    }
+
+    @Step("Вводит банковские реквизиты ")
+    public void confirmsAgreeCheckboxes() {
+        selectsAgreeCheckboxes();
     }
 
     @Step("Прикладывает скан-копии документов ИП")
@@ -387,7 +395,7 @@ public class LKUserSteps extends RandomGenerators {
         mainHeader.clickToNotificationsButton();
     }
 
-    private void fillsAccountData(String registrationEmail) {
+    public void fillsAccountData(String registrationEmail) {
         getCurrentSession().put("registrationEmail", registrationEmail.replace("@gmail.com", "+" + getRandomNumber(6) + "@gmail.com"));
         getCurrentSession().put("registrationPhone", getRandomNumber(11));
         getCurrentSession().put("registrationPosition", "Тестовый аккаунт");
@@ -399,18 +407,21 @@ public class LKUserSteps extends RandomGenerators {
         getCurrentSession().put("registrationDocumentDate", getRandomDate());
         getCurrentSession().put("registrationDocumentBy", getRandomCyrillicProperString(12));
 
-        accountPage.enterRegistrationLogin((String) getCurrentSession().get("registrationEmail"));
-        accountPage.enterRegistrationPhone((String) getCurrentSession().get("registrationPhone"));
-        accountPage.enterRegistrationPosition((String) getCurrentSession().get("registrationPosition"));
-        accountPage.enterRegistrationSurname((String) getCurrentSession().get("registrationSurname"));
-        accountPage.enterRegistrationName((String) getCurrentSession().get("registrationName"));
-        accountPage.enterRegistrationPatronymic((String) getCurrentSession().get("registrationPatronymic"));
-        accountPage.clickToAgreePersonDataCheckBox();
-        accountPage.clickToAgreeServiceCheckBox();
-        accountPage.selectRegistrationDocumentType((String) getCurrentSession().get("registrationDocumentType"));
-        accountPage.enterRegistrationDocumentNumber((String) getCurrentSession().get("registrationDocumentNumber"));
-        accountPage.enterRegistrationDocumentIssuedDate((String) getCurrentSession().get("registrationDocumentDate"));
-        accountPage.enterRegistrationDocumentIssuedBy((String) getCurrentSession().get("registrationDocumentBy"));
+        clientRegistrationPage.enterRegistrationLogin((String) getCurrentSession().get("registrationEmail"));
+        clientRegistrationPage.enterRegistrationPhone((String) getCurrentSession().get("registrationPhone"));
+//        clientRegistrationPage.enterRegistrationPosition((String) getCurrentSession().get("registrationPosition"));
+        clientRegistrationPage.enterRegistrationSurname((String) getCurrentSession().get("registrationSurname"));
+        clientRegistrationPage.enterRegistrationName((String) getCurrentSession().get("registrationName"));
+        clientRegistrationPage.enterRegistrationPatronymic((String) getCurrentSession().get("registrationPatronymic"));
+        clientRegistrationPage.selectRegistrationDocumentType((String) getCurrentSession().get("registrationDocumentType"));
+        clientRegistrationPage.enterRegistrationDocumentNumber((String) getCurrentSession().get("registrationDocumentNumber"));
+        clientRegistrationPage.enterRegistrationDocumentIssuedDate((String) getCurrentSession().get("registrationDocumentDate"));
+        clientRegistrationPage.enterRegistrationDocumentIssuedBy((String) getCurrentSession().get("registrationDocumentBy"));
+    }
+
+    private void selectsAgreeCheckboxes() {
+        clientRegistrationPage.clickToAgreePersonDataCheckBox();
+        clientRegistrationPage.clickToAgreeServiceCheckBox();
     }
 
     private void fillsClientData(String clientEmail) {

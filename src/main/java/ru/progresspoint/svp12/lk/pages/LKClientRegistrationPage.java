@@ -5,50 +5,53 @@ import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.DefaultUrl;
 
 /**
- * Страница ввода данных учетной записи при регистрации
+ * Страница ввода основной информации о Владельце ТС для физического лица
  */
 @DefaultUrl("http://lk-stage.progresspoint.ru/registration")
-public class LKAccountPage extends LKSelectizePageObject {
+public class LKClientRegistrationPage extends LKSelectizePageObject {
 
-    @FindBy(id = "registration_login")
+    @FindBy(id = "client_login")
     WebElementFacade registrationLoginField;
 
-    @FindBy(id = "registration_phone")
+    @FindBy(id = "client_phone")
     WebElementFacade registrationPhoneField;
 
-    @FindBy(id = "registration_position")
-    WebElementFacade registrationPositionField;
+//    @FindBy(id = "registration_position")
+//    WebElementFacade registrationPositionField;
 
-    @FindBy(id = "registration_last_name")
+    @FindBy(id = "client_last_name")
     WebElementFacade registrationSurnameField;
 
-    @FindBy(id = "registration_first_name")
+    @FindBy(id = "client_first_name")
     WebElementFacade registrationNameField;
 
-    @FindBy(id = "registration_middle_name")
+    @FindBy(id = "client_middle_name")
     WebElementFacade registrationPatronymicField;
 
-    @FindBy(xpath = ".//*[@for='registration[is_agree_person_data]']/i")
-    WebElementFacade agreePersonDataCheckBox;
+    private static final String ownerDocumentTypeField = "client_document_doc_type_id";
 
-    @FindBy(xpath = ".//*[@for='registration[is_agree_service_conditions]']/i")
-    WebElementFacade agreeServiceCheckBox;
-
-    @FindBy(id = "registration_document_passport_ser_and_num")
+    @FindBy(id = "client_document_passport_ser_and_num")
     WebElementFacade registrationDocumentNumberField;
 
-    @FindBy(id = "registration_document_issue_date")
+    @FindBy(id = "client_document_issue_date")
     WebElementFacade registrationDocumentIssuedDateField;
 
-    @FindBy(id = "registration_document_issued")
+    @FindBy(id = "client_document_issued")
     WebElementFacade registrationDocumentIssuedByField;
+
+    @FindBy(xpath = ".//*[@id='client[is_agree_person_data]']/..//i")
+    WebElementFacade agreePersonDataCheckBox;
+
+    @FindBy(xpath = ".//*[@id='client[is_agree_service_conditions]']/..//i")
+    WebElementFacade agreeServiceCheckBox;
 
     @FindBy(id = "captcha")
     WebElementFacade captchaField;
 
-    private static final String ownerDocumentTypeField = "registration_document_doc_type_id";
-    private static final String ownerTypeField = "registration_client_type_id";
-    private static final String ownerCountryField = "registration_country_id";
+    public void loading() {
+        registrationLoginField.shouldBeEnabled();
+        registrationPhoneField.shouldBeEnabled();
+    }
 
     public void enterRegistrationLogin(String registrationLogin) {
         enter(registrationLogin).into(registrationLoginField);
@@ -58,9 +61,9 @@ public class LKAccountPage extends LKSelectizePageObject {
         enter(registrationPhone).into(registrationPhoneField);
     }
 
-    public void enterRegistrationPosition(String registrationPosition) {
-        enter(registrationPosition).into(registrationPositionField);
-    }
+//    public void enterRegistrationPosition(String registrationPosition) {
+//        enter(registrationPosition).into(registrationPositionField);
+//    }
 
     public void enterRegistrationSurname(String registrationSurname) {
         enter(registrationSurname).into(registrationSurnameField);
@@ -96,14 +99,6 @@ public class LKAccountPage extends LKSelectizePageObject {
 
     public void enterRegistrationDocumentIssuedBy(String registrationDocumentIssuedBy) {
         enter(registrationDocumentIssuedBy).into(registrationDocumentIssuedByField);
-    }
-
-    public void selectClientType(String ownerType) {
-        selectForSelectizePlugin(ownerTypeField, ownerType);
-    }
-
-    public void selectClientCountry(String ownerCountry) {
-        selectForSelectizePlugin(ownerCountryField, ownerCountry);
     }
 
     public void enterCaptcha(String captcha) {

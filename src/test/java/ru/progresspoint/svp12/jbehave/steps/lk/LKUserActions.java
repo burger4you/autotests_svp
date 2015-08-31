@@ -15,25 +15,26 @@ public class LKUserActions {
     @When("пользователь зарегистрирует себя как $clientType ($clientEmail)")
     public void userSetTypeAndResidenceOfClient(String clientType, String clientEmail) {
         user.clicksToLink("Зарегистрироваться");
-        user.entersAccountData(clientEmail);
         user.selectsClientType(clientType);
         user.selectsClientCountry("Российская Федерация");
-        user.entersCaptcha("captcha");
-        user.clicksToConfirmButton();
         switch (clientType) {
             case "Индивидуальный предприниматель":
                 user.entersIPData(clientEmail);
-                user.uploadsIPDocumentsCopies();
+//                operator.uploadsIPDocumentsCopies();
                 break;
             case "Юридическое лицо":
                 user.entersULData(clientEmail);
-                user.uploadsULDocumentsCopies();
+//                operator.uploadsULDocumentsCopies();
                 break;
             case "Физическое лицо":
-                user.entersFLData();
-//                user.uploadsFLDocumentsCopies();
+                user.entersFLData(clientEmail);
+//                operator.uploadsFLDocumentsCopies();
                 break;
         }
+        user.entersAddressesData();
+        user.entersBankData();
+        user.confirmsAgreeCheckboxes();
+        user.entersCaptcha("Captcha");
         user.clicksToConfirmButton();
         user.entersVehicleData();
         user.uploadsVehicleDocumentsCopies();
