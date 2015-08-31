@@ -8,27 +8,57 @@ import net.thucydides.core.annotations.DefaultUrl;
  * Страница ввода основной информации ВТС при регистрации
  */
 @DefaultUrl("http://lk-stage.progresspoint.ru/registration")
-public class LKBasicInfoPage extends LKSelectizePageObject {
+public class LKULRegistrationPage extends LKSelectizePageObject {
 
-    public void loading() {
-        clientBankNameField.shouldBeEnabled();
-        clientBankBIKField.shouldBeEnabled();
-        clientBankINNField.shouldBeEnabled();
-        clientBankKorNumberField.shouldBeEnabled();
-        clientBankAccountNumberField.shouldBeEnabled();
-        clientBankReceiverNameField.shouldBeEnabled();
-    }
+    //ДАННЫЕ КОНТАКТНОГО ЛИЦА
+    @FindBy(id = "client_login")
+    WebElementFacade registrationLoginField;
 
-    //ДАННЫЕ ОБ ИП
-    @FindBy(id = "client_surname")
+    @FindBy(id = "client_phone")
+    WebElementFacade registrationPhoneField;
+
+    @FindBy(id = "client_position")
+    WebElementFacade registrationPositionField;
+
+    @FindBy(id = "client_last_name")
     WebElementFacade clientSurnameField;
 
-    @FindBy(id = "client_name")
+    @FindBy(id = "client_first_name")
     WebElementFacade clientNameField;
 
-    @FindBy(id = "client_patronymic")
+    @FindBy(id = "client_middle_name")
     WebElementFacade clientPatronymicField;
 
+    public void loading() {
+        registrationLoginField.shouldBeEnabled();
+        registrationPhoneField.shouldBeEnabled();
+    }
+
+    public void enterRegistrationLogin(String registrationLogin) {
+        enter(registrationLogin).into(registrationLoginField);
+    }
+
+    public void enterRegistrationPhone(String registrationPhone) {
+        enter(registrationPhone).into(registrationPhoneField);
+    }
+
+    public void enterRegistrationPosition(String registrationPosition) {
+        enter(registrationPosition).into(registrationPositionField);
+    }
+
+    public void enterClientSurname(String clientSurname) {
+        enter(clientSurname).into(clientSurnameField);
+    }
+
+    public void enterClientName(String clientName) {
+        enter(clientName).into(clientNameField);
+    }
+
+    public void enterClientPatronymic(String clientPatronymic) {
+        enter(clientPatronymic).into(clientPatronymicField);
+    }
+
+    //ДАННЫЕ ОБ ОРГАНИЗАЦИИ
     @FindBy(id = "client_short_name")
     WebElementFacade clientShortNameField;
 
@@ -43,18 +73,6 @@ public class LKBasicInfoPage extends LKSelectizePageObject {
 
     @FindBy(id = "client_main_phone")
     WebElementFacade clientMainPhoneField;
-
-    public void enterClientSurname(String clientSurname) {
-        enter(clientSurname).into(clientSurnameField);
-    }
-
-    public void enterClientName(String clientName) {
-        enter(clientName).into(clientNameField);
-    }
-
-    public void enterClientPatronymic(String clientPatronymic) {
-        enter(clientPatronymic).into(clientPatronymicField);
-    }
 
     public void enterClientShortName(String clientShortName) {
         enter(clientShortName).into(clientShortNameField);

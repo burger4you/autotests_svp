@@ -42,9 +42,10 @@ public class LKUserSteps extends RandomGenerators {
     LKAppealsPage appealsPage;
     LKAppealDetailPage appealDetailPage;
     LKNewAppealPage newAppealPage;
-    LKClientRegistrationPage clientRegistrationPage;
     LKStartRegistrationPage startRegistrationPage;
-    LKBasicInfoPage basicInfoPage;
+    LKClientRegistrationPage clientRegistrationPage;
+    LKULRegistrationPage ulRegistrationPage;
+    LKIPRegistrationPage ipRegistrationPage;
     LKVehicleInfoPage vehicleInfoPage;
     LKVehiclesPage vehiclesPage;
     LKPasswordPage passwordPage;
@@ -56,11 +57,6 @@ public class LKUserSteps extends RandomGenerators {
     @Step("Нажимает на ссылку {0}")
     public void clicksToLink(String linkText) {
         getDriver().findElement(linkText(linkText)).click();
-    }
-
-    @Step("Вводит данные учетной записи")
-    public void entersAccountData(String registrationEmail) {
-        fillsAccountData(registrationEmail);
     }
 
     @Step("Выбирает из списка тип ВТС {0}")
@@ -86,7 +82,7 @@ public class LKUserSteps extends RandomGenerators {
 
     @Step("Вводит данные ИП")
     public void entersIPData(String clientEmail) {
-        fillsClientData(clientEmail);
+        fillsIPData(clientEmail);
         fillsClientPersonalDocument();
     }
 
@@ -100,7 +96,7 @@ public class LKUserSteps extends RandomGenerators {
 
     @Step("Вводит данные ФЛ")
     public void entersFLData(String clientEmail) {
-        fillsAccountData(clientEmail);
+        fillsFLData(clientEmail);
     }
 
     @Step("Вводит адреса")
@@ -122,7 +118,7 @@ public class LKUserSteps extends RandomGenerators {
 
     @Step("Прикладывает скан-копии документов ИП")
     public void uploadsIPDocumentsCopies() {
-        basicInfoPage.uploadIPDocumentsCopies(
+        ipRegistrationPage.uploadIPDocumentsCopies(
                 "documents/CertificateOfStateRegistration.jpg",
                 "documents/INN.jpg",
                 "documents/CertificateOfAbsenceTaxDebt.jpg",
@@ -134,7 +130,7 @@ public class LKUserSteps extends RandomGenerators {
 
     @Step("Прикладывает скан-копии документов ЮЛ")
     public void uploadsULDocumentsCopies() {
-        basicInfoPage.uploadULDocumentsCopies(
+        ulRegistrationPage.uploadULDocumentsCopies(
                 "documents/StatuteSecondPage.jpg",
                 "documents/CertificateOfStateRegistration.jpg",
                 "documents/INN.jpg",
@@ -148,7 +144,7 @@ public class LKUserSteps extends RandomGenerators {
 
     @Step("Прикладывает скан-копии документов ФЛ")
     public void uploadsFLDocumentsCopies() {
-        basicInfoPage.uploadFLDocumentsCopies("documents/CertificateOfAbsenceTaxDebt.jpg");
+        ipRegistrationPage.uploadFLDocumentsCopies("documents/CertificateOfAbsenceTaxDebt.jpg");
     }
 
     @Step("Вводит данные ТС")
@@ -303,7 +299,7 @@ public class LKUserSteps extends RandomGenerators {
     @Step("Нажимает на кнопку Вернуться в магазин")
     public void clicksToComesBackToShopButton() {
         unitellerPage.clickToComesBackButton();
-        mainPage.shouldBeDisplayed();
+        ulRegistrationPage.shouldBeDisplayed();
     }
 
     @Step("Вводит период тразакций с {0} по {1}")
@@ -395,10 +391,9 @@ public class LKUserSteps extends RandomGenerators {
         mainHeader.clickToNotificationsButton();
     }
 
-    public void fillsAccountData(String registrationEmail) {
+    public void fillsFLData(String registrationEmail) {
         getCurrentSession().put("registrationEmail", registrationEmail.replace("@gmail.com", "+" + getRandomNumber(6) + "@gmail.com"));
         getCurrentSession().put("registrationPhone", getRandomNumber(11));
-        getCurrentSession().put("registrationPosition", "Тестовый аккаунт");
         getCurrentSession().put("registrationSurname", getRandomCyrillicProperString(7));
         getCurrentSession().put("registrationName", getRandomCyrillicProperString(5));
         getCurrentSession().put("registrationPatronymic", getRandomCyrillicProperString(10));
@@ -409,7 +404,6 @@ public class LKUserSteps extends RandomGenerators {
 
         clientRegistrationPage.enterRegistrationLogin((String) getCurrentSession().get("registrationEmail"));
         clientRegistrationPage.enterRegistrationPhone((String) getCurrentSession().get("registrationPhone"));
-//        clientRegistrationPage.enterRegistrationPosition((String) getCurrentSession().get("registrationPosition"));
         clientRegistrationPage.enterRegistrationSurname((String) getCurrentSession().get("registrationSurname"));
         clientRegistrationPage.enterRegistrationName((String) getCurrentSession().get("registrationName"));
         clientRegistrationPage.enterRegistrationPatronymic((String) getCurrentSession().get("registrationPatronymic"));
@@ -424,7 +418,10 @@ public class LKUserSteps extends RandomGenerators {
         clientRegistrationPage.clickToAgreeServiceCheckBox();
     }
 
-    private void fillsClientData(String clientEmail) {
+    private void fillsIPData(String clientEmail) {
+        getCurrentSession().put("registrationEmail", clientEmail.replace("@gmail.com", "+" + getRandomNumber(6) + "@gmail.com"));
+        getCurrentSession().put("registrationPhone", getRandomNumber(11));
+        getCurrentSession().put("registrationPosition", "Тестовый аккаунт");
         getCurrentSession().put("clientSurname", getRandomCyrillicProperString(8));
         getCurrentSession().put("clientName", getRandomCyrillicProperString(6));
         getCurrentSession().put("clientPatronymic", getRandomCyrillicProperString(10));
@@ -434,15 +431,18 @@ public class LKUserSteps extends RandomGenerators {
         getCurrentSession().put("clientEmail", clientEmail.replace("@gmail.com", "+" + getRandomNumber(6) + "@gmail.com"));
         getCurrentSession().put("clientPhone", getRandomNumber(11));
 
-        basicInfoPage.loading();
-        basicInfoPage.enterClientSurname((String) getCurrentSession().get("clientSurname"));
-        basicInfoPage.enterClientName((String) getCurrentSession().get("clientName"));
-        basicInfoPage.enterClientPatronymic((String) getCurrentSession().get("clientPatronymic"));
-        basicInfoPage.enterClientShortName((String) getCurrentSession().get("clientShortName"));
-        basicInfoPage.enterClientINN((String) getCurrentSession().get("clientINN"));
-        basicInfoPage.enterClientOGRN((String) getCurrentSession().get("clientOGRN"));
-        basicInfoPage.enterClientMainEmail((String) getCurrentSession().get("clientEmail"));
-        basicInfoPage.enterClientMainPhone((String) getCurrentSession().get("clientPhone"));
+        ipRegistrationPage.loading();
+        ipRegistrationPage.enterRegistrationLogin((String) getCurrentSession().get("registrationEmail"));
+        ipRegistrationPage.enterRegistrationPhone((String) getCurrentSession().get("registrationPhone"));
+        ipRegistrationPage.enterRegistrationPosition((String) getCurrentSession().get("registrationPosition"));
+        ipRegistrationPage.enterClientSurname((String) getCurrentSession().get("clientSurname"));
+        ipRegistrationPage.enterClientName((String) getCurrentSession().get("clientName"));
+        ipRegistrationPage.enterClientPatronymic((String) getCurrentSession().get("clientPatronymic"));
+        ipRegistrationPage.enterClientShortName((String) getCurrentSession().get("clientShortName"));
+        ipRegistrationPage.enterClientINN((String) getCurrentSession().get("clientINN"));
+        ipRegistrationPage.enterClientOGRN((String) getCurrentSession().get("clientOGRN"));
+        ipRegistrationPage.enterClientMainEmail((String) getCurrentSession().get("clientEmail"));
+        ipRegistrationPage.enterClientMainPhone((String) getCurrentSession().get("clientPhone"));
     }
 
     private void fillsClientPersonalDocument() {
@@ -451,13 +451,19 @@ public class LKUserSteps extends RandomGenerators {
         getCurrentSession().put("clientPersonalDocumentDate", getRandomDate());
         getCurrentSession().put("clientPersonalDocumentBy", getRandomCyrillicProperString(12));
 
-        basicInfoPage.selectClientPersonalDocumentType((String) getCurrentSession().get("clientPersonalDocumentType"));
-        basicInfoPage.enterClientPersonalDocumentNumber((String) getCurrentSession().get("clientPersonalDocumentNumber"));
-        basicInfoPage.enterClientPersonalDocumentIssuedDate((String) getCurrentSession().get("clientPersonalDocumentDate"));
-        basicInfoPage.enterClientPersonalDocumentIssuedBy((String) getCurrentSession().get("clientPersonalDocumentBy"));
+        ipRegistrationPage.selectClientPersonalDocumentType((String) getCurrentSession().get("clientPersonalDocumentType"));
+        ipRegistrationPage.enterClientPersonalDocumentNumber((String) getCurrentSession().get("clientPersonalDocumentNumber"));
+        ipRegistrationPage.enterClientPersonalDocumentIssuedDate((String) getCurrentSession().get("clientPersonalDocumentDate"));
+        ipRegistrationPage.enterClientPersonalDocumentIssuedBy((String) getCurrentSession().get("clientPersonalDocumentBy"));
     }
 
     private void fillsOrganizationData(String organizationEmail) {
+        getCurrentSession().put("registrationEmail", organizationEmail.replace("@gmail.com", "+" + getRandomNumber(6) + "@gmail.com"));
+        getCurrentSession().put("registrationPhone", getRandomNumber(11));
+        getCurrentSession().put("registrationPosition", "Тестовый аккаунт");
+        getCurrentSession().put("clientSurname", getRandomCyrillicProperString(8));
+        getCurrentSession().put("clientName", getRandomCyrillicProperString(6));
+        getCurrentSession().put("clientPatronymic", getRandomCyrillicProperString(10));
         getCurrentSession().put("organizationOPF", "Общества с ограниченной ответственностью");
         getCurrentSession().put("organizationName", getRandomCyrillicProperString(10));
         getCurrentSession().put("organizationShortName", getRandomCyrillicProperString(5));
@@ -466,14 +472,20 @@ public class LKUserSteps extends RandomGenerators {
         getCurrentSession().put("organizationEmail", organizationEmail.replace("@gmail.com", "+" + getRandomNumber(6) + "@gmail.com"));
         getCurrentSession().put("organizationPhone", getRandomNumber(11));
 
-        basicInfoPage.loading();
-        basicInfoPage.selectOrganizationOPF((String) getCurrentSession().get("organizationOPF"));
-        basicInfoPage.enterClientName((String) getCurrentSession().get("organizationName"));
-        basicInfoPage.enterClientShortName((String) getCurrentSession().get("organizationShortName"));
-        basicInfoPage.enterClientOGRN((String) getCurrentSession().get("organizationOGRN"));
-        basicInfoPage.enterClientINN((String) getCurrentSession().get("organizationINN"));
-        basicInfoPage.enterClientMainEmail((String) getCurrentSession().get("organizationEmail"));
-        basicInfoPage.enterClientMainPhone((String) getCurrentSession().get("organizationPhone"));
+        ulRegistrationPage.loading();
+        ulRegistrationPage.enterRegistrationLogin((String) getCurrentSession().get("registrationEmail"));
+        ulRegistrationPage.enterRegistrationPhone((String) getCurrentSession().get("registrationPhone"));
+        ulRegistrationPage.enterRegistrationPosition((String) getCurrentSession().get("registrationPosition"));
+        ulRegistrationPage.enterClientSurname((String) getCurrentSession().get("clientSurname"));
+        ulRegistrationPage.enterClientName((String) getCurrentSession().get("clientName"));
+        ulRegistrationPage.enterClientPatronymic((String) getCurrentSession().get("clientPatronymic"));
+        ulRegistrationPage.selectOrganizationOPF((String) getCurrentSession().get("organizationOPF"));
+        ulRegistrationPage.enterClientName((String) getCurrentSession().get("organizationName"));
+        ulRegistrationPage.enterClientShortName((String) getCurrentSession().get("organizationShortName"));
+        ulRegistrationPage.enterClientOGRN((String) getCurrentSession().get("organizationOGRN"));
+        ulRegistrationPage.enterClientINN((String) getCurrentSession().get("organizationINN"));
+        ulRegistrationPage.enterClientMainEmail((String) getCurrentSession().get("organizationEmail"));
+        ulRegistrationPage.enterClientMainPhone((String) getCurrentSession().get("organizationPhone"));
     }
 
     private void fillsDirectorData(String directorEmail) {
@@ -484,24 +496,24 @@ public class LKUserSteps extends RandomGenerators {
         getCurrentSession().put("directorEmail", directorEmail.replace("@gmail.com", "+" + getRandomNumber(6) + "@gmail.com"));
         getCurrentSession().put("directorPosition", "Генеральный директор");
 
-        basicInfoPage.enterDirectorSurname((String) getCurrentSession().get("directorSurname"));
-        basicInfoPage.enterDirectorName((String) getCurrentSession().get("directorName"));
-        basicInfoPage.enterDirectorPatronymic((String) getCurrentSession().get("directorPatronymic"));
-        basicInfoPage.enterDirectorPhone((String) getCurrentSession().get("directorPhone"));
-        basicInfoPage.enterDirectorLogin((String) getCurrentSession().get("directorEmail"));
-        basicInfoPage.enterDirectorPosition((String) getCurrentSession().get("directorPosition"));
+        ulRegistrationPage.enterDirectorSurname((String) getCurrentSession().get("directorSurname"));
+        ulRegistrationPage.enterDirectorName((String) getCurrentSession().get("directorName"));
+        ulRegistrationPage.enterDirectorPatronymic((String) getCurrentSession().get("directorPatronymic"));
+        ulRegistrationPage.enterDirectorPhone((String) getCurrentSession().get("directorPhone"));
+        ulRegistrationPage.enterDirectorLogin((String) getCurrentSession().get("directorEmail"));
+        ulRegistrationPage.enterDirectorPosition((String) getCurrentSession().get("directorPosition"));
     }
 
     private void fillsDirectorDocuments() {
         getCurrentSession().put("directorDocumentType", "Устав");
-        getCurrentSession().put("directorDocumentNumber", getRandomNumber(10));
-        getCurrentSession().put("directorDocumentDate", getRandomDate());
-        getCurrentSession().put("directorDocumentValidity", "31.12.2015");
+//        getCurrentSession().put("directorDocumentNumber", getRandomNumber(10));
+//        getCurrentSession().put("directorDocumentDate", getRandomDate());
+//        getCurrentSession().put("directorDocumentValidity", "31.12.2015");
 
-        basicInfoPage.selectDirectorDocumentType((String) getCurrentSession().get("directorDocumentType"));
-//        basicInfoPage.enterDirectorDocumentNumber((String) getCurrentSession().get("directorDocumentNumber"));
-//        basicInfoPage.enterDirectorDocumentIssuedDate((String) getCurrentSession().get("directorDocumentDate"));
-//        basicInfoPage.enterDirectorDocumentValidity((String) getCurrentSession().get("directorDocumentValidity"));
+        ulRegistrationPage.selectDirectorDocumentType((String) getCurrentSession().get("directorDocumentType"));
+//        ulRegistrationPage.enterDirectorDocumentNumber((String) getCurrentSession().get("directorDocumentNumber"));
+//        ulRegistrationPage.enterDirectorDocumentIssuedDate((String) getCurrentSession().get("directorDocumentDate"));
+//        ulRegistrationPage.enterDirectorDocumentValidity((String) getCurrentSession().get("directorDocumentValidity"));
     }
 
     private void fillsDirectorPersonalDocument() {
@@ -510,10 +522,10 @@ public class LKUserSteps extends RandomGenerators {
         getCurrentSession().put("directorPersonalDocumentDate", getRandomDate());
         getCurrentSession().put("directorPersonalDocumentBy", getRandomCyrillicProperString(12));
 
-        basicInfoPage.selectDirectorPersonalDocumentType((String) getCurrentSession().get("directorPersonalDocumentType"));
-        basicInfoPage.enterDirectorPersonalDocumentNumber((String) getCurrentSession().get("directorPersonalDocumentNumber"));
-        basicInfoPage.enterDirectorPersonalDocumentIssuedDate((String) getCurrentSession().get("directorPersonalDocumentDate"));
-        basicInfoPage.enterDirectorPersonalDocumentIssuedBy((String) getCurrentSession().get("directorPersonalDocumentBy"));
+        ulRegistrationPage.selectDirectorPersonalDocumentType((String) getCurrentSession().get("directorPersonalDocumentType"));
+        ulRegistrationPage.enterDirectorPersonalDocumentNumber((String) getCurrentSession().get("directorPersonalDocumentNumber"));
+        ulRegistrationPage.enterDirectorPersonalDocumentIssuedDate((String) getCurrentSession().get("directorPersonalDocumentDate"));
+        ulRegistrationPage.enterDirectorPersonalDocumentIssuedBy((String) getCurrentSession().get("directorPersonalDocumentBy"));
     }
 
     private void fillsClientRegistrationAddress(String registrationAddressKladr) {
@@ -524,12 +536,12 @@ public class LKUserSteps extends RandomGenerators {
         getCurrentSession().put("registrationAddressBuilding", getRandomNumber(1));
         getCurrentSession().put("registrationAddressRoom", getRandomNumber(2));
 
-        basicInfoPage.selectClientRegistrationAddressKladr((String) getCurrentSession().get("registrationAddressKladr"));
-        basicInfoPage.enterClientRegistrationAddressIndex((String) getCurrentSession().get("registrationAddressIndex"));
-        basicInfoPage.enterClientRegistrationAddressHouse((String) getCurrentSession().get("registrationAddressHouse"));
-        basicInfoPage.enterClientRegistrationAddressHousing((String) getCurrentSession().get("registrationAddressHousing"));
-        basicInfoPage.enterClientRegistrationAddressBuilding((String) getCurrentSession().get("registrationAddressBuilding"));
-        basicInfoPage.enterClientRegistrationAddressRoom((String) getCurrentSession().get("registrationAddressRoom"));
+        ulRegistrationPage.selectClientRegistrationAddressKladr((String) getCurrentSession().get("registrationAddressKladr"));
+        ulRegistrationPage.enterClientRegistrationAddressIndex((String) getCurrentSession().get("registrationAddressIndex"));
+        ulRegistrationPage.enterClientRegistrationAddressHouse((String) getCurrentSession().get("registrationAddressHouse"));
+        ulRegistrationPage.enterClientRegistrationAddressHousing((String) getCurrentSession().get("registrationAddressHousing"));
+        ulRegistrationPage.enterClientRegistrationAddressBuilding((String) getCurrentSession().get("registrationAddressBuilding"));
+        ulRegistrationPage.enterClientRegistrationAddressRoom((String) getCurrentSession().get("registrationAddressRoom"));
     }
 
     private void fillsClientLocationAddress(String locationAddressKladr) {
@@ -540,12 +552,12 @@ public class LKUserSteps extends RandomGenerators {
         getCurrentSession().put("locationAddressBuilding", getRandomNumber(1));
         getCurrentSession().put("locationAddressRoom", getRandomNumber(2));
 
-        basicInfoPage.selectClientLocationAddressKladr((String) getCurrentSession().get("locationAddressKladr"));
-        basicInfoPage.enterClientLocationAddressIndex((String) getCurrentSession().get("locationAddressIndex"));
-        basicInfoPage.enterClientLocationAddressHouse((String) getCurrentSession().get("locationAddressHouse"));
-        basicInfoPage.enterClientLocationAddressHousing((String) getCurrentSession().get("locationAddressHousing"));
-        basicInfoPage.enterClientLocationAddressBuilding((String) getCurrentSession().get("locationAddressBuilding"));
-        basicInfoPage.enterClientLocationAddressRoom((String) getCurrentSession().get("locationAddressRoom"));
+        ulRegistrationPage.selectClientLocationAddressKladr((String) getCurrentSession().get("locationAddressKladr"));
+        ulRegistrationPage.enterClientLocationAddressIndex((String) getCurrentSession().get("locationAddressIndex"));
+        ulRegistrationPage.enterClientLocationAddressHouse((String) getCurrentSession().get("locationAddressHouse"));
+        ulRegistrationPage.enterClientLocationAddressHousing((String) getCurrentSession().get("locationAddressHousing"));
+        ulRegistrationPage.enterClientLocationAddressBuilding((String) getCurrentSession().get("locationAddressBuilding"));
+        ulRegistrationPage.enterClientLocationAddressRoom((String) getCurrentSession().get("locationAddressRoom"));
     }
 
     private void fillsClientPostalAddress(String postalAddressKladr) {
@@ -556,12 +568,12 @@ public class LKUserSteps extends RandomGenerators {
         getCurrentSession().put("postalAddressBuilding", getRandomNumber(1));
         getCurrentSession().put("postalAddressRoom", getRandomNumber(2));
 
-        basicInfoPage.selectClientPostalAddressKladr((String) getCurrentSession().get("postalAddressKladr"));
-        basicInfoPage.enterClientPostalAddressIndex((String) getCurrentSession().get("postalAddressIndex"));
-        basicInfoPage.enterClientPostalAddressHouse((String) getCurrentSession().get("postalAddressHouse"));
-        basicInfoPage.enterClientPostalAddressHousing((String) getCurrentSession().get("postalAddressHousing"));
-        basicInfoPage.enterClientPostalAddressBuilding((String) getCurrentSession().get("postalAddressBuilding"));
-        basicInfoPage.enterClientPostalAddressRoom((String) getCurrentSession().get("postalAddressRoom"));
+        ulRegistrationPage.selectClientPostalAddressKladr((String) getCurrentSession().get("postalAddressKladr"));
+        ulRegistrationPage.enterClientPostalAddressIndex((String) getCurrentSession().get("postalAddressIndex"));
+        ulRegistrationPage.enterClientPostalAddressHouse((String) getCurrentSession().get("postalAddressHouse"));
+        ulRegistrationPage.enterClientPostalAddressHousing((String) getCurrentSession().get("postalAddressHousing"));
+        ulRegistrationPage.enterClientPostalAddressBuilding((String) getCurrentSession().get("postalAddressBuilding"));
+        ulRegistrationPage.enterClientPostalAddressRoom((String) getCurrentSession().get("postalAddressRoom"));
     }
 
     private void fillsClientBankData() {
@@ -572,11 +584,11 @@ public class LKUserSteps extends RandomGenerators {
         getCurrentSession().put("clientAccountNumber", getRandomNumber(20));
         getCurrentSession().put("clientBankReceiverName", getRandomCyrillicProperString(18));
 
-        basicInfoPage.enterClientBankName((String) getCurrentSession().get("clientBankName"));
-        basicInfoPage.enterClientBankBIK((String) getCurrentSession().get("clientBankBIK"));
-        basicInfoPage.enterClientBankINN((String) getCurrentSession().get("clientBankINN"));
-        basicInfoPage.enterClientBankKorNumber((String) getCurrentSession().get("clientBankKorNumber"));
-        basicInfoPage.enterClientBankAccountNumber((String) getCurrentSession().get("clientAccountNumber"));
-        basicInfoPage.enterClientBankReceiverName((String) getCurrentSession().get("clientBankReceiverName"));
+        ulRegistrationPage.enterClientBankName((String) getCurrentSession().get("clientBankName"));
+        ulRegistrationPage.enterClientBankBIK((String) getCurrentSession().get("clientBankBIK"));
+        ulRegistrationPage.enterClientBankINN((String) getCurrentSession().get("clientBankINN"));
+        ulRegistrationPage.enterClientBankKorNumber((String) getCurrentSession().get("clientBankKorNumber"));
+        ulRegistrationPage.enterClientBankAccountNumber((String) getCurrentSession().get("clientAccountNumber"));
+        ulRegistrationPage.enterClientBankReceiverName((String) getCurrentSession().get("clientBankReceiverName"));
     }
 }

@@ -33,7 +33,7 @@ public class LKVehicleInfoPage extends LKSelectizePageObject {
 
     public void loading() {
         withTimeoutOf(15, SECONDS).waitForPresenceOf(id(vehicleRegistrationCountryField));
-        vehicleRegistrationGRNZField.shouldBeEnabled();
+        vehicleRegistrationGRNZField.waitUntilEnabled();
     }
 
     public void selectVehicleRegistrationCountry(String vehicleRegistrationCountry) {

@@ -16,9 +16,6 @@ public class LKClientRegistrationPage extends LKSelectizePageObject {
     @FindBy(id = "client_phone")
     WebElementFacade registrationPhoneField;
 
-//    @FindBy(id = "registration_position")
-//    WebElementFacade registrationPositionField;
-
     @FindBy(id = "client_last_name")
     WebElementFacade registrationSurnameField;
 
@@ -60,10 +57,6 @@ public class LKClientRegistrationPage extends LKSelectizePageObject {
     public void enterRegistrationPhone(String registrationPhone) {
         enter(registrationPhone).into(registrationPhoneField);
     }
-
-//    public void enterRegistrationPosition(String registrationPosition) {
-//        enter(registrationPosition).into(registrationPositionField);
-//    }
 
     public void enterRegistrationSurname(String registrationSurname) {
         enter(registrationSurname).into(registrationSurnameField);
