@@ -78,7 +78,7 @@ public class CPPOperatorActions {
         operator.clicksToTextButton("Зарегистрировать");
 //        operator.uploadsVehicleDocumentsCopies();
 //        operator.clicksToConfirmButton();
-        operator.clicksToTextButton("OK");
+        operator.clicksToConfirmVehicleRegistrationDialogButton();
         operator.clicksToTextButton("Завершить");
     }
 

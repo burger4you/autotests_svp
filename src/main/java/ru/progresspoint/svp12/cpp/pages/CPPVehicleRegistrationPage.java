@@ -41,6 +41,8 @@ public class CPPVehicleRegistrationPage extends CPPSelectizePageObject {
 
     private static final String vehicleGroupField = "vehicle_vehicle_group_id";
 
+    @FindBy(xpath = "//*[@id='CreateVehicleFinishModal']//*[text()='OK']")
+    WebElementFacade confirmVehicleRegistrationDialogButton;
 
     public void selectVehicleCountry(String vehicleCountry) {
         selectForSelectizePlugin(vehicleCountryField, vehicleCountry);
@@ -88,5 +90,9 @@ public class CPPVehicleRegistrationPage extends CPPSelectizePageObject {
 
     public void selectVehicleGrope(String vehicleGroup) {
         selectForSelectizePlugin(vehicleGroupField, vehicleGroup);
+    }
+
+    public void clickToConfirmVehicleRegistrationDialogButton() {
+        confirmVehicleRegistrationDialogButton.click();
     }
 }

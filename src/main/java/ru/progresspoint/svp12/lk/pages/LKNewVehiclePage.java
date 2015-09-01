@@ -11,7 +11,6 @@ import net.thucydides.core.annotations.At;
 public class LKNewVehiclePage extends LKSelectizePageObject {
 
     //Данные о ТС
-
     @FindBy(id = "grnz")
     WebElementFacade vehicleGRNZField;
 

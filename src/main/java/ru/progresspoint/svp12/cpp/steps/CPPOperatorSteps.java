@@ -140,6 +140,11 @@ public class CPPOperatorSteps extends RandomGenerators {
         vehicleRegistrationPage.enterVehicleMass("12000");
     }
 
+    @Step("Жмет ОК в окне подтверждения регистрации ТС")
+    public void clicksToConfirmVehicleRegistrationDialogButton() {
+        vehicleRegistrationPage.clickToConfirmVehicleRegistrationDialogButton();
+    }
+
     @Step("Находит заявку на верификацию ВТС")
     public void findsOwnerVerificationRequest() {
     }
