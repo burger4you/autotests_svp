@@ -29,10 +29,23 @@ mvn clean verify -Dmetafilter="+component authorization +component route maps -a
 
 Доступные мета фильтры:
 
-arm: cpp, lk
+arm: 
 
-component: authorization, registration, route maps, appeals, payments, profile, vehicles
+cpp - АРМ ЦИПП, 
+lk - АРМ Личный кабинет, 
+dz - АРМ Дебиторская задолженность,
+klad - АРМ Кладовщика,
+admin - АРМ Администратора
 
+component:
+
+authorization - авторизация,
+registration - регистрация,
+route maps - маршрутные карты,
+appeals - обращения,
+payments - платежи,
+profile - профиль,
+vehicles - транспортные средства
 
 Отчет генерируется в дирректорию `target/site/serenity`.
 
