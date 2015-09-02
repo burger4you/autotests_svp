@@ -89,7 +89,6 @@ public class NavigationSteps extends ScenarioSteps {
         switch (page) {
             case "Авторизации":
                 getDriver().get("http://10.0.12.236/sign_out");
-                getDriver().manage().deleteAllCookies();
                 cppLoginPage.openAt("http://10.0.12.236/sign_in");
                 break;
             case "Главная":
@@ -107,7 +106,7 @@ public class NavigationSteps extends ScenarioSteps {
         switch (page) {
             case "Авторизации":
                 getDriver().get("http://10.0.12.225/sign_out");
-                lkLoginPage.openAt("http://10.0.12.225/sign_in");
+                lkLoginPage.shouldBeDisplayed();
                 break;
             case "Главная":
                 lkMainPage.openAt("http://10.0.12.225");
