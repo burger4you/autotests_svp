@@ -1,6 +1,6 @@
 Авторизация оператора в АРМ РСО
 Meta:
-@arm dz
+@arm rso
 @component authorization
 
 Описание:
