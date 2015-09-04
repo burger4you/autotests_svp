@@ -6,11 +6,11 @@ import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.At;
 
 /**
- * Главное меню АРМа ТСО
+ * Главный экран АРМа ТСО
  */
-
 @At("#HOST")
 public class TSOMainPage extends PageObject {
+
     @FindBy (xpath = ".//*[@href='/auth/countries/']")
     WebElementFacade startButton;
 

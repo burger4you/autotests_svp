@@ -10,11 +10,4 @@ import net.thucydides.core.annotations.At;
  */
 @At("#HOST")
 public class DZMainPage extends PageObject {
-
-    @FindBy(id = "session_login")
-    WebElementFacade loginField;
-
-    @FindBy(id = "session_password")
-    WebElementFacade passwordField;
-
 }

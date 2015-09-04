@@ -9,15 +9,14 @@ import net.thucydides.core.annotations.At;
  * Главная страница АРМА Колл-Центра
  */
 @At("#HOST")
-public class Call_centreMainPage extends PageObject {
+public class CallCentreMainPage extends PageObject {
 
     @FindBy(xpath = ".//*[@class='abonent-services-popup-btn']")
-    WebElementFacade abonentservicespopupbtn;
+    WebElementFacade abonentServicesPopUpButton;
 
     @FindBy(xpath = ".//*[@class='abonent-session-transfer-btn']")
-    WebElementFacade abonentsessiontransferbtn;
+    WebElementFacade abonentSessionTransferButton;
 
     @FindBy(xpath = ".//*[@class='abonent-session-close-btn']")
-    WebElementFacade abonentsessionclosebtn;
-
+    WebElementFacade abonentSessionCloseButton;
 }

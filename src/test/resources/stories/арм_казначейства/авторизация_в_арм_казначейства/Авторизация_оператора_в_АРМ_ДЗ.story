@@ -1,6 +1,6 @@
 Авторизация оператора в АРМ Казначейства
 Meta:
-@arm kaznacheystva
+@arm treasury
 @component authorization
 
 Описание:

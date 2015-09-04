@@ -1,4 +1,4 @@
-package ru.progresspoint.svp12.kaznacheystva.pages;
+package ru.progresspoint.svp12.treasury.pages;
 
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.PageObject;
@@ -10,7 +10,7 @@ import net.thucydides.core.annotations.WhenPageOpens;
  * Страница авторизации пользователя АРМа Казначейства
  */
 @At("#HOST/sign_in")
-public class KaznacheystvaLoginPage extends PageObject {
+public class TreasuryLoginPage extends PageObject {
 
     @FindBy(id = "session_login")
     WebElementFacade loginField;
