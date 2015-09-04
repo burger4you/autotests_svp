@@ -109,6 +109,7 @@ public class NavigationSteps extends ScenarioSteps {
                 lkLoginPage.shouldBeDisplayed();
                 break;
             case "Главная":
+                lkMainMenu.loading();
                 lkMainPage.openAt("http://10.0.12.225");
                 break;
             case "Транспортные средства":

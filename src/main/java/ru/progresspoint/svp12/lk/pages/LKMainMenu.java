@@ -25,7 +25,8 @@ public class LKMainMenu extends PageObject {
     WebElementFacade appealsItem;
 
     public void loading() {
-        mapsItem.waitUntilEnabled();
+        waitForAbsenceOf(".//*[@class='loader']");
+        mapsItem.shouldBeEnabled();
         paymentsItem.shouldBeEnabled();
         vehiclesItem.shouldBeEnabled();
         profileItem.shouldBeEnabled();
