@@ -19,6 +19,6 @@ public class CPPMainPage extends PageObject {
             clickOn($(".//*[text()='Завершить']"));
             waitForTextToDisappear("Завершить");
         }
-        selectActionDialog.expect("Не доступоно диалоговое окно Выберите действие").shouldBePresent();
+        selectActionDialog.expect("Не доступно диалоговое окно Выберите действие").shouldBePresent();
     }
 }
