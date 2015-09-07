@@ -91,7 +91,7 @@ public class EmailUserSteps extends ScenarioSteps {
      * @throws MessagingException
      */
     @Step("Удаляет все письма от системы Платон")
-    public void deletesAllMessagesFromProgresspoint(String gmailBox) throws MessagingException {
+    public void deletesAllMessagesFromPlaton(String gmailBox) throws MessagingException {
         // Все по старой схеме
         props = new Properties();
         props.setProperty(PROTOCOL, IMAPS);

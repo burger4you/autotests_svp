@@ -1,7 +1,6 @@
 package ru.progresspoint.svp12.jbehave.steps.lk;
 
 import net.thucydides.core.annotations.Steps;
-import org.jbehave.core.annotations.BeforeStories;
 import org.jbehave.core.annotations.Given;
 import ru.progresspoint.svp12.EmailUserSteps;
 import ru.progresspoint.svp12.NavigationSteps;
@@ -23,11 +22,11 @@ public class LKPreconditionsSteps {
     @Steps
     EmailUserSteps email;
 
-    @BeforeStories
-    public void beforeStory() throws MessagingException {
-        email.deletesAllMessagesFromProgresspoint("ultestowner@gmail.com");
-        email.deletesAllMessagesFromProgresspoint("iptestowner@gmail.com");
-        email.deletesAllMessagesFromProgresspoint("fltestowner@gmail.com");
+    @Given("в его почтовом ящике нет писем от СВП Платон")
+    public void userHaveNoEmailFromPlaton() throws MessagingException {
+        email.deletesAllMessagesFromPlaton("ultestowner@gmail.com");
+        email.deletesAllMessagesFromPlaton("iptestowner@gmail.com");
+        email.deletesAllMessagesFromPlaton("fltestowner@gmail.com");
     }
 
     @Given("пользователь находится на странице $page в ЛК")

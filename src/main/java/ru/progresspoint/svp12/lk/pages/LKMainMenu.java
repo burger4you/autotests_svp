@@ -25,12 +25,14 @@ public class LKMainMenu extends PageObject {
     WebElementFacade appealsItem;
 
     public void loading() {
+        // при каждой загрузке страницы, дожидаемся исчезновения статусбара загрузки
         waitForAbsenceOf(".//*[@class='loader']");
-        mapsItem.shouldBeEnabled();
-        paymentsItem.shouldBeEnabled();
-        vehiclesItem.shouldBeEnabled();
-        profileItem.shouldBeEnabled();
-        appealsItem.shouldBeEnabled();
+        // и убеждаемся, что все пункты главного меню доступны пользователю
+        mapsItem.expect("Маршрутные карты не доступны в главном меню").shouldBeEnabled();
+        paymentsItem.expect("Платежи не доступны в главном меню").shouldBeEnabled();
+        vehiclesItem.expect("ТС не доступны в главном меню").shouldBeEnabled();
+        profileItem.expect("Профиль не доступен в главном меню").shouldBeEnabled();
+        appealsItem.expect("Обращения не доступны в главном меню").shouldBeEnabled();
     }
 
     public void clickToRouteMapsItem() {

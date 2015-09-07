@@ -91,7 +91,7 @@ public class LKConditions {
         user.entersPassword("!QAZ2wsx");
         user.clicksToConfirmButton();
         navigation.isOnLKPage("Главная");
-        email.deletesAllMessagesFromProgresspoint(userEmail);
+        email.deletesAllMessagesFromPlaton(userEmail);
     }
 }
 
