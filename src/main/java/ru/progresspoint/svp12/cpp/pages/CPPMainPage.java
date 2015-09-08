@@ -16,8 +16,8 @@ public class CPPMainPage extends PageObject {
     WebElementFacade selectActionDialog;
 
     public void loading() {
-        if(isElementVisible(By.xpath(".//*[text()='Завершить']"))) {
-            clickOn(element(".//*[text()='Завершить']"));
+        if(isElementVisible(By.xpath(".//*[@id='end_button']"))) {
+            clickOn(element(".//*[@id='end_button']"));
             waitForTextToDisappear("Завершить");
         }
         selectActionDialog.expect("Не доступно диалоговое окно Выберите действие").shouldBePresent();

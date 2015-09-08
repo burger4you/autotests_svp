@@ -89,7 +89,7 @@ public class NavigationSteps extends ScenarioSteps {
         switch (page) {
             case "Авторизации":
                 getDriver().get("http://10.0.12.236/sign_out");
-                cppLoginPage.openAt("http://10.0.12.236/sign_in");
+                cppLoginPage.shouldBeDisplayed();
                 break;
             case "Главная":
                 cppMainPage.openAt("http://10.0.12.236");
