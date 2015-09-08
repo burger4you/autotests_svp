@@ -16,7 +16,7 @@ public class CPPPreconditionSteps {
     @Steps
     CPPOperatorSteps operator;
 
-    @Given("оператор находится на странице $page в ЦИПП")
+    @Given("оператор находится на странице $page в АРМ ЦИПП")
     public void operatorIsOn(String page) {
         if (!page.equals("Авторизации")) {
             navigation.opensCPPPage("Главная");
@@ -28,7 +28,7 @@ public class CPPPreconditionSteps {
         } else navigation.opensCPPPage("Авторизации");
     }
 
-    @Given("админ находится на странице $page в ЦИПП")
+    @Given("админ находится на странице $page в АРМ ЦИПП")
     public void adminIsOn(String page) {
         if (!page.equals("Авторизации")) {
             navigation.opensCPPPage("Главная");
