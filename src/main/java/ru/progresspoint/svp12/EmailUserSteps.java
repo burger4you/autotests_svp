@@ -44,7 +44,7 @@ public class EmailUserSteps extends ScenarioSteps {
      * @throws MessagingException
      * @throws IOException
      */
-    @Step("Получает письмо со ссылкой на завершение регистрации")
+    @Step("Получает письмо на {0} со ссылкой на завершение регистрации")
     public void waitsForEmailWithConfirmationLink(String gmailBox) throws IOException, MessagingException {
         waitABit(5000);
         // Устанавливаем протокол
@@ -90,7 +90,7 @@ public class EmailUserSteps extends ScenarioSteps {
      * @param gmailBox - адрес почтового ящика
      * @throws MessagingException
      */
-    @Step("Удаляет все письма от системы Платон")
+    @Step("Удаляет все письма в {0} от системы Платон")
     public void deletesAllMessagesFromPlaton(String gmailBox) throws MessagingException {
         // Все по старой схеме
         props = new Properties();
