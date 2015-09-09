@@ -1,7 +1,7 @@
 Снятие ВТС с учета в АРМ ЦИПП
 Meta:
 @arm cpp
-@component profile
+@component registration
 
 Описание:
 Чтобы снять ВТС с учета в системе ПО СВП

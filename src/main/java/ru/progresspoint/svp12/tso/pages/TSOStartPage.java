@@ -6,15 +6,14 @@ import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.At;
 
 /**
- * Главный экран АРМа ТСО
+ * Стартовый экран АРМа ТСО
  */
 @At("#HOST")
-public class TSOMainPage extends PageObject {
+public class TSOStartPage extends PageObject {
 
     @FindBy (xpath = ".//*[@href='/auth/countries/']")
     WebElementFacade startButton;
 
     @FindBy (xpath = ".//*[@href='logic/info/']")
     WebElementFacade infoButton;
-
 }

@@ -18,6 +18,8 @@ import ru.progresspoint.svp12.dz.pages.DZMainPage;
 import ru.progresspoint.svp12.klad.pages.KladLoginPage;
 import ru.progresspoint.svp12.klad.pages.KladMainPage;
 import ru.progresspoint.svp12.lk.pages.*;
+import ru.progresspoint.svp12.tso.pages.TSOCabinetPage;
+import ru.progresspoint.svp12.tso.pages.TSOStartPage;
 
 import static java.lang.String.format;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -49,6 +51,24 @@ public class NavigationSteps extends ScenarioSteps {
 
     CallCentreMainPage callCentreMainPage;
     CallCentreLoginPage callCentreLoginPage;
+
+    TSOStartPage tsoStartPage;
+    TSOCabinetPage tsoCabinetPage;
+
+    @Step("Открывает страницу {0} АРМа РСО")
+    public void opensRSOPage(String page) {
+
+    }
+
+    @Step("Открывает страницу {0} АРМа Казначейства")
+    public void opensTreasuryPage(String page) {
+
+    }
+
+    @Step("Открывает стартовую страницу АРМа ТСО")
+    public void opensTSOStartPage() {
+        tsoStartPage.openAt("http://10.0.12.18/");
+    }
 
     @Step("Открывает страницу {0} АРМа Колл Центра")
     public void opensCallCenterPage(String page) {
@@ -149,6 +169,28 @@ public class NavigationSteps extends ScenarioSteps {
             case "Обращения":
                 lkMainMenu.loading();
                 lkMainMenu.clickToAppealsItem();
+                break;
+        }
+    }
+
+    @Step("Находится на странице {0} АРМа РСО")
+    public void isOnRSOPage(String page) {
+
+    }
+
+    @Step("Находится на странице {0} АРМа Казначейства")
+    public void isOnTreasuryPage(String page) {
+
+    }
+
+    @Step("Находится на странице {0} АРМа ТСО")
+    public void isOnTSOPage(String page) {
+        switch (page) {
+            case "Личного Кабинета":
+                tsoCabinetPage.shouldBeDisplayed();
+                break;
+            case "Авторизации":
+                adminMainPage.shouldBeDisplayed();
                 break;
         }
     }
