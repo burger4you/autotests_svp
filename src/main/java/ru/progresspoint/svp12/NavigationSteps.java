@@ -7,6 +7,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import ru.progresspoint.svp12.admin.pages.AdminLoginPage;
 import ru.progresspoint.svp12.admin.pages.AdminMainPage;
+import ru.progresspoint.svp12.call_centre.pages.CallCentreLoginPage;
+import ru.progresspoint.svp12.call_centre.pages.CallCentreMainPage;
 import ru.progresspoint.svp12.cpp.pages.CPPClientRegistrationPage;
 import ru.progresspoint.svp12.cpp.pages.CPPLoginPage;
 import ru.progresspoint.svp12.cpp.pages.CPPMainPage;
@@ -45,7 +47,23 @@ public class NavigationSteps extends ScenarioSteps {
     AdminLoginPage adminLoginPage;
     AdminMainPage adminMainPage;
 
-    @Step("Открывает страницу {0} в АРМе Администратора")
+    CallCentreMainPage callCentreMainPage;
+    CallCentreLoginPage callCentreLoginPage;
+
+    @Step("Открывает страницу {0} АРМа Колл Центра")
+    public void opensCallCenterPage(String page) {
+        switch (page) {
+            case "Авторизации":
+                getDriver().get("http://10.0.12.230/sign_out");
+                callCentreLoginPage.shouldBeDisplayed();
+                break;
+            case "Главная":
+                callCentreMainPage.openAt("http://10.0.12.230");
+                break;
+        }
+    }
+
+    @Step("Открывает страницу {0} АРМа Администратора")
     public void opensAdminPage(String page) {
         switch (page) {
             case "Авторизации":
@@ -58,7 +76,7 @@ public class NavigationSteps extends ScenarioSteps {
         }
     }
 
-    @Step("Открывает страницу {0} в ДЗ")
+    @Step("Открывает страницу {0} АРМа ДЗ")
     public void opensDZPage(String page) {
         switch (page) {
             case "Авторизации":
@@ -71,7 +89,7 @@ public class NavigationSteps extends ScenarioSteps {
         }
     }
 
-    @Step("Открывает страницу {0} в АРМе Кладовщика")
+    @Step("Открывает страницу {0} АРМа Кладовщика")
     public void opensKladPage(String page) {
         switch (page) {
             case "Авторизации":
@@ -84,7 +102,7 @@ public class NavigationSteps extends ScenarioSteps {
         }
     }
 
-    @Step("Открывает страницу {0} в ЦИПП")
+    @Step("Открывает страницу {0} АРМа ЦИПП")
     public void opensCPPPage(String page) {
         switch (page) {
             case "Авторизации":
@@ -101,7 +119,7 @@ public class NavigationSteps extends ScenarioSteps {
         }
     }
 
-    @Step("Открывает страницу {0} в ЛК")
+    @Step("Открывает страницу {0} АРМа ЛК")
     public void opensLKPage(String page) {
         switch (page) {
             case "Авторизации":
@@ -135,14 +153,26 @@ public class NavigationSteps extends ScenarioSteps {
         }
     }
 
-    @Step("Находится на странице {0} АРМа Администратора")
-    public void isOnAdminPage(String page) {
+    @Step("Находится на странице {0} АРМа Колл Центра")
+    public void isOnCallCentrePage(String page) {
         switch (page) {
             case "Авторизации":
                 adminLoginPage.shouldBeDisplayed();
                 break;
             case "Главная":
                 adminMainPage.shouldBeDisplayed();
+                break;
+        }
+    }
+
+    @Step("Находится на странице {0} АРМа Администратора")
+    public void isOnAdminPage(String page) {
+        switch (page) {
+            case "Авторизации":
+                callCentreLoginPage.shouldBeDisplayed();
+                break;
+            case "Главная":
+                callCentreMainPage.shouldBeDisplayed();
                 break;
         }
     }
@@ -171,7 +201,7 @@ public class NavigationSteps extends ScenarioSteps {
         }
     }
 
-    @Step("Находится на странице {0} в ЦИПП")
+    @Step("Находится на странице {0} АРМа ЦИПП")
     public void isOnCPPPage(String page) {
         switch (page) {
             case "Авторизации":
@@ -186,7 +216,7 @@ public class NavigationSteps extends ScenarioSteps {
         }
     }
 
-    @Step("Находится на странице {0} в ЛК")
+    @Step("Находится на странице {0} АРМа ЛК")
     public void isOnLKPage(String page) {
         switch (page) {
             case "Авторизации":

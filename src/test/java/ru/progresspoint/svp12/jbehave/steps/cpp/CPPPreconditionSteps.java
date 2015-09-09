@@ -3,6 +3,7 @@ package ru.progresspoint.svp12.jbehave.steps.cpp;
 import net.thucydides.core.annotations.Steps;
 import org.jbehave.core.annotations.Given;
 import ru.progresspoint.svp12.NavigationSteps;
+import ru.progresspoint.svp12.cpp.steps.CPPAdministratorSteps;
 import ru.progresspoint.svp12.cpp.steps.CPPOperatorSteps;
 
 /**
@@ -15,6 +16,9 @@ public class CPPPreconditionSteps {
 
     @Steps
     CPPOperatorSteps operator;
+
+    @Steps
+    CPPAdministratorSteps administrator;
 
     @Given("оператор находится на странице $page в АРМ ЦИПП")
     public void operatorIsOn(String page) {
@@ -33,8 +37,8 @@ public class CPPPreconditionSteps {
         if (!page.equals("Авторизации")) {
             navigation.opensCPPPage("Главная");
             if (navigation.getCurrentURL().endsWith("sign_in")) {
-                operator.entersLoginAndPassword("Admin3", "Test123$");
-                operator.clicksToConfirmButton();
+                administrator.entersLoginAndPassword("Admin3", "Test123$");
+                administrator.clicksToConfirmButton();
             }
             navigation.opensCPPPage(page);
         } else navigation.opensCPPPage("Авторизации");
