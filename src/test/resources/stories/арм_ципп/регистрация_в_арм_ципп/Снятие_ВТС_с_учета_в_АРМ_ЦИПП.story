@@ -2,6 +2,7 @@
 Meta:
 @arm cpp
 @component registration
+@wip
 
 Описание:
 Чтобы снять ВТС с учета в системе ПО СВП

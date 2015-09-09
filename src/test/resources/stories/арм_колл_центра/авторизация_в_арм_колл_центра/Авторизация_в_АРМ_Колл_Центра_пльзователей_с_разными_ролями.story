@@ -1,4 +1,5 @@
 Авторизация в АРМ Колл Центра пользователей с разными ролями
+Meta:
 @arm call_centre
 @component authorization
 @wip

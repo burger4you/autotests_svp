@@ -1,7 +1,8 @@
 Просмотр справочной информации в АРМ ЦИПП
 Meta:
 @arm cpp
-@component registration
+@component info
+@wip
 
 Описание:
 Чтобы ответить ВТС на интересующие его вопросы

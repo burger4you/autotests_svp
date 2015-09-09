@@ -2,7 +2,10 @@ package ru.progresspoint.svp12.jbehave.steps.cpp;
 
 import net.thucydides.core.annotations.Steps;
 import org.jbehave.core.annotations.When;
+import ru.progresspoint.svp12.EmailUserSteps;
 import ru.progresspoint.svp12.cpp.steps.CPPOperatorSteps;
+
+import javax.mail.MessagingException;
 
 /**
  * Шаги оператора АРМа ЦИПП
@@ -12,6 +15,9 @@ public class CPPOperatorActions {
     @Steps
     CPPOperatorSteps operator;
 
+    @Steps
+    EmailUserSteps email;
+
     @When("он вводит логин $login и пароль $password для авторизации в ЦИПП")
     public void operatorEntersLoginAndPassword(String login, String password) {
         operator.entersLoginAndPassword(login, password);
@@ -20,7 +26,8 @@ public class CPPOperatorActions {
     }
 
     @When("оператор зарегистрирует ВТС как $clientType ($clientEmail)")
-    public void operatorRegistersNewClient(String clientType, String clientEmail) {
+    public void operatorRegistersNewClient(String clientType, String clientEmail) throws MessagingException {
+        email.deletesAllMessagesFromPlaton(clientEmail);
         operator.selectsClientCountry("Российская Федерация");
         operator.selectsClientType(clientType);
         operator.clicksToRegistrationButton();
@@ -52,7 +59,8 @@ public class CPPOperatorActions {
     }
 
     @When("оператор зарегистрирует ВТС нерезидента РФ как $clientType ($clientEmail)")
-    public void operatorRegistersUserData(String clientType, String clientEmail) {
+    public void operatorRegistersUserData(String clientType, String clientEmail) throws MessagingException {
+        email.deletesAllMessagesFromPlaton(clientEmail);
         operator.selectsClientCountry("Украина");
         operator.selectsClientType(clientType);
         operator.clicksToRegistrationButton();

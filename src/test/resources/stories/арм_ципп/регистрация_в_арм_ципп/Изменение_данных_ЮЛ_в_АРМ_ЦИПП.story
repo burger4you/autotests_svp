@@ -2,6 +2,7 @@
 Meta:
 @arm cpp
 @component registration
+@wip
 
 Описание:
 Чтобы контролировать акутальность данных в системе ПО СВП
