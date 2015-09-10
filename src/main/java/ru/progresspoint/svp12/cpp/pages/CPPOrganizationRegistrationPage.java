@@ -162,10 +162,11 @@ public class CPPOrganizationRegistrationPage extends CPPSelectizePageObject {
     }
 
     //АДРЕС РЕГИСТРАЦИИ
-    @FindBy(id = "client_reg_address_attributes_post_index")
-    WebElementFacade clientAddressIndexField;
-
-    private static final String clientAddressKladrField = "client_reg_address_attributes_kladr_code";
+    private static final String clientAddressRegionField = "client_reg_address_attributes_region";
+    private static final String clientAddressDistrictField = "client_reg_address_attributes_district";
+    private static final String clientAddressCityField = "client_reg_address_attributes_city";
+    private static final String clientAddressSettlementField = "cclient_reg_address_attributes_settlement";
+    private static final String clientAddressStreetField = "client_reg_address_attributes_street";
 
     @FindBy(id = "client_reg_address_attributes_house")
     WebElementFacade clientAddressHouseField;
@@ -179,12 +180,27 @@ public class CPPOrganizationRegistrationPage extends CPPSelectizePageObject {
     @FindBy(id = "client_reg_address_attributes_room")
     WebElementFacade clientAddressRoomField;
 
-    public void selectClientRegistrationAddressKladr(String clientAddressKladr) {
-        enterForSelectizePlugin(clientAddressKladrField, clientAddressKladr);
+    @FindBy(id = "client_reg_address_attributes_index")
+    WebElementFacade clientAddressIndexField;
+
+    public void selectClientRegistrationAddressRegion(String clientAddressRegion) {
+        if (!clientAddressRegion.isEmpty()) enterForSelectizePlugin(clientAddressRegionField, clientAddressRegion);
     }
 
-    public void enterClientRegistrationAddressIndex(String clientAddressIndex) {
-        enter(clientAddressIndex).into(clientAddressIndexField);
+    public void selectClientRegistrationAddressDistrict(String clientAddressDistrict) {
+        if (!clientAddressDistrict.isEmpty())enterForSelectizePlugin(clientAddressDistrictField, clientAddressDistrict);
+    }
+
+    public void selectClientRegistrationAddressCity(String clientAddressCity) {
+        if (!clientAddressCity.isEmpty())enterForSelectizePlugin(clientAddressCityField, clientAddressCity);
+    }
+
+    public void selectClientRegistrationAddressSettlement(String clientAddressSettlement) {
+        if (!clientAddressSettlement.isEmpty())enterForSelectizePlugin(clientAddressSettlementField, clientAddressSettlement);
+    }
+
+    public void selectClientRegistrationAddressStreet(String clientAddressStreet) {
+        if (!clientAddressStreet.isEmpty())enterForSelectizePlugin(clientAddressStreetField, clientAddressStreet);
     }
 
     public void enterClientRegistrationAddressHouse(String clientAddressHouse) {
@@ -203,14 +219,19 @@ public class CPPOrganizationRegistrationPage extends CPPSelectizePageObject {
         enter(clientAddressRoom).into(clientAddressRoomField);
     }
 
+    public void enterClientRegistrationAddressIndex(String clientAddressIndex) {
+        enter(clientAddressIndex).into(clientAddressIndexField);
+    }
+
     //АДРЕС МЕСТОНАХОЖДЕНИЯ
     @FindBy(xpath = ".//*[@for='client_location_address_attributes_same_as_reg']/div")
-    WebElementFacade clientLocationAddressSameAsClientRegistrationCheckBox;
+    WebElementFacade locationAddressSameAsRegistrationCheckBox;
 
-    @FindBy(id = "client_location_address_attributes_post_index")
-    WebElementFacade locationAddressIndexField;
-
-    private static final String locationAddressKladrField = "client_location_address_attributes_kladr_code";
+    private static final String locationAddressRegionField = "client_location_address_attributes_region";
+    private static final String locationAddressDistrictField = "client_location_address_attributes_district";
+    private static final String locationAddressCityField = "client_location_address_attributes_city";
+    private static final String locationAddressSettlementField = "client_location_address_attributes_settlement";
+    private static final String locationAddressStreetField = "client_location_address_attributes_street";
 
     @FindBy(id = "client_location_address_attributes_house")
     WebElementFacade locationAddressHouseField;
@@ -224,16 +245,31 @@ public class CPPOrganizationRegistrationPage extends CPPSelectizePageObject {
     @FindBy(id = "client_location_address_attributes_room")
     WebElementFacade locationAddressRoomField;
 
+    @FindBy(id = "client_location_address_attributes_post_index")
+    WebElementFacade locationAddressIndexField;
+
     public void clickToLocationAddressSameAsRegistrationCheckBox() {
-        clientLocationAddressSameAsClientRegistrationCheckBox.click();
+        locationAddressSameAsRegistrationCheckBox.click();
     }
 
-    public void selectClientLocationAddressKladr(String locationAddressKladr) {
-        enterForSelectizePlugin(locationAddressKladrField, locationAddressKladr);
+    public void selectClientLocationAddressRegion(String locationAddressRegion) {
+        if (!locationAddressRegion.isEmpty()) enterForSelectizePlugin(locationAddressRegionField, locationAddressRegion);
     }
 
-    public void enterClientLocationAddressIndex(String locationAddressIndex) {
-        enter(locationAddressIndex).into(locationAddressIndexField);
+    public void selectClientLocationAddressDistrict(String locationAddressDistrict) {
+        if (!locationAddressDistrict.isEmpty()) enterForSelectizePlugin(locationAddressDistrictField, locationAddressDistrict);
+    }
+
+    public void selectClientLocationAddressCity(String locationAddressCity) {
+        if (!locationAddressCity.isEmpty()) enterForSelectizePlugin(locationAddressCityField, locationAddressCity);
+    }
+
+    public void selectClientLocationAddressSettlement(String locationAddressSettlement) {
+        if (!locationAddressSettlement.isEmpty()) enterForSelectizePlugin(locationAddressSettlementField, locationAddressSettlement);
+    }
+
+    public void selectClientLocationAddressStreet(String locationAddressStreet) {
+        if (!locationAddressStreet.isEmpty()) enterForSelectizePlugin(locationAddressStreetField, locationAddressStreet);
     }
 
     public void enterClientLocationAddressHouse(String locationAddressHouse) {
@@ -252,14 +288,19 @@ public class CPPOrganizationRegistrationPage extends CPPSelectizePageObject {
         enter(locationAddressRoom).into(locationAddressRoomField);
     }
 
+    public void enterClientLocationAddressIndex(String locationAddressIndex) {
+        enter(locationAddressIndex).into(locationAddressIndexField);
+    }
+
     //ПОЧТОВЫЙ АДРЕС
     @FindBy(xpath = ".//*[@for='client_postal_address_attributes_same_as_reg']/div")
-    WebElementFacade clientPostalAddressSameAsClientRegistrationCheckBox;
+    WebElementFacade postalAddressSameAsRegistrationCheckBox;
 
-    @FindBy(id = "client_postal_address_attributes_post_index")
-    WebElementFacade postalAddressIndexField;
-
-    private static final String postalAddressKladrDropDown = "client_postal_address_attributes_kladr_code";
+    private static final String postalAddressRegionField = "client_postal_address_attributes_region";
+    private static final String postalAddressDistrictField = "client_postal_address_attributes_district";
+    private static final String postalAddressCityField = "client_postal_address_attributes_city";
+    private static final String postalAddressSettlementField = "client_postal_address_attributes_settlement";
+    private static final String postalAddressStreetField = "client_postal_address_attributes_street";
 
     @FindBy(id = "client_postal_address_attributes_house")
     WebElementFacade postalAddressHouseField;
@@ -273,16 +314,31 @@ public class CPPOrganizationRegistrationPage extends CPPSelectizePageObject {
     @FindBy(id = "client_postal_address_attributes_room")
     WebElementFacade postalAddressRoomField;
 
+    @FindBy(id = "client_postal_address_attributes_post_index")
+    WebElementFacade postalAddressIndexField;
+
     public void clickToPostalAddressSameAsRegistrationCheckBox() {
-        clientPostalAddressSameAsClientRegistrationCheckBox.click();
+        postalAddressSameAsRegistrationCheckBox.click();
     }
 
-    public void selectClientPostalAddressKladr(String postalAddressKladr) {
-        enterForSelectizePlugin(postalAddressKladrDropDown, postalAddressKladr);
+    public void selectClientPostalAddressRegion(String postalAddressRegion) {
+        if (!postalAddressRegion.isEmpty()) enterForSelectizePlugin(postalAddressRegionField, postalAddressRegion);
     }
 
-    public void enterClientPostalAddressIndex(String postalAddressIndex) {
-        enter(postalAddressIndex).into(postalAddressIndexField);
+    public void selectClientPostalAddressDistrict(String postalAddressDistrict) {
+        if (!postalAddressDistrict.isEmpty()) enterForSelectizePlugin(postalAddressDistrictField, postalAddressDistrict);
+    }
+
+    public void selectClientPostalAddressCity(String postalAddressCity) {
+        if (!postalAddressCity.isEmpty()) enterForSelectizePlugin(postalAddressCityField, postalAddressCity);
+    }
+
+    public void selectClientPostalAddressSettlement(String postalAddressSettlement) {
+        if (!postalAddressSettlement.isEmpty()) enterForSelectizePlugin(postalAddressSettlementField, postalAddressSettlement);
+    }
+
+    public void selectClientPostalAddressStreet(String postalAddressStreet) {
+        if (!postalAddressStreet.isEmpty()) enterForSelectizePlugin(postalAddressStreetField, postalAddressStreet);
     }
 
     public void enterClientPostalAddressHouse(String postalAddressHouse) {
@@ -299,5 +355,9 @@ public class CPPOrganizationRegistrationPage extends CPPSelectizePageObject {
 
     public void enterClientPostalAddressRoom(String postalAddressRoom) {
         enter(postalAddressRoom).into(postalAddressRoomField);
+    }
+
+    public void enterClientPostalAddressIndex(String postalAddressIndex) {
+        enter(postalAddressIndex).into(postalAddressIndexField);
     }
 }

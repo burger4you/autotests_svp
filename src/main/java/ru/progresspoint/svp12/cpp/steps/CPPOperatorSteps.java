@@ -68,7 +68,7 @@ public class CPPOperatorSteps extends RandomGenerators {
     @Step("Вводит данные ЮЛ")
     public void entersULData(String organizationEmail) {
         fillsOrganizationData(organizationEmail);
-        fillsOrganizationRegistrationAddress("Город Санкт-Петербург, улица Иркутская");
+        fillsOrganizationRegistrationAddress("Санкт-Петербург", "", "", "", "Иркутская");
         fillsOrganizationLocationAddress("Совпадает с адресом регистрации");
         fillsOrganizationPostalAddress("Совпадает с адресом регистрации");
         fillsDirectorData(organizationEmail, "Удостоверение личности военнослужащего РФ");
@@ -79,7 +79,7 @@ public class CPPOperatorSteps extends RandomGenerators {
     @Step("Вводит данные ФЛ")
     public void entersFLData(String clientEmail) {
         fillsClientPersonalData(clientEmail, "Паспорт");
-        fillsClientRegistrationAddress("Город Санкт-Петербург, улица Иркутская");
+        fillsClientRegistrationAddress("Санкт-Петербург", "", "", "", "Иркутская");
         fillsClientLocationAddress("Совпадает с адресом регистрации");
         fillsClientPostalAddress("Совпадает с адресом регистрации");
         fillsAccountData();
@@ -222,13 +222,21 @@ public class CPPOperatorSteps extends RandomGenerators {
         organizationRegistrationPage.selectDirectorRole("Главный менеджер");
     }
 
-    private void fillsClientRegistrationAddress(String clientAddressKladr) {
-        clientRegistrationPage.selectClientRegistrationAddressKladr(clientAddressKladr);
-//        clientRegistrationPage.enterClientRegistrationAddressIndex(getRandomNumber(6));
+    private void fillsClientRegistrationAddress(String clientAddressRegion,
+                                                String clientAddressDistrict,
+                                                String clientAddressCity,
+                                                String clientAddressSettlement,
+                                                String clientAddressStreet) {
+        clientRegistrationPage.selectClientRegistrationAddressRegion(clientAddressRegion);
+        clientRegistrationPage.selectClientRegistrationAddressDistrict(clientAddressDistrict);
+        clientRegistrationPage.selectClientRegistrationAddressCity(clientAddressCity);
+        clientRegistrationPage.selectClientRegistrationAddressSettlement(clientAddressSettlement);
+        clientRegistrationPage.selectClientRegistrationAddressStreet(clientAddressStreet);
         clientRegistrationPage.enterClientRegistrationAddressHouse(getRandomNumber(3));
         clientRegistrationPage.enterClientRegistrationAddressHousing(getRandomNumber(1));
         clientRegistrationPage.enterClientRegistrationAddressBuilding(getRandomNumber(1));
         clientRegistrationPage.enterClientRegistrationAddressRoom(getRandomNumber(2));
+//        clientRegistrationPage.enterClientRegistrationAddressIndex(getRandomNumber(6));
     }
 
     private void fillsIPRegistrationAddress(String clientAddressRegion,
@@ -248,28 +256,43 @@ public class CPPOperatorSteps extends RandomGenerators {
 //        ipRegistrationPage.enterClientRegistrationAddressIndex(getRandomNumber(6));
     }
 
-    private void fillsOrganizationRegistrationAddress(String clientAddressKladr) {
-        organizationRegistrationPage.selectClientRegistrationAddressKladr(clientAddressKladr);
-//        organizationRegistrationPage.enterClientRegistrationAddressIndex(getRandomNumber(6));
+    private void fillsOrganizationRegistrationAddress(String clientAddressRegion,
+                                                      String clientAddressDistrict,
+                                                      String clientAddressCity,
+                                                      String clientAddressSettlement,
+                                                      String clientAddressStreet) {
+        organizationRegistrationPage.selectClientRegistrationAddressRegion(clientAddressRegion);
+        organizationRegistrationPage.selectClientRegistrationAddressDistrict(clientAddressDistrict);
+        organizationRegistrationPage.selectClientRegistrationAddressCity(clientAddressCity);
+        organizationRegistrationPage.selectClientRegistrationAddressSettlement(clientAddressSettlement);
+        organizationRegistrationPage.selectClientRegistrationAddressStreet(clientAddressStreet);
         organizationRegistrationPage.enterClientRegistrationAddressHouse(getRandomNumber(3));
         organizationRegistrationPage.enterClientRegistrationAddressHousing(getRandomNumber(1));
         organizationRegistrationPage.enterClientRegistrationAddressBuilding(getRandomNumber(1));
         organizationRegistrationPage.enterClientRegistrationAddressRoom(getRandomNumber(2));
+//        organizationRegistrationPage.enterClientRegistrationAddressIndex(getRandomNumber(6));
     }
 
-    private void fillsClientLocationAddress(String locationAddressKladr) {
-        switch (locationAddressKladr) {
-            case "Совпадает с адресом регистрации":
-                clientRegistrationPage.clickToLocationAddressSameAsRegistrationCheckBox();
-                break;
-            default:
-                clientRegistrationPage.selectClientLocationAddressKladr(locationAddressKladr);
-//        clientRegistrationPage.enterClientLocationAddressIndex(getRandomNumber(6));
-                clientRegistrationPage.enterClientLocationAddressHouse(getRandomNumber(3));
-                clientRegistrationPage.enterClientLocationAddressHousing(getRandomNumber(1));
-                clientRegistrationPage.enterClientLocationAddressBuilding(getRandomNumber(1));
-                clientRegistrationPage.enterClientLocationAddressRoom(getRandomNumber(2));
-        }
+    private void fillsClientLocationAddress(String clientAddressRegion,
+                                            String clientAddressDistrict,
+                                            String clientAddressCity,
+                                            String clientAddressSettlement,
+                                            String clientAddressStreet) {
+        clientRegistrationPage.selectClientLocationAddressRegion(clientAddressRegion);
+        clientRegistrationPage.selectClientLocationAddressDistrict(clientAddressDistrict);
+        clientRegistrationPage.selectClientLocationAddressCity(clientAddressCity);
+        clientRegistrationPage.selectClientLocationAddressSettlement(clientAddressSettlement);
+        clientRegistrationPage.selectClientLocationAddressStreet(clientAddressStreet);
+        clientRegistrationPage.enterClientLocationAddressHouse(getRandomNumber(3));
+        clientRegistrationPage.enterClientLocationAddressHousing(getRandomNumber(1));
+        clientRegistrationPage.enterClientLocationAddressBuilding(getRandomNumber(1));
+        clientRegistrationPage.enterClientLocationAddressRoom(getRandomNumber(2));
+//                clientRegistrationPage.enterClientLocationAddressIndex(getRandomNumber(6));
+    }
+
+    private void fillsClientLocationAddress(String locationAddress) {
+        if (locationAddress.equals("Совпадает с адресом регистрации"))
+            clientRegistrationPage.clickToLocationAddressSameAsRegistrationCheckBox();
     }
 
     private void fillsIPLocationAddress(String clientAddressRegion,
@@ -277,58 +300,72 @@ public class CPPOperatorSteps extends RandomGenerators {
                                         String clientAddressCity,
                                         String clientAddressSettlement,
                                         String clientAddressStreet) {
-                ipRegistrationPage.selectClientLocationAddressRegion(clientAddressRegion);
-                ipRegistrationPage.selectClientLocationAddressDistrict(clientAddressDistrict);
-                ipRegistrationPage.selectClientLocationAddressCity(clientAddressCity);
-                ipRegistrationPage.selectClientLocationAddressSettlement(clientAddressSettlement);
-                ipRegistrationPage.selectClientLocationAddressStreet(clientAddressStreet);
-                ipRegistrationPage.enterClientLocationAddressHouse(getRandomNumber(3));
-                ipRegistrationPage.enterClientLocationAddressHousing(getRandomNumber(1));
-                ipRegistrationPage.enterClientLocationAddressBuilding(getRandomNumber(1));
-                ipRegistrationPage.enterClientLocationAddressRoom(getRandomNumber(2));
+        ipRegistrationPage.selectClientLocationAddressRegion(clientAddressRegion);
+        ipRegistrationPage.selectClientLocationAddressDistrict(clientAddressDistrict);
+        ipRegistrationPage.selectClientLocationAddressCity(clientAddressCity);
+        ipRegistrationPage.selectClientLocationAddressSettlement(clientAddressSettlement);
+        ipRegistrationPage.selectClientLocationAddressStreet(clientAddressStreet);
+        ipRegistrationPage.enterClientLocationAddressHouse(getRandomNumber(3));
+        ipRegistrationPage.enterClientLocationAddressHousing(getRandomNumber(1));
+        ipRegistrationPage.enterClientLocationAddressBuilding(getRandomNumber(1));
+        ipRegistrationPage.enterClientLocationAddressRoom(getRandomNumber(2));
 //                ipRegistrationPage.enterClientLocationAddressIndex(getRandomNumber(6));
     }
 
-    private void fillsIPLocationAddress (String locationAddress) {
+    private void fillsIPLocationAddress(String locationAddress) {
         if (locationAddress.equals("Совпадает с адресом регистрации"))
             ipRegistrationPage.clickToLocationAddressSameAsRegistrationCheckBox();
     }
 
-    private void fillsOrganizationLocationAddress(String locationAddressKladr) {
-        switch (locationAddressKladr) {
-            case "Совпадает с адресом регистрации":
-                organizationRegistrationPage.clickToLocationAddressSameAsRegistrationCheckBox();
-                break;
-            default:
-                organizationRegistrationPage.selectClientLocationAddressKladr(locationAddressKladr);
-//        organizationRegistrationPage.enterClientLocationAddressIndex(getRandomNumber(6));
-                organizationRegistrationPage.enterClientLocationAddressHouse(getRandomNumber(3));
-                organizationRegistrationPage.enterClientLocationAddressHousing(getRandomNumber(1));
-                organizationRegistrationPage.enterClientLocationAddressBuilding(getRandomNumber(1));
-                organizationRegistrationPage.enterClientLocationAddressRoom(getRandomNumber(2));
-        }
+    private void fillsOrganizationLocationAddress(String clientAddressRegion,
+                                                  String clientAddressDistrict,
+                                                  String clientAddressCity,
+                                                  String clientAddressSettlement,
+                                                  String clientAddressStreet) {
+        organizationRegistrationPage.selectClientLocationAddressRegion(clientAddressRegion);
+        organizationRegistrationPage.selectClientLocationAddressDistrict(clientAddressDistrict);
+        organizationRegistrationPage.selectClientLocationAddressCity(clientAddressCity);
+        organizationRegistrationPage.selectClientLocationAddressSettlement(clientAddressSettlement);
+        organizationRegistrationPage.selectClientLocationAddressStreet(clientAddressStreet);
+        organizationRegistrationPage.enterClientLocationAddressHouse(getRandomNumber(3));
+        organizationRegistrationPage.enterClientLocationAddressHousing(getRandomNumber(1));
+        organizationRegistrationPage.enterClientLocationAddressBuilding(getRandomNumber(1));
+        organizationRegistrationPage.enterClientLocationAddressRoom(getRandomNumber(2));
+//                organizationRegistrationPage.enterClientLocationAddressIndex(getRandomNumber(6));
     }
 
-    private void fillsClientPostalAddress(String postalAddressKladr) {
-        switch (postalAddressKladr) {
-            case "Совпадает с адресом регистрации":
-                clientRegistrationPage.clickToPostalAddressSameAsRegistrationCheckBox();
-                break;
-            default:
-                clientRegistrationPage.selectClientPostalAddressKladr(postalAddressKladr);
-//        clientRegistrationPage.enterClientPostalAddressIndex(getRandomNumber(6));
-                clientRegistrationPage.enterClientPostalAddressHouse(getRandomNumber(3));
-                clientRegistrationPage.enterClientPostalAddressHousing(getRandomNumber(1));
-                clientRegistrationPage.enterClientPostalAddressBuilding(getRandomNumber(1));
-                clientRegistrationPage.enterClientPostalAddressRoom(getRandomNumber(2));
-        }
+    private void fillsOrganizationLocationAddress(String locationAddress) {
+        if (locationAddress.equals("Совпадает с адресом регистрации"))
+            organizationRegistrationPage.clickToLocationAddressSameAsRegistrationCheckBox();
+    }
+
+    private void fillsClientPostalAddress(String clientAddressRegion,
+                                          String clientAddressDistrict,
+                                          String clientAddressCity,
+                                          String clientAddressSettlement,
+                                          String clientAddressStreet) {
+        clientRegistrationPage.selectClientPostalAddressRegion(clientAddressRegion);
+        clientRegistrationPage.selectClientPostalAddressDistrict(clientAddressDistrict);
+        clientRegistrationPage.selectClientPostalAddressCity(clientAddressCity);
+        clientRegistrationPage.selectClientPostalAddressSettlement(clientAddressSettlement);
+        clientRegistrationPage.selectClientPostalAddressStreet(clientAddressStreet);
+        clientRegistrationPage.enterClientPostalAddressHouse(getRandomNumber(3));
+        clientRegistrationPage.enterClientPostalAddressHousing(getRandomNumber(1));
+        clientRegistrationPage.enterClientPostalAddressBuilding(getRandomNumber(1));
+        clientRegistrationPage.enterClientPostalAddressRoom(getRandomNumber(2));
+//                clientRegistrationPage.enterClientPostalAddressIndex(getRandomNumber(6));
+    }
+
+    private void fillsClientPostalAddress(String postalAddress) {
+        if (postalAddress.equals("Совпадает с адресом регистрации"))
+            clientRegistrationPage.clickToPostalAddressSameAsRegistrationCheckBox();
     }
 
     private void fillsIPPostalAddress(String clientAddressRegion,
-                                        String clientAddressDistrict,
-                                        String clientAddressCity,
-                                        String clientAddressSettlement,
-                                        String clientAddressStreet) {
+                                      String clientAddressDistrict,
+                                      String clientAddressCity,
+                                      String clientAddressSettlement,
+                                      String clientAddressStreet) {
         ipRegistrationPage.selectClientPostalAddressRegion(clientAddressRegion);
         ipRegistrationPage.selectClientPostalAddressDistrict(clientAddressDistrict);
         ipRegistrationPage.selectClientPostalAddressCity(clientAddressCity);
@@ -341,24 +378,31 @@ public class CPPOperatorSteps extends RandomGenerators {
 //                ipRegistrationPage.enterClientPostalAddressIndex(getRandomNumber(6));
     }
 
-    private void fillsIPPostalAddress (String postalAddress) {
+    private void fillsIPPostalAddress(String postalAddress) {
         if (postalAddress.equals("Совпадает с адресом регистрации"))
             ipRegistrationPage.clickToPostalAddressSameAsRegistrationCheckBox();
     }
 
-    private void fillsOrganizationPostalAddress(String postalAddressKladr) {
-        switch (postalAddressKladr) {
-            case "Совпадает с адресом регистрации":
-                organizationRegistrationPage.clickToPostalAddressSameAsRegistrationCheckBox();
-                break;
-            default:
-                organizationRegistrationPage.selectClientPostalAddressKladr(postalAddressKladr);
-//        organizationRegistrationPage.enterClientPostalAddressIndex(getRandomNumber(6));
-                organizationRegistrationPage.enterClientPostalAddressHouse(getRandomNumber(3));
-                organizationRegistrationPage.enterClientPostalAddressHousing(getRandomNumber(1));
-                organizationRegistrationPage.enterClientPostalAddressBuilding(getRandomNumber(1));
-                organizationRegistrationPage.enterClientPostalAddressRoom(getRandomNumber(2));
-        }
+    private void fillsOrganizationPostalAddress(String clientAddressRegion,
+                                                String clientAddressDistrict,
+                                                String clientAddressCity,
+                                                String clientAddressSettlement,
+                                                String clientAddressStreet) {
+        organizationRegistrationPage.selectClientPostalAddressRegion(clientAddressRegion);
+        organizationRegistrationPage.selectClientPostalAddressDistrict(clientAddressDistrict);
+        organizationRegistrationPage.selectClientPostalAddressCity(clientAddressCity);
+        organizationRegistrationPage.selectClientPostalAddressSettlement(clientAddressSettlement);
+        organizationRegistrationPage.selectClientPostalAddressStreet(clientAddressStreet);
+        organizationRegistrationPage.enterClientPostalAddressHouse(getRandomNumber(3));
+        organizationRegistrationPage.enterClientPostalAddressHousing(getRandomNumber(1));
+        organizationRegistrationPage.enterClientPostalAddressBuilding(getRandomNumber(1));
+        organizationRegistrationPage.enterClientPostalAddressRoom(getRandomNumber(2));
+//                organizationRegistrationPage.enterClientPostalAddressIndex(getRandomNumber(6));
+    }
+
+    private void fillsOrganizationPostalAddress(String postalAddress) {
+        if (postalAddress.equals("Совпадает с адресом регистрации"))
+            organizationRegistrationPage.clickToPostalAddressSameAsRegistrationCheckBox();
     }
 
     private void fillsOrganizationNonresidentData(String organizationEmail) {

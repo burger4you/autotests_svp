@@ -166,25 +166,25 @@ public class CPPIPRegistrationPage extends CPPSelectizePageObject {
     @FindBy(xpath = ".//*[@for='client_ip_persons_attributes_0_location_address_attributes_same_as_reg']/div")
     WebElementFacade locationAddressSameAsRegistrationCheckBox;
 
-    private static final String locationAddressRegionField = "client_location_address_attributes_region";
-    private static final String locationAddressDistrictField = "client_location_address_attributes_district";
-    private static final String locationAddressCityField = "client_location_address_attributes_city";
-    private static final String locationAddressSettlementField = "client_location_address_attributes_settlement";
-    private static final String locationAddressStreetField = "client_location_address_attributes_street";
+    private static final String locationAddressRegionField = "client_ip_persons_attributes_0_location_address_attributes_region";
+    private static final String locationAddressDistrictField = "client_ip_persons_attributes_0_location_address_attributes_district";
+    private static final String locationAddressCityField = "client_ip_persons_attributes_0_location_address_attributes_city";
+    private static final String locationAddressSettlementField = "client_ip_persons_attributes_0_location_address_attributes_settlement";
+    private static final String locationAddressStreetField = "client_ip_persons_attributes_0_location_address_attributes_street";
 
-    @FindBy(id = "client_location_address_attributes_house")
+    @FindBy(id = "client_ip_persons_attributes_0_location_address_attributes_house")
     WebElementFacade locationAddressHouseField;
 
-    @FindBy(id = "client_location_address_attributes_housing")
+    @FindBy(id = "client_ip_persons_attributes_0_location_address_attributes_housing")
     WebElementFacade locationAddressHousingField;
 
-    @FindBy(id = "client_location_address_attributes_building")
+    @FindBy(id = "client_ip_persons_attributes_0_location_address_attributes_building")
     WebElementFacade locationAddressBuildingField;
 
-    @FindBy(id = "client_location_address_attributes_room")
+    @FindBy(id = "client_ip_persons_attributes_0_location_address_attributes_room")
     WebElementFacade locationAddressRoomField;
 
-    @FindBy(id = "client_location_address_attributes_post_index")
+    @FindBy(id = "client_ip_persons_attributes_0_location_address_attributes_post_index")
     WebElementFacade locationAddressIndexField;
 
     public void clickToLocationAddressSameAsRegistrationCheckBox() {
@@ -235,25 +235,25 @@ public class CPPIPRegistrationPage extends CPPSelectizePageObject {
     @FindBy(xpath = ".//*[@for='client_ip_persons_attributes_0_postal_address_attributes_same_as_reg']/div")
     WebElementFacade postalAddressSameAsRegistrationCheckBox;
 
-    private static final String postalAddressRegionField = "client_postal_address_attributes_region";
-    private static final String postalAddressDistrictField = "client_postal_address_attributes_district";
-    private static final String postalAddressCityField = "client_postal_address_attributes_city";
-    private static final String postalAddressSettlementField = "client_postal_address_attributes_settlement";
-    private static final String postalAddressStreetField = "client_postal_address_attributes_street";
+    private static final String postalAddressRegionField = "client_ip_persons_attributes_0_postal_address_attributes_region";
+    private static final String postalAddressDistrictField = "client_ip_persons_attributes_0_postal_address_attributes_district";
+    private static final String postalAddressCityField = "client_ip_persons_attributes_0_postal_address_attributes_city";
+    private static final String postalAddressSettlementField = "client_ip_persons_attributes_0_postal_address_attributes_settlement";
+    private static final String postalAddressStreetField = "client_ip_persons_attributes_0_postal_address_attributes_street";
 
-    @FindBy(id = "client_postal_address_attributes_house")
+    @FindBy(id = "client_ip_persons_attributes_0_postal_address_attributes_house")
     WebElementFacade postalAddressHouseField;
 
-    @FindBy(id = "client_postal_address_attributes_housing")
+    @FindBy(id = "client_ip_persons_attributes_0_postal_address_attributes_housing")
     WebElementFacade postalAddressHousingField;
 
-    @FindBy(id = "client_postal_address_attributes_building")
+    @FindBy(id = "client_ip_persons_attributes_0_postal_address_attributes_building")
     WebElementFacade postalAddressBuildingField;
 
-    @FindBy(id = "client_postal_address_attributes_room")
+    @FindBy(id = "client_ip_persons_attributes_0_postal_address_attributes_room")
     WebElementFacade postalAddressRoomField;
 
-    @FindBy(id = "client_postal_address_attributes_post_index")
+    @FindBy(id = "client_ip_persons_attributes_0_postal_address_attributes_post_index")
     WebElementFacade postalAddressIndexField;
 
     public void clickToPostalAddressSameAsRegistrationCheckBox() {
