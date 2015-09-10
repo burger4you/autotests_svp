@@ -58,7 +58,7 @@ public class CPPOperatorSteps extends RandomGenerators {
     @Step("Вводит данные ИП")
     public void entersIPData(String ipEmail) {
         fillsIPData(ipEmail, "Паспорт");
-        fillsIPRegistrationAddress("Санкт-Петербург г", "", "", "", "Иркутская ул");
+        fillsIPRegistrationAddress("Санкт-Петербург", "", "", "", "Иркутская");
         fillsIPLocationAddress("Совпадает с адресом регистрации");
         fillsIPPostalAddress("Совпадает с адресом регистрации");
         fillsAccountData();

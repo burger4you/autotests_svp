@@ -232,7 +232,7 @@ public class CPPIPRegistrationPage extends CPPSelectizePageObject {
     }
 
     //ПОЧТОВЫЙ АДРЕС
-    @FindBy(xpath = ".//*[@for='client_ip_persons_attributes_0_location_address_attributes_same_as_reg']/div")
+    @FindBy(xpath = ".//*[@for='client_ip_persons_attributes_0_postal_address_attributes_same_as_reg']/div")
     WebElementFacade postalAddressSameAsRegistrationCheckBox;
 
     private static final String postalAddressRegionField = "client_postal_address_attributes_region";
