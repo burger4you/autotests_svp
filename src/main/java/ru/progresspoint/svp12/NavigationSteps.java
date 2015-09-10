@@ -23,6 +23,7 @@ import ru.progresspoint.svp12.rso.pages.RSOMainPage;
 import ru.progresspoint.svp12.treasury.pages.TreasuryLoginPage;
 import ru.progresspoint.svp12.treasury.pages.TreasuryMainPage;
 import ru.progresspoint.svp12.tso.pages.TSOCabinetPage;
+import ru.progresspoint.svp12.tso.pages.TSOInfoPage;
 import ru.progresspoint.svp12.tso.pages.TSOStartPage;
 
 import static java.lang.String.format;
@@ -58,6 +59,7 @@ public class NavigationSteps extends ScenarioSteps {
 
     TSOStartPage tsoStartPage;
     TSOCabinetPage tsoCabinetPage;
+    TSOInfoPage tsoInfoPage;
 
     TreasuryLoginPage treasuryLoginPage;
     TreasuryMainPage treasuryMainPage;
@@ -226,11 +228,11 @@ public class NavigationSteps extends ScenarioSteps {
     @Step("Находится на странице {0} АРМа ТСО")
     public void isOnTSOPage(String page) {
         switch (page) {
-            case "Личного Кабинета":
+            case "личного кабинета":
                 tsoCabinetPage.shouldBeDisplayed();
                 break;
-            case "Стартовая":
-                tsoStartPage.shouldBeDisplayed();
+            case "информации о системе":
+                tsoInfoPage.shouldBeDisplayed();
                 break;
         }
     }

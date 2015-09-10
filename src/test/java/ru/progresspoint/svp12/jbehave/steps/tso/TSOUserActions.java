@@ -12,12 +12,17 @@ public class TSOUserActions {
     @Steps
     TSOUserSteps user;
 
-    @When("пользователь вводит ГРНЗ $grnz и номер СТС $stsNumber выданный $stsDate для авторизации в АРМ ТСО")
-    public void operatorEntersLoginAndPassword(String grnz, String stsNumber, String stsDate) {
-        user.clicksToButton("Начать использование");
+    @When("он введет ГРНЗ $grnz и номер СТС $stsNumber для авторизации в АРМ ТСО")
+    public void userEntersGRNZAndSTS(String grnz, String stsNumber) {
+        user.clicksToStartButton();
         user.selectVehicleCountry("Россия");
-        user.clicksToButton("Далее");
-        user.entersAuthorisationData(grnz, stsNumber, stsDate);
-        user.clicksToButton("Далее");
+        user.clicksToNextButton();
+        user.entersAuthorisationData(grnz, stsNumber);
+        user.clicksToNextButton();
+    }
+
+    @When("он обратится за дополнительной информацией к терминалу")
+    public void userClicksToInfoButton() {
+        user.clicksToInfoButton();
     }
 }

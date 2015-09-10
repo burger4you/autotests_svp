@@ -14,6 +14,14 @@ public class TSOStartPage extends PageObject {
     @FindBy (xpath = ".//*[@href='/auth/countries/']")
     WebElementFacade startButton;
 
-    @FindBy (xpath = ".//*[@href='logic/info/']")
+    @FindBy (xpath = ".//*[@href='/info/']")
     WebElementFacade infoButton;
+
+    public void clickToStartButton() {
+        startButton.click();
+    }
+
+    public void clickToInfoButton() {
+        infoButton.click();
+    }
 }

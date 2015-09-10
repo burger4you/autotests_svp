@@ -1,35 +1,50 @@
 package ru.progresspoint.svp12.tso.steps;
 
 
+import net.serenitybdd.core.annotations.findby.By;
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.steps.ScenarioSteps;
-import ru.progresspoint.svp12.treasury.pages.TreasuryLoginPage;
 import ru.progresspoint.svp12.tso.pages.TSOLoginPage;
+import ru.progresspoint.svp12.tso.pages.TSOScreenObject;
 import ru.progresspoint.svp12.tso.pages.TSOStartPage;
 
-import static org.openqa.selenium.By.linkText;
-import static org.openqa.selenium.By.name;
+import static org.openqa.selenium.By.xpath;
 
 /**
  * Шаги пользователя АРМа ТСО
  */
 public class TSOUserSteps extends ScenarioSteps {
 
+    TSOStartPage startPage;
     TSOLoginPage loginPage;
 
-    @Step("Нажимает на кнопку {0}")
-    public void clicksToButton(String linkText) {
-        getDriver().findElement(linkText(linkText));
+    @Step("Нажимает на кнопку Начать использование")
+    public void clicksToStartButton() {
+        startPage.clickToStartButton();
     }
 
-    @Step("Вводит гос номер ТС {0}, номер {1} и дату выдачи {2} свидетельства о регистрации ТС")
-    public void entersAuthorisationData(String grnz, String stsNumber, String stsDate) {
-        loginPage.enterGRNZ(grnz);
-        loginPage.enterStsNumber(stsNumber);
-        loginPage.enterStsDate(stsDate);
+    @Step("Нажимает на кнопку Информация о системе")
+    public void clicksToInfoButton() {
+        startPage.clickToInfoButton();
+    }
+
+    @Step("Нажимает на кнопку Далее")
+    public void clicksToNextButton() {
+        getDriver().findElement(By.xpath(".//*[@class='go_next']")).click();
+    }
+
+    @Step("Нажимает на кнопку Назад")
+    public void clicksToBackButton() {
+        getDriver().findElement(By.xpath(".//*[@class='go_back']")).click();
     }
 
     @Step("Выбирает страну регистрации ТС {0}")
     public void selectVehicleCountry(String country) {
+    }
+
+    @Step("Вводит гос номер ТС {0} и номер свидетельства о регистрации ТС {1}")
+    public void entersAuthorisationData(String grnz, String stsNumber) {
+        loginPage.enterGRNZ(grnz);
+        loginPage.enterStsNumber(stsNumber);
     }
 }

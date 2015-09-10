@@ -111,7 +111,7 @@ public class LKUserSteps extends RandomGenerators {
         fillsClientBankData();
     }
 
-    @Step("Вводит банковские реквизиты ")
+    @Step("Соглашается с обработкой данных")
     public void confirmsAgreeCheckboxes() {
         selectsAgreeCheckboxes();
     }

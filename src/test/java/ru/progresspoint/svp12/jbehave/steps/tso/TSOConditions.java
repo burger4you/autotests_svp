@@ -14,6 +14,11 @@ public class TSOConditions {
 
     @Then("система предоставляет доступ к личному кабинету АРМа ТСО")
     public void tsoShouldBeAvailableForUser() {
-        navigation.isOnTSOPage("Личного Кабинета");
+        navigation.isOnTSOPage("личного кабинета");
+    }
+
+    @Then("терминал самообслуживания отобразит экран со справочной информацией о системе")
+    public void infoShouldBeAvailableForUser() {
+        navigation.isOnTSOPage("информации о системе");
     }
 }

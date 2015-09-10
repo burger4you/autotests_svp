@@ -13,7 +13,7 @@ public class TSOPreconditionSteps {
     @Steps
     NavigationSteps navigation;
 
-    @Given("пользователь находится на странице начала использования АРМа ТСО")
+    @Given("владелец ТС находится на стартовой странице терминала самообслуживания")
     public void userIsOnStartPage() {
         navigation.opensTSOStartPage();
     }

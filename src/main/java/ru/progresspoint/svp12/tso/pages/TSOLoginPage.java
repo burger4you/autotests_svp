@@ -1,7 +1,6 @@
 package ru.progresspoint.svp12.tso.pages;
 
 import net.serenitybdd.core.annotations.findby.FindBy;
-import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.At;
 
@@ -9,26 +8,29 @@ import net.thucydides.core.annotations.At;
  * Экран авторизации АРМа ТСО
  */
 @At("#HOST/auth/")
-public class TSOLoginPage extends PageObject {
+public class TSOLoginPage extends TSOScreenObject {
 
-    @FindBy (id = "grnz")
+    @FindBy(id = "grnz")
     WebElementFacade grnzField;
 
-    @FindBy (id = "sts")
+    @FindBy(id = "sts")
     WebElementFacade stsNumberField;
 
-    @FindBy (id = "sts_date")
-    WebElementFacade stsDateField;
+    @FindBy(id = "mobilePhone")
+    WebElementFacade mobilePhoneField;
 
     public void enterGRNZ(String grnz) {
-        enter(grnz).into(grnzField);
+        switchToEnglishKeyboard();
+        typeFromKeyboard(grnz, grnzField);
     }
 
     public void enterStsNumber(String stsNumber) {
-        enter(stsNumber).into(stsNumberField);
+        typeFromKeyboard(stsNumber, stsNumberField);
     }
 
-    public void enterStsDate(String stsDate) {
-        enter(stsDate).into(stsDateField);
+    public void enterMobilePhone(String mobilePhone) {
+        typeFromKeyboard(mobilePhone, mobilePhoneField);
     }
+
+
 }
