@@ -16,6 +16,7 @@ public class TSOUserActions {
     public void operatorEntersLoginAndPassword(String grnz, String stsNumber, String stsDate) {
         user.clicksToButton("Начать использование");
         user.selectVehicleCountry("Россия");
+        user.clicksToButton("Далее");
         user.entersAuthorisationData(grnz, stsNumber, stsDate);
         user.clicksToButton("Далее");
     }

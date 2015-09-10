@@ -18,6 +18,10 @@ import ru.progresspoint.svp12.dz.pages.DZMainPage;
 import ru.progresspoint.svp12.klad.pages.KladLoginPage;
 import ru.progresspoint.svp12.klad.pages.KladMainPage;
 import ru.progresspoint.svp12.lk.pages.*;
+import ru.progresspoint.svp12.rso.pages.RSOLoginPage;
+import ru.progresspoint.svp12.rso.pages.RSOMainPage;
+import ru.progresspoint.svp12.treasury.pages.TreasuryLoginPage;
+import ru.progresspoint.svp12.treasury.pages.TreasuryMainPage;
 import ru.progresspoint.svp12.tso.pages.TSOCabinetPage;
 import ru.progresspoint.svp12.tso.pages.TSOStartPage;
 
@@ -55,14 +59,36 @@ public class NavigationSteps extends ScenarioSteps {
     TSOStartPage tsoStartPage;
     TSOCabinetPage tsoCabinetPage;
 
+    TreasuryLoginPage treasuryLoginPage;
+    TreasuryMainPage treasuryMainPage;
+
+    RSOLoginPage rsoLoginPage;
+    RSOMainPage rsoMainPage;
+
     @Step("Открывает страницу {0} АРМа РСО")
     public void opensRSOPage(String page) {
-
+        switch (page) {
+            case "Авторизации":
+                getDriver().get("http://10.0.12.248/sign_out");
+                rsoLoginPage.shouldBeDisplayed();
+                break;
+            case "Главная":
+                rsoMainPage.openAt("http://10.0.12.248");
+                break;
+        }
     }
 
     @Step("Открывает страницу {0} АРМа Казначейства")
     public void opensTreasuryPage(String page) {
-
+        switch (page) {
+            case "Авторизации":
+                getDriver().get("http://10.0.12.254/sign_out");
+                treasuryLoginPage.shouldBeDisplayed();
+                break;
+            case "Главная":
+                treasuryMainPage.openAt("http://10.0.12.254");
+                break;
+        }
     }
 
     @Step("Открывает стартовую страницу АРМа ТСО")
@@ -101,10 +127,10 @@ public class NavigationSteps extends ScenarioSteps {
         switch (page) {
             case "Авторизации":
                 getDriver().get("http://10.0.13.54/sign_out");
-                kladLoginPage.openAt("http://10.0.13.54/sign_in");
+                dzLoginPage.openAt("http://10.0.13.54/sign_in");
                 break;
             case "Главная":
-                kladMainPage.openAt("http://10.0.13.54");
+                dzLoginPage.openAt("http://10.0.13.54");
                 break;
         }
     }
@@ -175,12 +201,26 @@ public class NavigationSteps extends ScenarioSteps {
 
     @Step("Находится на странице {0} АРМа РСО")
     public void isOnRSOPage(String page) {
-
+        switch (page) {
+            case "Авторизации":
+                rsoLoginPage.shouldBeDisplayed();
+                break;
+            case "Главная":
+                rsoMainPage.shouldBeDisplayed();
+                break;
+        }
     }
 
     @Step("Находится на странице {0} АРМа Казначейства")
     public void isOnTreasuryPage(String page) {
-
+        switch (page) {
+            case "Авторизации":
+                treasuryLoginPage.shouldBeDisplayed();
+                break;
+            case "Главная":
+                treasuryMainPage.shouldBeDisplayed();
+                break;
+        }
     }
 
     @Step("Находится на странице {0} АРМа ТСО")
@@ -189,8 +229,8 @@ public class NavigationSteps extends ScenarioSteps {
             case "Личного Кабинета":
                 tsoCabinetPage.shouldBeDisplayed();
                 break;
-            case "Авторизации":
-                adminMainPage.shouldBeDisplayed();
+            case "Стартовая":
+                tsoStartPage.shouldBeDisplayed();
                 break;
         }
     }
@@ -199,10 +239,10 @@ public class NavigationSteps extends ScenarioSteps {
     public void isOnCallCentrePage(String page) {
         switch (page) {
             case "Авторизации":
-                adminLoginPage.shouldBeDisplayed();
+                callCentreLoginPage.shouldBeDisplayed();
                 break;
             case "Главная":
-                adminMainPage.shouldBeDisplayed();
+                callCentreMainPage.shouldBeDisplayed();
                 break;
         }
     }
@@ -211,10 +251,10 @@ public class NavigationSteps extends ScenarioSteps {
     public void isOnAdminPage(String page) {
         switch (page) {
             case "Авторизации":
-                callCentreLoginPage.shouldBeDisplayed();
+                adminLoginPage.shouldBeDisplayed();
                 break;
             case "Главная":
-                callCentreMainPage.shouldBeDisplayed();
+                adminMainPage.shouldBeDisplayed();
                 break;
         }
     }

@@ -14,7 +14,7 @@ public class TSOPreconditionSteps {
     NavigationSteps navigation;
 
     @Given("пользователь находится на странице начала использования АРМа ТСО")
-    public void userIsOnStartPage(String page) {
+    public void userIsOnStartPage() {
         navigation.opensTSOStartPage();
     }
 }
