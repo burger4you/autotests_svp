@@ -3,26 +3,35 @@ package ru.progresspoint.svp12.jbehave.steps.cpp;
 import net.thucydides.core.annotations.Steps;
 import org.jbehave.core.annotations.When;
 import ru.progresspoint.svp12.EmailUserSteps;
+import ru.progresspoint.svp12.cpp.steps.CPPAdministratorSteps;
 import ru.progresspoint.svp12.cpp.steps.CPPOperatorSteps;
 
 import javax.mail.MessagingException;
 
 /**
- * Шаги оператора АРМа ЦИПП
+ * Шаги пользователя АРМа ЦИПП
  */
-public class CPPOperatorActions {
+public class CPPUserActions {
 
     @Steps
     CPPOperatorSteps operator;
 
     @Steps
+    CPPAdministratorSteps admin;
+
+    @Steps
     EmailUserSteps email;
 
-    @When("он вводит логин $login и пароль $password для авторизации в ЦИПП")
+    @When("оператор вводит логин $login и пароль $password для авторизации в АРМ ЦИПП")
     public void operatorEntersLoginAndPassword(String login, String password) {
         operator.entersLoginAndPassword(login, password);
         operator.clicksToConfirmButton();
+    }
 
+    @When("админ вводит логин $login и пароль $password для авторизации в АРМ ЦИПП")
+    public void adminEntersLoginAndPassword(String login, String password) {
+        admin.entersLoginAndPassword(login, password);
+        admin.clicksToConfirmButton();
     }
 
     @When("оператор зарегистрирует ВТС как $clientType ($clientEmail)")

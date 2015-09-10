@@ -1,7 +1,7 @@
 Формирование заказа на БУ в АРМ ЦИПП
 Meta:
 @arm cpp
-@component vehicles
+@component devices
 
 Описание:
 Чтобы отложить БУ для выдачи ВТС
