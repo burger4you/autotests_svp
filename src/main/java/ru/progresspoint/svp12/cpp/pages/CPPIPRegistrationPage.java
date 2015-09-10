@@ -101,25 +101,25 @@ public class CPPIPRegistrationPage extends CPPSelectizePageObject {
     }
     
     //АДРЕС РЕГИСТРАЦИИ
-    private static final String clientAddressRegionField = "client_reg_address_attributes_region";
-    private static final String clientAddressDistrictField = "client_reg_address_attributes_district";
-    private static final String clientAddressCityField = "client_reg_address_attributes_city";
-    private static final String clientAddressSettlementField = "client_reg_address_attributes_settlement";
-    private static final String clientAddressStreetField = "client_reg_address_attributes_street";
+    private static final String clientAddressRegionField = "client_ip_persons_attributes_0_reg_address_attributes_region";
+    private static final String clientAddressDistrictField = "client_ip_persons_attributes_0_reg_address_attributes_district";
+    private static final String clientAddressCityField = "client_ip_persons_attributes_0_reg_address_attributes_city";
+    private static final String clientAddressSettlementField = "cclient_ip_persons_attributes_0_reg_address_attributes_settlement";
+    private static final String clientAddressStreetField = "client_ip_persons_attributes_0_reg_address_attributes_street";
 
-    @FindBy(id = "client_reg_address_attributes_house")
+    @FindBy(id = "client_ip_persons_attributes_0_reg_address_attributes_house")
     WebElementFacade clientAddressHouseField;
 
-    @FindBy(id = "client_reg_address_attributes_housing")
+    @FindBy(id = "client_ip_persons_attributes_0_reg_address_attributes_housing")
     WebElementFacade clientAddressHousingField;
 
-    @FindBy(id = "client_reg_address_attributes_building")
+    @FindBy(id = "client_ip_persons_attributes_0_reg_address_attributes_building")
     WebElementFacade clientAddressBuildingField;
 
-    @FindBy(id = "client_reg_address_attributes_room")
+    @FindBy(id = "client_ip_persons_attributes_0_reg_address_attributes_room")
     WebElementFacade clientAddressRoomField;
 
-    @FindBy(id = "client_reg_address_attributes_post_index")
+    @FindBy(id = "client_ip_persons_attributes_0_reg_address_attributes_index")
     WebElementFacade clientAddressIndexField;
 
     public void selectClientRegistrationAddressRegion(String clientAddressRegion) {
@@ -163,7 +163,7 @@ public class CPPIPRegistrationPage extends CPPSelectizePageObject {
     }
 
     //АДРЕС МЕСТОНАХОЖДЕНИЯ
-    @FindBy(xpath = ".//*[@for='client_location_address_attributes_same_as_reg']/div")
+    @FindBy(xpath = ".//*[@for='client_ip_persons_attributes_0_location_address_attributes_same_as_reg']/div")
     WebElementFacade locationAddressSameAsRegistrationCheckBox;
 
     private static final String locationAddressRegionField = "client_location_address_attributes_region";
@@ -232,7 +232,7 @@ public class CPPIPRegistrationPage extends CPPSelectizePageObject {
     }
 
     //ПОЧТОВЫЙ АДРЕС
-    @FindBy(xpath = ".//*[@for='client_postal_address_attributes_same_as_reg']/div")
+    @FindBy(xpath = ".//*[@for='client_ip_persons_attributes_0_location_address_attributes_same_as_reg']/div")
     WebElementFacade postalAddressSameAsRegistrationCheckBox;
 
     private static final String postalAddressRegionField = "client_postal_address_attributes_region";
