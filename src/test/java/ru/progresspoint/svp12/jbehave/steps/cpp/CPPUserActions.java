@@ -43,17 +43,17 @@ public class CPPUserActions {
         switch (clientType) {
             case "Индивидуальный предприниматель":
                 operator.entersIPData(clientEmail);
-//                operator.uploadsIPDocumentsCopies();
                 break;
             case "Юридическое лицо":
                 operator.entersULData(clientEmail);
-//                operator.uploadsULDocumentsCopies();
                 break;
             case "Физическое лицо":
                 operator.entersFLData(clientEmail);
-//                operator.uploadsFLDocumentsCopies();
                 break;
         }
+        operator.clicksToTextButton("Добавить лицевой счет");
+        operator.entersAccountData();
+        operator.entersClientBankData();
         operator.clicksToTextButton("Завершить регистрацию");
         operator.clicksToTextButton("Управление документами ВТС");
         operator.uploadsClientDocumentsCopies();
@@ -76,17 +76,17 @@ public class CPPUserActions {
         switch (clientType) {
             case "Индивидуальный предприниматель":
                 operator.entersIPNonresidentData(clientEmail);
-//                operator.uploadsIPDocumentsCopies();
                 break;
             case "Юридическое лицо":
                 operator.entersULNonresidentData(clientEmail);
-//                operator.uploadsULDocumentsCopies();
                 break;
             case "Физическое лицо":
                 operator.entersFLNonresidentData(clientEmail);
-//                operator.uploadsFLDocumentsCopies();
                 break;
         }
+        operator.clicksToTextButton("Добавить лицевой счет");
+        operator.entersAccountData();
+        operator.entersClientBankData();
         operator.clicksToTextButton("Завершить регистрацию");
 //        operator.uploadsClientDocumentsCopies();
 //        operator.clicksToTextButton("Подтвердить");

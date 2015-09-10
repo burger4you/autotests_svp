@@ -10,7 +10,7 @@ import static net.serenitybdd.core.Serenity.getCurrentSession;
 import static org.openqa.selenium.By.*;
 
 /**
- * Шаги оператора
+ * Шаги оператора АРМа ЦИПП
  */
 public class CPPOperatorSteps extends RandomGenerators {
 
@@ -61,8 +61,6 @@ public class CPPOperatorSteps extends RandomGenerators {
         fillsIPRegistrationAddress("Санкт-Петербург", "", "", "", "Иркутская");
         fillsIPLocationAddress("Совпадает с адресом регистрации");
         fillsIPPostalAddress("Совпадает с адресом регистрации");
-        fillsAccountData();
-        fillsClientBankData();
     }
 
     @Step("Вводит данные ЮЛ")
@@ -72,8 +70,6 @@ public class CPPOperatorSteps extends RandomGenerators {
         fillsOrganizationLocationAddress("Совпадает с адресом регистрации");
         fillsOrganizationPostalAddress("Совпадает с адресом регистрации");
         fillsDirectorData(organizationEmail, "Удостоверение личности военнослужащего РФ");
-        fillsAccountData();
-        fillsClientBankData();
     }
 
     @Step("Вводит данные ФЛ")
@@ -82,16 +78,12 @@ public class CPPOperatorSteps extends RandomGenerators {
         fillsClientRegistrationAddress("Санкт-Петербург", "", "", "", "Иркутская");
         fillsClientLocationAddress("Совпадает с адресом регистрации");
         fillsClientPostalAddress("Совпадает с адресом регистрации");
-        fillsAccountData();
-        fillsClientBankData();
     }
 
     @Step("Вводит данные ИП, нерезидента РФ")
     public void entersIPNonresidentData(String ipEmail) {
         fillsIPData(ipEmail, "Паспорт иностранного гражданина");
         fillsIPNonresidentAddress();
-        fillsAccountData();
-        fillsClientBankData();
     }
 
     @Step("Вводит данные ЮЛ, нерезидента РФ")
@@ -99,16 +91,27 @@ public class CPPOperatorSteps extends RandomGenerators {
         fillsOrganizationNonresidentData(organizationEmail);
         fillsOrganizationNonresidentAddress();
         fillsDirectorData(organizationEmail, "Паспорт иностранного гражданина");
-        fillsAccountData();
-        fillsClientBankData();
     }
 
     @Step("Вводит данные ФЛ, нерезидента РФ")
     public void entersFLNonresidentData(String clientEmail) {
         fillsClientPersonalData(clientEmail, "Паспорт иностранного гражданина");
         fillsClientNonresidentAddress();
-        fillsAccountData();
-        fillsClientBankData();
+    }
+
+    @Step("Вводит данные дополнительного лицевого счета")
+    public void entersAccountData() {
+        clientRegistrationPage.enterClientSecondAccountName(getRandomCyrillicProperString(6));
+    }
+
+    @Step("Вводит данные расчетного счета в банке")
+    public void entersClientBankData() {
+        clientRegistrationPage.enterClientBankName(getRandomCyrillicProperString(6));
+        clientRegistrationPage.enterClientBankBIK(getRandomNumber(9));
+        clientRegistrationPage.enterClientBankINN(getRandomNumber(10));
+        clientRegistrationPage.enterClientBankKorNumber(getRandomNumber(20));
+        clientRegistrationPage.enterClientBankAccountNumber(getRandomNumber(20));
+        clientRegistrationPage.enterClientBankReceiverName(getRandomCyrillicProperString(18));
     }
 
     @Step("Нажимает на кнопку {0}")
@@ -420,7 +423,6 @@ public class CPPOperatorSteps extends RandomGenerators {
         clientNonresidentRegistrationPage.enterClientRegistrationAddress(getRandomCyrillicProperString(30));
         clientNonresidentRegistrationPage.clickToLocationAddressSameAsRegistrationCheckBox();
         clientNonresidentRegistrationPage.clickToPostalAddressSameAsRegistrationCheckBox();
-
     }
 
     private void fillsIPNonresidentAddress() {
@@ -433,19 +435,5 @@ public class CPPOperatorSteps extends RandomGenerators {
         organizationNonresidentRegistrationPage.enterClientRegistrationAddress(getRandomCyrillicProperString(30));
         organizationNonresidentRegistrationPage.clickToLocationAddressSameAsRegistrationCheckBox();
         organizationNonresidentRegistrationPage.clickToPostalAddressSameAsRegistrationCheckBox();
-    }
-
-    private void fillsAccountData() {
-        clicksToTextButton("Добавить лицевой счет");
-        clientRegistrationPage.enterClientSecondAccountName(getRandomCyrillicProperString(6));
-    }
-
-    private void fillsClientBankData() {
-        clientRegistrationPage.enterClientBankName(getRandomCyrillicProperString(6));
-        clientRegistrationPage.enterClientBankBIK(getRandomNumber(9));
-        clientRegistrationPage.enterClientBankINN(getRandomNumber(10));
-        clientRegistrationPage.enterClientBankKorNumber(getRandomNumber(20));
-        clientRegistrationPage.enterClientBankAccountNumber(getRandomNumber(20));
-        clientRegistrationPage.enterClientBankReceiverName(getRandomCyrillicProperString(18));
     }
 }

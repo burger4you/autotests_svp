@@ -119,7 +119,7 @@ public class EmailUserSteps extends ScenarioSteps {
     }
 
     @Step("Получает письмо с историей подачи и обработки всех обращений данного пользователя")
-    public void waitsForEmailWithVAppealsHistory() {
+    public void waitsForEmailWithAppealsHistory() {
     }
 
     @Step("Получает письмо со ссылкой на личный кабинет, логином и паролем к нему")

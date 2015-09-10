@@ -287,7 +287,7 @@ public class CPPClientRegistrationPage extends CPPSelectizePageObject {
     WebElementFacade clientSecondAccountNameField;
 
     @FindBy(id = "client_accounts_attributes_0_num")
-    WebElementFacade clientAccountNamberField;
+    WebElementFacade clientAccountNumberField;
 
     public void enterClientAccountName(String clientAccountName) {
         enter(clientAccountName).into(clientAccountNameField);
@@ -297,8 +297,8 @@ public class CPPClientRegistrationPage extends CPPSelectizePageObject {
         enter(clientSecondAccountName).into(clientSecondAccountNameField);
     }
 
-    public String getClientAccountNamber() {
-        return clientAccountNamberField.getValue();
+    public String getClientAccountNumber() {
+        return clientAccountNumberField.getValue();
     }
 
     //РАСЧЕТНЫЙ СЧЕТ
