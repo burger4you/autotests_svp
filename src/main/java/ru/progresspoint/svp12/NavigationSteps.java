@@ -37,6 +37,8 @@ public class NavigationSteps extends ScenarioSteps {
     CPPMainMenu cppMainMenu;
     CPPSelectActionDialog cppSelectActionDialog;
     CPPAccountsBalancePage cppAccountsBalancePage;
+    CPPDevicesInfoPage cppDevicesInfoPage;
+    CPPRoutMapsInfoPage cppRoutMapsInfoPage;
 
     LKMainPage lkMainPage;
     LKMainMenu lkMainMenu;
@@ -165,6 +167,12 @@ public class NavigationSteps extends ScenarioSteps {
                 break;
             case "Расчеты":
                 cppMainMenu.clickToPaymentsTab();
+                break;
+            case "Бортовые устройства":
+                cppMainMenu.clickToDevicesTab();
+                break;
+            case "Маршрутные карты":
+                cppMainMenu.clickToRouteMapsTab();
                 break;
         }
     }
@@ -301,6 +309,12 @@ public class NavigationSteps extends ScenarioSteps {
                 break;
             case "Баланс ЛС":
                 cppAccountsBalancePage.shouldBeDisplayed();
+                break;
+            case "Информация о БУ ВТС":
+                cppDevicesInfoPage.shouldBeDisplayed();
+                break;
+            case "Информация о МК ВТС":
+                cppRoutMapsInfoPage.shouldBeDisplayed();
                 break;
         }
     }

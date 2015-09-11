@@ -14,7 +14,21 @@ public class CPPMainMenu extends PageObject {
     @FindBy(linkText = "Расчеты")
     WebElementFacade paymentsTab;
 
+    @FindBy(xpath = ".//*[@href='/vehicle_devices/given_show']")
+    WebElementFacade devicesTab;
+
+    @FindBy(xpath = ".//*[@href='/route_cards']")
+    WebElementFacade routeMapsTab;
+
     public void clickToPaymentsTab() {
         paymentsTab.click();
+    }
+
+    public void clickToDevicesTab() {
+        devicesTab.click();
+    }
+
+    public void clickToRouteMapsTab() {
+        routeMapsTab.click();
     }
 }
