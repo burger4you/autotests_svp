@@ -129,10 +129,10 @@ public class NavigationSteps extends ScenarioSteps {
         switch (page) {
             case "Авторизации":
                 getDriver().get("http://10.0.13.54/sign_out");
-                dzLoginPage.openAt("http://10.0.13.54/sign_in");
+                dzLoginPage.shouldBeDisplayed();
                 break;
             case "Главная":
-                dzLoginPage.openAt("http://10.0.13.54");
+                dzMainPage.openAt("http://10.0.13.54");
                 break;
         }
     }
