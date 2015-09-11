@@ -103,7 +103,7 @@ public class CPPUserActions {
         operator.clicksToTextButton("Завершить");
     }
 
-    @When("оператор проведет верификацию данных пользователя")
+    @When("оператор проведет верификацию данных ВТС")
     public void operatorVerifiesUserData() {
         operator.clicksToLink("Регистрация");
         operator.clicksToLink("Верификация");
@@ -121,5 +121,11 @@ public class CPPUserActions {
     @When("оператор откроет вкладку $tab в АРМе ЦИПП")
     public void operatorOpensTabOnMainMenu(String tab) {
         navigation.opensCPPPage(tab);
+    }
+
+    @When("оператор предоставит информацию с этой страницы владельцу ТС")
+    public void operatorAcceptsInfo() {
+        operator.clicksToLink("Информация предоставлена");
+        operator.clicksToLink("OK");
     }
 }

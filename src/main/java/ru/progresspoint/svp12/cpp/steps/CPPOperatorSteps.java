@@ -7,6 +7,9 @@ import ru.progresspoint.svp12.cpp.pages.*;
 
 import static java.lang.String.format;
 import static net.serenitybdd.core.Serenity.getCurrentSession;
+import static net.thucydides.core.matchers.BeanMatcherAsserts.shouldMatch;
+import static net.thucydides.core.matchers.BeanMatchers.the;
+import static org.hamcrest.Matchers.is;
 import static org.openqa.selenium.By.*;
 
 /**
@@ -23,10 +26,11 @@ public class CPPOperatorSteps extends RandomGenerators {
     CPPClientNonresidentRegistrationPage clientNonresidentRegistrationPage;
     CPPIPNonresidentRegistrationPage ipNonresidentRegistrationPage;
     CPPOrganizationNonresidentRegistrationPage organizationNonresidentRegistrationPage;
+    CPPAppealHistoryPopUp appealHistoryPopUp;
 
     @Step("Нажимает на ссылку {0}")
     public void clicksToLink(String linkText) {
-        getDriver().findElement(linkText(linkText));
+        getDriver().findElement(linkText(linkText)).click();
     }
 
     @Step("Вводит логин {0} и пароль {1}")
@@ -179,6 +183,18 @@ public class CPPOperatorSteps extends RandomGenerators {
     public void selectsClientByQuery(String query) {
         selectActionDialog.clickToSearchedClient(query);
         selectActionDialog.selectContactPerson();
+    }
+
+    @Step("Видит последнее событие в истории текущего обращения")
+    public void shouldSeeEventInCommonHistory(String theme, String details, String status) {
+        shouldMatch(appealHistoryPopUp.getAppealHistory(), the("Тема", is(theme)),
+                the("Детализация", is(details)),
+                the("Статус", is(status)));
+    }
+
+    @Step("Закрывает окно истории текущего обращения")
+    public void clicksToCloseHistoryPopUp() {
+        appealHistoryPopUp.clickToClosePopUpButton();
     }
 
     private void fillsClientPersonalData(String clientEmail, String clientDocumentType) {

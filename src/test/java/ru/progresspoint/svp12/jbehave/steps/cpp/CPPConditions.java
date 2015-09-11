@@ -53,4 +53,11 @@ public class CPPConditions {
     public void searchedClientsShouldBeDisplayed(String query) {
         operator.looksUpClientByQuery(query);
     }
+
+    @Then("система сохранит событие $theme - $details - $status в истории текущего обращения")
+    public void systemShouldUpdateAppealHistory(String theme, String details, String status) {
+        operator.clicksToLink("История");
+        operator.shouldSeeEventInCommonHistory(theme, details, status);
+        operator.clicksToCloseHistoryPopUp();
+    }
 }
