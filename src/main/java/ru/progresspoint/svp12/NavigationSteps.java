@@ -157,12 +157,12 @@ public class NavigationSteps extends ScenarioSteps {
                 getDriver().get("http://10.0.12.236/sign_out");
                 cppLoginPage.shouldBeDisplayed();
                 break;
-            case "Главная":
-                cppMainPage.openAt("http://10.0.12.236");
+            case "Выбора действия":
+                cppMainPage.loading();
                 break;
             case "Регистрации ВТС":
                 cppMainPage.loading();
-                cppSelectActionDialog.clickOwnerRegistrationLink();
+                cppSelectActionDialog.clickToOwnerRegistrationLink();
                 break;
         }
     }

@@ -4,8 +4,10 @@ import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.At;
 
+import static java.lang.String.format;
+
 /**
- * Окно ЦИПП Выберите действие, отображающиеся при входе в арм
+ * Окно выбора действия, отображающееся при входе в АРМ ЦИПП
  */
 @At("#HOST/#")
 public class CPPSelectActionDialog extends CPPSelectizePageObject {
@@ -13,11 +15,17 @@ public class CPPSelectActionDialog extends CPPSelectizePageObject {
     private static final String clientCountryDropDown = "country_id";
     private static final String clientTypeDropDown = "client_type_id";
 
-    @FindBy(linkText = "Регистрация нового ВТС")
+    @FindBy(linkText = "//*[@id='start-work-modal']//li[1]/a")
     WebElementFacade registrationClientLink;
 
     @FindBy(xpath = ".//button[text()='Зарегистрировать']")
     WebElementFacade registrationButton;
+
+    @FindBy(xpath = "//*[@id='start-work-modal']//li[2]/a")
+    WebElementFacade searchClientLink;
+
+    @FindBy(xpath = ".//*[@id='global_client_search']/..//input")
+    WebElementFacade clientSearchField;
 
     public void selectClientCountry(String clientCountry) {
         selectForSelectizePlugin(clientCountryDropDown, clientCountry);
@@ -27,11 +35,23 @@ public class CPPSelectActionDialog extends CPPSelectizePageObject {
         selectForSelectizePlugin(clientTypeDropDown, clientType);
     }
 
-    public void clickOwnerRegistrationLink() {
+    public void clickToOwnerRegistrationLink() {
         registrationClientLink.click();
     }
 
-    public void clickRegistrationButton() {
+    public void clickToRegistrationButton() {
         registrationButton.click();
+    }
+
+    public void clickToSearchClientButton() {
+        searchClientLink.click();
+    }
+
+    public void enterSearchClientQuery(String query) {
+        enter(query).into(clientSearchField);
+    }
+
+    public void shouldContainSearchedClient(String query) {
+        $(format(".//*[@id='start-work-modal']//*[text()='%s']", query)).shouldBeEnabled();
     }
 }

@@ -19,16 +19,6 @@ public class LKPreconditionsSteps {
     @Steps
     LKUserSteps user;
 
-    @Steps
-    EmailUserSteps email;
-
-    @Given("в его почтовом ящике нет писем от СВП Платон")
-    public void userHaveNoEmailFromPlaton() throws MessagingException {
-        email.deletesAllMessagesFromPlaton("ultestowner@gmail.com");
-        email.deletesAllMessagesFromPlaton("iptestowner@gmail.com");
-        email.deletesAllMessagesFromPlaton("fltestowner@gmail.com");
-    }
-
     @Given("пользователь находится на странице $page в ЛК")
     public void userIsOnLKPage(String page) {
         if (!page.equals("Авторизации")) {

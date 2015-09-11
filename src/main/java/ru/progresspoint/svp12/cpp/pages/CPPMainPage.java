@@ -7,7 +7,7 @@ import net.thucydides.core.annotations.At;
 import org.openqa.selenium.By;
 
 /**
- * Главная страница АРМа ЦИПП
+ * Главная страница АРМа ЦИПП с диалоговым окном выбора действия
  */
 @At("#HOST")
 public class CPPMainPage extends PageObject {
@@ -16,7 +16,7 @@ public class CPPMainPage extends PageObject {
     WebElementFacade selectActionDialog;
 
     public void loading() {
-        if(isElementVisible(By.xpath(".//*[@id='end_button']"))) {
+        if (isElementVisible(By.xpath(".//*[@id='end_button']"))) {
             clickOn(element(".//*[@id='end_button']"));
             waitForTextToDisappear("Завершить");
         }

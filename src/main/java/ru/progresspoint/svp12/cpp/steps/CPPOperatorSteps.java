@@ -52,7 +52,7 @@ public class CPPOperatorSteps extends RandomGenerators {
 
     @Step("Нажимает на кнопку Зарегистрировать")
     public void clicksToRegistrationButton() {
-        selectActionDialog.clickRegistrationButton();
+        selectActionDialog.clickToRegistrationButton();
     }
 
     @Step("Вводит данные ИП")
@@ -162,6 +162,17 @@ public class CPPOperatorSteps extends RandomGenerators {
 
     @Step("Проводит верификацию ТС")
     public void conductVehicleVerificationRequest() {
+    }
+
+    @Step("Вводит в поле поиска ВТС {0}")
+    public void searchClientByQuery(String query) {
+        selectActionDialog.clickToSearchClientButton();
+        selectActionDialog.enterSearchClientQuery(query);
+    }
+
+    @Step("Находит ВТС с искомыми данными")
+    public void looksUpClientByQuery(String query) {
+        selectActionDialog.shouldContainSearchedClient(query);
     }
 
     private void fillsClientPersonalData(String clientEmail, String clientDocumentType) {

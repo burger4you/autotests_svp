@@ -108,4 +108,9 @@ public class CPPUserActions {
         operator.findsVehicleVerificationRequest();
         operator.conductVehicleVerificationRequest();
     }
+
+    @When("оператор введет в поле для поиска ВТС $query")
+    public void operatorSearchClientBy(String query) {
+        operator.searchClientByQuery(query);
+    }
 }

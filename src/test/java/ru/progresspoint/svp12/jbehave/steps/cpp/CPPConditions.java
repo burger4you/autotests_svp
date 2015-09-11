@@ -4,6 +4,7 @@ import net.thucydides.core.annotations.Steps;
 import org.jbehave.core.annotations.Then;
 import ru.progresspoint.svp12.EmailUserSteps;
 import ru.progresspoint.svp12.NavigationSteps;
+import ru.progresspoint.svp12.cpp.steps.CPPOperatorSteps;
 import ru.progresspoint.svp12.lk.steps.LKUserSteps;
 
 import javax.mail.MessagingException;
@@ -25,6 +26,9 @@ public class CPPConditions {
     @Steps
     LKUserSteps user;
 
+    @Steps
+    CPPOperatorSteps operator;
+
     @Then("открывается страница $page в ЦИПП")
     public void pageShouldBeDisplayed(String page) {
         navigation.isOnCPPPage(page);
@@ -43,5 +47,10 @@ public class CPPConditions {
         user.clicksToConfirmButton();
         navigation.isOnLKPage("Главная");
         email.deletesAllMessagesFromPlaton(emailAddress);
+    }
+
+    @Then("система отобразит найденные по запросу $query ВТС")
+    public void searchedClientsShouldBeDisplayed(String query) {
+        operator.looksUpClientByQuery(query);
     }
 }

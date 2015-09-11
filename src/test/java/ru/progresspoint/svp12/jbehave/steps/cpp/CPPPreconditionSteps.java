@@ -23,7 +23,7 @@ public class CPPPreconditionSteps {
     @Given("оператор находится на странице $page в АРМ ЦИПП")
     public void operatorIsOn(String page) {
         if (!page.equals("Авторизации")) {
-            navigation.opensCPPPage("Главная");
+            navigation.getDriver().get("http://10.0.12.236");
             if (navigation.getCurrentURL().endsWith("sign_in")) {
                 operator.entersLoginAndPassword("operator_himki", "1234567890");
                 operator.clicksToConfirmButton();
@@ -35,7 +35,7 @@ public class CPPPreconditionSteps {
     @Given("админ находится на странице $page в АРМ ЦИПП")
     public void adminIsOn(String page) {
         if (!page.equals("Авторизации")) {
-            navigation.opensCPPPage("Главная");
+            navigation.getDriver().get("http://10.0.12.236");
             if (navigation.getCurrentURL().endsWith("sign_in")) {
                 administrator.entersLoginAndPassword("Admin3", "Test123$");
                 administrator.clicksToConfirmButton();
