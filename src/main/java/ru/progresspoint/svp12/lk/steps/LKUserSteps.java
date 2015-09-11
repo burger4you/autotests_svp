@@ -355,7 +355,9 @@ public class LKUserSteps extends RandomGenerators {
         DateTime startDay = today.minusMonths(3);
         for (Map<Object, String> row : appealsPage.getSearchAppeals()) {
             String date = row.get("ПОДАНО:");
-            assertThat(parse(date, forPattern("yyyy-MM-dd HH:mm")))
+//            assertThat(parse(date, forPattern("yyyy-MM-dd HH:mm")))
+            assertThat(parse(date, forPattern("dd.MM.yyyy HH:mm")))
+
                     .isAfterOrEqualTo(startDay)
                     .isBefore(today);
         }
