@@ -9,10 +9,7 @@ import ru.progresspoint.svp12.admin.pages.AdminLoginPage;
 import ru.progresspoint.svp12.admin.pages.AdminMainPage;
 import ru.progresspoint.svp12.call_centre.pages.CallCentreLoginPage;
 import ru.progresspoint.svp12.call_centre.pages.CallCentreMainPage;
-import ru.progresspoint.svp12.cpp.pages.CPPClientRegistrationPage;
-import ru.progresspoint.svp12.cpp.pages.CPPLoginPage;
-import ru.progresspoint.svp12.cpp.pages.CPPMainPage;
-import ru.progresspoint.svp12.cpp.pages.CPPSelectActionDialog;
+import ru.progresspoint.svp12.cpp.pages.*;
 import ru.progresspoint.svp12.dz.pages.DZLoginPage;
 import ru.progresspoint.svp12.dz.pages.DZMainPage;
 import ru.progresspoint.svp12.klad.pages.KladLoginPage;
@@ -37,7 +34,9 @@ public class NavigationSteps extends ScenarioSteps {
     CPPLoginPage cppLoginPage;
     CPPClientRegistrationPage cppOwnerRegistrationPage;
     CPPMainPage cppMainPage;
+    CPPMainMenu cppMainMenu;
     CPPSelectActionDialog cppSelectActionDialog;
+    CPPAccountsBalancePage cppAccountsBalancePage;
 
     LKMainPage lkMainPage;
     LKMainMenu lkMainMenu;
@@ -163,6 +162,9 @@ public class NavigationSteps extends ScenarioSteps {
             case "Регистрации ВТС":
                 cppMainPage.loading();
                 cppSelectActionDialog.clickToOwnerRegistrationLink();
+                break;
+            case "Расчеты":
+                cppMainMenu.clickToPaymentsTab();
                 break;
         }
     }
@@ -296,6 +298,9 @@ public class NavigationSteps extends ScenarioSteps {
                 break;
             case "Регистрации ВТС":
                 cppOwnerRegistrationPage.shouldBeDisplayed();
+                break;
+            case "Баланс ЛС":
+                cppAccountsBalancePage.shouldBeDisplayed();
                 break;
         }
     }

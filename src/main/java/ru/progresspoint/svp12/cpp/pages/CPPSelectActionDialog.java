@@ -54,4 +54,14 @@ public class CPPSelectActionDialog extends CPPSelectizePageObject {
     public void shouldContainSearchedClient(String query) {
         $(format(".//*[@id='start-work-modal']//*[text()='%s']", query)).shouldBeEnabled();
     }
+
+    public void clickToSearchedClient(String query) {
+        $(format(".//*[@id='start-work-modal']//*[text()='%s']", query)).click();
+    }
+
+    public void selectContactPerson() {
+        $(".//*[@id='sub_person_search']/..//input").click();
+        waitABit(500);
+        $(".//*[@id='sub_person_search']/..//div[@class='option'][1]").click();
+    }
 }

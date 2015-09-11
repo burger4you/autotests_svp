@@ -32,6 +32,18 @@ public class CPPPreconditionSteps {
         } else navigation.opensCPPPage("Авторизации");
     }
 
+    @Given("в ЦИПП поступило обращиение от зарегистрированного ВТС $owner")
+    public void operatorWorksWithOwner(String owner) {
+        navigation.getDriver().get("http://10.0.12.236");
+        if (navigation.getCurrentURL().endsWith("sign_in")) {
+            operator.entersLoginAndPassword("operator_himki", "1234567890");
+            operator.clicksToConfirmButton();
+        }
+        navigation.opensCPPPage("Выбора действия");
+        operator.searchClientByQuery(owner);
+        operator.selectsClientByQuery(owner);
+    }
+
     @Given("админ находится на странице $page в АРМ ЦИПП")
     public void adminIsOn(String page) {
         if (!page.equals("Авторизации")) {

@@ -170,9 +170,15 @@ public class CPPOperatorSteps extends RandomGenerators {
         selectActionDialog.enterSearchClientQuery(query);
     }
 
-    @Step("Находит ВТС с искомыми данными")
+    @Step("Видит ВТС с искомыми данными")
     public void looksUpClientByQuery(String query) {
         selectActionDialog.shouldContainSearchedClient(query);
+    }
+
+    @Step("Выбирает ВТС {0} и контактное лицо для начала работы с обращением")
+    public void selectsClientByQuery(String query) {
+        selectActionDialog.clickToSearchedClient(query);
+        selectActionDialog.selectContactPerson();
     }
 
     private void fillsClientPersonalData(String clientEmail, String clientDocumentType) {

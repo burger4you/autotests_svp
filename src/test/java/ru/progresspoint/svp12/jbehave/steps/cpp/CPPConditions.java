@@ -29,7 +29,7 @@ public class CPPConditions {
     @Steps
     CPPOperatorSteps operator;
 
-    @Then("открывается страница $page в ЦИПП")
+    @Then("система откроет страницу $page в АРМ ЦИПП")
     public void pageShouldBeDisplayed(String page) {
         navigation.isOnCPPPage(page);
     }

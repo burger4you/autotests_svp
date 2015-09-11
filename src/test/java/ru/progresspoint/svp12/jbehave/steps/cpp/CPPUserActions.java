@@ -3,6 +3,7 @@ package ru.progresspoint.svp12.jbehave.steps.cpp;
 import net.thucydides.core.annotations.Steps;
 import org.jbehave.core.annotations.When;
 import ru.progresspoint.svp12.EmailUserSteps;
+import ru.progresspoint.svp12.NavigationSteps;
 import ru.progresspoint.svp12.cpp.steps.CPPAdministratorSteps;
 import ru.progresspoint.svp12.cpp.steps.CPPOperatorSteps;
 
@@ -21,6 +22,9 @@ public class CPPUserActions {
 
     @Steps
     EmailUserSteps email;
+
+    @Steps
+    NavigationSteps navigation;
 
     @When("оператор вводит логин $login и пароль $password для авторизации в АРМ ЦИПП")
     public void operatorEntersLoginAndPassword(String login, String password) {
@@ -99,7 +103,7 @@ public class CPPUserActions {
         operator.clicksToTextButton("Завершить");
     }
 
-    @When("оператор проводит верификацию данных пользователя")
+    @When("оператор проведет верификацию данных пользователя")
     public void operatorVerifiesUserData() {
         operator.clicksToLink("Регистрация");
         operator.clicksToLink("Верификация");
@@ -112,5 +116,10 @@ public class CPPUserActions {
     @When("оператор введет в поле для поиска ВТС $query")
     public void operatorSearchClientBy(String query) {
         operator.searchClientByQuery(query);
+    }
+
+    @When("оператор откроет вкладку $tab в АРМе ЦИПП")
+    public void operatorOpensTabOnMainMenu(String tab) {
+        navigation.opensCPPPage(tab);
     }
 }
