@@ -39,6 +39,8 @@ public class NavigationSteps extends ScenarioSteps {
     CPPAccountsBalancePage cppAccountsBalancePage;
     CPPDevicesInfoPage cppDevicesInfoPage;
     CPPRoutMapsInfoPage cppRoutMapsInfoPage;
+    CPPWikiSearchPage cppWikiSearchPage;
+    CPPRegistrationInfoPage cppRegistrationInfoPage;
 
     LKMainPage lkMainPage;
     LKMainMenu lkMainMenu;
@@ -173,6 +175,15 @@ public class NavigationSteps extends ScenarioSteps {
                 break;
             case "Маршрутные карты":
                 cppMainMenu.clickToRouteMapsTab();
+                break;
+            case "Общие сведения":
+                cppMainMenu.clickToWikiTab();
+                break;
+            case "Регистрация":
+                cppMainMenu.clickToRegistrationTab();
+                break;
+            case "Обратная связь":
+                cppMainMenu.clickToAppealsTab();
                 break;
         }
     }
@@ -315,6 +326,12 @@ public class NavigationSteps extends ScenarioSteps {
                 break;
             case "Информация о МК ВТС":
                 cppRoutMapsInfoPage.shouldBeDisplayed();
+                break;
+            case "Поиск по базе знаний":
+                cppWikiSearchPage.shouldBeDisplayed();
+                break;
+            case "Информация о ВТС":
+                cppRegistrationInfoPage.shouldBeDisplayed();
                 break;
         }
     }

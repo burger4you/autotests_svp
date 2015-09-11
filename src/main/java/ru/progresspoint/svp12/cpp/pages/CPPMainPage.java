@@ -18,7 +18,7 @@ public class CPPMainPage extends PageObject {
     public void loading() {
         if (isElementVisible(By.xpath(".//*[@id='end_button']"))) {
             clickOn(element(".//*[@id='end_button']"));
-            waitForTextToDisappear("Завершить");
+            waitFor(selectActionDialog);
         }
         selectActionDialog.expect("Не доступно диалоговое окно Выберите действие").shouldBePresent();
     }

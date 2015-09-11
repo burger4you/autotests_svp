@@ -2,7 +2,6 @@
 Meta:
 @arm cpp
 @component route maps
-@2
 
 Описание:
 Чтобы узнать детали маршрутных карт ВТС
