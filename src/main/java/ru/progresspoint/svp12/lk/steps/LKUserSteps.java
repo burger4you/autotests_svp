@@ -225,10 +225,10 @@ public class LKUserSteps extends RandomGenerators {
     public void entersNewVehiclesGroupData() {
         getCurrentSession().put("groupName", getRandomCyrillicProperString(10));
         getCurrentSession().put("groupLimit", getRandomNumber(3));
-        getCurrentSession().put("groupManager", "Проверочный Иван Петрович");
+        getCurrentSession().put("groupManager", "Заяц Волк");
         newVehiclesGroupPage.enterVehiclesGroupName((String) getCurrentSession().get("groupName"));
         newVehiclesGroupPage.enterVehiclesGroupLimit((String) getCurrentSession().get("groupLimit"));
-        newVehiclesGroupPage.selectVehiclesGroupManager((String) getCurrentSession().get("groupManager"));
+        newVehiclesGroupPage.selectVehiclesGroupManager("asdkjq76232@flklkfd77.ru");
     }
 
     @Step("Выбирает из списка {0} машин(ы) для новой группы")

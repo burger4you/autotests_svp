@@ -21,7 +21,7 @@ public class LKNewVehiclesGroupPage extends LKSelectizePageObject {
     @FindBy(id = "vehicle_group_limit_amount")
     WebElementFacade vehiclesGroupLimitField;
 
-    private static final String vehiclesGroupManagerField = "select_manager";
+    private static final String vehiclesGroupManagerField = "manager_id";
 
     @FindBy(xpath = "//*[@id='vehicles']/table")
     WebElement vehiclesTable;
