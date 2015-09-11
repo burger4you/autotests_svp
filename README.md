@@ -47,10 +47,13 @@ component:
 authorization - авторизация,
 registration - регистрация,
 route maps - маршрутные карты,
+devices - бортовые устройства,
+feedback - обратная связь,
 appeals - обращения,
 payments - платежи,
 profile - профиль,
-vehicles - транспортные средства
+vehicles - транспортные средства,
+info - справочная информация
 
 Отчет генерируется в дирректорию `target/site/serenity`.
 
