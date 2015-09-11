@@ -15,7 +15,7 @@ public class CPPSelectActionDialog extends CPPSelectizePageObject {
     private static final String clientCountryDropDown = "country_id";
     private static final String clientTypeDropDown = "client_type_id";
 
-    @FindBy(linkText = "//*[@id='start-work-modal']//li[1]/a")
+    @FindBy(xpath = "//*[@id='start-work-modal']//li[1]/a")
     WebElementFacade registrationClientLink;
 
     @FindBy(xpath = ".//button[text()='Зарегистрировать']")
