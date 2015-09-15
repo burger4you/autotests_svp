@@ -53,11 +53,12 @@ appeals - обращения,
 payments - платежи,
 profile - профиль,
 vehicles - транспортные средства,
+notification - уведомления,
 info - справочная информация
 
 Отчет генерируется в дирректорию `target/site/serenity`.
 
-Отчет последнего прогона тестов на стеджинге: http://report-stage.progresspoint.ru
+Отчет последнего прогона тестов на стейджинге: http://report-stage.progresspoint.ru
 
 Отчет последнего прогона тестов на проде: 
 

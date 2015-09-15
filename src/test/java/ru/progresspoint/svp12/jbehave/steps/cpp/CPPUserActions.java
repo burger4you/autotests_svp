@@ -128,4 +128,12 @@ public class CPPUserActions {
         operator.clicksToLink("Информация предоставлена");
         operator.clicksToLink("OK");
     }
+
+    @When("оператор пополнит счет на $amount рублей банковской картой в АРМ ЦИПП")
+    public void operatorAddPaymentFromCreditCard(String amount) {
+        navigation.opensCPPPage("Расчеты");
+        operator.clicksToLink("Пополнение баланса");
+        operator.enterAmountPaymentFromCreditCard(amount);
+        operator.clicksToLink("Оплатить");
+    }
 }

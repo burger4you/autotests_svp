@@ -32,7 +32,7 @@ public class CPPPreconditionSteps {
         } else navigation.opensCPPPage("Авторизации");
     }
 
-    @Given("в ЦИПП поступило обращиение от зарегистрированного ВТС $owner")
+    @Given("в ЦИПП поступило обращение от зарегистрированного ВТС $owner")
     public void operatorWorksWithOwner(String owner) {
         navigation.getDriver().get("http://10.0.12.236");
         if (navigation.getCurrentURL().endsWith("sign_in")) {

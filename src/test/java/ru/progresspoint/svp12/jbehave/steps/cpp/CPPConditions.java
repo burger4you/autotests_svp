@@ -49,6 +49,12 @@ public class CPPConditions {
         email.deletesAllMessagesFromPlaton(emailAddress);
     }
 
+    @Then("система отправит на $emailAddress уведомление $notification")
+    public void systemSentNotificationOn(String emailAddress, String notification) throws IOException, MessagingException {
+        email.waitsForEmailWithNotification(emailAddress);
+        email.deletesAllMessagesFromSVP12(emailAddress);
+    }
+
     @Then("система отобразит найденные по запросу $query ВТС")
     public void searchedClientsShouldBeDisplayed(String query) {
         operator.looksUpClientByQuery(query);

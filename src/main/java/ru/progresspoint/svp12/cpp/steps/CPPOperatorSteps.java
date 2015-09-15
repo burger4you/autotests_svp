@@ -27,6 +27,7 @@ public class CPPOperatorSteps extends RandomGenerators {
     CPPIPNonresidentRegistrationPage ipNonresidentRegistrationPage;
     CPPOrganizationNonresidentRegistrationPage organizationNonresidentRegistrationPage;
     CPPAppealHistoryPopUp appealHistoryPopUp;
+    CPPNewPaymentPage newPaymentPage;
 
     @Step("Нажимает на ссылку {0}")
     public void clicksToLink(String linkText) {
@@ -195,6 +196,11 @@ public class CPPOperatorSteps extends RandomGenerators {
     @Step("Закрывает окно истории текущего обращения")
     public void clicksToCloseHistoryPopUp() {
         appealHistoryPopUp.clickToClosePopUpButton();
+    }
+
+    @Step("Вводит сумму пополнения ЛС {0} рублей")
+    public void enterAmountPaymentFromCreditCard(String amount) {
+        newPaymentPage.enterAmountOfNewPayment(amount);
     }
 
     private void fillsClientPersonalData(String clientEmail, String clientDocumentType) {
