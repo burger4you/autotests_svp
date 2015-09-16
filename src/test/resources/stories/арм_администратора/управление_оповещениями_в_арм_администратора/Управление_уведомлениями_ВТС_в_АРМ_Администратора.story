@@ -2,6 +2,7 @@
 Meta:
 @arm admin
 @component notification
+@manual
 
 Описание:
 Чтобы информировать ВТС о событиях в системе ПО СВП

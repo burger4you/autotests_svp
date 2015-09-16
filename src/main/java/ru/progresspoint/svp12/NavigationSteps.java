@@ -98,7 +98,7 @@ public class NavigationSteps extends ScenarioSteps {
 
     @Step("Открывает стартовую страницу АРМа ТСО")
     public void opensTSOStartPage() {
-        tsoStartPage.openAt("http://10.0.12.18/");
+        tsoStartPage.openAt("http://10.0.12.18");
     }
 
     @Step("Открывает страницу {0} АРМа Колл Центра")
