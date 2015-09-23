@@ -33,7 +33,6 @@ import static org.openqa.selenium.By.name;
 public class LKUserSteps extends RandomGenerators {
 
     LKLoginPage loginPage;
-    LKMainPage mainPage;
     LKVehiclesGroupsPage vehiclesGroupsPage;
     LKNewVehiclesGroupPage newVehiclesGroupPage;
     LKVehiclesGroupDetailPage vehiclesGroupDetailPage;
@@ -316,7 +315,7 @@ public class LKUserSteps extends RandomGenerators {
     @Step("Сравнивает баланс ЛС до пополнения и после")
     public void shouldSeeBalancesDifference() {
         String oldAccountBalance = (String) Serenity.getCurrentSession().get("oldAccountBalance");
-        String currentAccountBalance = mainPage.getsCurrentAccountBalance();
+        String currentAccountBalance = mainHeader.getsCurrentAccountBalance();
         assertThat(currentAccountBalance)
                 .overridingErrorMessage("Баланс parse(лицевого счета на главной странице не изменился")
                 .isNotEqualTo(oldAccountBalance);

@@ -32,7 +32,7 @@ public class LKConditions {
 
     @Then("система предоставит доступ к личному кабинету пользователя")
     public void lkShouldBeAvailableForUser() {
-        navigation.isOnLKPage("Главная");
+        navigation.isOnLKPage("Транспортные средства");
     }
 
     @Then("система отобразит его в общем списке ТС")
@@ -90,8 +90,7 @@ public class LKConditions {
         email.clicksToConfirmationLink();
         user.entersPassword("!QAZ2wsx");
         user.clicksToConfirmButton();
-        navigation.isOnLKPage("Главная");
-        email.deletesAllMessagesFromPlaton(userEmail);
+        navigation.isOnLKPage("Транспортные средства");
     }
 }
 

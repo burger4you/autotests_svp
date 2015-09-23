@@ -43,7 +43,6 @@ public class NavigationSteps extends ScenarioSteps {
     CPPWikiSearchPage cppWikiSearchPage;
     CPPRegistrationInfoPage cppRegistrationInfoPage;
 
-    LKMainPage lkMainPage;
     LKMainMenu lkMainMenu;
     LKLoginPage lkLoginPage;
     LKVehiclesPage lkVehiclesPage;
@@ -213,31 +212,37 @@ public class NavigationSteps extends ScenarioSteps {
                 getDriver().get("http://10.0.12.225/sign_out");
                 lkLoginPage.shouldBeDisplayed();
                 break;
-            case "Главная":
-                lkMainMenu.loading();
-                lkMainPage.openAt("http://10.0.12.225");
-                break;
             case "Транспортные средства":
-                lkMainMenu.loading();
+                openBaseLKUrl();
                 lkMainMenu.clickToVehiclesItem();
                 break;
             case "Маршрутные карты":
-                lkMainMenu.loading();
+                openBaseLKUrl();
                 lkMainMenu.clickToRouteMapsItem();
                 break;
             case "Платежи":
-                lkMainMenu.loading();
+                openBaseLKUrl();
                 lkMainMenu.clickToPaymentsItem();
                 break;
             case "Профиль":
-                lkMainMenu.loading();
+                openBaseLKUrl();
                 lkMainMenu.clickToProfileItem();
                 break;
             case "Обращения":
-                lkMainMenu.loading();
+                openBaseLKUrl();
                 lkMainMenu.clickToAppealsItem();
                 break;
         }
+    }
+
+    private void openBaseLKUrl() {
+        getDriver().get("http://10.0.12.225");
+        if (getCurrentURL().endsWith("sign_in")) {
+            lkLoginPage.enterLogin("okapustina");
+            lkLoginPage.enterPassword("!QAZ2wsc");
+            getDriver().findElement(name("commit")).click();
+        }
+        lkMainMenu.loading();
     }
 
     @Step("Находится на странице {0} АРМа РСО")
@@ -359,9 +364,6 @@ public class NavigationSteps extends ScenarioSteps {
         switch (page) {
             case "Авторизации":
                 lkLoginPage.shouldBeDisplayed();
-                break;
-            case "Главная":
-                lkMainPage.shouldBeDisplayed();
                 break;
             case "Транспортные средства":
                 lkVehiclesPage.shouldBeDisplayed();
