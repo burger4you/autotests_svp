@@ -1,7 +1,7 @@
 Формирование стоимости МК в АРМ Администратора
 Meta:
 @arm admin
-@tag component route maps
+@tag component: route maps
 
 Описание:
 Чтобы изменять расчет стоимости МК

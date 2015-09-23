@@ -1,7 +1,7 @@
 Отмена МК в АРМ ТСО
 Meta:
 @arm tso
-@tag component route maps
+@tag component: route maps
 
 Описание:
 Чтобы самостоятельно вернуть оплату за МК в системе ПО СВП

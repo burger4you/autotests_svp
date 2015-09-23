@@ -1,7 +1,7 @@
 Авторизация в АРМ СМК
 Meta:
 @arm smk
-@tag component authorization
+@tag component: authorization
 
 Описание:
 Чтобы войти в АРМ СМК с необходимым функционалом

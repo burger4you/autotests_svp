@@ -1,7 +1,7 @@
 Снятие ТС с учета в личном кабинете
 Meta:
 @arm lk
-@tag component vehicles
+@tag component: vehicles
 
 Описание:
 Чтобы самостоятельно убирать ТС из системы ПО СВП

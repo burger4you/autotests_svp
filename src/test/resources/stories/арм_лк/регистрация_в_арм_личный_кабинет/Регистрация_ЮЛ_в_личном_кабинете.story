@@ -1,7 +1,7 @@
 Регистрация ЮЛ в личном кабинете
 Meta:
 @arm lk
-@tag component registration
+@tag component: registration
 
 Описание:
 Чтобы получить доступ к личному кабинету

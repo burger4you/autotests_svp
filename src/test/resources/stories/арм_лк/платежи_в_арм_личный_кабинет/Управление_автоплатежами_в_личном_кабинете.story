@@ -1,7 +1,7 @@
 Управление автоплатежами в личном кабинете
 Meta:
 @arm lk
-@tag component payments
+@tag component: payments
 
 Описание:
 Чтобы автоматически пополнять лицевой счет

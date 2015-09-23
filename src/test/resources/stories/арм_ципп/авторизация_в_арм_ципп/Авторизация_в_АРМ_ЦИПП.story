@@ -1,7 +1,7 @@
 Авторизация в АРМ ЦИПП
 Meta:
 @arm cpp
-@tag component authorization
+@tag component: authorization
 
 Описание:
     Чтобы войти в АРМ ЦИПП

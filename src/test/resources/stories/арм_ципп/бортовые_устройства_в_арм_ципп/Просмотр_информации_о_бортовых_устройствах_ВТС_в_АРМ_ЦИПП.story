@@ -1,7 +1,7 @@
 Просмотр информации о бортовых устройствах ВТС в АРМ ЦИПП
 Meta:
 @arm cpp
-@tag component devices
+@tag component: devices
 
 Описание:
 Чтобы узнать состояния БУ ВТС

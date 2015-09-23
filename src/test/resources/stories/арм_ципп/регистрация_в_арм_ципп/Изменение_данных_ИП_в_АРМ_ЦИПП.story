@@ -1,7 +1,7 @@
 Изменение данных ИП в АРМ ЦИПП
 Meta:
 @arm cpp
-@tag component registration
+@tag component: registration
 
 Описание:
 Чтобы контролировать акутальность данных в системе ПО СВП

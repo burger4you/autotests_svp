@@ -1,7 +1,7 @@
 Создание задания в АРМ ЦИПП
 Meta:
 @arm cpp
-@tag component feedback
+@tag component: appeals
 
 Описание:
 Чтобы сообщать о регистрации ТС в систему ПО СВП

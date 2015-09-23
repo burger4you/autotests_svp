@@ -1,7 +1,7 @@
 Регистрация ИП в АРМ ЦИПП
 Meta:
 @arm cpp
-@tag component registration
+@tag component: registration
 
 Описание:
 Чтобы регистрировать ТС предпринимателей в системе ПО СВП

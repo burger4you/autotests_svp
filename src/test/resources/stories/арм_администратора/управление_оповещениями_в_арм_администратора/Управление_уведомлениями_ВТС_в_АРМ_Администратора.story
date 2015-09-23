@@ -1,7 +1,7 @@
 Управление уведомлениями ВТС в АРМ Администратора
 Meta:
 @arm admin
-@tag component notification
+@tag component: notifications
 @manual
 
 Описание:

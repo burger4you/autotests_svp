@@ -1,7 +1,7 @@
 Регистрация ТС в АРМ ЦИПП
 Meta:
 @arm cpp
-@tag component vehicles
+@tag component: vehicles
 
 Описание:
 Чтобы добавлять новые ТС в систему ПО СВП

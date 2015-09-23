@@ -1,7 +1,7 @@
 Авторизация пользователя в АРМ Личный Кабинет
 Meta:
 @arm lk
-@tag component authorization
+@tag component: authorization
 
 Описание:
 Чтобы войти в АРМ Личный Кабинет

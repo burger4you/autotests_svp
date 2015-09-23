@@ -1,7 +1,7 @@
 Авторизация оператора в АРМ ДЗ
 Meta:
 @arm dz
-@tag component authorization
+@tag component: authorization
 
 Описание:
 Чтобы войти в АРМ ДЗ

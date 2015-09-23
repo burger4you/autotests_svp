@@ -1,7 +1,7 @@
 Просмотр баланса ЛС ВТС в АРМ ЦИПП
 Meta:
 @arm cpp
-@tag component payments
+@tag component: payments
 
 Описание:
 Чтобы узнать состояние счетов ВТС

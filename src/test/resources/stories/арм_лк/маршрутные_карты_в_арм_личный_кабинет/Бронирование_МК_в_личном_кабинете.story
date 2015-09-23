@@ -1,7 +1,7 @@
 Бронирование МК в личном кабинете
 Meta:
 @arm lk
-@tag component route maps
+@tag component: route maps
 
 Описание:
 Чтобы самостоятельно отложить оплату МК в системе ПО СВП
