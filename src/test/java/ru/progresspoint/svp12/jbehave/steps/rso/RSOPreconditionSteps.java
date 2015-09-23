@@ -14,18 +14,8 @@ public class RSOPreconditionSteps {
     @Steps
     NavigationSteps navigation;
 
-    @Steps
-    RSOOperatorSteps operator;
-
     @Given("оператор находится на странице $page в АРМ РСО")
     public void operatorIsOn(String page) {
-        if (!page.equals("Авторизации")) {
-            navigation.opensRSOPage("Главная");
-            if (navigation.getCurrentURL().endsWith("sign_in")) {
-                operator.entersLoginAndPassword("Admin3", "Test123$");
-                operator.clicksToConfirmButton();
-            }
             navigation.opensRSOPage(page);
-        } else navigation.opensRSOPage("Авторизации");
     }
 }

@@ -78,8 +78,17 @@ public class NavigationSteps extends ScenarioSteps {
                 rsoLoginPage.shouldBeDisplayed();
                 break;
             case "Главная":
-                rsoMainPage.openAt("http://10.0.12.248");
+                openBaseRSOUrl();
                 break;
+        }
+    }
+
+    private void openBaseRSOUrl() {
+        getDriver().get("http://10.0.12.248");
+        if (getCurrentURL().endsWith("sign_in")) {
+            rsoLoginPage.enterLogin("Admin3");
+            rsoLoginPage.enterPassword("Test123$");
+            getDriver().findElement(name("commit")).click();
         }
     }
 
@@ -91,8 +100,17 @@ public class NavigationSteps extends ScenarioSteps {
                 treasuryLoginPage.shouldBeDisplayed();
                 break;
             case "Главная":
-                treasuryMainPage.openAt("http://10.0.12.254");
+                openBaseTreasuryUrl();
                 break;
+        }
+    }
+
+    private void openBaseTreasuryUrl() {
+        getDriver().get("http://10.0.12.254");
+        if (getCurrentURL().endsWith("sign_in")) {
+            treasuryLoginPage.enterLogin("Admin3");
+            treasuryLoginPage.enterPassword("Test123$");
+            getDriver().findElement(name("commit")).click();
         }
     }
 
