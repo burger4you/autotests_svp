@@ -2,7 +2,6 @@
 Meta:
 @arm smk
 @tag component authorization
-@wip
 
 Описание:
 Чтобы войти в АРМ СМК с необходимым функционалом
