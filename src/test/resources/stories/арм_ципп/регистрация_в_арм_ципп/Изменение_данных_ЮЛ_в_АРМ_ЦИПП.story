@@ -1,7 +1,7 @@
 Изменение данных ЮЛ в АРМ ЦИПП
 Meta:
 @arm cpp
-@component registration
+@tag component registration
 
 Описание:
 Чтобы контролировать акутальность данных в системе ПО СВП

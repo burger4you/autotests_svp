@@ -1,7 +1,7 @@
 Просмотр МК в личном кабинете
 Meta:
 @arm lk
-@component route maps
+@tag component route maps
 
 Описание:
 Чтобы уточнить детали своей МК в системе ПО СВП

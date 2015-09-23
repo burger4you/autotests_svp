@@ -1,7 +1,7 @@
 Снятие ВТС с учета в АРМ РСО
 Meta:
 @arm rso
-@component authorization
+@tag component authorization
 
 Описание:
 Чтобы  в АРМ РСО

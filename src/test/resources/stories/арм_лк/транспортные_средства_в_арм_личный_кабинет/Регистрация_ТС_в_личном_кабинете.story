@@ -1,7 +1,7 @@
 Регистрация ТС в личном кабинете
 Meta:
 @arm lk
-@component vehicles
+@tag component vehicles
 
 Описание:
 Чтобы самостоятельно добавлять новые ТС в систему ПО СВП

@@ -1,7 +1,7 @@
 Удаление МК в личном кабинете
 Meta:
 @arm lk
-@component route maps
+@tag component route maps
 
 Описание:
 Чтобы самостоятельно убирать оформленные МК из системы ПО СВП

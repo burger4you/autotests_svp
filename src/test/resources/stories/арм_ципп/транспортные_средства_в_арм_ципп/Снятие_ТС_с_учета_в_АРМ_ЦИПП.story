@@ -1,7 +1,7 @@
 Снятие ТС с учета в АРМ ЦИПП
 Meta:
 @arm cpp
-@component vehicles
+@tag component vehicles
 
 Описание:
 Чтобы убирать ТС из системы ПО СВП

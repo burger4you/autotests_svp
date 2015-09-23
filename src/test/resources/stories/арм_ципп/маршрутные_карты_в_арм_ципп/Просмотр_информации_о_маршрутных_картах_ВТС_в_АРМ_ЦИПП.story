@@ -1,7 +1,7 @@
 Просмотр информации о маршрутных картах ВТС в АРМ ЦИПП
 Meta:
 @arm cpp
-@component route maps
+@tag component route maps
 
 Описание:
 Чтобы узнать детали маршрутных карт ВТС

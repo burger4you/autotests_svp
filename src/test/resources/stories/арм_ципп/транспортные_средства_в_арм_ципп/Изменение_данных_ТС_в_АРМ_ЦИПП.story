@@ -1,7 +1,7 @@
 Изменение данных ТС в АРМ ЦИПП
 Meta:
 @arm cpp
-@component vehicles
+@tag component vehicles
 
 Описание:
 Чтобы обновлять данные о ТС в системе ПО СВП

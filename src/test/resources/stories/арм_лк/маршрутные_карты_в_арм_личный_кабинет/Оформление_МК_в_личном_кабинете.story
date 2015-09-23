@@ -1,7 +1,7 @@
 Оформление МК в личном кабинете
 Meta:
 @arm lk
-@component route maps
+@tag component route maps
 
 Описание:
 Чтобы самостоятельно оплачивать свои МК в системе ПО СВП

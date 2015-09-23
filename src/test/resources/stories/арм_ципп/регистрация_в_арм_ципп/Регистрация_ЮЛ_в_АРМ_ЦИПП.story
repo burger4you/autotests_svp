@@ -1,7 +1,7 @@
 Регистрация ЮЛ в АРМ ЦИПП
 Meta:
 @arm cpp
-@component registration
+@tag component registration
 
 Описание:
 Чтобы регистрировать ТС организаций в системе ПО СВП

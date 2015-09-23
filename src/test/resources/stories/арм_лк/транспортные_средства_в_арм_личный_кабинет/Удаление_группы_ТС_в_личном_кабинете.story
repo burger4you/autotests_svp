@@ -1,7 +1,7 @@
 Удаление группы ТС в личном кабинете
 Meta:
 @arm lk
-@component vehicles
+@tag component vehicles
 
 Описание:
 Чтобы самостоятельно убирать группы ТС из системы ПО СВП

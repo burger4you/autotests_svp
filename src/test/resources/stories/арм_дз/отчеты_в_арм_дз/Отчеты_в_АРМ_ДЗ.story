@@ -1,7 +1,7 @@
 Отчеты в АРМ ДЗ
 Meta:
 @arm dz
-@component reports
+@tag component reports
 
 Описание:
 Чтобы просмотреть отчет в АРМ ДЗ

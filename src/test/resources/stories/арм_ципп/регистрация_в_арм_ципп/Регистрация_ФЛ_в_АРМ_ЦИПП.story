@@ -1,7 +1,7 @@
 Регистрация ФЛ в АРМ ЦИПП
 Meta:
 @arm cpp
-@component registration
+@tag component registration
 
 Описание:
 Чтобы регистрировать ТС частных лиц в системе ПО СВП

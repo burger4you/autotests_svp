@@ -1,7 +1,7 @@
 Подача обращения в личном кабинете
 Meta:
 @arm lk
-@component appeals
+@tag component appeals
 
 Описание:
 Чтобы получать техническую поддержку

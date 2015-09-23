@@ -2,7 +2,7 @@
 
 Meta:
 @arm tso
-@component payments
+@tag component payments
 
 Описание:
 Чтобы самостоятельно пополнять лицевой счет

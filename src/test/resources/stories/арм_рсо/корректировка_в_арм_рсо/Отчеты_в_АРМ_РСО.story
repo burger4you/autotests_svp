@@ -1,7 +1,7 @@
 Отчеты ВТС с учета в АРМ РСО
 Meta:
 @arm rso
-@component authorization
+@tag component authorization
 
 Описание:
 Чтобы увидеть отчет о Возврат ДС с ЛС  в АРМ РСО

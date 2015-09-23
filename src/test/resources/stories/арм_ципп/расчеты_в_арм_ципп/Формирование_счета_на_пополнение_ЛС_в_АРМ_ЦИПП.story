@@ -1,7 +1,7 @@
 Формирование счета на пополнение ЛС в АРМ ЦИПП
 Meta:
 @arm cpp
-@component payments
+@tag component payments
 
 Описание:
 Чтобы у ВТС была возможность пополнить ЛС

@@ -1,7 +1,7 @@
 Авторизация в АРМ СМК
 Meta:
 @arm smk
-@component authorization
+@tag component authorization
 @wip
 
 Описание:

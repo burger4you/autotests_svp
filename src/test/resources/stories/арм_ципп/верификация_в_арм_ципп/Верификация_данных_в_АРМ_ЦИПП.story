@@ -1,7 +1,7 @@
 Верификация данных в АРМ ЦИПП
 Meta:
 @arm cpp
-@component verivication
+@tag component verivication
 
 Описание:
 Чтобы работать с ВТС прошедшими регистрацию самостоятельно
