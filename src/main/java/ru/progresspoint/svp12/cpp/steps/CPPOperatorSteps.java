@@ -190,7 +190,7 @@ public class CPPOperatorSteps extends RandomGenerators {
     public void shouldSeeEventInCommonHistory(String theme, String details, String status) {
         shouldMatch(appealHistoryPopUp.getAppealHistory(), the("Тема", is(theme)),
                 the("Детализация", is(details)),
-                the("Статус", is(status)));
+                the("Результат", is(status)));
     }
 
     @Step("Закрывает окно истории текущего обращения")

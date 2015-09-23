@@ -25,6 +25,7 @@ import ru.progresspoint.svp12.tso.pages.TSOStartPage;
 
 import static java.lang.String.format;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.openqa.selenium.By.name;
 
 /**
  * Шаги навигации по всей системе ПО СВП
@@ -161,30 +162,47 @@ public class NavigationSteps extends ScenarioSteps {
                 cppLoginPage.shouldBeDisplayed();
                 break;
             case "Выбора действия":
+                openBaseCPPUrl();
                 cppMainPage.loading();
                 break;
             case "Регистрации ВТС":
+                openBaseCPPUrl();
                 cppMainPage.loading();
                 cppSelectActionDialog.clickToOwnerRegistrationLink();
                 break;
             case "Расчеты":
+                openBaseCPPUrl();
                 cppMainMenu.clickToPaymentsTab();
                 break;
             case "Бортовые устройства":
+                openBaseCPPUrl();
                 cppMainMenu.clickToDevicesTab();
                 break;
             case "Маршрутные карты":
+                openBaseCPPUrl();
                 cppMainMenu.clickToRouteMapsTab();
                 break;
             case "Общие сведения":
+                openBaseCPPUrl();
                 cppMainMenu.clickToWikiTab();
                 break;
             case "Регистрация":
+                openBaseCPPUrl();
                 cppMainMenu.clickToRegistrationTab();
                 break;
             case "Обратная связь":
+                openBaseCPPUrl();
                 cppMainMenu.clickToAppealsTab();
                 break;
+        }
+    }
+
+    private void openBaseCPPUrl() {
+        getDriver().get("http://10.0.12.236");
+        if (getCurrentURL().endsWith("sign_in")) {
+            cppLoginPage.enterLogin("operator_himki");
+            cppLoginPage.enterPassword("1234567890");
+            getDriver().findElement(name("commit")).click();
         }
     }
 
