@@ -74,10 +74,6 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.18</version>
                 <configuration>
-                    <systemPropertyVariables>
-                        <serenity.issue.tracker.url>https://redmine.progresspoint.ru/issues/{0}
-                        </serenity.issue.tracker.url>
-                    </systemPropertyVariables>
                     <skip>true</skip>
                 </configuration>
             </plugin>
