@@ -119,11 +119,20 @@ public class NavigationSteps extends ScenarioSteps {
         switch (page) {
             case "Авторизации":
                 getDriver().get("http://10.0.12.229/sign_out");
-                adminLoginPage.openAt("http://10.0.12.229/sign_in");
+                adminLoginPage.shouldBeDisplayed();
                 break;
             case "Главная":
-                adminMainPage.openAt("http://10.0.12.229");
+                openBaseAdminUrl();
                 break;
+        }
+    }
+
+    private void openBaseAdminUrl() {
+        getDriver().get("http://10.0.12.229");
+        if (getCurrentURL().endsWith("sign_in")) {
+            adminLoginPage.enterLogin("Admin3");
+            adminLoginPage.enterPassword("Test123$");
+            getDriver().findElement(name("commit")).click();
         }
     }
 
