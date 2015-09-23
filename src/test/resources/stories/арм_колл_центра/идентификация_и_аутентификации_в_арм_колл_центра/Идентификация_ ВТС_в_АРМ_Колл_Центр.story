@@ -2,7 +2,6 @@
 Meta:
 @arm call_centre
 @component authorization
-@wip
 
 Описание:
 Чтобы оператор Колл Центра идентифицирция пользователя ВТС в АРМ Колл Центра

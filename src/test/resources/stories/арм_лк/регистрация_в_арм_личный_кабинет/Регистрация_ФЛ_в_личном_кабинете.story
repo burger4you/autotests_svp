@@ -2,7 +2,6 @@
 Meta:
 @arm lk
 @component registration
-@wip
 
 Описание:
 Чтобы получить доступ к личному кабинету

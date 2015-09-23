@@ -2,7 +2,6 @@
 Meta:
 @arm cpp
 @component registration
-@wip
 
 Описание:
 Чтобы выделить специальных клиентов

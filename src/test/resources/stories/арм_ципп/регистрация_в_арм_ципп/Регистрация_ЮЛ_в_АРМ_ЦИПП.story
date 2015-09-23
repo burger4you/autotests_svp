@@ -2,7 +2,6 @@
 Meta:
 @arm cpp
 @component registration
-@pending
 
 Описание:
 Чтобы регистрировать ТС организаций в системе ПО СВП

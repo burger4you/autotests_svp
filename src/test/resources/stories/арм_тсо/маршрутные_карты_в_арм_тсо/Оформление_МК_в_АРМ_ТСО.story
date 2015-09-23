@@ -2,7 +2,6 @@
 Meta:
 @arm tso
 @component route maps
-@wip
 
 Описание:
 Чтобы купить МК в терминале самообслуживания

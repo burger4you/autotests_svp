@@ -2,7 +2,6 @@
 Meta:
 @arm call_centre
 @component authorization
-@wip
 
 Описание:
 Чтобы войти в АРМ Колл Центра с необходимым функционалом

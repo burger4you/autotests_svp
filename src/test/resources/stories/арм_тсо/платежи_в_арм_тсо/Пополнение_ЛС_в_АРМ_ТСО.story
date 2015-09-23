@@ -3,7 +3,6 @@
 Meta:
 @arm tso
 @component payments
-@wip
 
 Описание:
 Чтобы самостоятельно пополнять лицевой счет
