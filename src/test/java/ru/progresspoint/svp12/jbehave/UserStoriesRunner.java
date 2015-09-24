@@ -1,14 +1,17 @@
 package ru.progresspoint.svp12.jbehave;
 
+import com.google.common.collect.ImmutableList;
 import net.serenitybdd.jbehave.SerenityStories;
 import org.jbehave.core.configuration.Configuration;
 import org.jbehave.core.i18n.LocalizedKeywords;
+import org.jbehave.core.io.LoadFromClasspath;
 import org.jbehave.core.model.ExamplesTableFactory;
 import org.jbehave.core.parsers.RegexStoryParser;
 import org.jbehave.core.reporters.ConsoleOutput;
 import org.jbehave.core.steps.MarkUnmatchedStepsAsPending;
 import org.jbehave.core.steps.ParameterConverters;
 
+import java.util.List;
 import java.util.Locale;
 
 /**
@@ -23,11 +26,17 @@ import java.util.Locale;
  */
 public class UserStoriesRunner extends SerenityStories {
 
-    public static Configuration withRussianKeywords(Configuration cfg) {
+    public static final List<String> DEFAULT_GIVEN_STORY_PREFIX = ImmutableList.of("Изначально", "Precondition");
+
+    public List<String> skippedPreconditions() {
+        return DEFAULT_GIVEN_STORY_PREFIX;
+    }
+
+    public Configuration withRussianKeywords(Configuration cfg) {
         LocalizedKeywords keywords = new LocalizedKeywords(new Locale("ru"));
         return cfg
                 .useKeywords(keywords)
-                .useStoryParser(new RegexStoryParser(keywords))
+                .useStoryParser(new RegexStoryParser(keywords, new ExamplesTableFactory(new LoadFromClasspath(this.getClass()))))
                 .useStepCollector(new MarkUnmatchedStepsAsPending(keywords))
                 .useDefaultStoryReporter(new ConsoleOutput(keywords))
                 .useParameterConverters(
