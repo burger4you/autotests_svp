@@ -13,7 +13,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <serenity.version>1.1.10</serenity.version>
+        <serenity.version>1.1.13</serenity.version>
         <serenity.jbehave.version>1.1.0</serenity.jbehave.version>
         <webdriver.driver>chrome</webdriver.driver>
         <redmine.url>https://redmine.progresspoint.ru/issues/{0}</redmine.url>
