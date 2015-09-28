@@ -1,7 +1,7 @@
 Заказ БУ в АРМ ЦИПП
 Meta:
 @arm cpp
-@component devices
+@tag component: devices
 
 Описание:
 Чтобы отложить БУ для выдачи ВТС

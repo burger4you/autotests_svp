@@ -1,9 +1,7 @@
 Пополнение ЛС в личном кабинете
-
 Meta:
 @arm lk
-@component payments
-@wip
+@tag component: payments
 
 Описание:
 Чтобы самостоятельно пополнять лицевой счет

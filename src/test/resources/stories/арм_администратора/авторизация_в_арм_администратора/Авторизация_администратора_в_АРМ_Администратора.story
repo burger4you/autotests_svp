@@ -1,7 +1,7 @@
 Авторизация администратора в АРМ Администратора
 Meta:
 @arm admin
-@component authorization
+@tag component: authorization
 
 Описание:
 Чтобы войти в АРМ Администратора

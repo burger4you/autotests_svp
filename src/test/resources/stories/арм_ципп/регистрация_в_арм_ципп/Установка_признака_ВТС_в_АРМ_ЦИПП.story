@@ -1,8 +1,7 @@
 Установка признака ВТС в АРМ ЦИПП
 Meta:
 @arm cpp
-@component registration
-@wip
+@tag component: registration
 
 Описание:
 Чтобы выделить специальных клиентов

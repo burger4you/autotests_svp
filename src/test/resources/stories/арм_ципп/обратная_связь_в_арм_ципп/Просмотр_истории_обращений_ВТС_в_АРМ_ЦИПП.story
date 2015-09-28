@@ -1,7 +1,7 @@
 Просмотр истории обращений ВТС в АРМ ЦИПП
 Meta:
 @arm cpp
-@component appeals
+@tag component: appeals
 
 Описание:
 Чтобы учитывать весь объем общения с ВТС

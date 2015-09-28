@@ -1,7 +1,7 @@
 Оформление маршрутных карт в АРМ ЦИПП
 Meta:
 @arm cpp
-@component route maps
+@tag component: route maps
 
 Описание:
 Чтобы оформлять маршрутные карты прямо в АРМ ЦИПП

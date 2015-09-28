@@ -14,18 +14,8 @@ public class TreasuryPreconditionSteps {
     @Steps
     NavigationSteps navigation;
 
-    @Steps
-    TreasuryOperatorSteps operator;
-
     @Given("оператор находится на странице $page в АРМ Казначейства")
     public void operatorIsOn(String page) {
-        if (!page.equals("Авторизации")) {
-            navigation.opensTreasuryPage("Главная");
-            if (navigation.getCurrentURL().endsWith("sign_in")) {
-                operator.entersLoginAndPassword("Admin3", "Test123$");
-                operator.clicksToConfirmButton();
-            }
-            navigation.opensTreasuryPage(page);
-        } else navigation.opensTreasuryPage("Авторизации");
+        navigation.opensTreasuryPage(page);
     }
 }

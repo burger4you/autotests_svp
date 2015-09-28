@@ -1,8 +1,7 @@
 Изменение данных ФЛ в АРМ ЦИПП
 Meta:
 @arm cpp
-@component registration
-@wip
+@tag component: registration
 
 Описание:
 Чтобы контролировать акутальность данных в системе ПО СВП

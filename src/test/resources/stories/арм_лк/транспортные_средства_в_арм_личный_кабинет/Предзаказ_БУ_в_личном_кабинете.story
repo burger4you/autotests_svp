@@ -1,7 +1,7 @@
 Предзаказ БУ в личном кабинете
 Meta:
 @arm lk
-@component vehicles
+@tag component: vehicles
 
 Описание:
 Чтобы оформить БУ для своего ТС

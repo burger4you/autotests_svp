@@ -13,18 +13,8 @@ public class AdminPreconditionSteps {
     @Steps
     NavigationSteps navigation;
 
-    @Steps
-    AdminAdministratorSteps administrator;
-
     @Given("администратор находится на странице $page в АРМ Администратора")
     public void administratorIsOn(String page) {
-        if (!page.equals("Авторизации")) {
-            navigation.opensAdminPage("Главная");
-            if (navigation.getCurrentURL().endsWith("sign_in")) {
-                administrator.entersLoginAndPassword("Admin3", "Test123$");
-                administrator.clicksToConfirmButton();
-            }
-            navigation.opensAdminPage(page);
-        } else navigation.opensAdminPage("Авторизации");
+        navigation.opensAdminPage(page);
     }
 }

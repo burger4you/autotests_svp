@@ -1,8 +1,7 @@
 Авторизация в АРМ Колл Центра пользователей с разными ролями
 Meta:
 @arm call_centre
-@component authorization
-@wip
+@tag component: authorization
 
 Описание:
 Чтобы войти в АРМ Колл Центра с необходимым функционалом

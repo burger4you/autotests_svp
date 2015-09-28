@@ -1,7 +1,7 @@
 Регистрация ТС в АРМ ТСО
 Meta:
 @arm tso
-@component vehicles
+@tag component: vehicles
 
 Описание:
 Чтобы добавлять новые ТС в систему ПО СВП

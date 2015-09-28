@@ -10,6 +10,7 @@ import javax.mail.MessagingException;
 import java.io.IOException;
 
 import static org.joda.time.DateTime.parse;
+import static org.joda.time.format.DateTimeFormat.forPattern;
 
 /**
  * Состояния системы, к которым она приходит в результате действий пользователя
@@ -32,7 +33,7 @@ public class LKConditions {
 
     @Then("система предоставит доступ к личному кабинету пользователя")
     public void lkShouldBeAvailableForUser() {
-        navigation.isOnLKPage("Главная");
+        navigation.isOnLKPage("Транспортные средства");
     }
 
     @Then("система отобразит его в общем списке ТС")
@@ -65,7 +66,7 @@ public class LKConditions {
 
     @Then("система покажет в выписке все операции с $startDate по $endDate")
     public void shouldBeDisplayedTransactionsInPeriod(String startDay, String endDate) {
-        user.shouldSeeTransactionsDatesBetween(parse(startDay), parse(endDate));
+        user.shouldSeeTransactionsDatesBetween(parse(startDay, forPattern("dd.MM.yyyy")), parse(endDate, forPattern("dd.MM.yyyy")));
     }
 
     @Then("система отобразит это обращение в общем списке обращений")
@@ -90,8 +91,7 @@ public class LKConditions {
         email.clicksToConfirmationLink();
         user.entersPassword("!QAZ2wsx");
         user.clicksToConfirmButton();
-        navigation.isOnLKPage("Главная");
-        email.deletesAllMessagesFromPlaton(userEmail);
+        navigation.isOnLKPage("Транспортные средства");
     }
 }
 

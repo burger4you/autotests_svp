@@ -1,9 +1,7 @@
 Просмотр выписки операций в личном кабинете
-
 Meta:
 @arm lk
-@component payments
-@wip
+@tag component: payments
 
 Описание:
 Чтобы самостоятельно мониторить операции по ЛС
