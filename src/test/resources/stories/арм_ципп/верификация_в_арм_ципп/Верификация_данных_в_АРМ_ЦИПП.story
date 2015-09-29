@@ -1,7 +1,8 @@
 Верификация данных в АРМ ЦИПП
 Meta:
 @arm cpp
-@tag component: verivication notifications
+@tag component: verivication
+@tag component: notifications
 
 Описание:
 Чтобы работать с ВТС прошедшими регистрацию самостоятельно
