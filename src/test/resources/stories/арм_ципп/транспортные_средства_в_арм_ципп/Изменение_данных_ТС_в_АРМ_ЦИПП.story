@@ -2,6 +2,7 @@
 Meta:
 @arm cpp
 @tag component: vehicles
+@tag component: notifications
 
 Описание:
 Чтобы обновлять данные о ТС в системе ПО СВП

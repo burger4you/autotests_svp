@@ -1,7 +1,8 @@
 Регистрация ФЛ в личном кабинете
 Meta:
 @arm lk
-@tag component: registration notifications
+@tag component: registration
+@tag component: notifications
 
 Описание:
 Чтобы получить доступ к личному кабинету
