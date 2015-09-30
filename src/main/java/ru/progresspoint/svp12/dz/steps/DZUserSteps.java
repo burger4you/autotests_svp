@@ -9,9 +9,9 @@ import static org.openqa.selenium.By.linkText;
 import static org.openqa.selenium.By.name;
 
 /**
- * Шаги оператора АРМа ДЗ
+ * Шаги пользователя АРМа ДЗ
  */
-public class DZOperatorSteps extends ScenarioSteps {
+public class DZUserSteps extends ScenarioSteps {
 
     DZLoginPage loginPage;
 

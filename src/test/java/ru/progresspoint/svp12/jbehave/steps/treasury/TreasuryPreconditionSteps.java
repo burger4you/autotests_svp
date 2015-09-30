@@ -3,8 +3,6 @@ package ru.progresspoint.svp12.jbehave.steps.treasury;
 import net.thucydides.core.annotations.Steps;
 import org.jbehave.core.annotations.Given;
 import ru.progresspoint.svp12.NavigationSteps;
-import ru.progresspoint.svp12.dz.steps.DZOperatorSteps;
-import ru.progresspoint.svp12.treasury.steps.TreasuryOperatorSteps;
 
 /**
  * Шаги для приведения АРМа Казначейства в исходные состояния

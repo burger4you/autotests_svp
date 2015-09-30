@@ -2,7 +2,6 @@ package ru.progresspoint.svp12.jbehave.steps.treasury;
 
 import net.thucydides.core.annotations.Steps;
 import org.jbehave.core.annotations.When;
-import ru.progresspoint.svp12.dz.steps.DZOperatorSteps;
 import ru.progresspoint.svp12.treasury.steps.TreasuryOperatorSteps;
 
 /**

@@ -3,6 +3,7 @@ package ru.progresspoint.svp12;
 import net.serenitybdd.core.Serenity;
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.steps.ScenarioSteps;
+import org.assertj.core.api.Assertions;
 
 import javax.mail.*;
 import javax.mail.search.AndTerm;
@@ -45,8 +46,8 @@ public class EmailUserSteps extends ScenarioSteps {
      * @throws MessagingException
      * @throws IOException
      */
-    @Step("Получает письмо на {0} с уведомлением")
-    public void waitsForEmailWithNotification(String gmailBox) throws IOException, MessagingException {
+    @Step("Получает письмо на {0} с уведомлением {1}")
+    public void waitsForEmailWithNotification(String gmailBox, String notification) throws IOException, MessagingException {
         waitABit(5000);
         // Устанавливаем протокол
         props = new Properties();
@@ -80,6 +81,7 @@ public class EmailUserSteps extends ScenarioSteps {
         String fullText = valueOf(message.getContent());
         // И запоминаем его
         getCurrentSession().put("notificationText", fullText);
+        Assertions.assertThat(fullText).isEqualTo(notification);
     }
 
     /**

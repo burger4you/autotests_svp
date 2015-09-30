@@ -3,8 +3,6 @@ package ru.progresspoint.svp12.jbehave.steps.rso;
 import net.thucydides.core.annotations.Steps;
 import org.jbehave.core.annotations.Given;
 import ru.progresspoint.svp12.NavigationSteps;
-import ru.progresspoint.svp12.dz.steps.DZOperatorSteps;
-import ru.progresspoint.svp12.rso.steps.RSOOperatorSteps;
 
 /**
  * Шаги для приведения АРМа РСО в исходные состояния

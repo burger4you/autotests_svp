@@ -2,7 +2,6 @@ package ru.progresspoint.svp12.jbehave.steps.rso;
 
 import net.thucydides.core.annotations.Steps;
 import org.jbehave.core.annotations.When;
-import ru.progresspoint.svp12.dz.steps.DZOperatorSteps;
 import ru.progresspoint.svp12.rso.steps.RSOOperatorSteps;
 
 /**
