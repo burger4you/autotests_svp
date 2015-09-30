@@ -51,7 +51,7 @@ public class CPPConditions {
 
     @Then("система отправит на $emailAddress уведомление $notification")
     public void systemSentNotificationOn(String emailAddress, String notification) throws IOException, MessagingException {
-        email.waitsForEmailWithNotification(emailAddress);
+        email.waitsForEmailWithNotification(emailAddress, notification);
         email.deletesAllMessagesFromSVP12(emailAddress);
     }
 
