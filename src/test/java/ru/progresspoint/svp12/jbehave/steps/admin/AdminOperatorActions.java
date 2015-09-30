@@ -12,7 +12,7 @@ public class AdminOperatorActions {
     @Steps
     AdminAdministratorSteps administrator;
 
-    @When("администратор вводит логин $login и пароль $password для авторизации в АРМ Администратора")
+    @When("администратор введет логин $login и пароль $password для авторизации в АРМ Администратора")
     public void administratorEntersLoginAndPassword(String login, String password) {
         administrator.entersLoginAndPassword(login, password);
         administrator.clicksToConfirmButton();

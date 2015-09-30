@@ -41,7 +41,7 @@ public class LKUserActions {
         user.clicksToConfirmButton();
     }
 
-    @When("пользователь вводит логин $login и пароль $password для авторизации в ЛК")
+    @When("пользователь введет логин $login и пароль $password для авторизации в ЛК")
     public void userEntersLoginAndPassword(String login, String password) {
         user.entersLoginAndPassword(login, password);
         user.clicksToConfirmButton();

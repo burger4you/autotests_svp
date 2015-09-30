@@ -12,7 +12,7 @@ public class TreasuryConditions {
     @Steps
     NavigationSteps navigation;
 
-    @Then("система предоставляет доступ к АРМ Казначейства")
+    @Then("система предоставит доступ к АРМ Казначейства")
     public void treasuryShouldBeAvailableForUser() {
         navigation.isOnTreasuryPage("Главная");
     }

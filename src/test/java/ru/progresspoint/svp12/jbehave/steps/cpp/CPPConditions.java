@@ -34,7 +34,7 @@ public class CPPConditions {
         navigation.isOnCPPPage(page);
     }
 
-    @Then("система предоставляет доступ к АРМ ЦИПП")
+    @Then("система предоставит доступ к АРМ ЦИПП")
     public void cppShouldBeAvailableForUser() {
         navigation.isOnCPPPage("Главная");
     }

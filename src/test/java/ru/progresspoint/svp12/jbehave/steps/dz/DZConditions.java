@@ -12,7 +12,7 @@ public class DZConditions {
     @Steps
     NavigationSteps navigation;
 
-    @Then("система предоставляет доступ к АРМ ДЗ")
+    @Then("система предоставит доступ к АРМ ДЗ")
     public void dzShouldBeAvailableForUser() {
         navigation.isOnDZPage("Главная");
     }

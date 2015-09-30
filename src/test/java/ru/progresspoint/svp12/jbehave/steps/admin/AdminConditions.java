@@ -12,7 +12,7 @@ public class AdminConditions {
     @Steps
     NavigationSteps navigation;
 
-    @Then("система предоставляет доступ к АРМ Администратора")
+    @Then("система предоставит доступ к АРМ Администратора")
     public void adminShouldBeAvailableForAdministrator() {
         navigation.isOnAdminPage("Главная");
     }

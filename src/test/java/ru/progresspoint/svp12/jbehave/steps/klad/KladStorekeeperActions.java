@@ -12,7 +12,7 @@ public class KladStorekeeperActions {
     @Steps
     KladStorekeeperSteps storekeeper;
 
-    @When("кладовщик вводит логин $login и пароль $password для авторизации в АРМ Кладовщика")
+    @When("кладовщик введет логин $login и пароль $password для авторизации в АРМ Кладовщика")
     public void storekeeperEntersLoginAndPassword(String login, String password) {
         storekeeper.entersLoginAndPassword(login, password);
         storekeeper.clicksToConfirmButton();

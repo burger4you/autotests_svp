@@ -26,13 +26,13 @@ public class CPPUserActions {
     @Steps
     NavigationSteps navigation;
 
-    @When("оператор вводит логин $login и пароль $password для авторизации в АРМ ЦИПП")
+    @When("оператор введет логин $login и пароль $password для авторизации в АРМ ЦИПП")
     public void operatorEntersLoginAndPassword(String login, String password) {
         operator.entersLoginAndPassword(login, password);
         operator.clicksToConfirmButton();
     }
 
-    @When("админ вводит логин $login и пароль $password для авторизации в АРМ ЦИПП")
+    @When("админ введет логин $login и пароль $password для авторизации в АРМ ЦИПП")
     public void adminEntersLoginAndPassword(String login, String password) {
         admin.entersLoginAndPassword(login, password);
         admin.clicksToConfirmButton();

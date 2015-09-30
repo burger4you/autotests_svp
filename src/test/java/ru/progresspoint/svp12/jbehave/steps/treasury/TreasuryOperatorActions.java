@@ -13,7 +13,7 @@ public class TreasuryOperatorActions {
     @Steps
     TreasuryOperatorSteps operator;
 
-    @When("оператор вводит логин $login и пароль $password для авторизации в АРМ Казначейства")
+    @When("оператор введет логин $login и пароль $password для авторизации в АРМ Казначейства")
     public void operatorEntersLoginAndPassword(String login, String password) {
         operator.entersLoginAndPassword(login, password);
         operator.clicksToConfirmButton();

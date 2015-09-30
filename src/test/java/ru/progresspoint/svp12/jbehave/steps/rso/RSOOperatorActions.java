@@ -13,7 +13,7 @@ public class RSOOperatorActions {
     @Steps
     RSOOperatorSteps operator;
 
-    @When("оператор вводит логин $login и пароль $password для авторизации в АРМ РСО")
+    @When("оператор введет логин $login и пароль $password для авторизации в АРМ РСО")
     public void operatorEntersLoginAndPassword(String login, String password) {
         operator.entersLoginAndPassword(login, password);
         operator.clicksToConfirmButton();

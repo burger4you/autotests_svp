@@ -12,7 +12,7 @@ public class CallCentreConditions {
     @Steps
     NavigationSteps navigation;
 
-    @Then("система предоставляет доступ к АРМ Колл Центра")
+    @Then("система предоставит доступ к АРМ Колл Центра")
     public void callCenterShouldBeAvailableForOperator() {
         navigation.isOnCallCentrePage("Главная");
     }
