@@ -162,8 +162,17 @@ public class NavigationSteps extends ScenarioSteps {
                 dzLoginPage.shouldBeDisplayed();
                 break;
             case "Главная":
-                dzMainPage.openAt("http://10.0.13.54");
+                openBaseDZUrl();
                 break;
+        }
+    }
+
+    private void openBaseDZUrl() {
+        getDriver().get("http://10.0.13.54");
+        if (getCurrentURL().endsWith("sign_in")) {
+            dzLoginPage.enterLogin("Admin3");
+            dzLoginPage.enterPassword("Test123$");
+            getDriver().findElement(name("commit")).click();
         }
     }
 

@@ -13,18 +13,8 @@ public class DZPreconditionSteps {
     @Steps
     NavigationSteps navigation;
 
-    @Steps
-    DZUserSteps analyst;
-
     @Given("аналитик находится на странице $page в АРМ ДЗ")
-    public void operatorIsOn(String page) {
-        if (!page.equals("Авторизации")) {
-            navigation.opensDZPage("Главная");
-            if (navigation.getCurrentURL().endsWith("sign_in")) {
-                analyst.entersLoginAndPassword("Admin3", "Test123$");
-                analyst.clicksToConfirmButton();
-            }
-            navigation.opensDZPage(page);
-        } else navigation.opensDZPage("Авторизации");
+    public void analystIsOn(String page) {
+        navigation.opensDZPage(page);
     }
 }
