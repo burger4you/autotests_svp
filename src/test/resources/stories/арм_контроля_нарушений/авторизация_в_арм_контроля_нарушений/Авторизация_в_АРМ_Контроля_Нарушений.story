@@ -1,6 +1,6 @@
 Авторизация в АРМ Контроля Нарушений
 Meta:
-@arm
+@arm ssk
 @tag component: authorization
 
 Описание:

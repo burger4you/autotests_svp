@@ -18,28 +18,31 @@ mvn clean verify -Dmetafilter="+arm cpp"
 Используя эту команду, мы запустим все тесты для АРМа ЛК, исключая тесты на авторизацию:
 
 ```
-mvn clean verify -Dmetafilter="+arm lk -component authorization"
+mvn clean verify -Dmetafilter="+arm lk -tag component: authorization"
 ```
 
 А так мы запустим все тесты связанные с авторизацией и маршрутными картами для всех подсистем, за исключением АРМа ЦИПП:
  
 ```
-mvn clean verify -Dmetafilter="+component authorization +component route maps -arm cpp"
+mvn clean verify -Dmetafilter="+tag component: authorization +tag component: route maps -arm cpp"
 ```
 
 Доступные мета фильтры:
 
 arm: 
 
-cpp - АРМ ЦИПП, 
-lk - АРМ Личный кабинет, 
-dz - АРМ Дебиторская задолженность,
-klad - АРМ Кладовщика,
 admin - АРМ Администратора,
-tso - АРМ ТСО,
-rso - АРМ РСО,
+dz - АРМ Дебиторская задолженность,
+treasury - АРМ Казначейства,
+klad - АРМ Кладовщика,
 call_centre - АРМ Колл-Центра,
-treasury - АРМ Казначейства
+ssk - АРМ Контроля Нарушений,
+lk - АРМ Личный кабинет,
+rso - АРМ РСО,
+smk - АРМ СМК,
+tso - АРМ ТСО,
+cpp - АРМ ЦИПП,
+
 
 
 component:
