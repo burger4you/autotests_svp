@@ -15,7 +15,6 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <serenity.version>1.1.17-rc.1</serenity.version>
         <serenity.jbehave.version>1.1.0</serenity.jbehave.version>
-        <webdriver.driver>chrome</webdriver.driver>
         <redmine.url>https://redmine.progresspoint.ru/issues/{0}</redmine.url>
     </properties>
 
@@ -88,9 +87,6 @@
                     <includes>
                         <include>**/jbehave/*Runner.java</include>
                     </includes>
-                    <systemProperties>
-                        <webdriver.driver>${webdriver.driver}</webdriver.driver>
-                    </systemProperties>
                     <!--<reuseForks>true</reuseForks>-->
                     <argLine>-Xmx512m</argLine>
                 </configuration>
