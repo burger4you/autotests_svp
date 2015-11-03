@@ -1,7 +1,7 @@
 Печать договора на БУ в АРМ ЦИПП
 Meta:
 @arm cpp
-@tag component: registration
+@tag component: регистрация
 
 Описание:
 Чтобы задокументировать передачу БУ ВТС

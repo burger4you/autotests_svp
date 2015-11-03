@@ -1,8 +1,8 @@
 Изменение данных ТС в АРМ ЦИПП
 Meta:
 @arm cpp
-@tag component: vehicles
-@tag component: notifications
+@tag component: транспортные средства
+@tag component: оповещения
 
 Описание:
 Чтобы обновлять данные о ТС в системе ПО СВП
@@ -11,7 +11,7 @@ Meta:
 
 Сценарий:
 В АРМ ЦИПП есть возможность изменить данные ТС
-Meta: @tag component: notifications
+Meta: @tag component: оповещения
 
 Изначально пользователь находится на странице Информация о ТС в АРМ ЦИПП
 Если оператор АРМ ЦИПП изменит данные ТС vehicleName

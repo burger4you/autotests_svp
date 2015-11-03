@@ -1,7 +1,7 @@
 Истек срок действия МК
 Meta:
 @arm admin
-@tag component: notifications
+@tag component: оповещения
 
 Описание:
 Чтобы информировать ВТС об активации МК
@@ -38,8 +38,8 @@ Meta: @issue 11134
 
 Meta:
 @arm cpp
-@tag component: route maps
-@tag component: notifications
+@tag component: маршрутные карты
+@tag component: оповещения
 
 Описание:
 Чтобы оформлять маршрутные карты прямо в АРМ ЦИПП

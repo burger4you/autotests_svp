@@ -1,7 +1,7 @@
 Начисления в АРМ РСО
 Meta:
 @arm rso
-@tag component: payments
+@tag component: расчеты
 
 Описание:
 Чтобы проводить расчеты с ВТС

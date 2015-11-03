@@ -1,7 +1,7 @@
 Выдача БУ в АРМ ЦИПП
 Meta:
 @arm cpp
-@tag component: devices
+@tag component: бортовые устройства
 
 Описание:
 Чтобы отразить в АРМ ЦИПП выдачу БУ
