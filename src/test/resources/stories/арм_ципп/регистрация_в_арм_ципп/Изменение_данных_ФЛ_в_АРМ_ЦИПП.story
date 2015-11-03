@@ -2,7 +2,6 @@
 Meta:
 @arm cpp
 @tag component: registration
-@tag component: notifications
 
 Описание:
 Чтобы контролировать акутальность данных в системе ПО СВП
