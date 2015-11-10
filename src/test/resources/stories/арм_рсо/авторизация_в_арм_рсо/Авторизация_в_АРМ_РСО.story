@@ -1,7 +1,7 @@
 Авторизация оператора в АРМ РСО
 Meta:
 @arm rso
-@tag component: authorization
+@tag component: авторизация
 
 Описание:
 Чтобы войти в АРМ РСО

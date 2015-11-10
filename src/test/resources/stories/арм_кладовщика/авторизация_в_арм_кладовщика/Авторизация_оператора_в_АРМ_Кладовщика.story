@@ -1,7 +1,7 @@
 Авторизация оператора в АРМ Кладовщика
 Meta:
 @arm klad
-@tag component: authorization
+@tag component: авторизация
 
 Описание:
 Чтобы войти в АРМ Кладовщика
