@@ -74,7 +74,7 @@ public class NavigationSteps extends ScenarioSteps {
     public void opensRSOPage(String page) {
         switch (page) {
             case "Авторизации":
-                getDriver().get("http://10.0.12.248/sign_out");
+                getDriver().get("http://svp-www1-arm-rso.svp.test/sign_out");
                 rsoLoginPage.shouldBeDisplayed();
                 break;
             case "Главная":
@@ -84,7 +84,7 @@ public class NavigationSteps extends ScenarioSteps {
     }
 
     private void openBaseRSOUrl() {
-        getDriver().get("http://10.0.12.248");
+        getDriver().get("http://svp-www1-arm-rso.svp.test");
         if (getCurrentURL().endsWith("sign_in")) {
             rsoLoginPage.enterLogin("Admin3");
             rsoLoginPage.enterPassword("Test123$");
@@ -96,7 +96,7 @@ public class NavigationSteps extends ScenarioSteps {
     public void opensTreasuryPage(String page) {
         switch (page) {
             case "Авторизации":
-                getDriver().get("http://10.0.12.254/sign_out");
+                getDriver().get("http://svp-www1-arm-treasury.svp.test/sign_out");
                 treasuryLoginPage.shouldBeDisplayed();
                 break;
             case "Главная":
@@ -106,7 +106,7 @@ public class NavigationSteps extends ScenarioSteps {
     }
 
     private void openBaseTreasuryUrl() {
-        getDriver().get("http://10.0.12.254");
+        getDriver().get("http://svp-www1-arm-treasury.svp.test");
         if (getCurrentURL().endsWith("sign_in")) {
             treasuryLoginPage.enterLogin("Admin3");
             treasuryLoginPage.enterPassword("Test123$");
@@ -116,18 +116,18 @@ public class NavigationSteps extends ScenarioSteps {
 
     @Step("Открывает стартовую страницу АРМа ТСО")
     public void opensTSOStartPage() {
-        tsoStartPage.openAt("http://10.0.12.18");
+        tsoStartPage.openAt("http://svp-www-tco.svp.test");
     }
 
     @Step("Открывает страницу {0} АРМа Колл Центра")
     public void opensCallCenterPage(String page) {
         switch (page) {
             case "Авторизации":
-                getDriver().get("http://10.0.12.230/sign_out");
+                getDriver().get("http://svp-www-callcenter.svp.test/sign_out");
                 callCentreLoginPage.shouldBeDisplayed();
                 break;
             case "Главная":
-                callCentreMainPage.openAt("http://10.0.12.230");
+                callCentreMainPage.openAt("http://svp-www-callcenter.svp.test");
                 break;
         }
     }
@@ -136,7 +136,7 @@ public class NavigationSteps extends ScenarioSteps {
     public void opensAdminPage(String page) {
         switch (page) {
             case "Авторизации":
-                getDriver().get("http://10.0.12.229/sign_out");
+                getDriver().get("http://svp-www1-arm-administrator.svp.test/sign_out");
                 adminLoginPage.shouldBeDisplayed();
                 break;
             case "Главная":
@@ -146,7 +146,7 @@ public class NavigationSteps extends ScenarioSteps {
     }
 
     private void openBaseAdminUrl() {
-        getDriver().get("http://10.0.12.229");
+        getDriver().get("http://svp-www1-arm-administrator.svp.test");
         if (getCurrentURL().endsWith("sign_in")) {
             adminLoginPage.enterLogin("Admin3");
             adminLoginPage.enterPassword("Test123$");
@@ -158,7 +158,7 @@ public class NavigationSteps extends ScenarioSteps {
     public void opensDZPage(String page) {
         switch (page) {
             case "Авторизации":
-                getDriver().get("http://10.0.13.54/sign_out");
+                getDriver().get("http://svp-www1-arm-dz.svp.test/sign_out");
                 dzLoginPage.shouldBeDisplayed();
                 break;
             case "Главная":
@@ -168,7 +168,7 @@ public class NavigationSteps extends ScenarioSteps {
     }
 
     private void openBaseDZUrl() {
-        getDriver().get("http://10.0.13.54");
+        getDriver().get("http://svp-www1-arm-dz.svp.test");
         if (getCurrentURL().endsWith("sign_in")) {
             dzLoginPage.enterLogin("Admin3");
             dzLoginPage.enterPassword("Test123$");
@@ -180,12 +180,21 @@ public class NavigationSteps extends ScenarioSteps {
     public void opensKladPage(String page) {
         switch (page) {
             case "Авторизации":
-                getDriver().get("http://10.0.12.206/sign_out");
-                kladLoginPage.openAt("http://10.0.12.206/sign_in");
+                getDriver().get("http://svp-www1-arm-warehouse.svp.test/sign_out");
+                kladLoginPage.shouldBeDisplayed();
                 break;
             case "Главная":
-                kladMainPage.openAt("http://10.0.12.206");
+                openBaseKladUrl();
                 break;
+        }
+    }
+
+    private void openBaseKladUrl() {
+        getDriver().get("http://svp-www1-arm-warehouse.svp.test");
+        if (getCurrentURL().endsWith("sign_in")) {
+            kladLoginPage.enterLogin("Admin3");
+            kladLoginPage.enterPassword("Test123$");
+            getDriver().findElement(name("commit")).click();
         }
     }
 
@@ -193,7 +202,7 @@ public class NavigationSteps extends ScenarioSteps {
     public void opensCPPPage(String page) {
         switch (page) {
             case "Авторизации":
-                getDriver().get("http://10.0.12.236/sign_out");
+                getDriver().get("http://svp-www-cipp.svp.test/sign_out");
                 cppLoginPage.shouldBeDisplayed();
                 break;
             case "Выбора действия":
@@ -233,10 +242,10 @@ public class NavigationSteps extends ScenarioSteps {
     }
 
     private void openBaseCPPUrl() {
-        getDriver().get("http://10.0.12.236");
+        getDriver().get("http://svp-www-cipp.svp.test");
         if (getCurrentURL().endsWith("sign_in")) {
-            cppLoginPage.enterLogin("operator_himki");
-            cppLoginPage.enterPassword("1234567890");
+            cppLoginPage.enterLogin("operator_1");
+            cppLoginPage.enterPassword("qwerty123$");
             getDriver().findElement(name("commit")).click();
         }
     }
@@ -245,7 +254,7 @@ public class NavigationSteps extends ScenarioSteps {
     public void opensLKPage(String page) {
         switch (page) {
             case "Авторизации":
-                getDriver().get("http://10.0.12.225/sign_out");
+                getDriver().get("http://svp-www-lk.svp.test/sign_out");
                 lkLoginPage.shouldBeDisplayed();
                 break;
             case "Транспортные средства":
@@ -272,10 +281,10 @@ public class NavigationSteps extends ScenarioSteps {
     }
 
     private void openBaseLKUrl() {
-        getDriver().get("http://10.0.12.225");
+        getDriver().get("http://svp-www-lk.svp.test");
         if (getCurrentURL().endsWith("sign_in")) {
-            lkLoginPage.enterLogin("okapustina");
-            lkLoginPage.enterPassword("!QAZ2wsc");
+            lkLoginPage.enterLogin("iptestowner+ip008@gmail.com");
+            lkLoginPage.enterPassword("!QAZ2wsx");
             getDriver().findElement(name("commit")).click();
         }
         lkMainMenu.loading();

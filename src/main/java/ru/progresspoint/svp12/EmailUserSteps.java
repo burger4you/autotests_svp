@@ -124,7 +124,7 @@ public class EmailUserSteps extends ScenarioSteps {
 //        String fullText = bodyPart.getContent().toString();
         String fullText = valueOf(message.getContent());
         // И колдуем: делим тело письма на 2 части (до ссылки и после)
-        String[] array = fullText.split("http://10.0.12.225/\\S+"); //http://10.0.12.225/\S+  </div><p>
+        String[] array = fullText.split("http://svp-www-lk.svp.test/\\S+"); //http://svp-www-lk.svp.test/\S+  </div><p>
         // Что бы потом удалить их из общего текста и оставить нужную нам урлу.
         String url = fullText.replace(valueOf(array[0]), "").replace(valueOf("</div><p>С" + array[1]), "");
         // Которую и запоминаем
@@ -202,7 +202,7 @@ public class EmailUserSteps extends ScenarioSteps {
 //        String fullText = bodyPart.getContent().toString();
         String fullText = valueOf(message.getContent());
         // И колдуем: делим тело письма на 2 части (до ссылки и после)
-        String[] array = fullText.split("Пароль: \\S+"); //http://10.0.12.225/\S+  </div><p>
+        String[] array = fullText.split("Пароль: \\S+"); //http://svp-www-lk.svp.test/\S+  </div><p>
         // Что бы потом удалить их из общего текста и оставить нужную нам урлу.
         String password = fullText.replace(valueOf(array[0] + "Пароль: "), "").replace(valueOf("</p><p>Ссылка" + array[1]), "");
         // Которую и запоминаем
