@@ -13,7 +13,7 @@ public class CPPSelectizePageObject extends PageObject {
     static final String DROP_DOWN_ITEM_XPATH = ".//*[@class='selectize-dropdown-content']/*[text() = '%s']";
 
     static final String INPUT_XPATH = ".//*[@id='%s']/..//*[@class='selectize-input items not-full']/input";
-    static final String INPUT_ITEM_XPATH = ".//*[@id='%s']/..//div[@class='selectize-dropdown-content']/div[2]";
+    static final String INPUT_ITEM_XPATH = ".//*[@id='%s']/..//div[@class='selectize-dropdown-content']/div[1]";
 
 
     public void selectForSelectizePlugin(String selectId, String selectingValue) {

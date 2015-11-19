@@ -12,7 +12,7 @@ import static java.lang.String.format;
 @At("#HOST/#")
 public class CPPSelectActionDialog extends CPPSelectizePageObject {
 
-    private static final String clientCountryDropDown = "country_id";
+    private static final String clientCountryDropDown = "client-country-id-select";
     private static final String clientTypeDropDown = "client_type_id";
 
     @FindBy(xpath = "//*[@id='start-work-modal']//li[1]/a")

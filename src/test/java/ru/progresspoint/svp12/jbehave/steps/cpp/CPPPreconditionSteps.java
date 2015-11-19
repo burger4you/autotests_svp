@@ -21,7 +21,7 @@ public class CPPPreconditionSteps {
             navigation.opensCPPPage(page);
     }
 
-    @Given("в ЦИПП поступило обращение от зарегистрированного ВТС $owner")
+    @Given("в ЦИПП обратился зарегистрированный ВТС $owner")
     public void operatorWorksWithOwner(String owner) {
         navigation.opensCPPPage("Выбора действия");
         operator.searchClientByQuery(owner);
