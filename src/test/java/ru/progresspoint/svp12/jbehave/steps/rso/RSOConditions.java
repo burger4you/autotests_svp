@@ -12,7 +12,7 @@ public class RSOConditions {
     @Steps
     NavigationSteps navigation;
 
-    @Then("система предоставляет доступ к АРМ РСО")
+    @Then("система предоставит доступ к АРМ РСО")
     public void rsoShouldBeAvailableForUser() {
         navigation.isOnRSOPage("Главная");
     }

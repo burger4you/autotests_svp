@@ -34,7 +34,7 @@ public class CPPConditions {
         navigation.isOnCPPPage(page);
     }
 
-    @Then("система предоставляет доступ к АРМ ЦИПП")
+    @Then("система предоставит доступ к АРМ ЦИПП")
     public void cppShouldBeAvailableForUser() {
         navigation.isOnCPPPage("Главная");
     }
@@ -51,7 +51,7 @@ public class CPPConditions {
 
     @Then("система отправит на $emailAddress уведомление $notification")
     public void systemSentNotificationOn(String emailAddress, String notification) throws IOException, MessagingException {
-        email.waitsForEmailWithNotification(emailAddress);
+        email.waitsForEmailWithNotification(emailAddress, notification);
         email.deletesAllMessagesFromSVP12(emailAddress);
     }
 

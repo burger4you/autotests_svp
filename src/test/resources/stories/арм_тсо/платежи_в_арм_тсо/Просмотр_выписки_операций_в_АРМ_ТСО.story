@@ -2,8 +2,7 @@
 
 Meta:
 @arm tso
-@component payments
-@wip
+@tag component: расчеты
 
 Описание:
 Чтобы самостоятельно просматривать состояние ЛС

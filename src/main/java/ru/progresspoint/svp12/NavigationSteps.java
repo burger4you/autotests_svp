@@ -25,6 +25,7 @@ import ru.progresspoint.svp12.tso.pages.TSOStartPage;
 
 import static java.lang.String.format;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.openqa.selenium.By.name;
 
 /**
  * Шаги навигации по всей системе ПО СВП
@@ -42,7 +43,6 @@ public class NavigationSteps extends ScenarioSteps {
     CPPWikiSearchPage cppWikiSearchPage;
     CPPRegistrationInfoPage cppRegistrationInfoPage;
 
-    LKMainPage lkMainPage;
     LKMainMenu lkMainMenu;
     LKLoginPage lkLoginPage;
     LKVehiclesPage lkVehiclesPage;
@@ -74,12 +74,21 @@ public class NavigationSteps extends ScenarioSteps {
     public void opensRSOPage(String page) {
         switch (page) {
             case "Авторизации":
-                getDriver().get("http://10.0.12.248/sign_out");
+                getDriver().get("http://svp-www1-arm-rso.svp.test/sign_out");
                 rsoLoginPage.shouldBeDisplayed();
                 break;
             case "Главная":
-                rsoMainPage.openAt("http://10.0.12.248");
+                openBaseRSOUrl();
                 break;
+        }
+    }
+
+    private void openBaseRSOUrl() {
+        getDriver().get("http://svp-www1-arm-rso.svp.test");
+        if (getCurrentURL().endsWith("sign_in")) {
+            rsoLoginPage.enterLogin("Admin3");
+            rsoLoginPage.enterPassword("Test123$");
+            getDriver().findElement(name("commit")).click();
         }
     }
 
@@ -87,29 +96,38 @@ public class NavigationSteps extends ScenarioSteps {
     public void opensTreasuryPage(String page) {
         switch (page) {
             case "Авторизации":
-                getDriver().get("http://10.0.12.254/sign_out");
+                getDriver().get("http://svp-www1-arm-treasury.svp.test/sign_out");
                 treasuryLoginPage.shouldBeDisplayed();
                 break;
             case "Главная":
-                treasuryMainPage.openAt("http://10.0.12.254");
+                openBaseTreasuryUrl();
                 break;
+        }
+    }
+
+    private void openBaseTreasuryUrl() {
+        getDriver().get("http://svp-www1-arm-treasury.svp.test");
+        if (getCurrentURL().endsWith("sign_in")) {
+            treasuryLoginPage.enterLogin("Admin3");
+            treasuryLoginPage.enterPassword("Test123$");
+            getDriver().findElement(name("commit")).click();
         }
     }
 
     @Step("Открывает стартовую страницу АРМа ТСО")
     public void opensTSOStartPage() {
-        tsoStartPage.openAt("http://10.0.12.18");
+        tsoStartPage.openAt("http://svp-www-tco.svp.test");
     }
 
     @Step("Открывает страницу {0} АРМа Колл Центра")
     public void opensCallCenterPage(String page) {
         switch (page) {
             case "Авторизации":
-                getDriver().get("http://10.0.12.230/sign_out");
+                getDriver().get("http://svp-www-callcenter.svp.test/sign_out");
                 callCentreLoginPage.shouldBeDisplayed();
                 break;
             case "Главная":
-                callCentreMainPage.openAt("http://10.0.12.230");
+                callCentreMainPage.openAt("http://svp-www-callcenter.svp.test");
                 break;
         }
     }
@@ -118,12 +136,21 @@ public class NavigationSteps extends ScenarioSteps {
     public void opensAdminPage(String page) {
         switch (page) {
             case "Авторизации":
-                getDriver().get("http://10.0.12.229/sign_out");
-                adminLoginPage.openAt("http://10.0.12.229/sign_in");
+                getDriver().get("http://svp-www1-arm-administrator.svp.test/sign_out");
+                adminLoginPage.shouldBeDisplayed();
                 break;
             case "Главная":
-                adminMainPage.openAt("http://10.0.12.229");
+                openBaseAdminUrl();
                 break;
+        }
+    }
+
+    private void openBaseAdminUrl() {
+        getDriver().get("http://svp-www1-arm-administrator.svp.test");
+        if (getCurrentURL().endsWith("sign_in")) {
+            adminLoginPage.enterLogin("Admin3");
+            adminLoginPage.enterPassword("Test123$");
+            getDriver().findElement(name("commit")).click();
         }
     }
 
@@ -131,12 +158,21 @@ public class NavigationSteps extends ScenarioSteps {
     public void opensDZPage(String page) {
         switch (page) {
             case "Авторизации":
-                getDriver().get("http://10.0.13.54/sign_out");
+                getDriver().get("http://svp-www1-arm-dz.svp.test/sign_out");
                 dzLoginPage.shouldBeDisplayed();
                 break;
             case "Главная":
-                dzMainPage.openAt("http://10.0.13.54");
+                openBaseDZUrl();
                 break;
+        }
+    }
+
+    private void openBaseDZUrl() {
+        getDriver().get("http://svp-www1-arm-dz.svp.test");
+        if (getCurrentURL().endsWith("sign_in")) {
+            dzLoginPage.enterLogin("Admin3");
+            dzLoginPage.enterPassword("Test123$");
+            getDriver().findElement(name("commit")).click();
         }
     }
 
@@ -144,12 +180,21 @@ public class NavigationSteps extends ScenarioSteps {
     public void opensKladPage(String page) {
         switch (page) {
             case "Авторизации":
-                getDriver().get("http://10.0.12.206/sign_out");
-                kladLoginPage.openAt("http://10.0.12.206/sign_in");
+                getDriver().get("http://svp-www1-arm-warehouse.svp.test/sign_out");
+                kladLoginPage.shouldBeDisplayed();
                 break;
             case "Главная":
-                kladMainPage.openAt("http://10.0.12.206");
+                openBaseKladUrl();
                 break;
+        }
+    }
+
+    private void openBaseKladUrl() {
+        getDriver().get("http://svp-www1-arm-warehouse.svp.test");
+        if (getCurrentURL().endsWith("sign_in")) {
+            kladLoginPage.enterLogin("Admin3");
+            kladLoginPage.enterPassword("Test123$");
+            getDriver().findElement(name("commit")).click();
         }
     }
 
@@ -161,30 +206,47 @@ public class NavigationSteps extends ScenarioSteps {
                 cppLoginPage.shouldBeDisplayed();
                 break;
             case "Выбора действия":
+                openBaseCPPUrl();
                 cppMainPage.loading();
                 break;
             case "Регистрации ВТС":
+                openBaseCPPUrl();
                 cppMainPage.loading();
                 cppSelectActionDialog.clickToOwnerRegistrationLink();
                 break;
             case "Расчеты":
+                openBaseCPPUrl();
                 cppMainMenu.clickToPaymentsTab();
                 break;
             case "Бортовые устройства":
+                openBaseCPPUrl();
                 cppMainMenu.clickToDevicesTab();
                 break;
             case "Маршрутные карты":
+                openBaseCPPUrl();
                 cppMainMenu.clickToRouteMapsTab();
                 break;
             case "Общие сведения":
+                openBaseCPPUrl();
                 cppMainMenu.clickToWikiTab();
                 break;
             case "Регистрация":
+                openBaseCPPUrl();
                 cppMainMenu.clickToRegistrationTab();
                 break;
             case "Обратная связь":
+                openBaseCPPUrl();
                 cppMainMenu.clickToAppealsTab();
                 break;
+        }
+    }
+
+    private void openBaseCPPUrl() {
+        getDriver().get("http://10.0.12.236");
+        if (getCurrentURL().endsWith("sign_in")) {
+            cppLoginPage.enterLogin("operator_vitya");
+            cppLoginPage.enterPassword("1qaz@WSX");
+            getDriver().findElement(name("commit")).click();
         }
     }
 
@@ -192,34 +254,40 @@ public class NavigationSteps extends ScenarioSteps {
     public void opensLKPage(String page) {
         switch (page) {
             case "Авторизации":
-                getDriver().get("http://10.0.12.225/sign_out");
+                getDriver().get("http://svp-www-lk.svp.test/sign_out");
                 lkLoginPage.shouldBeDisplayed();
                 break;
-            case "Главная":
-                lkMainMenu.loading();
-                lkMainPage.openAt("http://10.0.12.225");
-                break;
             case "Транспортные средства":
-                lkMainMenu.loading();
+                openBaseLKUrl();
                 lkMainMenu.clickToVehiclesItem();
                 break;
             case "Маршрутные карты":
-                lkMainMenu.loading();
+                openBaseLKUrl();
                 lkMainMenu.clickToRouteMapsItem();
                 break;
             case "Платежи":
-                lkMainMenu.loading();
+                openBaseLKUrl();
                 lkMainMenu.clickToPaymentsItem();
                 break;
             case "Профиль":
-                lkMainMenu.loading();
+                openBaseLKUrl();
                 lkMainMenu.clickToProfileItem();
                 break;
             case "Обращения":
-                lkMainMenu.loading();
+                openBaseLKUrl();
                 lkMainMenu.clickToAppealsItem();
                 break;
         }
+    }
+
+    private void openBaseLKUrl() {
+        getDriver().get("http://svp-www-lk.svp.test");
+        if (getCurrentURL().endsWith("sign_in")) {
+            lkLoginPage.enterLogin("iptestowner+ip008@gmail.com");
+            lkLoginPage.enterPassword("!QAZ2wsx");
+            getDriver().findElement(name("commit")).click();
+        }
+        lkMainMenu.loading();
     }
 
     @Step("Находится на странице {0} АРМа РСО")
@@ -341,9 +409,6 @@ public class NavigationSteps extends ScenarioSteps {
         switch (page) {
             case "Авторизации":
                 lkLoginPage.shouldBeDisplayed();
-                break;
-            case "Главная":
-                lkMainPage.shouldBeDisplayed();
                 break;
             case "Транспортные средства":
                 lkVehiclesPage.shouldBeDisplayed();

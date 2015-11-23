@@ -13,9 +13,9 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <serenity.version>1.1.10</serenity.version>
+        <serenity.version>1.1.17-rc.1</serenity.version>
         <serenity.jbehave.version>1.1.0</serenity.jbehave.version>
-        <webdriver.driver>chrome</webdriver.driver>
+        <redmine.url>https://redmine.progresspoint.ru/issues/{0}</redmine.url>
     </properties>
 
     <dependencies>
@@ -75,8 +75,7 @@
                 <version>2.18</version>
                 <configuration>
                     <systemPropertyVariables>
-                        <serenity.issue.tracker.url>https://redmine.progresspoint.ru/issues/{0}
-                        </serenity.issue.tracker.url>
+                        <serenity.issue.tracker.url>{redmine.url}</serenity.issue.tracker.url>
                     </systemPropertyVariables>
                     <skip>true</skip>
                 </configuration>
@@ -88,9 +87,6 @@
                     <includes>
                         <include>**/jbehave/*Runner.java</include>
                     </includes>
-                    <systemProperties>
-                        <webdriver.driver>${webdriver.driver}</webdriver.driver>
-                    </systemProperties>
                     <!--<reuseForks>true</reuseForks>-->
                     <argLine>-Xmx512m</argLine>
                 </configuration>
@@ -116,6 +112,10 @@
                 <groupId>net.serenity-bdd.maven.plugins</groupId>
                 <artifactId>serenity-maven-plugin</artifactId>
                 <version>1.1.7</version>
+                <configuration>
+                    <issueTrackerUrl>${redmine.url}</issueTrackerUrl>
+                    <format>report/results.csv</format>
+                </configuration>
                 <executions>
                     <execution>
                         <id>serenity-reports</id>

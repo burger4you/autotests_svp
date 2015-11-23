@@ -12,7 +12,7 @@ public class TSOConditions {
     @Steps
     NavigationSteps navigation;
 
-    @Then("система предоставляет доступ к личному кабинету АРМа ТСО")
+    @Then("система предоставит доступ к личному кабинету АРМа ТСО")
     public void tsoShouldBeAvailableForUser() {
         navigation.isOnTSOPage("личного кабинета");
     }

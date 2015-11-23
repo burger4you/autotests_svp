@@ -26,13 +26,13 @@ public class CPPUserActions {
     @Steps
     NavigationSteps navigation;
 
-    @When("оператор вводит логин $login и пароль $password для авторизации в АРМ ЦИПП")
+    @When("оператор введет логин $login и пароль $password для авторизации в АРМ ЦИПП")
     public void operatorEntersLoginAndPassword(String login, String password) {
         operator.entersLoginAndPassword(login, password);
         operator.clicksToConfirmButton();
     }
 
-    @When("админ вводит логин $login и пароль $password для авторизации в АРМ ЦИПП")
+    @When("админ введет логин $login и пароль $password для авторизации в АРМ ЦИПП")
     public void adminEntersLoginAndPassword(String login, String password) {
         admin.entersLoginAndPassword(login, password);
         admin.clicksToConfirmButton();
@@ -52,13 +52,15 @@ public class CPPUserActions {
                 operator.entersULData(clientEmail);
                 break;
             case "Физическое лицо":
-                operator.entersFLData(clientEmail);
+                operator.fillsClientPersonalData(clientEmail, "Паспорт");
+                operator.fillsClientRegistrationAddress("Санкт-Петербург", "", "", "", "Иркутская");
+                operator.fillsClientLocationAddress("Совпадает с адресом регистрации");
                 break;
         }
-        operator.clicksToTextButton("Добавить лицевой счет");
-        operator.entersAccountData();
-        operator.entersClientBankData();
-        operator.clicksToTextButton("Завершить регистрацию");
+//        operator.clicksToTextButton("Добавить лицевой счет");
+//        operator.entersAccountData();
+//        operator.entersClientBankData();
+        operator.clicksToLink("Завершить регистрацию");
         operator.clicksToTextButton("Управление документами ВТС");
         operator.uploadsClientDocumentsCopies();
         operator.clicksToTextButton("Подтвердить");
@@ -85,13 +87,14 @@ public class CPPUserActions {
                 operator.entersULNonresidentData(clientEmail);
                 break;
             case "Физическое лицо":
-                operator.entersFLNonresidentData(clientEmail);
+                operator.fillsClientPersonalData(clientEmail, "Паспорт иностранного гражданина");
+                operator.fillsClientNonresidentAddress();
                 break;
         }
-        operator.clicksToTextButton("Добавить лицевой счет");
-        operator.entersAccountData();
-        operator.entersClientBankData();
-        operator.clicksToTextButton("Завершить регистрацию");
+//        operator.clicksToTextButton("Добавить лицевой счет");
+//        operator.entersAccountData();
+//        operator.entersClientBankData();
+        operator.clicksToLink("Завершить регистрацию");
 //        operator.uploadsClientDocumentsCopies();
 //        operator.clicksToTextButton("Подтвердить");
         operator.clicksToTextButton("Регистрация ТС");
