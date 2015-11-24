@@ -16,7 +16,7 @@
         <serenity.version>1.1.17-rc.1</serenity.version>
         <serenity.jbehave.version>1.1.0</serenity.jbehave.version>
         <redmine.url>https://redmine.progresspoint.ru/issues/{0}</redmine.url>
-        <webdriver.driver>chrome</webdriver.driver>
+        <webdriver.driver>firefox</webdriver.driver>
     </properties>
 
     <dependencies>
