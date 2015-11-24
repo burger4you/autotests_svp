@@ -26,5 +26,5 @@ Meta: @tag component: оповещения
 И ВТС придет уведомление в соответствии с выбранным каналом <Channels> об изменении данных ВТС
 
 Примеры:
-| Channels
-| ЛК (Web), Sms, E-mail
+| Channels              |
+| ЛК (Web), Sms, E-mail |
