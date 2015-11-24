@@ -18,4 +18,4 @@ Meta: @tag component: оповещения
 
 Примеры:
 | Channels
-| Sms, E-mail
+| Sms, E-mail   |
