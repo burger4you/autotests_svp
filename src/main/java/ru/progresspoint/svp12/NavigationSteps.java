@@ -202,7 +202,7 @@ public class NavigationSteps extends ScenarioSteps {
     public void opensCPPPage(String page) {
         switch (page) {
             case "Авторизации":
-                getDriver().get("http://10.0.12.236/sign_out");
+                getDriver().get("http://svp-www-cipp.svp.test/sign_out");
                 cppLoginPage.shouldBeDisplayed();
                 break;
             case "Выбора действия":
@@ -242,10 +242,10 @@ public class NavigationSteps extends ScenarioSteps {
     }
 
     private void openBaseCPPUrl() {
-        getDriver().get("http://10.0.12.236");
+        getDriver().get("http://svp-www-cipp.svp.test");
         if (getCurrentURL().endsWith("sign_in")) {
-            cppLoginPage.enterLogin("operator_vitya");
-            cppLoginPage.enterPassword("1qaz@WSX");
+            cppLoginPage.enterLogin("operator_1");
+            cppLoginPage.enterPassword("qwerty123$");
             getDriver().findElement(name("commit")).click();
         }
     }
