@@ -202,7 +202,7 @@ public class CPPOperatorSteps extends RandomGenerators {
     }
 
     @Step("Вводит в поле поиска ВТС {0}")
-    public void searchClientByQuery(String query) {
+    public void entersClientForQuery(String query) {
         selectActionDialog.clickToSearchClientButton();
         selectActionDialog.enterSearchClientQuery(query);
     }
