@@ -2,6 +2,8 @@
 Meta:
 @arm call center
 @component route maps
+@ignore
+
 
 Описание:
 Чтобы вернуть ВТС денежные средства за ненужные МК
