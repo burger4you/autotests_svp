@@ -118,7 +118,8 @@ public class CPPUserActions {
 
     @When("оператор введет в поле для поиска ВТС $query")
     public void operatorSearchClientBy(String query) {
-        operator.searchClientByQuery(query);
+        operator.entersClientForQuery(query);
+        operator.clicksToTextButton("Искать");
     }
 
     @When("оператор откроет вкладку $tab в АРМе ЦИПП")
