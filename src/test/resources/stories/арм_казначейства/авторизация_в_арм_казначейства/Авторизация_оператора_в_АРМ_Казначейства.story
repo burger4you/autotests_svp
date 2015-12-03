@@ -1,7 +1,7 @@
 Авторизация оператора в АРМ Казначейства
 Meta:
 @arm treasury
-@tag component: авторизация
+@tag component: authorization
 
 Описание:
 Чтобы войти в АРМ Казначейства

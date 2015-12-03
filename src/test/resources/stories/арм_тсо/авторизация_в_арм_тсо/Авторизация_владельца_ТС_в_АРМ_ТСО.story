@@ -1,7 +1,7 @@
 Авторизация владельца ТС в АРМ ТСО
 Meta:
 @arm tso
-@tag component: авторизация
+@tag component: authorization
 
 Описание:
 Чтобы войти в личный кабинет АРМа ТСО

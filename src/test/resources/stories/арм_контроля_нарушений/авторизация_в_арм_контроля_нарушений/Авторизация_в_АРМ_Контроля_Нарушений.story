@@ -1,7 +1,7 @@
 Авторизация в АРМ Контроля Нарушений
 Meta:
 @arm ssk
-@tag component: авторизация
+@tag component: authorization
 
 Описание:
 Чтобы войти в АРМ Контроля Нарушений
