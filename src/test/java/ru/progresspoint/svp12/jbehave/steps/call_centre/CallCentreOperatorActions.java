@@ -5,7 +5,7 @@ import org.jbehave.core.annotations.When;
 import ru.progresspoint.svp12.call_centre.steps.CallCentreCuratorSteps;
 import ru.progresspoint.svp12.call_centre.steps.CallCentreFirstLineSteps;
 import ru.progresspoint.svp12.call_centre.steps.CallCentreSecondLineSteps;
-import ru.progresspoint.svp12.call_centre.steps.CallCentreTeamLeadSteps;
+import ru.progresspoint.svp12.call_centre.steps.CallCentreHeadSteps;
 
 /**
  * Шаги пользователей АРМа Колл Центра
@@ -19,31 +19,31 @@ public class CallCentreOperatorActions {
     CallCentreSecondLineSteps operatorSecondLine;
 
     @Steps
-    CallCentreTeamLeadSteps teamLead;
+    CallCentreHeadSteps head;
 
     @Steps
     CallCentreCuratorSteps curator;
 
 
-    @When("оператор 1-ой линии находится на странице Авторизации в АРМ Колл Центра")
+    @When("оператор 1-ой введет логин $login и пароль $password для авторизации в АРМ Колл Центра")
      public void operatorFirstLineEntersLoginAndPassword(String login, String password) {
         operatorFirstLine.entersLoginAndPassword(login, password);
         operatorFirstLine.clicksToConfirmButton();
     }
 
-    @When("оператор 2-ой линии находится на странице Авторизации в АРМ Колл Центра")
+    @When("оператор 2-ой линии введет логин $login и пароль $password для авторизации в АРМ Колл Центра")
     public void operatorSecondLineEntersLoginAndPassword(String login, String password) {
         operatorSecondLine.entersLoginAndPassword(login, password);
         operatorSecondLine.clicksToConfirmButton();
     }
 
-    @When("руководитель группы поддержки находится на странице Авторизации в АРМ Колл Центра")
-    public void teamLeadEntersLoginAndPassword(String login, String password) {
-        teamLead.entersLoginAndPassword(login, password);
-        teamLead.clicksToConfirmButton();
+    @When("руководитель группы поддержки введет логин $login и пароль $password для авторизации в АРМ Колл Центра")
+    public void headEntersLoginAndPassword(String login, String password) {
+        head.entersLoginAndPassword(login, password);
+        head.clicksToConfirmButton();
     }
 
-    @When("куратор находится на странице Авторизации в АРМ Колл Центра")
+    @When("куратор введет логин $login и пароль $password для авторизации в АРМ Колл Центра")
     public void curatorEntersLoginAndPassword(String login, String password) {
         curator.entersLoginAndPassword(login, password);
         curator.clicksToConfirmButton();

@@ -12,8 +12,8 @@ public class CallCentreConditions {
     @Steps
     NavigationSteps navigation;
 
-    @Then("система предоставит доступ к АРМ Колл Центра")
+    @Then("система предоставит доступ к АРМ Колл Центра для Руководителя")
     public void callCenterShouldBeAvailableForOperator() {
-        navigation.isOnCallCentrePage("Главная");
+        navigation.isOnCallCentrePage("Главная Руководителя");
     }
 }

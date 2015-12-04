@@ -3,9 +3,7 @@ package ru.progresspoint.svp12.call_centre.steps;
 
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.steps.ScenarioSteps;
-import ru.progresspoint.svp12.call_centre.pages.CallCentreLoginPage;
-import ru.progresspoint.svp12.call_centre.pages.CallCentreMainPage;
-import ru.progresspoint.svp12.dz.pages.DZLoginPage;
+import ru.progresspoint.svp12.call_centre.pages.CallCentreHeadLoginPage;
 
 import static org.openqa.selenium.By.linkText;
 import static org.openqa.selenium.By.name;
@@ -15,7 +13,7 @@ import static org.openqa.selenium.By.name;
  */
 public class CallCentreFirstLineSteps extends ScenarioSteps {
 
-    CallCentreLoginPage loginPage;
+    CallCentreHeadLoginPage loginPage;
 
     @Step("Нажимает на ссылку {0}")
     public void clicksToLink(String linkText) {

@@ -7,8 +7,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import ru.progresspoint.svp12.admin.pages.AdminLoginPage;
 import ru.progresspoint.svp12.admin.pages.AdminMainPage;
-import ru.progresspoint.svp12.call_centre.pages.CallCentreLoginPage;
-import ru.progresspoint.svp12.call_centre.pages.CallCentreMainPage;
+import ru.progresspoint.svp12.call_centre.pages.CallCentreHeadLoginPage;
+import ru.progresspoint.svp12.call_centre.pages.CallCentreHeadMainPage;
 import ru.progresspoint.svp12.ckn.pages.CKNLoginPage;
 import ru.progresspoint.svp12.ckn.pages.CKNMainPage;
 import ru.progresspoint.svp12.cpp.pages.*;
@@ -57,7 +57,7 @@ public class NavigationSteps extends ScenarioSteps {
     private static final String WAREHOUSE_URL  = "http://svp-www-warehouse-arm.svp.prod";
     private static final String DZ_URL         = "http://svp-www-dz-arm.svp.prod";
     private static final String ADMIN_URL      = "http://svp-www-administrator-arm.svp.prod";
-    private static final String CALLCENTER_URL = "https://cc.platon.ru/manager";
+    private static final String CALLCENTER_URL = "https://cc.platon.ru";
     private static final String TCO_URL        = "http://tco.platon.ru";
     private static final String TREASURY_URL   = "http://svp-www-treasury-arm.svp.prod";
     private static final String RSO_URL        = "https://rso.platon.ru";
@@ -89,8 +89,8 @@ public class NavigationSteps extends ScenarioSteps {
     AdminLoginPage adminLoginPage;
     AdminMainPage adminMainPage;
 
-    CallCentreMainPage callCentreMainPage;
-    CallCentreLoginPage callCentreLoginPage;
+    CallCentreHeadMainPage callCentreHeadMainPage;
+    CallCentreHeadLoginPage callCentreHeadLoginPage;
 
     TSOStartPage tsoStartPage;
     TSOCabinetPage tsoCabinetPage;
@@ -204,12 +204,12 @@ public class NavigationSteps extends ScenarioSteps {
     @Step("Открывает страницу {0} АРМа Колл Центра ("+ CALLCENTER_URL +")")
     public void opensCallCenterPage(String page) {
         switch (page) {
-            case "Авторизации":
-                getDriver().get(CALLCENTER_URL + "/sign_out");
-                callCentreLoginPage.shouldBeDisplayed();
+            case "Авторизации Руководителя":
+                getDriver().get(CALLCENTER_URL + "/manager/sign_out");
+                callCentreHeadLoginPage.shouldBeDisplayed();
                 break;
-            case "Главная":
-                callCentreMainPage.openAt(CALLCENTER_URL);
+            case "Главная Руководителя":
+                callCentreHeadMainPage.openAt(CALLCENTER_URL);
                 break;
         }
     }
@@ -435,11 +435,11 @@ public class NavigationSteps extends ScenarioSteps {
     @Step("Находится на странице {0} АРМа Колл Центра")
     public void isOnCallCentrePage(String page) {
         switch (page) {
-            case "Авторизации":
-                callCentreLoginPage.shouldBeDisplayed();
+            case "Авторизации Руководителя":
+                callCentreHeadLoginPage.shouldBeDisplayed();
                 break;
-            case "Главная":
-                callCentreMainPage.shouldBeDisplayed();
+            case "Главная Руководителя":
+                callCentreHeadMainPage.shouldBeDisplayed();
                 break;
         }
     }
