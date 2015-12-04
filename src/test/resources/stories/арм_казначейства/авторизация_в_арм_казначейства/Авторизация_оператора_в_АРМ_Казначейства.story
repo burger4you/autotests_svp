@@ -2,6 +2,7 @@
 Meta:
 @arm treasury
 @tag component: authorization
+@ignore
 
 Описание:
 Чтобы войти в АРМ Казначейства
