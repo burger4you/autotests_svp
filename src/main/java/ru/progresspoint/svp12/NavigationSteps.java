@@ -19,6 +19,8 @@ import ru.progresspoint.svp12.klad.pages.KladMainPage;
 import ru.progresspoint.svp12.lk.pages.*;
 import ru.progresspoint.svp12.rso.pages.RSOLoginPage;
 import ru.progresspoint.svp12.rso.pages.RSOMainPage;
+import ru.progresspoint.svp12.smk.pages.SMKLoginPage;
+import ru.progresspoint.svp12.smk.pages.SMKMainPage;
 import ru.progresspoint.svp12.treasury.pages.TreasuryLoginPage;
 import ru.progresspoint.svp12.treasury.pages.TreasuryMainPage;
 import ru.progresspoint.svp12.tso.pages.TSOCabinetPage;
@@ -45,6 +47,8 @@ public class NavigationSteps extends ScenarioSteps {
 //    private static final String TCO_URL        = "http://svp-www-tco.svp.test";
 //    private static final String TREASURY_URL   = "http://svp-www1-arm-treasury.svp.test";
 //    private static final String RSO_URL        = "http://svp-www1-arm-rso.svp.test";
+//    private static final String SSK_URL        = "http://svp-www1-arm-ssk.svp.test";
+//    private static final String SMK_URL        = "http://svp-www1-arm-smk.svp.test";
 
     /* Продуктовая среда */
 
@@ -58,6 +62,7 @@ public class NavigationSteps extends ScenarioSteps {
     private static final String TREASURY_URL   = "http://svp-www-treasury-arm.svp.prod";
     private static final String RSO_URL        = "https://rso.platon.ru";
     private static final String SSK_URL        = "http://svp-www-ssk-arm.svp.prod";
+    private static final String SMK_URL        = "http://svp-www-smk-arm.svp.prod";
     
     CPPLoginPage cppLoginPage;
     CPPClientRegistrationPage cppOwnerRegistrationPage;
@@ -99,6 +104,31 @@ public class NavigationSteps extends ScenarioSteps {
 
     CKNLoginPage cknLoginPage;
     CKNMainPage cknMainPage;
+
+    SMKLoginPage smkLoginPage;
+    SMKMainPage smkMainPage;
+
+    @Step("Открывает страницу {0} АРМа СМК ("+ SMK_URL +")")
+    public void opensSMKPage(String page) {
+        switch (page) {
+            case "Авторизации":
+                getDriver().get(SMK_URL + "/sign_out");
+                smkLoginPage.shouldBeDisplayed();
+                break;
+            case "Главная":
+                openBaseSMKUrl();
+                break;
+        }
+    }
+
+    private void openBaseSMKUrl() {
+        getDriver().get(SMK_URL);
+        if (getCurrentURL().endsWith("sign_in")) {
+            smkLoginPage.enterLogin("smk@platon.ru");
+            smkLoginPage.enterPassword("qwerty123$");
+            getDriver().findElement(name("commit")).click();
+        }
+    }
 
     @Step("Открывает страницу {0} АРМа ЦКН ("+ SSK_URL +")")
     public void opensCKNPage(String page) {
@@ -340,6 +370,18 @@ public class NavigationSteps extends ScenarioSteps {
             getDriver().findElement(name("commit")).click();
         }
         lkMainMenu.loading();
+    }
+
+    @Step("Находится на странице {0} АРМа СМК")
+    public void isOnSMKPage(String page) {
+        switch (page) {
+            case "Авторизации":
+                smkLoginPage.shouldBeDisplayed();
+                break;
+            case "Главная":
+                smkMainPage.shouldBeDisplayed();
+                break;
+        }
     }
 
     @Step("Находится на странице {0} АРМа ЦКН")

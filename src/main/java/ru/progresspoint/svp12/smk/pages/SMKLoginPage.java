@@ -1,4 +1,4 @@
-package ru.progresspoint.svp12.call_centre.pages;
+package ru.progresspoint.svp12.smk.pages;
 
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.PageObject;
@@ -7,10 +7,10 @@ import net.thucydides.core.annotations.At;
 import net.thucydides.core.annotations.WhenPageOpens;
 
 /**
- * Страница авторизации пользователя АРМа Колл Центра
+ * Страница авторизации пользователя АРМа СМК
  */
-@At("#HOST/manager/sign_in")
-public class CallCentreLoginPage extends PageObject {
+@At("#HOST/sign_in")
+public class SMKLoginPage extends PageObject {
 
     @FindBy(id = "session_login")
     WebElementFacade loginField;
