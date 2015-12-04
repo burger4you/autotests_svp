@@ -2,7 +2,6 @@
 Meta:
 @arm tso
 @tag component: authorization
-@1
 
 Описание:
 Чтобы войти в личный кабинет АРМа ТСО

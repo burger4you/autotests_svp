@@ -9,6 +9,8 @@ import ru.progresspoint.svp12.admin.pages.AdminLoginPage;
 import ru.progresspoint.svp12.admin.pages.AdminMainPage;
 import ru.progresspoint.svp12.call_centre.pages.CallCentreLoginPage;
 import ru.progresspoint.svp12.call_centre.pages.CallCentreMainPage;
+import ru.progresspoint.svp12.ckn.pages.CKNLoginPage;
+import ru.progresspoint.svp12.ckn.pages.CKNMainPage;
 import ru.progresspoint.svp12.cpp.pages.*;
 import ru.progresspoint.svp12.dz.pages.DZLoginPage;
 import ru.progresspoint.svp12.dz.pages.DZMainPage;
@@ -55,6 +57,7 @@ public class NavigationSteps extends ScenarioSteps {
     private static final String TCO_URL        = "http://tco.platon.ru";
     private static final String TREASURY_URL   = "http://svp-www-treasury-arm.svp.prod";
     private static final String RSO_URL        = "https://rso.platon.ru";
+    private static final String SSK_URL        = "http://svp-www-ssk-arm.svp.prod";
     
     CPPLoginPage cppLoginPage;
     CPPClientRegistrationPage cppOwnerRegistrationPage;
@@ -93,6 +96,31 @@ public class NavigationSteps extends ScenarioSteps {
 
     RSOLoginPage rsoLoginPage;
     RSOMainPage rsoMainPage;
+
+    CKNLoginPage cknLoginPage;
+    CKNMainPage cknMainPage;
+
+    @Step("Открывает страницу {0} АРМа ЦКН ("+ SSK_URL +")")
+    public void opensCKNPage(String page) {
+        switch (page) {
+            case "Авторизации":
+                getDriver().get(SSK_URL + "/sign_out");
+                cknLoginPage.shouldBeDisplayed();
+                break;
+            case "Главная":
+                openBaseCKNUrl();
+                break;
+        }
+    }
+
+    private void openBaseCKNUrl() {
+        getDriver().get(SSK_URL);
+        if (getCurrentURL().endsWith("sign_in")) {
+            cknLoginPage.enterLogin("Admin3");
+            cknLoginPage.enterPassword("Test123$");
+            getDriver().findElement(name("commit")).click();
+        }
+    }
 
     @Step("Открывает страницу {0} АРМа РСО ("+ RSO_URL +")")
     public void opensRSOPage(String page) {
@@ -312,6 +340,18 @@ public class NavigationSteps extends ScenarioSteps {
             getDriver().findElement(name("commit")).click();
         }
         lkMainMenu.loading();
+    }
+
+    @Step("Находится на странице {0} АРМа ЦКН")
+    public void isOnCKNPage(String page) {
+        switch (page) {
+            case "Авторизации":
+                cknLoginPage.shouldBeDisplayed();
+                break;
+            case "Главная":
+                cknMainPage.shouldBeDisplayed();
+                break;
+        }
     }
 
     @Step("Находится на странице {0} АРМа РСО")
