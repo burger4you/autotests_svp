@@ -11,7 +11,7 @@ import net.thucydides.core.annotations.At;
 @At("#HOST")
 public class TSOStartPage extends PageObject {
 
-    @FindBy (xpath = ".//*[@href='/auth/countries/']")
+    @FindBy (id = "start_button")
     WebElementFacade startButton;
 
     @FindBy (xpath = ".//*[@href='/info/']")

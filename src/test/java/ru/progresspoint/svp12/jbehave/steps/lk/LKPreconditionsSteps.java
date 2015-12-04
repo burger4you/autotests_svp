@@ -18,7 +18,7 @@ public class LKPreconditionsSteps {
     @Steps
     LKUserSteps user;
 
-    @Given("пользователь находится на странице $page в ЛК")
+    @Given("владелец ТС находится на странице $page в АРМ ЛК")
     public void userIsOnLKPage(String page) {
             navigation.opensLKPage(page);
     }

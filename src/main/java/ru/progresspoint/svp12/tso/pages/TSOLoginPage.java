@@ -10,17 +10,16 @@ import net.thucydides.core.annotations.At;
 @At("#HOST/auth/")
 public class TSOLoginPage extends TSOScreenObject {
 
-    @FindBy(id = "grnz")
+    @FindBy(xpath = ".//*[@id='grnz']/..")
     WebElementFacade grnzField;
 
-    @FindBy(id = "sts")
+    @FindBy(xpath = ".//*[@id='sts']/..")
     WebElementFacade stsNumberField;
 
     @FindBy(id = "mobilePhone")
     WebElementFacade mobilePhoneField;
 
     public void enterGRNZ(String grnz) {
-        switchToEnglishKeyboard();
         typeFromKeyboard(grnz, grnzField);
     }
 

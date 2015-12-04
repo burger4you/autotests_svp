@@ -31,7 +31,7 @@ public class LKConditions {
         navigation.isOnLKPage(page);
     }
 
-    @Then("система предоставит доступ к личному кабинету пользователя")
+    @Then("система предоставит доступ к личному кабинету пользователя с необходимыми правами")
     public void lkShouldBeAvailableForUser() {
         navigation.isOnLKPage("Транспортные средства");
     }

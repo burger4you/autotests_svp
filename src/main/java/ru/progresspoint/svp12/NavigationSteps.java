@@ -32,6 +32,30 @@ import static org.openqa.selenium.By.name;
  */
 public class NavigationSteps extends ScenarioSteps {
 
+    /* Тестовая среда */
+
+//    private static final String LK_URL         = "http://svp-www-lk.svp.test";
+//    private static final String CIPP_URL       = "http://svp-www-cipp.svp.test";
+//    private static final String WAREHOUSE_URL  = "http://svp-www1-arm-warehouse.svp.test";
+//    private static final String DZ_URL         = "http://svp-www1-arm-dz.svp.test";
+//    private static final String ADMIN_URL      = "http://svp-www1-arm-administrator.svp.test";
+//    private static final String CALLCENTER_URL = "http://svp-www-callcenter.svp.test/manager";
+//    private static final String TCO_URL        = "http://svp-www-tco.svp.test";
+//    private static final String TREASURY_URL   = "http://svp-www1-arm-treasury.svp.test";
+//    private static final String RSO_URL        = "http://svp-www1-arm-rso.svp.test";
+
+    /* Продуктовая среда */
+
+    private static final String LK_URL         = "https://lk.platon.ru";
+    private static final String CIPP_URL       = "https://cipp.platon.ru";
+    private static final String WAREHOUSE_URL  = "http://svp-www-warehouse-arm.svp.prod";
+    private static final String DZ_URL         = "http://svp-www-dz-arm.svp.prod";
+    private static final String ADMIN_URL      = "http://svp-www-administrator-arm.svp.prod";
+    private static final String CALLCENTER_URL = "https://cc.platon.ru/manager";
+    private static final String TCO_URL        = "http://tco.platon.ru";
+    private static final String TREASURY_URL   = "http://svp-www-treasury-arm.svp.prod";
+    private static final String RSO_URL        = "https://rso.platon.ru";
+    
     CPPLoginPage cppLoginPage;
     CPPClientRegistrationPage cppOwnerRegistrationPage;
     CPPMainPage cppMainPage;
@@ -70,11 +94,11 @@ public class NavigationSteps extends ScenarioSteps {
     RSOLoginPage rsoLoginPage;
     RSOMainPage rsoMainPage;
 
-    @Step("Открывает страницу {0} АРМа РСО")
+    @Step("Открывает страницу {0} АРМа РСО ("+ RSO_URL +")")
     public void opensRSOPage(String page) {
         switch (page) {
             case "Авторизации":
-                getDriver().get("http://svp-www1-arm-rso.svp.test/sign_out");
+                getDriver().get(RSO_URL + "/sign_out");
                 rsoLoginPage.shouldBeDisplayed();
                 break;
             case "Главная":
@@ -84,7 +108,7 @@ public class NavigationSteps extends ScenarioSteps {
     }
 
     private void openBaseRSOUrl() {
-        getDriver().get("http://svp-www1-arm-rso.svp.test");
+        getDriver().get(RSO_URL);
         if (getCurrentURL().endsWith("sign_in")) {
             rsoLoginPage.enterLogin("Admin3");
             rsoLoginPage.enterPassword("Test123$");
@@ -92,11 +116,11 @@ public class NavigationSteps extends ScenarioSteps {
         }
     }
 
-    @Step("Открывает страницу {0} АРМа Казначейства")
+    @Step("Открывает страницу {0} АРМа Казначейства ("+ TREASURY_URL +")")
     public void opensTreasuryPage(String page) {
         switch (page) {
             case "Авторизации":
-                getDriver().get("http://svp-www1-arm-treasury.svp.test/sign_out");
+                getDriver().get(TREASURY_URL + "/sign_out");
                 treasuryLoginPage.shouldBeDisplayed();
                 break;
             case "Главная":
@@ -106,7 +130,7 @@ public class NavigationSteps extends ScenarioSteps {
     }
 
     private void openBaseTreasuryUrl() {
-        getDriver().get("http://svp-www1-arm-treasury.svp.test");
+        getDriver().get(TREASURY_URL);
         if (getCurrentURL().endsWith("sign_in")) {
             treasuryLoginPage.enterLogin("Admin3");
             treasuryLoginPage.enterPassword("Test123$");
@@ -114,29 +138,29 @@ public class NavigationSteps extends ScenarioSteps {
         }
     }
 
-    @Step("Открывает стартовую страницу АРМа ТСО")
+    @Step("Открывает стартовую страницу АРМа ТСО ("+ TCO_URL +")")
     public void opensTSOStartPage() {
-        tsoStartPage.openAt("http://svp-www-tco.svp.test");
+        tsoStartPage.openAt(TCO_URL);
     }
 
-    @Step("Открывает страницу {0} АРМа Колл Центра")
+    @Step("Открывает страницу {0} АРМа Колл Центра ("+ CALLCENTER_URL +")")
     public void opensCallCenterPage(String page) {
         switch (page) {
             case "Авторизации":
-                getDriver().get("http://svp-www-callcenter.svp.test/sign_out");
+                getDriver().get(CALLCENTER_URL + "/sign_out");
                 callCentreLoginPage.shouldBeDisplayed();
                 break;
             case "Главная":
-                callCentreMainPage.openAt("http://svp-www-callcenter.svp.test");
+                callCentreMainPage.openAt(CALLCENTER_URL);
                 break;
         }
     }
 
-    @Step("Открывает страницу {0} АРМа Администратора")
+    @Step("Открывает страницу {0} АРМа Администратора ("+ ADMIN_URL +")")
     public void opensAdminPage(String page) {
         switch (page) {
             case "Авторизации":
-                getDriver().get("http://svp-www1-arm-administrator.svp.test/sign_out");
+                getDriver().get(ADMIN_URL + "/sign_out");
                 adminLoginPage.shouldBeDisplayed();
                 break;
             case "Главная":
@@ -146,7 +170,7 @@ public class NavigationSteps extends ScenarioSteps {
     }
 
     private void openBaseAdminUrl() {
-        getDriver().get("http://svp-www1-arm-administrator.svp.test");
+        getDriver().get(ADMIN_URL);
         if (getCurrentURL().endsWith("sign_in")) {
             adminLoginPage.enterLogin("Admin3");
             adminLoginPage.enterPassword("Test123$");
@@ -154,11 +178,11 @@ public class NavigationSteps extends ScenarioSteps {
         }
     }
 
-    @Step("Открывает страницу {0} АРМа ДЗ")
+    @Step("Открывает страницу {0} АРМа ДЗ ("+ DZ_URL +")")
     public void opensDZPage(String page) {
         switch (page) {
             case "Авторизации":
-                getDriver().get("http://svp-www1-arm-dz.svp.test/sign_out");
+                getDriver().get(DZ_URL + "/sign_out");
                 dzLoginPage.shouldBeDisplayed();
                 break;
             case "Главная":
@@ -168,7 +192,7 @@ public class NavigationSteps extends ScenarioSteps {
     }
 
     private void openBaseDZUrl() {
-        getDriver().get("http://svp-www1-arm-dz.svp.test");
+        getDriver().get(DZ_URL);
         if (getCurrentURL().endsWith("sign_in")) {
             dzLoginPage.enterLogin("Admin3");
             dzLoginPage.enterPassword("Test123$");
@@ -176,11 +200,11 @@ public class NavigationSteps extends ScenarioSteps {
         }
     }
 
-    @Step("Открывает страницу {0} АРМа Кладовщика")
+    @Step("Открывает страницу {0} АРМа Кладовщика ("+ WAREHOUSE_URL +")")
     public void opensKladPage(String page) {
         switch (page) {
             case "Авторизации":
-                getDriver().get("http://svp-www1-arm-warehouse.svp.test/sign_out");
+                getDriver().get(WAREHOUSE_URL + "/sign_out");
                 kladLoginPage.shouldBeDisplayed();
                 break;
             case "Главная":
@@ -190,7 +214,7 @@ public class NavigationSteps extends ScenarioSteps {
     }
 
     private void openBaseKladUrl() {
-        getDriver().get("http://svp-www1-arm-warehouse.svp.test");
+        getDriver().get(WAREHOUSE_URL);
         if (getCurrentURL().endsWith("sign_in")) {
             kladLoginPage.enterLogin("Admin3");
             kladLoginPage.enterPassword("Test123$");
@@ -198,11 +222,11 @@ public class NavigationSteps extends ScenarioSteps {
         }
     }
 
-    @Step("Открывает страницу {0} АРМа ЦИПП")
+    @Step("Открывает страницу {0} АРМа ЦИПП ("+ CIPP_URL +")")
     public void opensCPPPage(String page) {
         switch (page) {
             case "Авторизации":
-                getDriver().get("http://svp-www-cipp.svp.test/sign_out");
+                getDriver().get(CIPP_URL + "/sign_out");
                 cppLoginPage.shouldBeDisplayed();
                 break;
             case "Выбора действия":
@@ -242,7 +266,7 @@ public class NavigationSteps extends ScenarioSteps {
     }
 
     private void openBaseCPPUrl() {
-        getDriver().get("http://svp-www-cipp.svp.test");
+        getDriver().get(CIPP_URL);
         if (getCurrentURL().endsWith("sign_in")) {
             cppLoginPage.enterLogin("operator_1");
             cppLoginPage.enterPassword("qwerty123$");
@@ -250,11 +274,11 @@ public class NavigationSteps extends ScenarioSteps {
         }
     }
 
-    @Step("Открывает страницу {0} АРМа ЛК")
+    @Step("Открывает страницу {0} АРМа ЛК ("+ LK_URL +")")
     public void opensLKPage(String page) {
         switch (page) {
             case "Авторизации":
-                getDriver().get("http://svp-www-lk.svp.test/sign_out");
+                getDriver().get(LK_URL + "/sign_out");
                 lkLoginPage.shouldBeDisplayed();
                 break;
             case "Транспортные средства":
@@ -281,7 +305,7 @@ public class NavigationSteps extends ScenarioSteps {
     }
 
     private void openBaseLKUrl() {
-        getDriver().get("http://svp-www-lk.svp.test");
+        getDriver().get(LK_URL);
         if (getCurrentURL().endsWith("sign_in")) {
             lkLoginPage.enterLogin("iptestowner+ip008@gmail.com");
             lkLoginPage.enterPassword("!QAZ2wsx");
