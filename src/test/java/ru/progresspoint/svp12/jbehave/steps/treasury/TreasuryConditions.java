@@ -12,8 +12,18 @@ public class TreasuryConditions {
     @Steps
     NavigationSteps navigation;
 
-    @Then("система предоставит доступ к АРМ Казначейства")
-    public void treasuryShouldBeAvailableForUser() {
-        navigation.isOnTreasuryPage("Главная");
+    @Then("система предоставит доступ к АРМ Казначейства для роли $role")
+    public void treasuryShouldBeAvailableForUser(String role) {
+        switch (role) {
+            case "Оператор":
+                navigation.isOnTreasuryPage("Главная оператора");
+                break;
+            case "Первая подпись":
+                navigation.isOnTreasuryPage("Главная c правом первой подписи");
+                break;
+            case "Вторая подпись":
+                navigation.isOnTreasuryPage("Главная c правом второй подписи");
+                break;
+        }
     }
 }

@@ -21,8 +21,10 @@ import ru.progresspoint.svp12.rso.pages.RSOLoginPage;
 import ru.progresspoint.svp12.rso.pages.RSOMainPage;
 import ru.progresspoint.svp12.smk.pages.SMKLoginPage;
 import ru.progresspoint.svp12.smk.pages.SMKMainPage;
+import ru.progresspoint.svp12.treasury.pages.TreasuryFirstSignMainPage;
 import ru.progresspoint.svp12.treasury.pages.TreasuryLoginPage;
-import ru.progresspoint.svp12.treasury.pages.TreasuryMainPage;
+import ru.progresspoint.svp12.treasury.pages.TreasuryOperatorMainPage;
+import ru.progresspoint.svp12.treasury.pages.TreasurySecondSignMainPage;
 import ru.progresspoint.svp12.tso.pages.TSOCabinetPage;
 import ru.progresspoint.svp12.tso.pages.TSOInfoPage;
 import ru.progresspoint.svp12.tso.pages.TSOStartPage;
@@ -97,7 +99,9 @@ public class NavigationSteps extends ScenarioSteps {
     TSOInfoPage tsoInfoPage;
 
     TreasuryLoginPage treasuryLoginPage;
-    TreasuryMainPage treasuryMainPage;
+    TreasuryOperatorMainPage treasuryOperatorMainPage;
+    TreasuryFirstSignMainPage treasuryFirstSignMainPage;
+    TreasurySecondSignMainPage treasurySecondSignMainPage;
 
     RSOLoginPage rsoLoginPage;
     RSOMainPage rsoMainPage;
@@ -190,8 +194,8 @@ public class NavigationSteps extends ScenarioSteps {
     private void openBaseTreasuryUrl() {
         getDriver().get(TREASURY_URL);
         if (getCurrentURL().endsWith("sign_in")) {
-            treasuryLoginPage.enterLogin("Admin3");
-            treasuryLoginPage.enterPassword("Test123$");
+            treasuryLoginPage.enterLogin("treasury_operator");
+            treasuryLoginPage.enterPassword("!QAZ2wsx");
             getDriver().findElement(name("commit")).click();
         }
     }
@@ -414,8 +418,14 @@ public class NavigationSteps extends ScenarioSteps {
             case "Авторизации":
                 treasuryLoginPage.shouldBeDisplayed();
                 break;
-            case "Главная":
-                treasuryMainPage.shouldBeDisplayed();
+            case "Главная оператора":
+                treasuryOperatorMainPage.shouldBeDisplayed();
+                break;
+            case "Главная c правом первой подписи":
+                treasuryFirstSignMainPage.shouldBeDisplayed();
+                break;
+            case "Главная c правом второй подписи":
+                treasurySecondSignMainPage.shouldBeDisplayed();
                 break;
         }
     }
