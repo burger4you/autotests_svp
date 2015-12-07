@@ -12,7 +12,7 @@ public class CKNPreconditionSteps {
     @Steps
     NavigationSteps navigation;
 
-    @Given("оператор находится на странице $page в АРМ ЦКН")
+    @Given("пользователь находится на странице $page в АРМ ЦКН")
     public void operatorIsOn(String page) {
         navigation.opensCKNPage(page);
     }

@@ -8,12 +8,12 @@ import ru.progresspoint.svp12.rso.steps.RSOOperatorSteps;
 /**
  * Шаги оператора АРМа ЦКН
  */
-public class CKNOperatorActions {
+public class CKNUserActions {
 
     @Steps
     CKNOperatorSteps operator;
 
-    @When("оператор введет логин $login и пароль $password для авторизации в АРМ ЦКН")
+    @When("пользователь введет логин $login и пароль $password для авторизации в АРМ ЦКН")
     public void operatorEntersLoginAndPassword(String login, String password) {
         operator.entersLoginAndPassword(login, password);
         operator.clicksToConfirmButton();

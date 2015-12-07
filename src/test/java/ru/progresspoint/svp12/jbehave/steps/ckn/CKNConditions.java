@@ -12,8 +12,12 @@ public class CKNConditions {
     @Steps
     NavigationSteps navigation;
 
-    @Then("система предоставит доступ к АРМ ЦКН")
-    public void cknShouldBeAvailableForUser() {
-        navigation.isOnCKNPage("Главная");
+    @Then("система предоставит доступ к АРМ ЦКН для роли $role")
+    public void cknShouldBeAvailableForUser(String role) {
+        switch (role) {
+            case "Оператор":
+                navigation.isOnCKNPage("Главная");
+                break;
+        }
     }
 }
