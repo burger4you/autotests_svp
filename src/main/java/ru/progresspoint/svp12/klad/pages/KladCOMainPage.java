@@ -6,8 +6,8 @@ import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.At;
 
 /**
- * Главная страница АРМа Кладовщика
+ * Главная страница кладовщика ЦО АРМа Кладовщика
  */
-@At("#HOST/.*")
-public class KladMainPage extends PageObject {
+@At("#HOST")
+public class KladCOMainPage extends PageObject {
 }

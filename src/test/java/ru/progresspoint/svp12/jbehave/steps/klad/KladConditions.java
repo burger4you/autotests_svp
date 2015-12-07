@@ -12,8 +12,18 @@ public class KladConditions {
     @Steps
     NavigationSteps navigation;
 
-    @Then("система предоставит доступ к АРМ Кладовщика")
-    public void kladShouldBeAvailableForUser() {
-        navigation.isOnKladPage("Главная");
+    @Then("система предоставит доступ к АРМ Кладовщика для роли $role")
+    public void kladShouldBeAvailableForUser(String role) {
+        switch (role) {
+            case "Кладовщик ЦО":
+                navigation.isOnKladPage("Главная ЦО");
+                break;
+            case "Кладовщик ЦИПП":
+                navigation.isOnKladPage("Главная ЦИПП");
+                break;
+            case "Кладовщик филиала":
+                navigation.isOnKladPage("Главная филиала");
+                break;
+        }
     }
 }

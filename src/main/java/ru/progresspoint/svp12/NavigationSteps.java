@@ -1,6 +1,5 @@
 package ru.progresspoint.svp12;
 
-
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.steps.ScenarioSteps;
 import org.openqa.selenium.By;
@@ -14,8 +13,10 @@ import ru.progresspoint.svp12.ckn.pages.CKNMainPage;
 import ru.progresspoint.svp12.cpp.pages.*;
 import ru.progresspoint.svp12.dz.pages.DZLoginPage;
 import ru.progresspoint.svp12.dz.pages.DZMainPage;
+import ru.progresspoint.svp12.klad.pages.KladCIPPMainPage;
+import ru.progresspoint.svp12.klad.pages.KladFilialMainPage;
 import ru.progresspoint.svp12.klad.pages.KladLoginPage;
-import ru.progresspoint.svp12.klad.pages.KladMainPage;
+import ru.progresspoint.svp12.klad.pages.KladCOMainPage;
 import ru.progresspoint.svp12.lk.pages.*;
 import ru.progresspoint.svp12.rso.pages.RSOLoginPage;
 import ru.progresspoint.svp12.rso.pages.RSOMainPage;
@@ -56,7 +57,7 @@ public class NavigationSteps extends ScenarioSteps {
 
     private static final String LK_URL         = "https://lk.platon.ru";
     private static final String CIPP_URL       = "https://cipp.platon.ru";
-    private static final String WAREHOUSE_URL  = "http://svp-www-warehouse-arm.svp.prod";
+    private static final String WAREHOUSE_URL  = "https://warehouse.platon.ru";
     private static final String DZ_URL         = "http://svp-www-dz-arm.svp.prod";
     private static final String ADMIN_URL      = "http://svp-www-administrator-arm.svp.prod";
     private static final String CALLCENTER_URL = "https://cc.platon.ru";
@@ -83,7 +84,9 @@ public class NavigationSteps extends ScenarioSteps {
     LKMainHeader lkMainHeader;
 
     KladLoginPage kladLoginPage;
-    KladMainPage kladMainPage;
+    KladCOMainPage kladCOMainPage;
+    KladCIPPMainPage kladCIPPMainPage;
+    KladFilialMainPage kladFilialMainPage;
 
     DZLoginPage dzLoginPage;
     DZMainPage dzMainPage;
@@ -484,8 +487,14 @@ public class NavigationSteps extends ScenarioSteps {
             case "Авторизации":
                 kladLoginPage.shouldBeDisplayed();
                 break;
-            case "Главная":
-                kladMainPage.shouldBeDisplayed();
+            case "Главная ЦО":
+                kladCOMainPage.shouldBeDisplayed();
+                break;
+            case "Главная ЦИПП":
+                kladCIPPMainPage.shouldBeDisplayed();
+                break;
+            case "Главная филиала":
+                kladFilialMainPage.shouldBeDisplayed();
                 break;
         }
     }
