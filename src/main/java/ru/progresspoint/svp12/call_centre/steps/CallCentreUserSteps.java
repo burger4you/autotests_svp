@@ -3,17 +3,17 @@ package ru.progresspoint.svp12.call_centre.steps;
 
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.steps.ScenarioSteps;
-import ru.progresspoint.svp12.call_centre.pages.CallCentreHeadLoginPage;
+import ru.progresspoint.svp12.call_centre.pages.CallCentreLoginPage;
 
 import static org.openqa.selenium.By.linkText;
 import static org.openqa.selenium.By.name;
 
 /**
- * Шаги руководителя группы поддержки АРМа Колл Центра
+ * Шаги пользователя АРМа Колл Центра
  */
-public class CallCentreHeadSteps extends ScenarioSteps {
+public class CallCentreUserSteps extends ScenarioSteps {
 
-    CallCentreHeadLoginPage loginPage;
+    CallCentreLoginPage loginPage;
 
     @Step("Нажимает на ссылку {0}")
     public void clicksToLink(String linkText) {

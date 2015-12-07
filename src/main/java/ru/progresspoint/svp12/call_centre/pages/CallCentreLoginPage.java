@@ -7,10 +7,10 @@ import net.thucydides.core.annotations.At;
 import net.thucydides.core.annotations.WhenPageOpens;
 
 /**
- * Страница авторизации руководителя АРМа Колл Центра
+ * Страница авторизации АРМа Колл Центра
  */
 @At("#HOST/manager/sign_in")
-public class CallCentreHeadLoginPage extends PageObject {
+public class CallCentreLoginPage extends PageObject {
 
     @FindBy(id = "session_login")
     WebElementFacade loginField;

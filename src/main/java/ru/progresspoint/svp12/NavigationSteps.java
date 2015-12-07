@@ -6,7 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import ru.progresspoint.svp12.admin.pages.AdminLoginPage;
 import ru.progresspoint.svp12.admin.pages.AdminMainPage;
-import ru.progresspoint.svp12.call_centre.pages.CallCentreHeadLoginPage;
+import ru.progresspoint.svp12.call_centre.pages.CallCentreLoginPage;
 import ru.progresspoint.svp12.call_centre.pages.CallCentreHeadMainPage;
 import ru.progresspoint.svp12.ckn.pages.CKNLoginPage;
 import ru.progresspoint.svp12.ckn.pages.CKNMainPage;
@@ -95,7 +95,7 @@ public class NavigationSteps extends ScenarioSteps {
     AdminMainPage adminMainPage;
 
     CallCentreHeadMainPage callCentreHeadMainPage;
-    CallCentreHeadLoginPage callCentreHeadLoginPage;
+    CallCentreLoginPage callCentreLoginPage;
 
     TSOStartPage tsoStartPage;
     TSOCabinetPage tsoCabinetPage;
@@ -211,9 +211,9 @@ public class NavigationSteps extends ScenarioSteps {
     @Step("Открывает страницу {0} АРМа Колл Центра ("+ CALLCENTER_URL +")")
     public void opensCallCenterPage(String page) {
         switch (page) {
-            case "Авторизации Руководителя":
+            case "Авторизации":
                 getDriver().get(CALLCENTER_URL + "/manager/sign_out");
-                callCentreHeadLoginPage.shouldBeDisplayed();
+                callCentreLoginPage.shouldBeDisplayed();
                 break;
             case "Главная Руководителя":
                 callCentreHeadMainPage.openAt(CALLCENTER_URL);
@@ -448,8 +448,8 @@ public class NavigationSteps extends ScenarioSteps {
     @Step("Находится на странице {0} АРМа Колл Центра")
     public void isOnCallCentrePage(String page) {
         switch (page) {
-            case "Авторизации Руководителя":
-                callCentreHeadLoginPage.shouldBeDisplayed();
+            case "Авторизации":
+                callCentreLoginPage.shouldBeDisplayed();
                 break;
             case "Главная Руководителя":
                 callCentreHeadMainPage.shouldBeDisplayed();

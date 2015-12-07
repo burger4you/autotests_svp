@@ -13,10 +13,7 @@ public class CallCentrePreconditionSteps {
     @Steps
     NavigationSteps navigation;
 
-    @Given("руководитель группы поддержки находится на странице $page в АРМ Колл Центра")
-    @Aliases(values={"оператор 1-ой линии находится на странице $page в АРМ Колл Центра",
-                     "оператор 2-ой линии находится на странице $page в АРМ Колл Центра",
-                     "куратор находится на странице $page в АРМ Колл Центра"})
+    @Given("пользователь находится на странице $page в АРМ Колл Центра")
     public void userIsOn(String page) {
         navigation.opensCallCenterPage(page);
     }
