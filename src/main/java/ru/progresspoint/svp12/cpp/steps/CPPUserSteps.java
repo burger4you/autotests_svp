@@ -15,7 +15,7 @@ import static org.openqa.selenium.By.*;
 /**
  * Шаги оператора АРМа ЦИПП
  */
-public class CPPOperatorSteps extends RandomGenerators {
+public class CPPUserSteps extends RandomGenerators {
 
     CPPLoginPage loginPage;
     CPPSelectActionDialog selectActionDialog;

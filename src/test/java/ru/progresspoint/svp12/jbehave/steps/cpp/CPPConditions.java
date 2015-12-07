@@ -4,7 +4,7 @@ import net.thucydides.core.annotations.Steps;
 import org.jbehave.core.annotations.Then;
 import ru.progresspoint.svp12.EmailUserSteps;
 import ru.progresspoint.svp12.NavigationSteps;
-import ru.progresspoint.svp12.cpp.steps.CPPOperatorSteps;
+import ru.progresspoint.svp12.cpp.steps.CPPUserSteps;
 import ru.progresspoint.svp12.lk.steps.LKUserSteps;
 
 import javax.mail.MessagingException;
@@ -27,16 +27,20 @@ public class CPPConditions {
     LKUserSteps user;
 
     @Steps
-    CPPOperatorSteps operator;
+    CPPUserSteps operator;
 
     @Then("система откроет страницу $page в АРМ ЦИПП")
     public void pageShouldBeDisplayed(String page) {
         navigation.isOnCPPPage(page);
     }
 
-    @Then("система предоставит доступ к АРМ ЦИПП")
-    public void cppShouldBeAvailableForUser() {
-        navigation.isOnCPPPage("Главная");
+    @Then("система предоставит доступ к АРМ ЦИПП для роли $role")
+    public void cppShouldBeAvailableForUser(String role) {
+        switch (role) {
+            case "Оператор" :
+            navigation.isOnCPPPage("Главная");
+            break;
+        }
     }
 
     @Then("система отправит на $email ссылку с доступом к ЛК")

@@ -3,7 +3,7 @@ package ru.progresspoint.svp12.jbehave.steps.cpp;
 import net.thucydides.core.annotations.Steps;
 import org.jbehave.core.annotations.Given;
 import ru.progresspoint.svp12.NavigationSteps;
-import ru.progresspoint.svp12.cpp.steps.CPPOperatorSteps;
+import ru.progresspoint.svp12.cpp.steps.CPPUserSteps;
 
 /**
  * Шаги для приведения АРМа ЦИПП в исходные состояния
@@ -14,9 +14,9 @@ public class CPPPreconditionSteps {
     NavigationSteps navigation;
 
     @Steps
-    CPPOperatorSteps operator;
+    CPPUserSteps operator;
 
-    @Given("оператор находится на странице $page в АРМ ЦИПП")
+    @Given("пользователь находится на странице $page в АРМ ЦИПП")
     public void operatorIsOn(String page) {
             navigation.opensCPPPage(page);
     }
@@ -27,10 +27,5 @@ public class CPPPreconditionSteps {
         operator.entersClientForQuery(owner);
         operator.clicksToTextButton("Искать");
         operator.selectsClientByQuery(owner);
-    }
-
-    @Given("админ находится на странице $page в АРМ ЦИПП")
-    public void adminIsOn(String page) {
-            navigation.opensCPPPage(page);
     }
 }
