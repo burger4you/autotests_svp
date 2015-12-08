@@ -23,7 +23,8 @@ public class CPPSelectizePageObject extends PageObject {
 
     public void enterForSelectizePlugin(String inputId, String inputtingValue) {
         enter(inputtingValue).into(findBy(String.format(INPUT_XPATH, inputId)));
-        withTimeoutOf(20, SECONDS).waitFor(String.format(INPUT_ITEM_XPATH, inputId));
+        waitFor(String.format(INPUT_ITEM_XPATH, inputId));
+        waitABit(500);
         findBy(String.format(INPUT_ITEM_XPATH, inputId)).click();
     }
 }
