@@ -4,6 +4,7 @@ import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.At;
+import net.thucydides.core.annotations.WhenPageOpens;
 import net.thucydides.core.matchers.BeanMatcher;
 import org.openqa.selenium.WebElement;
 
@@ -19,8 +20,16 @@ import static net.thucydides.core.pages.components.HtmlTable.rowsFrom;
 @At("#HOST/accounts/.*/vehicles")
 public class LKVehiclesPage extends PageObject {
 
+    @FindBy(xpath = ".//h1[text()[contains(.,'sorry, but something went wrong')]]")
+    WebElementFacade errorMessage;
+
     @FindBy(xpath = "//*[@id='vehicles']/table")
     WebElementFacade vehiclesTable;
+
+    @WhenPageOpens
+    public void loading() {
+        errorMessage.shouldNotBePresent();
+    }
 
     public List<Map<Object, String>> getSearchVehicles() {
         return rowsFrom(vehiclesTable);

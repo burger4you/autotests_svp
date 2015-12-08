@@ -64,8 +64,8 @@ public class NavigationSteps extends ScenarioSteps {
 //    private static final String TCO_URL        = "http://tco.platon.ru";
 //    private static final String TREASURY_URL   = "http://svp-www-treasury-arm.svp.prod";
 //    private static final String RSO_URL        = "https://rso.platon.ru";
-//    private static final String SSK_URL        = "http://svp-www-ssk-arm.svp.prod";
-//    private static final String SMK_URL        = "http://svp-www-smk-arm.svp.prod";
+//    private static final String SSK_URL        = "https://ssk.platon.ru";
+//    private static final String SMK_URL        = "https://smk.platon.ru";
     
     CPPLoginPage cppLoginPage;
     CPPClientRegistrationPage cppOwnerRegistrationPage;
@@ -387,6 +387,7 @@ public class NavigationSteps extends ScenarioSteps {
                 break;
             case "Главная":
                 smkMainPage.shouldBeDisplayed();
+                smkMainPage.callWhenPageOpensMethods();
                 break;
         }
     }
@@ -399,6 +400,7 @@ public class NavigationSteps extends ScenarioSteps {
                 break;
             case "Главная":
                 cknMainPage.shouldBeDisplayed();
+                cknMainPage.callWhenPageOpensMethods();
                 break;
         }
     }
@@ -411,6 +413,7 @@ public class NavigationSteps extends ScenarioSteps {
                 break;
             case "Главная":
                 rsoMainPage.shouldBeDisplayed();
+                rsoMainPage.callWhenPageOpensMethods();
                 break;
         }
     }
@@ -423,12 +426,15 @@ public class NavigationSteps extends ScenarioSteps {
                 break;
             case "Главная оператора":
                 treasuryOperatorMainPage.shouldBeDisplayed();
+                treasuryOperatorMainPage.callWhenPageOpensMethods();
                 break;
             case "Главная c правом первой подписи":
                 treasuryFirstSignMainPage.shouldBeDisplayed();
+                treasuryFirstSignMainPage.callWhenPageOpensMethods();
                 break;
             case "Главная c правом второй подписи":
                 treasurySecondSignMainPage.shouldBeDisplayed();
+                treasurySecondSignMainPage.callWhenPageOpensMethods();
                 break;
         }
     }
@@ -453,6 +459,7 @@ public class NavigationSteps extends ScenarioSteps {
                 break;
             case "Главная Руководителя":
                 callCentreHeadMainPage.shouldBeDisplayed();
+                callCentreHeadMainPage.callWhenPageOpensMethods();
                 break;
         }
     }
@@ -465,6 +472,7 @@ public class NavigationSteps extends ScenarioSteps {
                 break;
             case "Главная":
                 adminMainPage.shouldBeDisplayed();
+                adminMainPage.callWhenPageOpensMethods();
                 break;
         }
     }
@@ -477,6 +485,7 @@ public class NavigationSteps extends ScenarioSteps {
                 break;
             case "Главная":
                 dzMainPage.shouldBeDisplayed();
+                dzMainPage.callWhenPageOpensMethods();
                 break;
         }
     }
@@ -489,12 +498,15 @@ public class NavigationSteps extends ScenarioSteps {
                 break;
             case "Главная ЦО":
                 kladCOMainPage.shouldBeDisplayed();
+                kladCOMainPage.callWhenPageOpensMethods();
                 break;
             case "Главная ЦИПП":
                 kladCIPPMainPage.shouldBeDisplayed();
+                kladCIPPMainPage.callWhenPageOpensMethods();
                 break;
             case "Главная филиала":
                 kladFilialMainPage.shouldBeDisplayed();
+                kladFilialMainPage.callWhenPageOpensMethods();
                 break;
         }
     }
@@ -507,6 +519,7 @@ public class NavigationSteps extends ScenarioSteps {
                 break;
             case "Главная":
                 cppMainPage.shouldBeDisplayed();
+                cppMainPage.callWhenPageOpensMethods();
                 break;
             case "Регистрации ВТС":
                 cppOwnerRegistrationPage.shouldBeDisplayed();
@@ -537,6 +550,7 @@ public class NavigationSteps extends ScenarioSteps {
                 break;
             case "Транспортные средства":
                 lkVehiclesPage.shouldBeDisplayed();
+                lkVehiclesPage.callWhenPageOpensMethods();
                 break;
         }
     }
