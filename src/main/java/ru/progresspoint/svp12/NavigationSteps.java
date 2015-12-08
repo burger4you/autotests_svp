@@ -237,8 +237,8 @@ public class NavigationSteps extends ScenarioSteps {
     private void openBaseAdminUrl() {
         getDriver().get(ADMIN_URL);
         if (getCurrentURL().endsWith("sign_in")) {
-            adminLoginPage.enterLogin("Admin3");
-            adminLoginPage.enterPassword("Test123$");
+            adminLoginPage.enterLogin("operator_1");
+            adminLoginPage.enterPassword("qwerty123$");
             getDriver().findElement(name("commit")).click();
         }
     }
