@@ -41,31 +41,31 @@ public class NavigationSteps extends ScenarioSteps {
 
     /* Тестовая среда */
 
-//    private static final String LK_URL         = "http://svp-www-lk.svp.test";
-//    private static final String CIPP_URL       = "http://svp-www-cipp.svp.test";
-//    private static final String WAREHOUSE_URL  = "http://svp-www1-arm-warehouse.svp.test";
-//    private static final String DZ_URL         = "http://svp-www1-arm-dz.svp.test";
-//    private static final String ADMIN_URL      = "http://svp-www1-arm-administrator.svp.test";
-//    private static final String CALLCENTER_URL = "http://svp-www-callcenter.svp.test/manager";
-//    private static final String TCO_URL        = "http://svp-www-tco.svp.test";
-//    private static final String TREASURY_URL   = "http://svp-www1-arm-treasury.svp.test";
-//    private static final String RSO_URL        = "http://svp-www1-arm-rso.svp.test";
-//    private static final String SSK_URL        = "http://svp-www1-arm-ssk.svp.test";
-//    private static final String SMK_URL        = "http://svp-www1-arm-smk.svp.test";
+    private static final String LK_URL         = "http://svp-www-lk.svp.test";
+    private static final String CIPP_URL       = "http://svp-www-cipp.svp.test";
+    private static final String WAREHOUSE_URL  = "http://svp-www1-arm-warehouse.svp.test";
+    private static final String DZ_URL         = "http://svp-www1-arm-dz.svp.test";
+    private static final String ADMIN_URL      = "http://svp-www1-arm-administrator.svp.test";
+    private static final String CALLCENTER_URL = "http://svp-www-callcenter.svp.test/manager";
+    private static final String TCO_URL        = "http://svp-www-tco.svp.test";
+    private static final String TREASURY_URL   = "http://svp-www1-arm-treasury.svp.test";
+    private static final String RSO_URL        = "http://svp-www1-arm-rso.svp.test";
+    private static final String SSK_URL        = "http://svp-www1-arm-ssk.svp.test";
+    private static final String SMK_URL        = "http://svp-www1-arm-smk.svp.test";
 
     /* Продуктовая среда */
 
-    private static final String LK_URL         = "https://lk.platon.ru";
-    private static final String CIPP_URL       = "https://cipp.platon.ru";
-    private static final String WAREHOUSE_URL  = "https://warehouse.platon.ru";
-    private static final String DZ_URL         = "http://svp-www-dz-arm.svp.prod";
-    private static final String ADMIN_URL      = "http://svp-www-administrator-arm.svp.prod";
-    private static final String CALLCENTER_URL = "https://cc.platon.ru";
-    private static final String TCO_URL        = "http://tco.platon.ru";
-    private static final String TREASURY_URL   = "http://svp-www-treasury-arm.svp.prod";
-    private static final String RSO_URL        = "https://rso.platon.ru";
-    private static final String SSK_URL        = "https://ssk.platon.ru";
-    private static final String SMK_URL        = "https://smk.platon.ru";
+//    private static final String LK_URL         = "https://lk.platon.ru";
+//    private static final String CIPP_URL       = "https://cipp.platon.ru";
+//    private static final String WAREHOUSE_URL  = "https://warehouse.platon.ru";
+//    private static final String DZ_URL         = "http://svp-www-dz-arm.svp.prod";
+//    private static final String ADMIN_URL      = "http://svp-www-administrator-arm.svp.prod";
+//    private static final String CALLCENTER_URL = "https://cc.platon.ru";
+//    private static final String TCO_URL        = "http://tco.platon.ru";
+//    private static final String TREASURY_URL   = "http://svp-www-treasury-arm.svp.prod";
+//    private static final String RSO_URL        = "https://rso.platon.ru";
+//    private static final String SSK_URL        = "https://ssk.platon.ru";
+//    private static final String SMK_URL        = "https://smk.platon.ru";
     
     CPPLoginPage cppLoginPage;
     CPPClientRegistrationPage cppOwnerRegistrationPage;
