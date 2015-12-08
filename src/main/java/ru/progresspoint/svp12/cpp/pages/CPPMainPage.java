@@ -12,10 +12,14 @@ import org.openqa.selenium.By;
 @At("#HOST")
 public class CPPMainPage extends PageObject {
 
+    @FindBy(xpath = ".//h1[text()[contains(.,'sorry, but something went wrong')]]")
+    WebElementFacade errorMessage;
+
     @FindBy(xpath = ".//*[@class='mca-one']")
     WebElementFacade selectActionDialog;
 
     public void loading() {
+        errorMessage.shouldNotBePresent();
         if (isElementVisible(By.xpath(".//*[@id='end_button']"))) {
             clickOn(element(".//*[@id='end_button']"));
             waitFor(selectActionDialog);

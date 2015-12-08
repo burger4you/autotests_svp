@@ -41,31 +41,31 @@ public class NavigationSteps extends ScenarioSteps {
 
     /* Тестовая среда */
 
-//    private static final String LK_URL         = "http://svp-www-lk.svp.test";
-//    private static final String CIPP_URL       = "http://svp-www-cipp.svp.test";
-//    private static final String WAREHOUSE_URL  = "http://svp-www1-arm-warehouse.svp.test";
-//    private static final String DZ_URL         = "http://svp-www1-arm-dz.svp.test";
-//    private static final String ADMIN_URL      = "http://svp-www1-arm-administrator.svp.test";
-//    private static final String CALLCENTER_URL = "http://svp-www-callcenter.svp.test/manager";
-//    private static final String TCO_URL        = "http://svp-www-tco.svp.test";
-//    private static final String TREASURY_URL   = "http://svp-www1-arm-treasury.svp.test";
-//    private static final String RSO_URL        = "http://svp-www1-arm-rso.svp.test";
-//    private static final String SSK_URL        = "http://svp-www1-arm-ssk.svp.test";
-//    private static final String SMK_URL        = "http://svp-www1-arm-smk.svp.test";
+    private static final String LK_URL         = "http://svp-www-lk.svp.test";
+    private static final String CIPP_URL       = "http://svp-www-cipp.svp.test";
+    private static final String WAREHOUSE_URL  = "http://svp-www1-arm-warehouse.svp.test";
+    private static final String DZ_URL         = "http://svp-www1-arm-dz.svp.test";
+    private static final String ADMIN_URL      = "http://svp-www1-arm-administrator.svp.test";
+    private static final String CALLCENTER_URL = "http://svp-www-callcenter.svp.test/manager";
+    private static final String TCO_URL        = "http://svp-www-tco.svp.test";
+    private static final String TREASURY_URL   = "http://svp-www1-arm-treasury.svp.test";
+    private static final String RSO_URL        = "http://svp-www1-arm-rso.svp.test";
+    private static final String SSK_URL        = "http://svp-www1-arm-ssk.svp.test";
+    private static final String SMK_URL        = "http://svp-www1-arm-smk.svp.test";
 
     /* Продуктовая среда */
 
-    private static final String LK_URL         = "https://lk.platon.ru";
-    private static final String CIPP_URL       = "https://cipp.platon.ru";
-    private static final String WAREHOUSE_URL  = "https://warehouse.platon.ru";
-    private static final String DZ_URL         = "http://svp-www-dz-arm.svp.prod";
-    private static final String ADMIN_URL      = "http://svp-www-administrator-arm.svp.prod";
-    private static final String CALLCENTER_URL = "https://cc.platon.ru";
-    private static final String TCO_URL        = "http://tco.platon.ru";
-    private static final String TREASURY_URL   = "http://svp-www-treasury-arm.svp.prod";
-    private static final String RSO_URL        = "https://rso.platon.ru";
-    private static final String SSK_URL        = "http://svp-www-ssk-arm.svp.prod";
-    private static final String SMK_URL        = "http://svp-www-smk-arm.svp.prod";
+//    private static final String LK_URL         = "https://lk.platon.ru";
+//    private static final String CIPP_URL       = "https://cipp.platon.ru";
+//    private static final String WAREHOUSE_URL  = "https://warehouse.platon.ru";
+//    private static final String DZ_URL         = "http://svp-www-dz-arm.svp.prod";
+//    private static final String ADMIN_URL      = "http://svp-www-administrator-arm.svp.prod";
+//    private static final String CALLCENTER_URL = "https://cc.platon.ru";
+//    private static final String TCO_URL        = "http://tco.platon.ru";
+//    private static final String TREASURY_URL   = "http://svp-www-treasury-arm.svp.prod";
+//    private static final String RSO_URL        = "https://rso.platon.ru";
+//    private static final String SSK_URL        = "https://ssk.platon.ru";
+//    private static final String SMK_URL        = "https://smk.platon.ru";
     
     CPPLoginPage cppLoginPage;
     CPPClientRegistrationPage cppOwnerRegistrationPage;
@@ -237,8 +237,8 @@ public class NavigationSteps extends ScenarioSteps {
     private void openBaseAdminUrl() {
         getDriver().get(ADMIN_URL);
         if (getCurrentURL().endsWith("sign_in")) {
-            adminLoginPage.enterLogin("Admin3");
-            adminLoginPage.enterPassword("Test123$");
+            adminLoginPage.enterLogin("operator_1");
+            adminLoginPage.enterPassword("qwerty123$");
             getDriver().findElement(name("commit")).click();
         }
     }
@@ -387,6 +387,7 @@ public class NavigationSteps extends ScenarioSteps {
                 break;
             case "Главная":
                 smkMainPage.shouldBeDisplayed();
+                smkMainPage.callWhenPageOpensMethods();
                 break;
         }
     }
@@ -399,6 +400,7 @@ public class NavigationSteps extends ScenarioSteps {
                 break;
             case "Главная":
                 cknMainPage.shouldBeDisplayed();
+                cknMainPage.callWhenPageOpensMethods();
                 break;
         }
     }
@@ -411,6 +413,7 @@ public class NavigationSteps extends ScenarioSteps {
                 break;
             case "Главная":
                 rsoMainPage.shouldBeDisplayed();
+                rsoMainPage.callWhenPageOpensMethods();
                 break;
         }
     }
@@ -423,12 +426,15 @@ public class NavigationSteps extends ScenarioSteps {
                 break;
             case "Главная оператора":
                 treasuryOperatorMainPage.shouldBeDisplayed();
+                treasuryOperatorMainPage.callWhenPageOpensMethods();
                 break;
             case "Главная c правом первой подписи":
                 treasuryFirstSignMainPage.shouldBeDisplayed();
+                treasuryFirstSignMainPage.callWhenPageOpensMethods();
                 break;
             case "Главная c правом второй подписи":
                 treasurySecondSignMainPage.shouldBeDisplayed();
+                treasurySecondSignMainPage.callWhenPageOpensMethods();
                 break;
         }
     }
@@ -453,6 +459,7 @@ public class NavigationSteps extends ScenarioSteps {
                 break;
             case "Главная Руководителя":
                 callCentreHeadMainPage.shouldBeDisplayed();
+                callCentreHeadMainPage.callWhenPageOpensMethods();
                 break;
         }
     }
@@ -465,6 +472,7 @@ public class NavigationSteps extends ScenarioSteps {
                 break;
             case "Главная":
                 adminMainPage.shouldBeDisplayed();
+                adminMainPage.callWhenPageOpensMethods();
                 break;
         }
     }
@@ -477,6 +485,7 @@ public class NavigationSteps extends ScenarioSteps {
                 break;
             case "Главная":
                 dzMainPage.shouldBeDisplayed();
+                dzMainPage.callWhenPageOpensMethods();
                 break;
         }
     }
@@ -489,12 +498,15 @@ public class NavigationSteps extends ScenarioSteps {
                 break;
             case "Главная ЦО":
                 kladCOMainPage.shouldBeDisplayed();
+                kladCOMainPage.callWhenPageOpensMethods();
                 break;
             case "Главная ЦИПП":
                 kladCIPPMainPage.shouldBeDisplayed();
+                kladCIPPMainPage.callWhenPageOpensMethods();
                 break;
             case "Главная филиала":
                 kladFilialMainPage.shouldBeDisplayed();
+                kladFilialMainPage.callWhenPageOpensMethods();
                 break;
         }
     }
@@ -507,6 +519,7 @@ public class NavigationSteps extends ScenarioSteps {
                 break;
             case "Главная":
                 cppMainPage.shouldBeDisplayed();
+                cppMainPage.callWhenPageOpensMethods();
                 break;
             case "Регистрации ВТС":
                 cppOwnerRegistrationPage.shouldBeDisplayed();
@@ -537,6 +550,7 @@ public class NavigationSteps extends ScenarioSteps {
                 break;
             case "Транспортные средства":
                 lkVehiclesPage.shouldBeDisplayed();
+                lkVehiclesPage.callWhenPageOpensMethods();
                 break;
         }
     }
