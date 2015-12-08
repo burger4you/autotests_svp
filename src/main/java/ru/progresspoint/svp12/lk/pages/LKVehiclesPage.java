@@ -28,7 +28,7 @@ public class LKVehiclesPage extends PageObject {
 
     @WhenPageOpens
     public void loading() {
-        errorMessage.shouldNotBePresent();
+        errorMessage.expect("Простите, но что-то пошло не так...").shouldNotBePresent();
     }
 
     public List<Map<Object, String>> getSearchVehicles() {
