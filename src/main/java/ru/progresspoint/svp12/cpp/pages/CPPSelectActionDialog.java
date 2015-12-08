@@ -56,6 +56,7 @@ public class CPPSelectActionDialog extends CPPSelectizePageObject {
     }
 
     public void clickToSearchedClient(String query) {
+        waitFor($(format(".//*[@id='start-work-modal']//*[text()='%s']", query)));
         $(format(".//*[@id='start-work-modal']//*[text()='%s']", query)).click();
     }
 
