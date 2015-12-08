@@ -153,8 +153,8 @@ public class NavigationSteps extends ScenarioSteps {
     private void openBaseCKNUrl() {
         getDriver().get(SSK_URL);
         if (getCurrentURL().endsWith("sign_in")) {
-            cknLoginPage.enterLogin("Admin3");
-            cknLoginPage.enterPassword("Test123$");
+            cknLoginPage.enterLogin("operator_ckn");
+            cknLoginPage.enterPassword("qwerty123$");
             getDriver().findElement(name("commit")).click();
         }
     }
