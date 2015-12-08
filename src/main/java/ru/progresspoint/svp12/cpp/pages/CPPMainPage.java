@@ -19,7 +19,7 @@ public class CPPMainPage extends PageObject {
     WebElementFacade selectActionDialog;
 
     public void loading() {
-        errorMessage.shouldNotBePresent();
+        errorMessage.expect("Простите, но что-то пошло не так...").shouldNotBePresent();
         if (isElementVisible(By.xpath(".//*[@id='end_button']"))) {
             clickOn(element(".//*[@id='end_button']"));
             waitFor(selectActionDialog);

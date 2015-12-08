@@ -17,6 +17,6 @@ public class CKNMainPage extends PageObject {
 
     @WhenPageOpens
     public void loading() {
-        errorMessage.shouldNotBePresent();
+        errorMessage.expect("Простите, но что-то пошло не так...").shouldNotBePresent();
     }
 }
