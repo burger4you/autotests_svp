@@ -1,8 +1,7 @@
 package ru.progresspoint.svp12.cpp.pages;
 
 import net.serenitybdd.core.pages.PageObject;
-
-import static java.util.concurrent.TimeUnit.SECONDS;
+import org.openqa.selenium.WebElement;
 
 /**
  * Класс расширяющий PageObject для работы с плагином selectize
@@ -23,8 +22,20 @@ public class CPPSelectizePageObject extends PageObject {
 
     public void enterForSelectizePlugin(String inputId, String inputtingValue) {
         enter(inputtingValue).into(findBy(String.format(INPUT_XPATH, inputId)));
-        waitFor(String.format(INPUT_ITEM_XPATH, inputId));
-        waitABit(500);
-        findBy(String.format(INPUT_ITEM_XPATH, inputId)).click();
+        waitABit(3000);
+//        waitForAnyRenderedElementOf(By.xpath(String.format(INPUT_ITEM_XPATH, inputId)));
+//        waitFor(String.format(INPUT_ITEM_XPATH, inputId));
+//        findBy(String.format(INPUT_ITEM_XPATH, inputId)).click();
+        clickOnInvisibleElement(findBy(String.format(INPUT_ITEM_XPATH, inputId)));
+    }
+
+    public void clickOnInvisibleElement(WebElement element) {
+
+        String script = "var object = arguments[0];"
+                + "var theEvent = document.createEvent(\"MouseEvent\");"
+                + "theEvent.initMouseEvent(\"click\", true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);"
+                + "object.dispatchEvent(theEvent);"
+                ;
+        getJavascriptExecutorFacade().executeScript(script, element);
     }
 }
