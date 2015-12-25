@@ -1,7 +1,7 @@
 Изменение периодов для МК в АРМ Администратора
 Meta:
 @arm admin
-@tag component: маршрутные карты
+@tag component: road maps
 
 Описание:
 Чтобы настроить МК

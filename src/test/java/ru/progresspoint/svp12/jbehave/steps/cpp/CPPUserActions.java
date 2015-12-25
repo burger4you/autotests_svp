@@ -51,16 +51,16 @@ public class CPPUserActions {
 //        operator.entersAccountData();
 //        operator.entersClientBankData();
         operator.clicksToLink("Завершить регистрацию");
-        operator.clicksToTextButton("Управление документами ВТС");
-        operator.uploadsClientDocumentsCopies();
-        operator.clicksToTextButton("Подтвердить");
-        operator.clicksToTextButton("Регистрация ТС");
-        operator.entersVehicleData();
-        operator.clicksToTextButton("Зарегистрировать");
+//        operator.clicksToTextButton("Управление документами ВТС");
+//        operator.uploadsClientDocumentsCopies();
+//        operator.clicksToTextButton("Подтвердить");
+//        operator.clicksToTextButton("Регистрация ТС");
+//        operator.entersVehicleData();
+//        operator.clicksToTextButton("Зарегистрировать");
 //        operator.uploadsVehicleDocumentsCopies();
 //        operator.clicksToConfirmButton();
-        operator.clicksToConfirmVehicleRegistrationDialogButton();
-        operator.clicksToTextButton("Завершить");
+//        operator.clicksToConfirmVehicleRegistrationDialogButton();
+//        operator.clicksToTextButton("Завершить");
     }
 
     @When("оператор зарегистрирует ВТС нерезидента РФ как $clientType ($clientEmail)")

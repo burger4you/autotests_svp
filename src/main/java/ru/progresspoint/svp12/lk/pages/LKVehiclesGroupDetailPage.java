@@ -6,7 +6,7 @@ import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.At;
 
 /**
- * Страница открытой группы ТС в Личном Кабинете
+ * Страница открытой группы ТС в АРМ ЛК
  */
 @At("#HOST/accounts/.*/vehicle_groups/.*")
 public class LKVehiclesGroupDetailPage extends PageObject {

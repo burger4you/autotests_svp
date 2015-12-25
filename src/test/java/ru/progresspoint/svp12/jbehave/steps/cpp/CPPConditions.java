@@ -45,12 +45,11 @@ public class CPPConditions {
 
     @Then("система отправит на $email ссылку с доступом к ЛК")
     public void systemSentLinkToLKOn(String emailAddress) throws IOException, MessagingException {
-        email.waitsForEmailWithAccessLink(emailAddress);
-        navigation.opensLKPage("Авторизации");
-        user.entersLoginAndPassword((String) getCurrentSession().get("login"), (String) getCurrentSession().get("password"));
+        email.waitsForEmailWithConfirmationLink(emailAddress);
+        email.clicksToConfirmationLink();
+        user.entersPassword("!QAZ2wsx");
         user.clicksToConfirmButton();
-        navigation.isOnLKPage("Главная");
-        email.deletesAllMessagesFromPlaton(emailAddress);
+        navigation.isOnLKPage("Транспортные средства");
     }
 
     @Then("система отправит на $emailAddress уведомление $notification")

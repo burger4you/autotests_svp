@@ -28,11 +28,22 @@ public class EmailUserSteps extends ScenarioSteps {
     private static final long serialVersionUID = 7L;
     private static final String NO_REPLY_PLATON_RU = "no-reply@platon.ru";
     private static final String NO_REPLY_SVP12_RU = "noreply@svp12.ru";
-    private static final String PROTOCOL = "mail.store.protocol";
-    private static final String IMAPS = "imaps";
-    private static final String GMAIL = "imap.gmail.com";
-    private static final String PASSWORD = "GameAtPlay";
+    private static final String PROTOCOL_PROP = "mail.store.protocol";
+
+    /** Gmail **/
+
+//    private static final String PROTOCOL_TYPE = "imaps";
+//    private static final String IMAP = "imap.gmail.com";
+//    private static final String PASSWORD = "GameAtPlay";
+//    private static final String INBOX = "inbox";
+
+    /** Тестовая зона **/
+
+    private static final String PROTOCOL_TYPE = "imap";
+    private static final String IMAP = "svp-mail.svp.test";
+    private static final String PASSWORD = "test3";
     private static final String INBOX = "inbox";
+
     private Properties props;
     private Session session;
     private Store store;
@@ -42,22 +53,22 @@ public class EmailUserSteps extends ScenarioSteps {
     /**
      * Получает письмо с уведомлением
      *
-     * @param gmailBox - адрес почтового ящика на gmail
+     * @param emailBox - адрес почтового ящика
      * @throws MessagingException
      * @throws IOException
      */
     @Step("Получает письмо на {0} с уведомлением {1}")
-    public void waitsForEmailWithNotification(String gmailBox, String notification) throws IOException, MessagingException {
+    public void waitsForEmailWithNotification(String emailBox, String notification) throws IOException, MessagingException {
         waitABit(5000);
         // Устанавливаем протокол
         props = new Properties();
-        props.setProperty(PROTOCOL, IMAPS);
+        props.setProperty(PROTOCOL_PROP, PROTOCOL_TYPE);
         // Получаем сессию
         session = Session.getInstance(props, null);
         // Получаем место в сессии
         store = session.getStore();
         // Коннектимся к ящику
-        store.connect(GMAIL, gmailBox, PASSWORD);
+        store.connect(IMAP, emailBox, PASSWORD);
         // В ящике ищмем папку "Входящие"
         folder = store.getFolder(INBOX);
         // Открываем папку в режиме чтения
@@ -87,22 +98,22 @@ public class EmailUserSteps extends ScenarioSteps {
     /**
      * Получает письмо со ссылкой на завершение регистрации
      *
-     * @param gmailBox - адрес почтового ящика на gmail
+     * @param emailBox - адрес почтового ящика на gmail
      * @throws MessagingException
      * @throws IOException
      */
     @Step("Получает письмо на {0} со ссылкой на завершение регистрации")
-    public void waitsForEmailWithConfirmationLink(String gmailBox) throws IOException, MessagingException {
+    public void waitsForEmailWithConfirmationLink(String emailBox) throws IOException, MessagingException {
         waitABit(5000);
         // Устанавливаем протокол
         props = new Properties();
-        props.setProperty(PROTOCOL, IMAPS);
+        props.setProperty(PROTOCOL_PROP, PROTOCOL_TYPE);
         // Получаем сессию
         session = Session.getInstance(props, null);
         // Получаем место в сессии
         store = session.getStore();
         // Коннектимся к ящику
-        store.connect(GMAIL, gmailBox, PASSWORD);
+        store.connect(IMAP, emailBox, PASSWORD);
         // В ящике ищмем папку "Входящие"
         folder = store.getFolder(INBOX);
         // Открываем папку в режиме чтения
@@ -124,9 +135,9 @@ public class EmailUserSteps extends ScenarioSteps {
 //        String fullText = bodyPart.getContent().toString();
         String fullText = valueOf(message.getContent());
         // И колдуем: делим тело письма на 2 части (до ссылки и после)
-        String[] array = fullText.split("http://svp-www-lk.svp.test/\\S+"); //http://svp-www-lk.svp.test/\S+  </div><p>
+        String[] array = fullText.split("http://lk.12tons.ru/\\S+"); //http://svp-www-lk.svp.test/\S+  </div><p>
         // Что бы потом удалить их из общего текста и оставить нужную нам урлу.
-        String url = fullText.replace(valueOf(array[0]), "").replace(valueOf("</div><p>С" + array[1]), "");
+        String url = fullText.replace(valueOf(array[0]), "").replace(valueOf("</div><p>П" + array[1]), "");
         // Которую и запоминаем
         getCurrentSession().put("confirmationLink", url);
     }
@@ -134,17 +145,17 @@ public class EmailUserSteps extends ScenarioSteps {
     /**
      * Удаляет все письма от системы Платон
      *
-     * @param gmailBox - адрес почтового ящика
+     * @param emailBox - адрес почтового ящика
      * @throws MessagingException
      */
     @Step("Удаляет все письма в {0} от системы Платон")
-    public void deletesAllMessagesFromPlaton(String gmailBox) throws MessagingException {
+    public void deletesAllMessagesFromPlaton(String emailBox) throws MessagingException {
         // Все по старой схеме
         props = new Properties();
-        props.setProperty(PROTOCOL, IMAPS);
+        props.setProperty(PROTOCOL_PROP, PROTOCOL_TYPE);
         session = Session.getInstance(props, null);
         store = session.getStore();
-        store.connect(GMAIL, gmailBox, PASSWORD);
+        store.connect(IMAP, emailBox, PASSWORD);
         folder = store.getFolder(INBOX);
         // Единственное, что папку входящих необходимо открыть в режиме редактирования
         if (folder.isOpen()) folder.close(true);
@@ -170,17 +181,17 @@ public class EmailUserSteps extends ScenarioSteps {
     }
 
     @Step("Получает письмо со ссылкой на личный кабинет, логином и паролем к нему")
-    public void waitsForEmailWithAccessLink(String gmailBox) throws MessagingException, IOException {
+    public void waitsForEmailWithAccessLink(String emailBox) throws MessagingException, IOException {
         waitABit(5000);
         // Устанавливаем протокол
         props = new Properties();
-        props.setProperty(PROTOCOL, IMAPS);
+        props.setProperty(PROTOCOL_PROP, PROTOCOL_TYPE);
         // Получаем сессию
         session = Session.getInstance(props, null);
         // Получаем место в сессии
         store = session.getStore();
         // Коннектимся к ящику
-        store.connect(GMAIL, gmailBox, PASSWORD);
+        store.connect(IMAP, emailBox, PASSWORD);
         // В ящике ищмем папку "Входящие"
         folder = store.getFolder(INBOX);
         // Открываем папку в режиме чтения
@@ -210,13 +221,13 @@ public class EmailUserSteps extends ScenarioSteps {
     }
 
     @Step("Удаляет все письма в {0} от системы СВП 12")
-    public void deletesAllMessagesFromSVP12(String gmailBox) throws MessagingException {
+    public void deletesAllMessagesFromSVP12(String emailBox) throws MessagingException {
         // Все по старой схеме
         props = new Properties();
-        props.setProperty(PROTOCOL, IMAPS);
+        props.setProperty(PROTOCOL_PROP, PROTOCOL_TYPE);
         session = Session.getInstance(props, null);
         store = session.getStore();
-        store.connect(GMAIL, gmailBox, PASSWORD);
+        store.connect(IMAP, emailBox, PASSWORD);
         folder = store.getFolder(INBOX);
         // Единственное, что папку входящих необходимо открыть в режиме редактирования
         if (folder.isOpen()) folder.close(true);

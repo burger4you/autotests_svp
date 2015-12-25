@@ -1,7 +1,7 @@
 Просмотр информации о ВТС в АРМ ЦИПП
 Meta:
 @arm cpp
-@tag component: регистрация
+@tag component: registration
 
 Описание:
 Чтобы уточнить данные о ВТС

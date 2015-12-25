@@ -1,7 +1,7 @@
 Просмотр групп ТС в АРМ ЦИПП
 Meta:
 @arm cpp
-@component view group
+@tag component: vehicles
 
 Описание:
 Чтобы уточнить данные о группе ТС

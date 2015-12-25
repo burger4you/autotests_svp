@@ -1,7 +1,7 @@
 Отмена маршрутных карт в АРМ Колл Центра
 Meta:
 @arm call center
-@component route maps
+@tag component: route maps
 @ignore
 
 

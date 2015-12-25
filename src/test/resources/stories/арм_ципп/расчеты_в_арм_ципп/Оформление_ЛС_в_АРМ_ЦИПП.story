@@ -1,7 +1,7 @@
 Оформление ЛС в АРМ ЦИПП
 Meta:
 @arm cpp
-@tag component: расчеты
+@tag component: payments
 
 Описание:
 Чтобы добавить ЛС ВТС

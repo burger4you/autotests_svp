@@ -1,7 +1,7 @@
 Создание группы ТС в АРМ ЦИПП
 Meta:
 @arm cpp
-@component create group
+@tag component: vehicles
 
 Описание:
 Чтобы создать группу ТС в систему ПО СВП

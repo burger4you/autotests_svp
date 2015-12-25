@@ -1,7 +1,7 @@
 Информация о системе в АРМ ТСО
 Meta:
 @arm tso
-@tag component: сведения о системе
+@tag component: system information
 
 Описание:
 Чтобы получить справку по СВП

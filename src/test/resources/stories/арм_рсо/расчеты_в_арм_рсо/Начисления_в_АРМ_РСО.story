@@ -1,7 +1,7 @@
 Возврат ДС на ЛС в АРМ РСО
 Meta:
 @arm rso
-@component refunds
+@tag component: payments
 
 Описание:
 Чтобы  в АРМ РСО

@@ -10,7 +10,7 @@ import java.util.List;
 import static net.thucydides.core.pages.components.HtmlTable.filterRows;
 
 /**
- * Страница создания новой группы ТС в Личном Кабинете
+ * Страница создания новой группы ТС в АРМ ЛК
  */
 @At("#HOST/client_accounts/.*/vehicle_groups/new")
 public class LKNewVehiclesGroupPage extends LKSelectizePageObject {

@@ -3,6 +3,7 @@ package ru.progresspoint.svp12.cpp.pages;
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.At;
+import org.openqa.selenium.WebElement;
 
 import static java.lang.String.format;
 
@@ -56,7 +57,7 @@ public class CPPSelectActionDialog extends CPPSelectizePageObject {
     }
 
     public void clickToSearchedClient(String query) {
-        waitFor($(format(".//*[@id='start-work-modal']//*[text()='%s']", query)));
+        waitFor((WebElementFacade) $(format(".//*[@id='start-work-modal']//*[text()='%s']", query)));
         $(format(".//*[@id='start-work-modal']//*[text()='%s']", query)).click();
     }
 

@@ -2,7 +2,7 @@
 
 Meta:
 @arm tso
-@tag component: расчеты
+@tag component: payments
 
 Описание:
 Чтобы самостоятельно просматривать состояние ЛС

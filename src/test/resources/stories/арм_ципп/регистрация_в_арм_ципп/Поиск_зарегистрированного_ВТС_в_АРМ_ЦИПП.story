@@ -1,7 +1,7 @@
 Поиск зарегистрированного ВТС в АРМ ЦИПП
 Meta:
 @arm cpp
-@tag component: регистрация
+@tag component: registration
 
 Описание:
 Чтобы начать работу с конкретным ВТС

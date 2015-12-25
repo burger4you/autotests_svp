@@ -1,7 +1,7 @@
 Закрытие ЛС в АРМ ЦИПП
 Meta:
 @arm cpp
-@tag component: расчеты
+@tag component: payments
 
 Описание:
 Чтобы удалить ЛС ВТС

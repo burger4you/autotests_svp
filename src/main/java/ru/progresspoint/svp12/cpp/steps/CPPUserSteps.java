@@ -87,7 +87,7 @@ public class CPPUserSteps extends RandomGenerators {
         clientRegistrationPage.enterClientName(getRandomCyrillicProperString(5));
         clientRegistrationPage.enterClientPatronymic(getRandomCyrillicProperString(10));
         clientRegistrationPage.enterClientPhone(getRandomNumber(11));
-        getCurrentSession().put("login", clientEmail.replace("@gmail.com", "+" + getRandomNumber(6) + "@gmail.com"));
+        getCurrentSession().put("login", clientEmail.concat("+fl_" + getRandomNumber(6) + "@svp-mail.svp.test"));
         clientRegistrationPage.enterClientEmail((String) getCurrentSession().get("login"));
         clientRegistrationPage.selectClientRole("Главный менеджер");
     }

@@ -19,7 +19,7 @@ import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
 
 /**
- * Страница Платежи в Личном Кабинете
+ * Страница Платежи в АРМ ЛК
  */
 @At("#HOST/client_accounts/.*")
 public class LKPaymentsPage extends LKSelectizePageObject {

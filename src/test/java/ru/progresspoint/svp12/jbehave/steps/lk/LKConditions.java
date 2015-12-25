@@ -26,7 +26,7 @@ public class LKConditions {
     @Steps
     LKUserSteps user;
 
-    @Then("открывается страница $page в ЛК")
+    @Then("открывается страница $page в АРМ ЛК")
     public void pageShouldBeDisplayed(String page) {
         navigation.isOnLKPage(page);
     }
