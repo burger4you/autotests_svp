@@ -45,17 +45,16 @@ public class CPPConditions {
 
     @Then("система отправит на $email ссылку с доступом к ЛК")
     public void systemSentLinkToLKOn(String emailAddress) throws IOException, MessagingException {
-        email.waitsForEmailWithConfirmationLink(emailAddress);
-        email.clicksToConfirmationLink();
-        user.entersPassword("!QAZ2wsx");
-        user.clicksToConfirmButton();
-        navigation.isOnLKPage("Транспортные средства");
+        email.waitsForEmailWithSetLKPasswordLink(emailAddress);
+//        email.clicksToLinkFromEmail();
+//        user.entersPassword("!QAZ2wsx");
+//        user.clicksToConfirmButton();
+//        navigation.isOnLKPage("Транспортные средства");
     }
 
     @Then("система отправит на $emailAddress уведомление $notification")
     public void systemSentNotificationOn(String emailAddress, String notification) throws IOException, MessagingException {
         email.waitsForEmailWithNotification(emailAddress, notification);
-        email.deletesAllMessagesFromSVP12(emailAddress);
     }
 
     @Then("система отобразит найденные по запросу $query ВТС")

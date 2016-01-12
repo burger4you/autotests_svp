@@ -88,7 +88,7 @@ public class LKConditions {
     @Then("система предоставит пользователю доступ к личному кабинету ($userEmail)")
     public void shouldSendEmailWithLoginLink(String userEmail) throws IOException, MessagingException {
         email.waitsForEmailWithConfirmationLink(userEmail);
-        email.clicksToConfirmationLink();
+        email.clicksToLinkFromEmail();
         user.entersPassword("!QAZ2wsx");
         user.clicksToConfirmButton();
         navigation.isOnLKPage("Транспортные средства");

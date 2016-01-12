@@ -36,21 +36,28 @@ public class CPPUserActions {
         operator.clicksToRegistrationButton();
         switch (clientType) {
             case "Индивидуальный предприниматель":
-                operator.entersIPData(clientEmail);
+                operator.fillsIPPersonalData(clientEmail);
+                operator.fillsIPRegistrationAddress("Москва", "", "", "", "Флотская");
+                operator.fillsIPLocationAddress("Совпадает с адресом регистрации");
                 break;
             case "Юридическое лицо":
-                operator.entersULData(clientEmail);
+                operator.fillsOrganizationData(clientEmail);
+                operator.fillsOrganizationRegistrationAddress("Санкт-Петербург", "", "", "", "Иркутская");
+                operator.fillsOrganizationLocationAddress("Совпадает с адресом регистрации");
+                operator.fillsDirectorData(clientEmail);
                 break;
             case "Физическое лицо":
-                operator.fillsClientPersonalData(clientEmail, "Паспорт");
+                operator.fillsClientPersonalData(clientEmail);
                 operator.fillsClientRegistrationAddress("Санкт-Петербург", "", "", "", "Иркутская");
                 operator.fillsClientLocationAddress("Совпадает с адресом регистрации");
                 break;
         }
-//        operator.clicksToTextButton("Добавить лицевой счет");
-//        operator.entersAccountData();
-//        operator.entersClientBankData();
+        operator.clicksToTextButton("Добавить лицевой счет");
+        operator.entersAccountData();
+        operator.entersClientBankData();
         operator.clicksToLink("Завершить регистрацию");
+
+
 //        operator.clicksToTextButton("Управление документами ВТС");
 //        operator.uploadsClientDocumentsCopies();
 //        operator.clicksToTextButton("Подтвердить");
@@ -63,37 +70,36 @@ public class CPPUserActions {
 //        operator.clicksToTextButton("Завершить");
     }
 
-    @When("оператор зарегистрирует ВТС нерезидента РФ как $clientType ($clientEmail)")
-    public void operatorRegistersUserData(String clientType, String clientEmail) throws MessagingException {
+    @When("оператор зарегистрирует ВТС из $clientCountry как $clientType ($clientEmail)")
+    public void operatorRegistersUserData(String clientCountry, String clientType, String clientEmail) throws MessagingException {
         email.deletesAllMessagesFromPlaton(clientEmail);
-        operator.selectsClientCountry("Украина");
+        operator.selectsClientCountry(clientCountry);
         operator.selectsClientType(clientType);
         operator.clicksToRegistrationButton();
         switch (clientType) {
-            case "Индивидуальный предприниматель":
-                operator.entersIPNonresidentData(clientEmail);
-                break;
             case "Юридическое лицо":
-                operator.entersULNonresidentData(clientEmail);
+                operator.fillsNonresidentOrganizationData(clientEmail);
+                operator.fillsNonresidentOrganizationAddress();
+                operator.fillsNonresidentDirectorData(clientEmail);
                 break;
             case "Физическое лицо":
-                operator.fillsClientPersonalData(clientEmail, "Паспорт иностранного гражданина");
-                operator.fillsClientNonresidentAddress();
+                operator.fillsNonResidentPersonalData(clientEmail);
+                operator.fillsNonresidentClientAddress();
                 break;
         }
-//        operator.clicksToTextButton("Добавить лицевой счет");
-//        operator.entersAccountData();
-//        operator.entersClientBankData();
+        operator.clicksToTextButton("Добавить лицевой счет");
+        operator.entersAccountData();
+        operator.entersNonresidentClientBankData();
         operator.clicksToLink("Завершить регистрацию");
 //        operator.uploadsClientDocumentsCopies();
 //        operator.clicksToTextButton("Подтвердить");
-        operator.clicksToTextButton("Регистрация ТС");
-        operator.entersVehicleData();
-        operator.clicksToTextButton("Зарегистрировать");
+//        operator.clicksToTextButton("Регистрация ТС");
+//        operator.entersVehicleData();
+//        operator.clicksToTextButton("Зарегистрировать");
 //        operator.uploadsVehicleDocumentsCopies();
 //        operator.clicksToConfirmButton();
-        operator.clicksToConfirmVehicleRegistrationDialogButton();
-        operator.clicksToTextButton("Завершить");
+//        operator.clicksToConfirmVehicleRegistrationDialogButton();
+//        operator.clicksToTextButton("Завершить");
     }
 
     @When("оператор проведет верификацию данных ВТС")
