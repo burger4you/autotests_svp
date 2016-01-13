@@ -1,4 +1,4 @@
-Информация о системе в АРМ ТСО
+Просмотр справочной информации в АРМ ТСО
 Meta:
 @arm tso
 @tag component: system information
