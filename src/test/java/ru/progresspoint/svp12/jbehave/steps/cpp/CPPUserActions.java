@@ -123,6 +123,11 @@ public class CPPUserActions {
         navigation.opensCPPPage(tab);
     }
 
+    @When("оператор откроет страницу $page в АРМ ЦИПП")
+    public void operatorOpensPageOnLeftMenu(String page) {
+        operator.clicksToTextButton(page);
+    }
+
     @When("оператор предоставит информацию с этой страницы владельцу ТС")
     public void operatorAcceptsInfo() {
         operator.clicksToLink("Информация предоставлена");

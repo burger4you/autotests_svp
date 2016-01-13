@@ -7,6 +7,6 @@ import net.thucydides.core.annotations.At;
  * Страница Информация о МК ВТС АРМа ЦИПП
  */
 @At("#HOST/route_cards")
-public class CPPRoutMapsInfoPage extends PageObject {
+public class CPPRouteMapsInfoPage extends PageObject {
 
 }
