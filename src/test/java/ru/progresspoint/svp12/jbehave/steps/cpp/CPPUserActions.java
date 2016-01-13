@@ -112,13 +112,13 @@ public class CPPUserActions {
         operator.conductVehicleVerificationRequest();
     }
 
-    @When("оператор введет в поле для поиска ВТС $query")
-    public void operatorSearchClientBy(String query) {
-        operator.entersClientForQuery(query);
+    @When("оператор выберет признак $searchBy и введет в поле для поиска ВТС $query")
+    public void operatorSearchClientBy(String searchBy, String query) {
+        operator.selectsByAndEntersQueryForSearch(searchBy, query);
         operator.clicksToTextButton("Искать");
     }
 
-    @When("оператор откроет вкладку $tab в АРМе ЦИПП")
+    @When("оператор откроет вкладку $tab в АРМ ЦИПП")
     public void operatorOpensTabOnMainMenu(String tab) {
         navigation.opensCPPPage(tab);
     }

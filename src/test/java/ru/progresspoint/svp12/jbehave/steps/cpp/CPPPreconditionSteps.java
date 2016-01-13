@@ -26,7 +26,7 @@ public class CPPPreconditionSteps {
     @Given("в ЦИПП обратился зарегистрированный ВТС $owner")
     public void operatorWorksWithOwner(String owner) {
         navigation.opensCPPPage("Выбора действия");
-        operator.entersClientForQuery(owner);
+        operator.selectsByAndEntersQueryForSearch("Наименование/ФИО", owner);
         operator.clicksToTextButton("Искать");
         operator.selectsClientByQuery(owner);
     }

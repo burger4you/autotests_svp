@@ -324,9 +324,10 @@ public class CPPUserSteps extends RandomGenerators {
     public void conductVehicleVerificationRequest() {
     }
 
-    @Step("Вводит в поле поиска ВТС {0}")
-    public void entersClientForQuery(String query) {
+    @Step("Выбирает признак {0} для поиска ВТС и вводит в поле {1}")
+    public void selectsByAndEntersQueryForSearch(String searchBy, String query) {
         selectActionDialog.clickToSearchClientButton();
+        selectActionDialog.selectSearchClientBy(searchBy);
         selectActionDialog.enterSearchClientQuery(query);
     }
 

@@ -15,7 +15,7 @@ import static net.thucydides.core.pages.components.HtmlTable.rowsFrom;
  */
 public class CPPAppealHistoryPopUp extends PageObject {
 
-    @FindBy(xpath = ".//*[@id='ShowHistoryModal']//table[@class='standart']")
+    @FindBy(xpath = ".//*[@id='ShowHistoryModal']//table[@class='standart NoJStable']")
     WebElementFacade appealHistoryTable;
 
     @FindBy(xpath = ".//*[@id='ShowHistoryModal']//i")

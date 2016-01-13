@@ -57,9 +57,9 @@ public class CPPConditions {
         email.waitsForEmailWithNotification(emailAddress, notification);
     }
 
-    @Then("система отобразит найденные по запросу $query ВТС")
-    public void searchedClientsShouldBeDisplayed(String query) {
-        operator.looksUpClientByQuery(query);
+    @Then("система отобразит найденный по запросу ВТС $client")
+    public void searchedClientsShouldBeDisplayed(String client) {
+        operator.looksUpClientByQuery(client);
     }
 
     @Then("система сохранит событие $theme - $details - $status в истории текущего обращения")
