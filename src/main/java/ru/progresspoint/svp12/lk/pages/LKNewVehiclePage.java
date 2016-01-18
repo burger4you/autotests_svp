@@ -5,7 +5,7 @@ import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.At;
 
 /**
- * Страница регистрации нового ТС в Личном Кабинете
+ * Страница регистрации нового ТС в АРМ ЛК
  */
 @At("#HOST/client_accounts/.*/vehicle/new")
 public class LKNewVehiclePage extends LKSelectizePageObject {

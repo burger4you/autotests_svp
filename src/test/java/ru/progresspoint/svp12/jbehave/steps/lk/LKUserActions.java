@@ -5,7 +5,7 @@ import org.jbehave.core.annotations.When;
 import ru.progresspoint.svp12.lk.steps.LKUserSteps;
 
 /**
- * Действия пользователя в Личном кабинете
+ * Действия пользователя в АРМ ЛК
  */
 public class LKUserActions {
 
@@ -41,13 +41,13 @@ public class LKUserActions {
         user.clicksToConfirmButton();
     }
 
-    @When("владелец ТС введет логин $login и пароль $password соответствующей роли для авторизации в ЛК")
+    @When("владелец ТС введет логин $login и пароль $password соответствующей роли для авторизации в АРМ ЛК")
     public void userEntersLoginAndPassword(String login, String password) {
         user.entersLoginAndPassword(login, password);
         user.clicksToConfirmButton();
     }
 
-//    @Composite("владелец ТС введет логин и пароль для авторизации в ЛК неверно 5 раз подряд")
+//    @Composite("владелец ТС введет логин и пароль для авторизации в АРМ ЛК неверно 5 раз подряд")
 
     @When("он зарегистрирует новое ТС")
     public void userRegistersNewVehicle() {

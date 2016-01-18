@@ -3,6 +3,7 @@ package ru.progresspoint.svp12.cpp.pages;
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.At;
+import org.openqa.selenium.WebElement;
 
 /**
  * Страница Регистрации ВТС - юридическое лицо
@@ -12,12 +13,16 @@ public class CPPOrganizationRegistrationPage extends CPPSelectizePageObject {
 
     //ДАННЫЕ ЮРИДИЧЕСКОГО ЛИЦА
     private static final String organizationOPFField = "client_okopf_id";
+    private static final String organizationLanguageField = "client_language_id";
 
     @FindBy(id = "client_ogrn")
     WebElementFacade organizationOGRNField;
 
     @FindBy(id = "client_inn")
     WebElementFacade organizationINNField;
+
+    @FindBy(id = "client_kpp")
+    WebElementFacade organizationKPPField;
 
     @FindBy(id = "client_name")
     WebElementFacade organizationNameField;
@@ -31,6 +36,9 @@ public class CPPOrganizationRegistrationPage extends CPPSelectizePageObject {
     @FindBy(id = "client_main_email_attributes_name")
     WebElementFacade organizationMainEmailField;
 
+    @FindBy(id = "client_country_reg_num")
+    WebElementFacade organizationRegistrationNumberField;
+
     public void selectOrganizationOPF(String organizationOPF) {
         selectForSelectizePlugin(organizationOPFField, organizationOPF);
     }
@@ -41,6 +49,10 @@ public class CPPOrganizationRegistrationPage extends CPPSelectizePageObject {
 
     public void enterOrganizationINN(String organizationINN) {
         enter(organizationINN).into(organizationINNField);
+    }
+
+    public void enterOrganizationKPP(String organizationKPP) {
+        enter(organizationKPP).into(organizationKPPField);
     }
 
     public void enterOrganizationName(String organizationName) {
@@ -59,113 +71,19 @@ public class CPPOrganizationRegistrationPage extends CPPSelectizePageObject {
         enter(organizationEmail).into(organizationMainEmailField);
     }
 
-    //ЛИЧНЫЕ ДАННЫЕ РУКОВОДИТЕЛЯ
-    @FindBy(id = "client_ceo_persons_attributes_0_surname")
-    WebElementFacade directorSurnameField;
-
-    @FindBy(id = "client_ceo_persons_attributes_0_name")
-    WebElementFacade directorNameField;
-
-    @FindBy(id = "client_ceo_persons_attributes_0_patronymic")
-    WebElementFacade directorPatronymicField;
-
-    private static final String directorPersonalDocumentTypeField = "client_ceo_persons_attributes_0_certify_doc_attributes_doc_type_id_or_name";
-
-    @FindBy(id = "client_ceo_persons_attributes_0_certify_doc_attributes_passport_ser_and_num")
-    WebElementFacade directorPersonalDocumentNumberField;
-
-    @FindBy(id = "client_ceo_persons_attributes_0_certify_doc_attributes_issue_date")
-    WebElementFacade directorPersonalDocumentDateField;
-
-    @FindBy(id = "client_ceo_persons_attributes_0_certify_doc_attributes_issued")
-    WebElementFacade directorPersonalDocumentByField;
-
-    private static final String directorDocumentTypeField = "client_ceo_persons_attributes_0_authority_doc_attributes_doc_type_id";
-
-    @FindBy(id = "client_ceo_persons_attributes_0_authority_doc_attributes_number")
-    WebElementFacade directorDocumentNumberField;
-
-    @FindBy(id = "client_ceo_persons_attributes_0_authority_doc_attributes_start_date")
-    WebElementFacade directorDocumentDateField;
-
-    @FindBy(id = "client_ceo_persons_attributes_0_authority_doc_attributes_end_date")
-    WebElementFacade directorDocumentValidityField;
-
-    @FindBy(id = "client_ceo_persons_attributes_0_main_phone_attributes_name")
-    WebElementFacade directorPhoneField;
-
-    @FindBy(id = "client_ceo_persons_attributes_0_main_email_attributes_name")
-    WebElementFacade directorEmailField;
-
-    private static final String directorPositionField = "client_ceo_persons_attributes_0_person_job_id";
-
-    private static final String directorRoleField = "client_ceo_persons_attributes_0_contact_role";
-
-    public void enterDirectorSurname(String directorSurname) {
-        enter(directorSurname).into(directorSurnameField);
+    public void selectOrganizationLanguage(String organizationLanguage) {
+        selectForSelectizePlugin(organizationLanguageField, organizationLanguage);
     }
 
-    public void enterDirectorName(String directorName) {
-        enter(directorName).into(directorNameField);
-    }
-
-    public void enterDirectorPatronymic(String directorPatronymic) {
-        enter(directorPatronymic).into(directorPatronymicField);
-    }
-
-    public void selectDirectorPersonalDocumentType(String directorPersonalDocumentType) {
-        selectForSelectizePlugin(directorPersonalDocumentTypeField, directorPersonalDocumentType);
-    }
-
-    public void enterDirectorPersonalDocumentNumber(String directorPersonalDocumentNumber) {
-        enter(directorPersonalDocumentNumber).into(directorPersonalDocumentNumberField);
-    }
-
-    public void enterDirectorPersonalDocumentIssuedDate(String directorPersonalDocumentDate) {
-        enter(directorPersonalDocumentDate).into(directorPersonalDocumentDateField);
-    }
-
-    public void enterDirectorPersonalDocumentIssuedBy(String directorPersonalDocumentBy) {
-        enter(directorPersonalDocumentBy).into(directorPersonalDocumentByField);
-    }
-
-    public void selectDirectorDocumentType(String directorDocumentType) {
-        selectForSelectizePlugin(directorDocumentTypeField, directorDocumentType);
-    }
-
-    public void enterDirectorDocumentNumber(String directorDocumentNumber) {
-        enter(directorDocumentNumber).into(directorDocumentNumberField);
-    }
-
-    public void enterDirectorDocumentIssuedDate(String directorDocumentDate) {
-        enter(directorDocumentDate).into(directorDocumentDateField);
-    }
-
-    public void enterDirectorDocumentValidity(String directorDocumentValidity) {
-        enter(directorDocumentValidity).into(directorDocumentValidityField);
-    }
-
-    public void enterDirectorPhone(String directorPhone) {
-        enter(directorPhone).into(directorPhoneField);
-    }
-
-    public void enterDirectorLogin(String directorEmail) {
-        enter(directorEmail).into(directorEmailField);
-    }
-
-    public void selectDirectorPosition(String directorPosition) {
-        selectForSelectizePlugin(directorPositionField, directorPosition);
-    }
-
-    public void selectDirectorRole(String directorRole) {
-        selectForSelectizePlugin(directorRoleField, directorRole);
+    public void enterOrganizationRegistrationNumber(String organizationRegistrationNumber) {
+        enter(organizationRegistrationNumber).into(organizationRegistrationNumberField);
     }
 
     //АДРЕС РЕГИСТРАЦИИ
     private static final String clientAddressRegionField = "client_reg_address_attributes_region";
     private static final String clientAddressDistrictField = "client_reg_address_attributes_district";
     private static final String clientAddressCityField = "client_reg_address_attributes_city";
-    private static final String clientAddressSettlementField = "cclient_reg_address_attributes_settlement";
+    private static final String clientAddressSettlementField = "client_reg_address_attributes_settlement";
     private static final String clientAddressStreetField = "client_reg_address_attributes_street";
 
     @FindBy(id = "client_reg_address_attributes_house")
@@ -200,7 +118,13 @@ public class CPPOrganizationRegistrationPage extends CPPSelectizePageObject {
     }
 
     public void selectClientRegistrationAddressStreet(String clientAddressStreet) {
-        if (!clientAddressStreet.isEmpty())enterForSelectizePlugin(clientAddressStreetField, clientAddressStreet);
+        if (!clientAddressStreet.isEmpty()) {
+//            enterForSelectizePlugin(clientAddressStreetField, clientAddressStreet);
+            //TODO: Костыль, пока не сделают нормальное поле для улицы.
+            enter(clientAddressStreet).into(findBy(String.format(INPUT_XPATH, clientAddressStreetField)));
+            waitABit(3000);
+            clickOnInvisibleElement(findBy(String.format(INPUT_ITEM_XPATH, clientAddressStreetField)));
+        }
     }
 
     public void enterClientRegistrationAddressHouse(String clientAddressHouse) {
@@ -292,72 +216,84 @@ public class CPPOrganizationRegistrationPage extends CPPSelectizePageObject {
         enter(locationAddressIndex).into(locationAddressIndexField);
     }
 
-    //ПОЧТОВЫЙ АДРЕС
-    @FindBy(xpath = ".//*[@for='client_postal_address_attributes_same_as_reg']/div")
-    WebElementFacade postalAddressSameAsRegistrationCheckBox;
-
-    private static final String postalAddressRegionField = "client_postal_address_attributes_region";
-    private static final String postalAddressDistrictField = "client_postal_address_attributes_district";
-    private static final String postalAddressCityField = "client_postal_address_attributes_city";
-    private static final String postalAddressSettlementField = "client_postal_address_attributes_settlement";
-    private static final String postalAddressStreetField = "client_postal_address_attributes_street";
-
-    @FindBy(id = "client_postal_address_attributes_house")
-    WebElementFacade postalAddressHouseField;
-
-    @FindBy(id = "client_postal_address_attributes_housing")
-    WebElementFacade postalAddressHousingField;
-
-    @FindBy(id = "client_postal_address_attributes_building")
-    WebElementFacade postalAddressBuildingField;
-
-    @FindBy(id = "client_postal_address_attributes_room")
-    WebElementFacade postalAddressRoomField;
-
-    @FindBy(id = "client_postal_address_attributes_post_index")
-    WebElementFacade postalAddressIndexField;
-
-    public void clickToPostalAddressSameAsRegistrationCheckBox() {
-        postalAddressSameAsRegistrationCheckBox.click();
+    private void clickOnInvisibleElement(WebElement element) {
+        String script = "var object = arguments[0];"
+                + "var theEvent = document.createEvent(\"MouseEvent\");"
+                + "theEvent.initMouseEvent(\"click\", true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);"
+                + "object.dispatchEvent(theEvent);";
+        getJavascriptExecutorFacade().executeScript(script, element);
     }
 
-    public void selectClientPostalAddressRegion(String postalAddressRegion) {
-        if (!postalAddressRegion.isEmpty()) enterForSelectizePlugin(postalAddressRegionField, postalAddressRegion);
+    //ЛИЧНЫЕ ДАННЫЕ РУКОВОДИТЕЛЯ
+    private static final String directorDocumentTypeField = "client_ceo_persons_attributes_0_authority_doc_attributes_doc_type_id";
+    private static final String directorPositionField = "client_ceo_persons_attributes_0_job_name";
+    private static final String directorRoleField = "client_ceo_persons_attributes_0_contact_role";
+
+    @FindBy(id = "client_ceo_persons_attributes_0_surname")
+    WebElementFacade directorSurnameField;
+
+    @FindBy(id = "client_ceo_persons_attributes_0_name")
+    WebElementFacade directorNameField;
+
+    @FindBy(id = "client_ceo_persons_attributes_0_patronymic")
+    WebElementFacade directorPatronymicField;
+
+    @FindBy(id = "client_ceo_persons_attributes_0_authority_doc_attributes_number")
+    WebElementFacade directorDocumentNumberField;
+
+    @FindBy(id = "client_ceo_persons_attributes_0_authority_doc_attributes_start_date")
+    WebElementFacade directorDocumentDateField;
+
+    @FindBy(id = "client_ceo_persons_attributes_0_authority_doc_attributes_end_date")
+    WebElementFacade directorDocumentValidityField;
+
+    @FindBy(id = "client_ceo_persons_attributes_0_authority_doc_attributes_issue_date")
+    WebElementFacade directorDocumentIssuedDateField;
+
+    @FindBy(id = "client_ceo_persons_attributes_0_main_email_attributes_name")
+    WebElementFacade directorEmailField;
+
+    public void enterDirectorSurname(String directorSurname) {
+        enter(directorSurname).into(directorSurnameField);
     }
 
-    public void selectClientPostalAddressDistrict(String postalAddressDistrict) {
-        if (!postalAddressDistrict.isEmpty()) enterForSelectizePlugin(postalAddressDistrictField, postalAddressDistrict);
+    public void enterDirectorName(String directorName) {
+        enter(directorName).into(directorNameField);
     }
 
-    public void selectClientPostalAddressCity(String postalAddressCity) {
-        if (!postalAddressCity.isEmpty()) enterForSelectizePlugin(postalAddressCityField, postalAddressCity);
+    public void enterDirectorPatronymic(String directorPatronymic) {
+        enter(directorPatronymic).into(directorPatronymicField);
     }
 
-    public void selectClientPostalAddressSettlement(String postalAddressSettlement) {
-        if (!postalAddressSettlement.isEmpty()) enterForSelectizePlugin(postalAddressSettlementField, postalAddressSettlement);
+    public void selectDirectorDocumentType(String directorDocumentType) {
+        selectForSelectizePlugin(directorDocumentTypeField, directorDocumentType);
     }
 
-    public void selectClientPostalAddressStreet(String postalAddressStreet) {
-        if (!postalAddressStreet.isEmpty()) enterForSelectizePlugin(postalAddressStreetField, postalAddressStreet);
+    public void enterDirectorDocumentNumber(String directorDocumentNumber) {
+        enter(directorDocumentNumber).into(directorDocumentNumberField);
     }
 
-    public void enterClientPostalAddressHouse(String postalAddressHouse) {
-        enter(postalAddressHouse).into(postalAddressHouseField);
+    public void enterDirectorDocumentDate(String directorDocumentDate) {
+        enter(directorDocumentDate).into(directorDocumentDateField);
     }
 
-    public void enterClientPostalAddressHousing(String postalAddressHousing) {
-        enter(postalAddressHousing).into(postalAddressHousingField);
+    public void enterDirectorDocumentValidity(String directorDocumentValidity) {
+        enter(directorDocumentValidity).into(directorDocumentValidityField);
     }
 
-    public void enterClientPostalAddressBuilding(String postalAddressBuilding) {
-        enter(postalAddressBuilding).into(postalAddressBuildingField);
+    public void enterDirectorDocumentIssuedDate(String directorDocumentIssuedDate) {
+        enter(directorDocumentIssuedDate).into(directorDocumentIssuedDateField);
     }
 
-    public void enterClientPostalAddressRoom(String postalAddressRoom) {
-        enter(postalAddressRoom).into(postalAddressRoomField);
+    public void enterDirectorEmail(String directorEmail) {
+        enter(directorEmail).into(directorEmailField);
     }
 
-    public void enterClientPostalAddressIndex(String postalAddressIndex) {
-        enter(postalAddressIndex).into(postalAddressIndexField);
+    public void selectDirectorPosition(String directorPosition) {
+        selectForSelectizePlugin(directorPositionField, directorPosition);
+    }
+
+    public void selectDirectorRole(String directorRole) {
+        selectForSelectizePlugin(directorRoleField, directorRole);
     }
 }

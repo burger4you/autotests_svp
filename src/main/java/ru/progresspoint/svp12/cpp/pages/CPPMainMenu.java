@@ -17,13 +17,13 @@ public class CPPMainMenu extends PageObject {
     @FindBy(xpath = ".//*[@href='/clients/new']")
     WebElementFacade registrationTab;
 
-    @FindBy(xpath = ".//*[@href='/vehicle_devices/given_show']")
+    @FindBy(xpath = ".//*[@href='/vehicle_devices/given_show?show=1']")
     WebElementFacade devicesTab;
 
     @FindBy(xpath = ".//*[@href='/payments/balance']")
     WebElementFacade paymentsTab;
 
-    @FindBy(xpath = ".//*[@href='/route_cards']")
+    @FindBy(xpath = ".//*[@href='/route_cards/new']")
     WebElementFacade routeMapsTab;
 
     @FindBy(xpath = ".//*[@href='/appeals']")

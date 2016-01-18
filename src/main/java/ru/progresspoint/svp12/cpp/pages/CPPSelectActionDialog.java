@@ -3,6 +3,7 @@ package ru.progresspoint.svp12.cpp.pages;
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.At;
+import org.openqa.selenium.WebElement;
 
 import static java.lang.String.format;
 
@@ -14,6 +15,7 @@ public class CPPSelectActionDialog extends CPPSelectizePageObject {
 
     private static final String clientCountryDropDown = "client-country-id-select";
     private static final String clientTypeDropDown = "client_type_id";
+    private static final String clientSearchByDropDown = "search-by-field";
 
     @FindBy(xpath = "//*[@id='start-work-modal']//li[1]/a")
     WebElementFacade registrationClientLink;
@@ -25,7 +27,7 @@ public class CPPSelectActionDialog extends CPPSelectizePageObject {
     WebElementFacade searchClientLink;
 
     @FindBy(xpath = ".//*[@id='global_client_search']/..//input")
-    WebElementFacade clientSearchField;
+    WebElementFacade clientSearchQueryField;
 
     public void selectClientCountry(String clientCountry) {
         selectForSelectizePlugin(clientCountryDropDown, clientCountry);
@@ -47,8 +49,12 @@ public class CPPSelectActionDialog extends CPPSelectizePageObject {
         searchClientLink.click();
     }
 
+    public void selectSearchClientBy(String searchBy) {
+        selectForSelectizePlugin(clientSearchByDropDown, searchBy);
+    }
+
     public void enterSearchClientQuery(String query) {
-        enter(query).into(clientSearchField);
+        enter(query).into(clientSearchQueryField);
     }
 
     public void shouldContainSearchedClient(String query) {
@@ -56,6 +62,7 @@ public class CPPSelectActionDialog extends CPPSelectizePageObject {
     }
 
     public void clickToSearchedClient(String query) {
+        waitFor((WebElementFacade) $(format(".//*[@id='start-work-modal']//*[text()='%s']", query)));
         $(format(".//*[@id='start-work-modal']//*[text()='%s']", query)).click();
     }
 
@@ -64,4 +71,6 @@ public class CPPSelectActionDialog extends CPPSelectizePageObject {
         waitABit(500);
         $(".//*[@id='sub_person_search']/..//div[@class='option'][1]").click();
     }
+
+
 }

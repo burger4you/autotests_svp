@@ -45,23 +45,21 @@ public class CPPConditions {
 
     @Then("система отправит на $email ссылку с доступом к ЛК")
     public void systemSentLinkToLKOn(String emailAddress) throws IOException, MessagingException {
-        email.waitsForEmailWithAccessLink(emailAddress);
-        navigation.opensLKPage("Авторизации");
-        user.entersLoginAndPassword((String) getCurrentSession().get("login"), (String) getCurrentSession().get("password"));
-        user.clicksToConfirmButton();
-        navigation.isOnLKPage("Главная");
-        email.deletesAllMessagesFromPlaton(emailAddress);
+        email.waitsForEmailWithSetLKPasswordLink(emailAddress);
+//        email.clicksToLinkFromEmail();
+//        user.entersPassword("!QAZ2wsx");
+//        user.clicksToConfirmButton();
+//        navigation.isOnLKPage("Транспортные средства");
     }
 
     @Then("система отправит на $emailAddress уведомление $notification")
     public void systemSentNotificationOn(String emailAddress, String notification) throws IOException, MessagingException {
         email.waitsForEmailWithNotification(emailAddress, notification);
-        email.deletesAllMessagesFromSVP12(emailAddress);
     }
 
-    @Then("система отобразит найденные по запросу $query ВТС")
-    public void searchedClientsShouldBeDisplayed(String query) {
-        operator.looksUpClientByQuery(query);
+    @Then("система отобразит найденный по запросу ВТС $client")
+    public void searchedClientsShouldBeDisplayed(String client) {
+        operator.looksUpClientByQuery(client);
     }
 
     @Then("система сохранит событие $theme - $details - $status в истории текущего обращения")

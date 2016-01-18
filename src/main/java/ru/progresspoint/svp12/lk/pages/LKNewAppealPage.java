@@ -6,7 +6,7 @@ import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.At;
 
 /**
- * Страница создания обращения в Личном Кабинете
+ * Страница создания обращения в АРМ ЛК
  */
 @At("#HOST/appeals/new")
 public class LKNewAppealPage extends PageObject {

@@ -1,4 +1,4 @@
-Авторизация оператора в АРМ РСО
+Авторизация в АРМ РСО
 Meta:
 @arm rso
 @tag component: authorization

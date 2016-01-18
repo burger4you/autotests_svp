@@ -74,7 +74,8 @@ public class NavigationSteps extends ScenarioSteps {
     CPPSelectActionDialog cppSelectActionDialog;
     CPPAccountsBalancePage cppAccountsBalancePage;
     CPPDevicesInfoPage cppDevicesInfoPage;
-    CPPRoutMapsInfoPage cppRoutMapsInfoPage;
+    CPPRouteMapsInfoPage cppRouteMapsInfoPage;
+    CPPNewRouteMapPage cppNewRouteMapPage;
     CPPWikiSearchPage cppWikiSearchPage;
     CPPRegistrationInfoPage cppRegistrationInfoPage;
 
@@ -531,7 +532,10 @@ public class NavigationSteps extends ScenarioSteps {
                 cppDevicesInfoPage.shouldBeDisplayed();
                 break;
             case "Информация о МК ВТС":
-                cppRoutMapsInfoPage.shouldBeDisplayed();
+                cppRouteMapsInfoPage.shouldBeDisplayed();
+                break;
+            case "Оформление МК":
+                cppNewRouteMapPage.shouldBeDisplayed();
                 break;
             case "Поиск по базе знаний":
                 cppWikiSearchPage.shouldBeDisplayed();

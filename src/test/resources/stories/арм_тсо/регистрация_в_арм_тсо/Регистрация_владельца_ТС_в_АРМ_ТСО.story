@@ -1,7 +1,7 @@
 Регистрация владельца ТС в АРМ ТСО
 Meta:
 @arm tso
-@tag component: регистрация
+@tag component: registration
 
 Описание:
 Чтобы начать работу в системе

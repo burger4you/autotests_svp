@@ -3,6 +3,7 @@ package ru.progresspoint.svp12.cpp.pages;
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.At;
+import org.openqa.selenium.WebElement;
 
 /**
  * Страница Регистрации ВТС - индивидуальный предприниматель
@@ -11,11 +12,18 @@ import net.thucydides.core.annotations.At;
 public class CPPIPRegistrationPage extends CPPSelectizePageObject {
 
     //ДАННЫЕ ИНДИВИДУАЛЬНОГО ПРЕДПРИНИМАТЕЛЯ
+    private static final String ipDocumentTypeField = "client_ip_persons_attributes_0_certify_doc_attributes_doc_type_id_or_name";
+    private static final String ipRoleField = "client_ip_persons_attributes_0_contact_role";
+    private static final String ipLanguageField = "client_language_id";
+
     @FindBy(id = "client_ogrn")
     WebElementFacade ipOGRNField;
 
     @FindBy(id = "client_inn")
     WebElementFacade ipINNField;
+
+    @FindBy(id = "client_kpp")
+    WebElementFacade ipKPPField;
 
     @FindBy(id = "client_ip_persons_attributes_0_surname")
     WebElementFacade ipSurnameField;
@@ -29,8 +37,6 @@ public class CPPIPRegistrationPage extends CPPSelectizePageObject {
     @FindBy(id = "client_short_name")
     WebElementFacade ipShortNameField;
 
-    private static final String ipDocumentTypeField = "client_ip_persons_attributes_0_certify_doc_attributes_doc_type_id_or_name";
-
     @FindBy(id = "client_ip_persons_attributes_0_certify_doc_attributes_passport_ser_and_num")
     WebElementFacade ipDocumentNumberField;
 
@@ -40,13 +46,11 @@ public class CPPIPRegistrationPage extends CPPSelectizePageObject {
     @FindBy(id = "client_ip_persons_attributes_0_certify_doc_attributes_issue_date")
     WebElementFacade ipDocumentIssuedDateField;
 
-    @FindBy(id = "client_ip_persons_attributes_0_main_phone_attributes_name")
-    WebElementFacade ipMainPhoneField;
+    @FindBy(id = "client_ip_persons_attributes_0_certify_doc_attributes_issue_code")
+    WebElementFacade ipDocumentIssuedCodeField;
 
     @FindBy(id = "client_ip_persons_attributes_0_main_email_attributes_name")
     WebElementFacade ipMainEmailField;
-
-    private static final String ipRoleField = "client_ip_persons_attributes_0_contact_role";
 
     public void enterIPOGRN(String ipOGRN) {
         enter(ipOGRN).into(ipOGRNField);
@@ -54,6 +58,10 @@ public class CPPIPRegistrationPage extends CPPSelectizePageObject {
 
     public void enterIPINN(String ipINN) {
         enter(ipINN).into(ipINNField);
+    }
+
+    public void enterIPKPP(String ipKPP) {
+        enter(ipKPP).into(ipKPPField);
     }
 
     public void enterIPSurname(String ipSurname) {
@@ -80,16 +88,16 @@ public class CPPIPRegistrationPage extends CPPSelectizePageObject {
         enter(ipDocumentNumber).into(ipDocumentNumberField);
     }
 
-    public void enterIPDocumentIssuedDate(String ipDocumentIssuedDate) {
-        enter(ipDocumentIssuedDate).into(ipDocumentIssuedDateField);
-    }
-
     public void enterIPDocumentIssuedBy(String ipDocumentIssuedBy) {
         enter(ipDocumentIssuedBy).into(ipDocumentIssuedByField);
     }
 
-    public void enterIPMainPhone(String ipMainPhone) {
-        enter(ipMainPhone).into(ipMainPhoneField);
+    public void enterIPDocumentIssuedDate(String ipDocumentIssuedDate) {
+        enter(ipDocumentIssuedDate).into(ipDocumentIssuedDateField);
+    }
+
+    public void enterIPDocumentIssuedCode(String ipDocumentIssuedCode) {
+        enter(ipDocumentIssuedCode).into(ipDocumentIssuedCodeField);
     }
 
     public void enterIPMainEmail(String ipMainEmail) {
@@ -99,12 +107,16 @@ public class CPPIPRegistrationPage extends CPPSelectizePageObject {
     public void selectIPRole(String ipRole) {
         selectForSelectizePlugin(ipRoleField, ipRole);
     }
+
+    public void selectIPLanguage(String ipLanguage) {
+        selectForSelectizePlugin(ipLanguageField, ipLanguage);
+    }
     
     //АДРЕС РЕГИСТРАЦИИ
     private static final String clientAddressRegionField = "client_ip_persons_attributes_0_reg_address_attributes_region";
     private static final String clientAddressDistrictField = "client_ip_persons_attributes_0_reg_address_attributes_district";
     private static final String clientAddressCityField = "client_ip_persons_attributes_0_reg_address_attributes_city";
-    private static final String clientAddressSettlementField = "cclient_ip_persons_attributes_0_reg_address_attributes_settlement";
+    private static final String clientAddressSettlementField = "client_ip_persons_attributes_0_reg_address_attributes_settlement";
     private static final String clientAddressStreetField = "client_ip_persons_attributes_0_reg_address_attributes_street";
 
     @FindBy(id = "client_ip_persons_attributes_0_reg_address_attributes_house")
@@ -139,7 +151,13 @@ public class CPPIPRegistrationPage extends CPPSelectizePageObject {
     }
 
     public void selectClientRegistrationAddressStreet(String clientAddressStreet) {
-        if (!clientAddressStreet.isEmpty())enterForSelectizePlugin(clientAddressStreetField, clientAddressStreet);
+        if (!clientAddressStreet.isEmpty()) {
+//            enterForSelectizePlugin(clientAddressStreetField, clientAddressStreet);
+            //TODO: Костыль, пока не сделают нормальное поле для улицы.
+            enter(clientAddressStreet).into(findBy(String.format(INPUT_XPATH, clientAddressStreetField)));
+            waitABit(3000);
+            clickOnInvisibleElement(findBy(String.format(INPUT_ITEM_XPATH, clientAddressStreetField)));
+        }
     }
 
     public void enterClientRegistrationAddressHouse(String clientAddressHouse) {
@@ -231,72 +249,11 @@ public class CPPIPRegistrationPage extends CPPSelectizePageObject {
         enter(locationAddressIndex).into(locationAddressIndexField);
     }
 
-    //ПОЧТОВЫЙ АДРЕС
-    @FindBy(xpath = ".//*[@for='client_ip_persons_attributes_0_postal_address_attributes_same_as_reg']/div")
-    WebElementFacade postalAddressSameAsRegistrationCheckBox;
-
-    private static final String postalAddressRegionField = "client_ip_persons_attributes_0_postal_address_attributes_region";
-    private static final String postalAddressDistrictField = "client_ip_persons_attributes_0_postal_address_attributes_district";
-    private static final String postalAddressCityField = "client_ip_persons_attributes_0_postal_address_attributes_city";
-    private static final String postalAddressSettlementField = "client_ip_persons_attributes_0_postal_address_attributes_settlement";
-    private static final String postalAddressStreetField = "client_ip_persons_attributes_0_postal_address_attributes_street";
-
-    @FindBy(id = "client_ip_persons_attributes_0_postal_address_attributes_house")
-    WebElementFacade postalAddressHouseField;
-
-    @FindBy(id = "client_ip_persons_attributes_0_postal_address_attributes_housing")
-    WebElementFacade postalAddressHousingField;
-
-    @FindBy(id = "client_ip_persons_attributes_0_postal_address_attributes_building")
-    WebElementFacade postalAddressBuildingField;
-
-    @FindBy(id = "client_ip_persons_attributes_0_postal_address_attributes_room")
-    WebElementFacade postalAddressRoomField;
-
-    @FindBy(id = "client_ip_persons_attributes_0_postal_address_attributes_post_index")
-    WebElementFacade postalAddressIndexField;
-
-    public void clickToPostalAddressSameAsRegistrationCheckBox() {
-        postalAddressSameAsRegistrationCheckBox.click();
-    }
-
-    public void selectClientPostalAddressRegion(String postalAddressRegion) {
-        if (!postalAddressRegion.isEmpty()) enterForSelectizePlugin(postalAddressRegionField, postalAddressRegion);
-    }
-
-    public void selectClientPostalAddressDistrict(String postalAddressDistrict) {
-        if (!postalAddressDistrict.isEmpty()) enterForSelectizePlugin(postalAddressDistrictField, postalAddressDistrict);
-    }
-
-    public void selectClientPostalAddressCity(String postalAddressCity) {
-        if (!postalAddressCity.isEmpty()) enterForSelectizePlugin(postalAddressCityField, postalAddressCity);
-    }
-
-    public void selectClientPostalAddressSettlement(String postalAddressSettlement) {
-        if (!postalAddressSettlement.isEmpty()) enterForSelectizePlugin(postalAddressSettlementField, postalAddressSettlement);
-    }
-
-    public void selectClientPostalAddressStreet(String postalAddressStreet) {
-        if (!postalAddressStreet.isEmpty()) enterForSelectizePlugin(postalAddressStreetField, postalAddressStreet);
-    }
-
-    public void enterClientPostalAddressHouse(String postalAddressHouse) {
-        enter(postalAddressHouse).into(postalAddressHouseField);
-    }
-
-    public void enterClientPostalAddressHousing(String postalAddressHousing) {
-        enter(postalAddressHousing).into(postalAddressHousingField);
-    }
-
-    public void enterClientPostalAddressBuilding(String postalAddressBuilding) {
-        enter(postalAddressBuilding).into(postalAddressBuildingField);
-    }
-
-    public void enterClientPostalAddressRoom(String postalAddressRoom) {
-        enter(postalAddressRoom).into(postalAddressRoomField);
-    }
-
-    public void enterClientPostalAddressIndex(String postalAddressIndex) {
-        enter(postalAddressIndex).into(postalAddressIndexField);
+    private void clickOnInvisibleElement(WebElement element) {
+        String script = "var object = arguments[0];"
+                + "var theEvent = document.createEvent(\"MouseEvent\");"
+                + "theEvent.initMouseEvent(\"click\", true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);"
+                + "object.dispatchEvent(theEvent);";
+        getJavascriptExecutorFacade().executeScript(script, element);
     }
 }

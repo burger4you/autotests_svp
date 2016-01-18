@@ -6,7 +6,7 @@ import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.At;
 
 /**
- * Страница открытого обращения в Личном Кабинете
+ * Страница открытого обращения в АРМ ЛК
  */
 @At("#HOST/appeals/.*")
 public class LKAppealDetailPage extends PageObject {

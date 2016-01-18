@@ -2,8 +2,6 @@ package ru.progresspoint.svp12.cpp.pages;
 
 import net.serenitybdd.core.pages.PageObject;
 
-import static java.util.concurrent.TimeUnit.SECONDS;
-
 /**
  * Класс расширяющий PageObject для работы с плагином selectize
  */
@@ -23,7 +21,7 @@ public class CPPSelectizePageObject extends PageObject {
 
     public void enterForSelectizePlugin(String inputId, String inputtingValue) {
         enter(inputtingValue).into(findBy(String.format(INPUT_XPATH, inputId)));
-        withTimeoutOf(20, SECONDS).waitFor(String.format(INPUT_ITEM_XPATH, inputId));
+        waitFor(String.format(INPUT_ITEM_XPATH, inputId));
         findBy(String.format(INPUT_ITEM_XPATH, inputId)).click();
     }
 }

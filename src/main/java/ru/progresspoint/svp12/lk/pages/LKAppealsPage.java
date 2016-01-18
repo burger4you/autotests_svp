@@ -14,7 +14,7 @@ import static net.thucydides.core.pages.components.HtmlTable.filterRows;
 import static net.thucydides.core.pages.components.HtmlTable.rowsFrom;
 
 /**
- * Страница обращений в Личном Кабинете
+ * Страница обращений в АРМ ЛК
  */
 @At("#HOST/appeals")
 public class LKAppealsPage extends PageObject {

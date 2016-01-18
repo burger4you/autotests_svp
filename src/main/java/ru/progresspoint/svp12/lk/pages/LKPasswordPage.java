@@ -6,7 +6,7 @@ import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.DefaultUrl;
 
 /**
- * Страница подтверждения регистрации в личном кабинете
+ * Страница подтверждения регистрации в АРМ ЛК
  */
 @DefaultUrl("http://lk-stage.progresspoint.ru/registration/confirm")
 public class LKPasswordPage extends PageObject {

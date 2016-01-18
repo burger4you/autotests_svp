@@ -15,7 +15,7 @@ import static net.thucydides.core.pages.components.HtmlTable.filterRows;
 import static net.thucydides.core.pages.components.HtmlTable.rowsFrom;
 
 /**
- * Страница Транспортные Средства - Список в личном кабинете
+ * Страница Транспортные Средства - Список в АРМ ЛК
  */
 @At("#HOST/accounts/.*/vehicles")
 public class LKVehiclesPage extends PageObject {

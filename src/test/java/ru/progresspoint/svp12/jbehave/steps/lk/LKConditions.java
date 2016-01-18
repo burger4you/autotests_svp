@@ -26,7 +26,7 @@ public class LKConditions {
     @Steps
     LKUserSteps user;
 
-    @Then("открывается страница $page в ЛК")
+    @Then("открывается страница $page в АРМ ЛК")
     public void pageShouldBeDisplayed(String page) {
         navigation.isOnLKPage(page);
     }
@@ -88,7 +88,7 @@ public class LKConditions {
     @Then("система предоставит пользователю доступ к личному кабинету ($userEmail)")
     public void shouldSendEmailWithLoginLink(String userEmail) throws IOException, MessagingException {
         email.waitsForEmailWithConfirmationLink(userEmail);
-        email.clicksToConfirmationLink();
+        email.clicksToLinkFromEmail();
         user.entersPassword("!QAZ2wsx");
         user.clicksToConfirmButton();
         navigation.isOnLKPage("Транспортные средства");
