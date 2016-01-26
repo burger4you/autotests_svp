@@ -2,7 +2,7 @@
 
 Meta:
 @arm lk
-@tag component: road maps
+@tag component: route maps
 
 Описание:
 Чтобы уточнить детали своей МК в системе ПО СВП

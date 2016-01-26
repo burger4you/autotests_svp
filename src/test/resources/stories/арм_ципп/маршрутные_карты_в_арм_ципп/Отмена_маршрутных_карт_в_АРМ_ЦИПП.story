@@ -1,7 +1,7 @@
 Отмена маршрутных карт в АРМ ЦИПП
 Meta:
 @arm cpp
-@tag component: road maps
+@tag component: route maps
 
 Описание:
 Чтобы вернуть ВТС денежные средства за ненужные МК

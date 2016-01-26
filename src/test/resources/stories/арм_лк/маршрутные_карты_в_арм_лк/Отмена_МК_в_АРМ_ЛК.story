@@ -2,7 +2,7 @@
 
 Meta:
 @arm lk
-@tag component: road maps
+@tag component: route maps
 
 Описание:
 Чтобы самостоятельно вернуть оплату за МК в системе ПО СВП

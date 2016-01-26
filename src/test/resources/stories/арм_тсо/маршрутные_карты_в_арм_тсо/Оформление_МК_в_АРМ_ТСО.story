@@ -1,7 +1,7 @@
 Оформление МК в АРМ ТСО
 Meta:
 @arm tso
-@tag component: road maps
+@tag component: route maps
 
 Описание:
 Чтобы купить МК в терминале самообслуживания
