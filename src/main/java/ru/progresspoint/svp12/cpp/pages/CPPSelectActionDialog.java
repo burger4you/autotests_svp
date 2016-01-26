@@ -67,8 +67,9 @@ public class CPPSelectActionDialog extends CPPSelectizePageObject {
     }
 
     public void selectContactPerson() {
+        waitFor($(".//*[@id='hidden_person_search']/div/div[1]"));
         $(".//*[@id='hidden_person_search']/div/div[1]").click();
-        waitABit(500);
+        waitFor($(".//*[@id='hidden_person_search']//div[@class='option'][1]"));
         $(".//*[@id='hidden_person_search']//div[@class='option'][1]").click();
     }
 
