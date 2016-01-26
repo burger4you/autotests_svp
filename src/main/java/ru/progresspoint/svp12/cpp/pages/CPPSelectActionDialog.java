@@ -62,14 +62,14 @@ public class CPPSelectActionDialog extends CPPSelectizePageObject {
     }
 
     public void clickToSearchedClient(String query) {
-        waitFor((WebElementFacade) $(format(".//*[@id='start-work-modal']//*[text()='%s']", query)));
-        $(format(".//*[@id='start-work-modal']//*[text()='%s']", query)).click();
+        waitFor($(format(".//*[text()='%s']/../div", query)));
+        $(format(".//*[text()='%s']/../div", query)).click();
     }
 
     public void selectContactPerson() {
-        $(".//*[@id='sub_person_search']/..//input").click();
+        $(".//*[@id='hidden_person_search']/div/div[1]").click();
         waitABit(500);
-        $(".//*[@id='sub_person_search']/..//div[@class='option'][1]").click();
+        $(".//*[@id='hidden_person_search']//div[@class='option'][1]").click();
     }
 
 
