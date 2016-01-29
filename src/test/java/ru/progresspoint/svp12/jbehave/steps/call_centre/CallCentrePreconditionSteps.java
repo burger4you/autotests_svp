@@ -1,7 +1,6 @@
 package ru.progresspoint.svp12.jbehave.steps.call_centre;
 
 import net.thucydides.core.annotations.Steps;
-import org.jbehave.core.annotations.Aliases;
 import org.jbehave.core.annotations.Given;
 import ru.progresspoint.svp12.NavigationSteps;
 

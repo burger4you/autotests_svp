@@ -431,11 +431,12 @@ public class LKIPRegistrationPage extends LKSelectizePageObject {
             String filename1,
             String filename2,
             String filename3,
-            String filename4,
-            String filename5,
-            String filename6,
-            String filename7,
-            String filename8) {
+            String filename4
+//            String filename5,
+//            String filename6,
+//            String filename7,
+//            String filename8
+    ) {
 
         // Меняем атрибут display у инпута, для возможности загружать файлы
         evaluateJavascript("document.getElementsByName('client[client_files][0][file]')[0].setAttribute('Style','display:block');");
@@ -465,11 +466,12 @@ public class LKIPRegistrationPage extends LKSelectizePageObject {
 
     public void uploadIPDocumentsCopies(
             String filename1,
-            String filename2,
-            String filename3,
-            String filename4,
-            String filename5,
-            String filename6) {
+            String filename2
+//            String filename3,
+//            String filename4,
+//            String filename5,
+//            String filename6
+    ) {
 
         // Меняем атрибут display у инпута, для возможности загружать файлы
         evaluateJavascript("document.getElementsByName('client[client_files][0][file]')[0].setAttribute('Style','display:block');");

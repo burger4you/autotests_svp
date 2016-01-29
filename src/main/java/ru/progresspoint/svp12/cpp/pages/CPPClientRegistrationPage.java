@@ -5,8 +5,6 @@ import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.At;
 import org.openqa.selenium.WebElement;
 
-import static java.lang.String.valueOf;
-
 /**
  * Страница Регистрации ВТС - физическое лицо
  */

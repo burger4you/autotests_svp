@@ -10,8 +10,6 @@ import ru.progresspoint.svp12.lk.steps.LKUserSteps;
 import javax.mail.MessagingException;
 import java.io.IOException;
 
-import static net.serenitybdd.core.Serenity.getCurrentSession;
-
 /**
  * Состояния системы, к которым она приходит в результате действий пользователя
  */

@@ -5,8 +5,6 @@ import org.jbehave.core.annotations.Given;
 import ru.progresspoint.svp12.NavigationSteps;
 import ru.progresspoint.svp12.lk.steps.LKUserSteps;
 
-import javax.mail.MessagingException;
-
 /**
  * Шаги для приведения АРМа ЛК в исходные состояния
  */
@@ -20,6 +18,6 @@ public class LKPreconditionsSteps {
 
     @Given("владелец ТС находится на странице $page в АРМ ЛК")
     public void userIsOnLKPage(String page) {
-            navigation.opensLKPage(page);
+        navigation.opensLKPage(page);
     }
 }

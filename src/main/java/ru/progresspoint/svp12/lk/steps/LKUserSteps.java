@@ -119,11 +119,7 @@ public class LKUserSteps extends RandomGenerators {
     public void uploadsIPDocumentsCopies() {
         ipRegistrationPage.uploadIPDocumentsCopies(
                 "documents/CertificateOfStateRegistration.jpg",
-                "documents/INN.jpg",
-                "documents/CertificateOfAbsenceTaxDebt.jpg",
-                "documents/CertificateOfAbsencePFRDebt.jpg",
-                "documents/CertificateOfAbsenceFSSDebt.jpg",
-                "documents/CertificateOfAbsenceFMSDebt.jpg"
+                "documents/INN.jpg"
         );
     }
 
@@ -133,11 +129,7 @@ public class LKUserSteps extends RandomGenerators {
                 "documents/StatuteSecondPage.jpg",
                 "documents/CertificateOfStateRegistration.jpg",
                 "documents/INN.jpg",
-                "documents/EGRUL.jpg",
-                "documents/CertificateOfAbsenceTaxDebt.jpg",
-                "documents/CertificateOfAbsencePFRDebt.jpg",
-                "documents/CertificateOfAbsenceFSSDebt.jpg",
-                "documents/CertificateOfAbsenceFMSDebt.jpg"
+                "documents/EGRUL.jpg"
         );
     }
 

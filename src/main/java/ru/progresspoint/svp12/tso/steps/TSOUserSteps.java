@@ -5,10 +5,7 @@ import net.serenitybdd.core.annotations.findby.By;
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.steps.ScenarioSteps;
 import ru.progresspoint.svp12.tso.pages.TSOLoginPage;
-import ru.progresspoint.svp12.tso.pages.TSOScreenObject;
 import ru.progresspoint.svp12.tso.pages.TSOStartPage;
-
-import static org.openqa.selenium.By.xpath;
 
 /**
  * Шаги пользователя АРМа ТСО

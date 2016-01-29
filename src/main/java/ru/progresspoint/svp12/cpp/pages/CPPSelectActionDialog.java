@@ -3,7 +3,7 @@ package ru.progresspoint.svp12.cpp.pages;
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.At;
-import org.openqa.selenium.WebElement;
+
 
 import static java.lang.String.format;
 
@@ -62,14 +62,14 @@ public class CPPSelectActionDialog extends CPPSelectizePageObject {
     }
 
     public void clickToSearchedClient(String query) {
-        waitFor($(format(".//*[text()='%s']/../div", query)));
+        waitFor(format(".//*[text()='%s']/../div", query));
         $(format(".//*[text()='%s']/../div", query)).click();
     }
 
     public void selectContactPerson() {
-        waitFor($(".//*[@id='hidden_person_search']/div/div[1]"));
+        waitFor(".//*[@id='hidden_person_search']/div/div[1]");
         $(".//*[@id='hidden_person_search']/div/div[1]").click();
-        waitFor($(".//*[@id='hidden_person_search']//div[@class='option'][1]"));
+        waitFor(".//*[@id='hidden_person_search']//div[@class='option'][1]");
         $(".//*[@id='hidden_person_search']//div[@class='option'][1]").click();
     }
 

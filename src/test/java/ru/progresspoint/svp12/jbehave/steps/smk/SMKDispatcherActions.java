@@ -2,7 +2,6 @@ package ru.progresspoint.svp12.jbehave.steps.smk;
 
 import net.thucydides.core.annotations.Steps;
 import org.jbehave.core.annotations.When;
-import ru.progresspoint.svp12.ckn.steps.CKNOperatorSteps;
 import ru.progresspoint.svp12.smk.steps.SMKDispatcherSteps;
 
 /**

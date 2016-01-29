@@ -3,7 +3,6 @@ package ru.progresspoint.svp12.treasury.steps;
 
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.steps.ScenarioSteps;
-import ru.progresspoint.svp12.dz.pages.DZLoginPage;
 import ru.progresspoint.svp12.treasury.pages.TreasuryLoginPage;
 
 import static org.openqa.selenium.By.linkText;

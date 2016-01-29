@@ -3,7 +3,6 @@ package ru.progresspoint.svp12.jbehave.steps.ckn;
 import net.thucydides.core.annotations.Steps;
 import org.jbehave.core.annotations.When;
 import ru.progresspoint.svp12.ckn.steps.CKNOperatorSteps;
-import ru.progresspoint.svp12.rso.steps.RSOOperatorSteps;
 
 /**
  * Шаги оператора АРМа ЦКН

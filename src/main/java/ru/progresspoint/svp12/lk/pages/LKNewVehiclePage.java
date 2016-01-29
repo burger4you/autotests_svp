@@ -84,7 +84,7 @@ public class LKNewVehiclePage extends LKSelectizePageObject {
         evaluateJavascript("document.getElementById('vehicle_sts_files_attributes_1_file_link').setAttribute('Style','display:block');");
         upload(filename1).to(vehicleDocumentFirstCopyField);
 
-//        evaluateJavascript("document.getElementsByName('vehicle[sts_files_attributes][1438961438639][file_link]')[0].setAttribute('Style','display:block');");
-//        upload(filename2).to(vehicleDocumentSecondCopyField);
+        evaluateJavascript("document.getElementsByName('vehicle[sts_files_attributes][1438961438639][file_link]')[0].setAttribute('Style','display:block');");
+        upload(filename2).to(vehicleDocumentSecondCopyField);
     }
 }
