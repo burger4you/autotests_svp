@@ -2,12 +2,14 @@ package ru.progresspoint.svp12.jbehave.steps.lk;
 
 import net.thucydides.core.annotations.Steps;
 import org.jbehave.core.annotations.Then;
+import ru.progresspoint.svp12.DBUserSteps;
 import ru.progresspoint.svp12.EmailUserSteps;
 import ru.progresspoint.svp12.NavigationSteps;
 import ru.progresspoint.svp12.lk.steps.LKUserSteps;
 
 import javax.mail.MessagingException;
 import java.io.IOException;
+import java.sql.SQLException;
 
 import static org.joda.time.DateTime.parse;
 import static org.joda.time.format.DateTimeFormat.forPattern;
@@ -25,6 +27,9 @@ public class LKConditions {
 
     @Steps
     LKUserSteps user;
+
+    @Steps
+    DBUserSteps db;
 
     @Then("открывается страница $page в АРМ ЛК")
     public void pageShouldBeDisplayed(String page) {
@@ -93,5 +98,11 @@ public class LKConditions {
         user.clicksToConfirmButton();
         navigation.isOnLKPage("Транспортные средства");
     }
+
+    @Then("система внесет запись в таблицу appeals с идентификаторами пользователя $userID и владельца ТС $clientID")
+    public void shouldInsertRecordInAppealsTableWith(int userID, int clientID) throws SQLException {
+        db.shouldSeeRecordInAppealsTableWith(userID, clientID);
+    }
+
 }
 
