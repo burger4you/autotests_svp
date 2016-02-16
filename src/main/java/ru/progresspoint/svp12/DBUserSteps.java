@@ -3,7 +3,10 @@ package ru.progresspoint.svp12;
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.steps.ScenarioSteps;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import static java.lang.String.format;
 import static java.sql.DriverManager.getConnection;
@@ -17,15 +20,15 @@ public class DBUserSteps extends ScenarioSteps {
 
     // Продакшн зона
 
-//    private static final String URL = "jdbc:postgresql://tvr1-pgm-svp-01.svp.prod/svp";
-//    private static final String USER = "svp";
-//    private static final String PASSWORD = "test3";
+//    private static final String URL = "jdbc:postgresql://tvr1-pgs-svp-06.svp.prod/svp";
+//    private static final String USER = "test";
+//    private static final String PASSWORD = "yCWMCCoYpl";
 
     //Тестовая зона
 
     private static final String URL = "jdbc:postgresql://tvr1-pgm-svp-01.svp.test/svp";
-    private static final String USER = "svp";
-    private static final String PASSWORD = "9gynsyfNpZ9jTQ==";
+    private static final String USER = "test";
+    private static final String PASSWORD = "yCWMCCoYpl";
 
 
     @Step("Видит свежую запись в таблице appeals со значениями user_id {0} и client_id {1}")
@@ -39,7 +42,8 @@ public class DBUserSteps extends ScenarioSteps {
                         "WHERE user_id = ? " +
                         "AND client_id = ? " +
                         "AND appeal_source_id = 1 " +
-                        "AND created_at > CURRENT_TIMESTAMP - INTERVAL '3 hours' - INTERVAL '4 minutes'");
+                        "AND created_at > CURRENT_TIMESTAMP - INTERVAL '3 hours' - INTERVAL '2 minutes'"
+        );
         // Подставляем переменные для конкретного кейса
         st.setInt(1, user_id);
         st.setInt(2, client_id);
