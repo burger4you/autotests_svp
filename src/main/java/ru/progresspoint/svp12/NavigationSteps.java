@@ -49,7 +49,7 @@ public class NavigationSteps extends ScenarioSteps {
     private static final String WAREHOUSE_URL  = "http://svp-www1-arm-warehouse.svp.test";
     private static final String DZ_URL         = "http://svp-www1-arm-dz.svp.test";
     private static final String ADMIN_URL      = "http://svp-www1-arm-administrator.svp.test";
-    private static final String CALLCENTER_URL = "http://cc.12tons.ru/manager";
+    private static final String CALLCENTER_URL = "http://cc.12tons.ru";
     private static final String TCO_URL        = "http://tco.12tons.ru";
     private static final String TREASURY_URL   = "http://svp-www1-arm-treasury.svp.test";
     private static final String RSO_URL        = "http://rso.12tons.ru";
