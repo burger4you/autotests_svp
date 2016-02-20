@@ -45,8 +45,8 @@ Meta: @issue #SVP12QA-13
 
 Примеры:
 | ВТС                  | Login                         | Password   | user_id | client_id |
-| Норовицкий           | tewstovtt+8422@gmail.com      | int4119564 | 104363  | 116402    |
+| Норовицкий           | tewstovtt+8422@gmail.com      | 123456789  | 104363  | 116402    |
 | Селфи                | tewstovtt+926071592@gmail.com | 12345678   | 59445   | 67321     |
-| Кока-кола            | test2+2347777467@svp.test     | 123456789  | 392430  | 28067     |
+| Кока-кола            | test2+2347777467@svp.test     | 12345678   | 294717  | 28067     |
 | Тестовое предприятие | oakap@gmail.com               | qwerty123$ | 64936   | 52937     |
-| Агро-авто            | test2+test@svp.test           | 12345678   | 392563  | 313       |
+| Агро-авто            | test2+test@svp.test           | 12345678   | 414972  | 313       |
