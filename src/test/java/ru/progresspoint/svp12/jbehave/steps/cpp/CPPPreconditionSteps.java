@@ -27,7 +27,7 @@ public class CPPPreconditionSteps {
     public void operatorWorksWithOwner(String owner) {
         navigation.opensCPPPage("Выбора действия");
         operator.selectsByAndEntersQueryForSearch("Наименование/ФИО", owner);
-        operator.clicksToTextButton("Искать");
+        navigation.clicksToTextButton("Искать");
         operator.selectsClientByQuery(owner);
     }
 }

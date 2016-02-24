@@ -5,7 +5,6 @@ import net.thucydides.core.annotations.Step;
 import net.thucydides.core.steps.ScenarioSteps;
 import ru.progresspoint.svp12.ckn.pages.CKNLoginPage;
 
-import static org.openqa.selenium.By.linkText;
 import static org.openqa.selenium.By.name;
 
 /**
@@ -14,11 +13,6 @@ import static org.openqa.selenium.By.name;
 public class CKNOperatorSteps extends ScenarioSteps {
 
     CKNLoginPage loginPage;
-
-    @Step("Нажимает на ссылку {0}")
-    public void clicksToLink(String linkText) {
-        getDriver().findElement(linkText(linkText));
-    }
 
     @Step("Вводит логин {0} и пароль {1}")
     public void entersLoginAndPassword(String login, String password) {

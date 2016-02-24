@@ -16,4 +16,9 @@ public class RSOConditions {
     public void rsoShouldBeAvailableForUser() {
         navigation.isOnRSOPage("Главная");
     }
+
+    @Then("система откроет страницу $page в АРМ РСО")
+    public void pageShouldBeDisplayed(String page) {
+        navigation.isOnRSOPage(page);
+    }
 }

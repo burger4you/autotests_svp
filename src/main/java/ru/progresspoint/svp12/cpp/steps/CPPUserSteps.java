@@ -5,13 +5,12 @@ import net.thucydides.core.annotations.Step;
 import ru.progresspoint.svp12.RandomGenerators;
 import ru.progresspoint.svp12.cpp.pages.*;
 
-import static java.lang.String.format;
 import static java.lang.String.valueOf;
 import static net.serenitybdd.core.Serenity.getCurrentSession;
 import static net.thucydides.core.matchers.BeanMatcherAsserts.shouldMatch;
 import static net.thucydides.core.matchers.BeanMatchers.the;
 import static org.hamcrest.Matchers.is;
-import static org.openqa.selenium.By.*;
+import static org.openqa.selenium.By.name;
 
 /**
  * Шаги пользователя АРМа ЦИПП
@@ -28,11 +27,6 @@ public class CPPUserSteps extends RandomGenerators {
     CPPOrganizationNonresidentRegistrationPage organizationNonresidentRegistrationPage;
     CPPAppealHistoryPopUp appealHistoryPopUp;
     CPPNewPaymentPage newPaymentPage;
-
-    @Step("Нажимает на ссылку {0}")
-    public void clicksToLink(String linkText) {
-        getDriver().findElement(linkText(linkText)).click();
-    }
 
     @Step("Вводит логин {0} и пароль {1}")
     public void entersLoginAndPassword(String login, String password) {
@@ -272,11 +266,6 @@ public class CPPUserSteps extends RandomGenerators {
         clientRegistrationPage.enterClientBankAccountNumber(getRandomNumber(20));
         clientRegistrationPage.enterClientBankSWIFT(getRandomNumber(9));
         clientRegistrationPage.enterClientBankName(getRandomCyrillicProperString(10));
-    }
-
-    @Step("Нажимает на кнопку {0}")
-    public void clicksToTextButton(String textButton) {
-        getDriver().findElement(xpath(format(".//a[text()='%s']", textButton))).click();
     }
 
     @Step("Прикладывает скан-копии документов ВТС")

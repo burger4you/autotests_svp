@@ -52,10 +52,10 @@ public class CPPUserActions {
                 operator.fillsClientLocationAddress("Совпадает с адресом регистрации");
                 break;
         }
-        operator.clicksToTextButton("Добавить лицевой счет");
+        navigation.clicksToTextButton("Добавить лицевой счет");
         operator.entersAccountData();
         operator.entersClientBankData();
-        operator.clicksToLink("Завершить регистрацию");
+        navigation.clicksToLink("Завершить регистрацию");
 
 
 //        operator.clicksToTextButton("Управление документами ВТС");
@@ -87,10 +87,10 @@ public class CPPUserActions {
                 operator.fillsNonresidentClientAddress();
                 break;
         }
-        operator.clicksToTextButton("Добавить лицевой счет");
+        navigation.clicksToTextButton("Добавить лицевой счет");
         operator.entersAccountData();
         operator.entersNonresidentClientBankData();
-        operator.clicksToLink("Завершить регистрацию");
+        navigation.clicksToLink("Завершить регистрацию");
 //        operator.uploadsClientDocumentsCopies();
 //        operator.clicksToTextButton("Подтвердить");
 //        operator.clicksToTextButton("Регистрация ТС");
@@ -104,8 +104,8 @@ public class CPPUserActions {
 
     @When("оператор проведет верификацию данных ВТС")
     public void operatorVerifiesUserData() {
-        operator.clicksToLink("Регистрация");
-        operator.clicksToLink("Верификация");
+        navigation.clicksToLink("Регистрация");
+        navigation.clicksToLink("Верификация");
         operator.findsOwnerVerificationRequest();
         operator.conductOwnerVerificationRequest();
         operator.findsVehicleVerificationRequest();
@@ -115,7 +115,7 @@ public class CPPUserActions {
     @When("оператор выберет признак $searchBy и введет в поле для поиска ВТС $query")
     public void operatorSearchClientBy(String searchBy, String query) {
         operator.selectsByAndEntersQueryForSearch(searchBy, query);
-        operator.clicksToTextButton("Искать");
+        navigation.clicksToTextButton("Искать");
     }
 
     @When("оператор откроет вкладку $tab в АРМ ЦИПП")
@@ -125,20 +125,20 @@ public class CPPUserActions {
 
     @When("оператор откроет страницу $page в АРМ ЦИПП")
     public void operatorOpensPageOnLeftMenu(String page) {
-        operator.clicksToTextButton(page);
+        navigation.clicksToTextButton(page);
     }
 
     @When("оператор предоставит информацию с этой страницы владельцу ТС")
     public void operatorAcceptsInfo() {
-        operator.clicksToLink("Информация предоставлена");
-        operator.clicksToLink("OK");
+        navigation.clicksToLink("Информация предоставлена");
+        navigation.clicksToLink("OK");
     }
 
     @When("оператор пополнит счет на $amount рублей банковской картой в АРМ ЦИПП")
     public void operatorAddPaymentFromCreditCard(String amount) {
         navigation.opensCPPPage("Расчеты");
-        operator.clicksToLink("Пополнение баланса");
+        navigation.clicksToLink("Пополнение баланса");
         operator.enterAmountPaymentFromCreditCard(amount);
-        operator.clicksToLink("Оплатить");
+        navigation.clicksToLink("Оплатить");
     }
 }

@@ -62,7 +62,7 @@ public class CPPConditions {
 
     @Then("система сохранит событие $theme - $details - $status в истории текущего обращения")
     public void systemShouldUpdateAppealHistory(String theme, String details, String status) {
-        operator.clicksToLink("История");
+        navigation.clicksToLink("История");
         operator.shouldSeeEventInCommonHistory(theme, details, status);
         operator.clicksToCloseHistoryPopUp();
     }

@@ -21,8 +21,7 @@ import ru.progresspoint.svp12.lk.pages.LKLoginPage;
 import ru.progresspoint.svp12.lk.pages.LKMainHeader;
 import ru.progresspoint.svp12.lk.pages.LKMainMenu;
 import ru.progresspoint.svp12.lk.pages.LKVehiclesPage;
-import ru.progresspoint.svp12.rso.pages.RSOLoginPage;
-import ru.progresspoint.svp12.rso.pages.RSOMainPage;
+import ru.progresspoint.svp12.rso.pages.*;
 import ru.progresspoint.svp12.smk.pages.SMKLoginPage;
 import ru.progresspoint.svp12.smk.pages.SMKMainPage;
 import ru.progresspoint.svp12.treasury.pages.TreasuryFirstSignMainPage;
@@ -35,7 +34,9 @@ import ru.progresspoint.svp12.tso.pages.TSOStartPage;
 
 import static java.lang.String.format;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.openqa.selenium.By.linkText;
 import static org.openqa.selenium.By.name;
+import static org.openqa.selenium.By.xpath;
 
 /**
  * Шаги навигации по всей системе ПО СВП
@@ -112,12 +113,26 @@ public class NavigationSteps extends ScenarioSteps {
 
     RSOLoginPage rsoLoginPage;
     RSOMainPage rsoMainPage;
+    RSOClientPage rsoClientPage;
+    RSOPaymentsPage rsoPaymentsPage;
+    RSOTransactionsPage rsoTransactionsPage;
+    RSOAccountPage rsoAccountPage;
 
     CKNLoginPage cknLoginPage;
     CKNMainPage cknMainPage;
 
     SMKLoginPage smkLoginPage;
     SMKMainPage smkMainPage;
+
+    @Step("Нажимает на кнопку {0}")
+    public void clicksToTextButton(String textButton) {
+        getDriver().findElement(xpath(format(".//a[text()='%s']", textButton))).click();
+    }
+
+    @Step("Нажимает на ссылку {0}")
+    public void clicksToLink(String linkText) {
+        getDriver().findElement(linkText(linkText));
+    }
 
     @Step("Открывает страницу {0} АРМа СМК ("+ SMK_URL +")")
     public void opensSMKPage(String page) {
@@ -173,13 +188,16 @@ public class NavigationSteps extends ScenarioSteps {
             case "Главная":
                 openBaseRSOUrl();
                 break;
+            case "Расчеты с ВТС":
+                openBaseRSOUrl();
+                break;
         }
     }
 
     private void openBaseRSOUrl() {
         getDriver().get(RSO_URL);
         if (getCurrentURL().endsWith("sign_in")) {
-            rsoLoginPage.enterLogin("Admin3");
+            rsoLoginPage.enterLogin("test_rso");
             rsoLoginPage.enterPassword("Test123$");
             getDriver().findElement(name("commit")).click();
         }
@@ -418,6 +436,22 @@ public class NavigationSteps extends ScenarioSteps {
             case "Главная":
                 rsoMainPage.shouldBeDisplayed();
                 rsoMainPage.callWhenPageOpensMethods();
+                break;
+            case "Просмотр ВТС":
+                rsoClientPage.shouldBeDisplayed();
+                rsoClientPage.callWhenPageOpensMethods();
+                break;
+            case "Платежи":
+                rsoPaymentsPage.shouldBeDisplayed();
+                rsoPaymentsPage.callWhenPageOpensMethods();
+                break;
+            case "Начисления":
+                rsoTransactionsPage.shouldBeDisplayed();
+                rsoTransactionsPage.callWhenPageOpensMethods();
+                break;
+            case "Выписка по лицевому счету ВТС":
+                rsoAccountPage.shouldBeDisplayed();
+                rsoAccountPage.callWhenPageOpensMethods();
                 break;
         }
     }
