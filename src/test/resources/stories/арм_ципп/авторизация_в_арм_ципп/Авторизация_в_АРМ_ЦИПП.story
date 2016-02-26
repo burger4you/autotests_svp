@@ -15,6 +15,6 @@ Meta:
 То система предоставит доступ к АРМ ЦИПП для роли <Role>
 
 Примеры:
-| Role          | Login       | Password   |
-| Оператор      | operator_1  | qwerty123$ |
+| Role          | Login         | Password |
+| Оператор      | ruk_tver_test | Test123$ |
 |-- Администратор |             |            |

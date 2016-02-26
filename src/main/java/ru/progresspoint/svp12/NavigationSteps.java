@@ -355,8 +355,8 @@ public class NavigationSteps extends ScenarioSteps {
     private void openBaseCPPUrl() {
         getDriver().get(CIPP_URL);
         if (getCurrentURL().endsWith("sign_in")) {
-            cppLoginPage.enterLogin("operator_1");
-            cppLoginPage.enterPassword("qwerty123$");
+            cppLoginPage.enterLogin("ruk_tver_test");
+            cppLoginPage.enterPassword("Test123$");
             getDriver().findElement(name("commit")).click();
         }
     }
@@ -368,7 +368,7 @@ public class NavigationSteps extends ScenarioSteps {
                 getDriver().get(LK_URL + "/sign_out");
                 lkLoginPage.shouldBeDisplayed();
                 break;
-            case "Транспортные средства":
+            case "Транспортные средства":И
                 openBaseLKUrl();
                 lkMainMenu.clickToVehiclesItem();
                 break;
