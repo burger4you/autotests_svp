@@ -368,7 +368,7 @@ public class NavigationSteps extends ScenarioSteps {
                 getDriver().get(LK_URL + "/sign_out");
                 lkLoginPage.shouldBeDisplayed();
                 break;
-            case "Транспортные средства":И
+            case "Транспортные средства":
                 openBaseLKUrl();
                 lkMainMenu.clickToVehiclesItem();
                 break;
