@@ -71,6 +71,7 @@ public class CPPUserSteps extends RandomGenerators {
         String[] array = ipEmail.split("@");
         getCurrentSession().put("login", ipEmail.replace(valueOf(array[0]), valueOf(array[0]) + "+ip_" + getRandomNumber(6)));
         ipRegistrationPage.enterIPMainEmail((String) getCurrentSession().get("login"));
+        ipRegistrationPage.enterIPMainPhone(getRandomNumber(11));
         ipRegistrationPage.selectIPRole("Главный менеджер");
         ipRegistrationPage.selectIPLanguage("Русский");
     }
@@ -266,6 +267,15 @@ public class CPPUserSteps extends RandomGenerators {
         clientRegistrationPage.enterClientBankAccountNumber(getRandomNumber(20));
         clientRegistrationPage.enterClientBankSWIFT(getRandomNumber(9));
         clientRegistrationPage.enterClientBankName(getRandomCyrillicProperString(10));
+    }
+
+    @Step("Вводит данные расчетного счета в российском банке")
+    public void entersNonresidentClientRussianBankData() {
+        clientRegistrationPage.clickToRussianBankCheckBox();
+        clientRegistrationPage.enterClientBankAccountNumber(getRandomNumber(20));
+        clientRegistrationPage.enterClientBankBIK(getRandomNumber(9));
+        clientRegistrationPage.enterClientBankName(getRandomCyrillicProperString(6));
+        clientRegistrationPage.enterClientBankKorNumber(getRandomNumber(20));
     }
 
     @Step("Прикладывает скан-копии документов ВТС")

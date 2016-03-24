@@ -52,6 +52,9 @@ public class CPPIPRegistrationPage extends CPPSelectizePageObject {
     @FindBy(id = "client_ip_persons_attributes_0_main_email_attributes_name")
     WebElementFacade ipMainEmailField;
 
+    @FindBy(id = "client_ip_persons_attributes_0_main_phone_attributes_name")
+    WebElementFacade ipMainPhoneField;
+
     public void enterIPOGRN(String ipOGRN) {
         enter(ipOGRN).into(ipOGRNField);
     }
@@ -102,6 +105,10 @@ public class CPPIPRegistrationPage extends CPPSelectizePageObject {
 
     public void enterIPMainEmail(String ipMainEmail) {
         enter(ipMainEmail).into(ipMainEmailField);
+    }
+
+    public void enterIPMainPhone(String ipMainPhone) {
+        enter(ipMainPhone).into(ipMainPhoneField);
     }
 
     public void selectIPRole(String ipRole) {

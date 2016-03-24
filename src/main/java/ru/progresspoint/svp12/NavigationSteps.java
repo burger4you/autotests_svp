@@ -131,7 +131,7 @@ public class NavigationSteps extends ScenarioSteps {
 
     @Step("Нажимает на ссылку {0}")
     public void clicksToLink(String linkText) {
-        getDriver().findElement(linkText(linkText));
+        getDriver().findElement(linkText(linkText)).click();
     }
 
     @Step("Открывает страницу {0} АРМа СМК ("+ SMK_URL +")")
@@ -394,8 +394,8 @@ public class NavigationSteps extends ScenarioSteps {
     private void openBaseLKUrl() {
         getDriver().get(LK_URL);
         if (getCurrentURL().endsWith("sign_in")) {
-            lkLoginPage.enterLogin("iptestowner+ip008@gmail.com");
-            lkLoginPage.enterPassword("!QAZ2wsx");
+            lkLoginPage.enterLogin("test2+8422@svp.test");
+            lkLoginPage.enterPassword("123456789");
             getDriver().findElement(name("commit")).click();
         }
         lkMainMenu.loading();

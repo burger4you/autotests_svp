@@ -264,6 +264,9 @@ public class CPPClientRegistrationPage extends CPPSelectizePageObject {
     }
 
     //РАСЧЕТНЫЙ СЧЕТ
+    @FindBy (xpath = ".//*[@for='client_client_settlement_account_attributes_is_rf_bank']/div")
+    WebElementFacade clientBankInRussiaCheckBox;
+
     @FindBy(id = "client_client_settlement_account_attributes_account_num")
     WebElementFacade clientBankAccountNumberField;
 
@@ -281,6 +284,10 @@ public class CPPClientRegistrationPage extends CPPSelectizePageObject {
 
     @FindBy(id = "client_client_settlement_account_attributes_swift")
     WebElementFacade clientBankSWIFTField;
+
+    public void clickToRussianBankCheckBox() {
+        clientBankInRussiaCheckBox.click();
+    }
 
     public void enterClientBankAccountNumber(String clientBankAccountNumber) {
         enter(clientBankAccountNumber).into(clientBankAccountNumberField);

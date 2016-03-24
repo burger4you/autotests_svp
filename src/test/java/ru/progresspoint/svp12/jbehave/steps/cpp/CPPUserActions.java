@@ -89,7 +89,7 @@ public class CPPUserActions {
         }
         navigation.clicksToTextButton("Добавить лицевой счет");
         operator.entersAccountData();
-        operator.entersNonresidentClientBankData();
+        operator.entersNonresidentClientRussianBankData();
         navigation.clicksToLink("Завершить регистрацию");
 //        operator.uploadsClientDocumentsCopies();
 //        operator.clicksToTextButton("Подтвердить");
